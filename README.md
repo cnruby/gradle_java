@@ -12,7 +12,7 @@
   - [map for develop Java application](#map-for-develop-java-application)
   - [create a simple Java application](#create-a-simple-java-application)
   - [create a Java application with directory `build`](#create-a-java-application-with-directory-build)
-- [create a Java application with directory `build` and `src`](#create-a-java-application-with-directory-build-and-src)
+  - [create a Java application with directory `build` and `src`](#create-a-java-application-with-directory-build-and-src)
 - [References](#references)
 
 
@@ -111,7 +111,7 @@ java -cp ./buildSrc Nihao
 >> 世界，你好！
 ```
 
-## create a Java application with directory `build` and `src`
+### create a Java application with directory `build` and `src`
 
 ```bash
 mkdir src
