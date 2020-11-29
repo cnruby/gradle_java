@@ -1,5 +1,11 @@
 <h1>Lesson 1: Hello jabba!</h1>
 
+- install Java Version Manager tool `jabba` on Ubuntu 20.04
+- install JDK 8 and/or 11 on Ubuntu 20.04
+- develop simple Java applications
+
+---
+
 - [Step1:  Install jabba and JDK on Ubuntu 20.04](#step1--install-jabba-and-jdk-on-ubuntu-2004)
   - [map for install jabba and JDK](#map-for-install-jabba-and-jdk)
   - [insatll jabba](#insatll-jabba)
