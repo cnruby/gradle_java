@@ -96,7 +96,9 @@ java -version
 ```bash
 touch Hello.java
 vi Hello.java
+
 javac Hello.java
+
 java Hello
 >> Hello world!
 ```
@@ -134,7 +136,6 @@ java -cp ./build App
 #java -cp build App
 #java --class-path ./build App
 #java -classpath ./build App
-
 >> Hallo Welt!
 ```
 ¬¬
