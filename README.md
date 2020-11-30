@@ -10,7 +10,7 @@
 - [Step 2: install Gradle on Ubuntu](#step-2-install-gradle-on-ubuntu)
 - [Step 3: develop a Java application with Gradle](#step-3-develop-a-java-application-with-gradle)
   - [create a project with Gradle](#create-a-project-with-gradle)
-  - [run Gradle command](#run-gradle-command)
+  - [run Gradle `help` command](#run-gradle-help-command)
   - [add the Java code](#add-the-java-code)
   - [compile the Java application](#compile-the-java-application)
   - [run the Java application](#run-the-java-application)
@@ -45,10 +45,11 @@ touch build.gradle
 vi build.gradle
 ```
 
-### run Gradle command
+### run Gradle `help` command
 
 ```bash
 gradle
+gradle :help
 ```
 
 ### add the Java code
