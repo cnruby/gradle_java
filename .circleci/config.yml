@@ -43,7 +43,7 @@ jobs:
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
       # compile application
-      ./gradlew compileJava
+      - run: ./gradlew compileJava
 
       # run application
       - run: ./gradlew run
@@ -52,8 +52,7 @@ jobs:
       - run: ./gradlew celan test
 
       # build application
-      ./gradlew clean build
+      - run: ./gradlew clean build
 
       # run application Jar
-      
-
+      - run: java -jar build/libs/gradle_java.jar
