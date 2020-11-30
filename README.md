@@ -26,7 +26,7 @@
 
 ## Keywords
 - `Java Version Manager` jvm jabba JDK
-- java javac compile run `Java Class Name` 
+- java javac compile run `.java` `.class` `Java Class Name` 
 - Ubuntu Java tutorial example java8 java11
 
 
