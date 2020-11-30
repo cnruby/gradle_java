@@ -49,7 +49,7 @@ jobs:
       - run: ./gradlew run
       
       # run application tests
-      - run: ./gradlew celan test
+      - run: ./gradlew clean test
 
       # build application
       - run: ./gradlew clean build
