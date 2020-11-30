@@ -1,4 +1,4 @@
-<h1>Lesson 2: Hello Gradle and Java!</h1>
+<h1>Lesson 102: Hello Gradle and Java!</h1>
 
 - install JDK on Ubuntu 20.04
 - install Gradle on Ubuntu 20.04
