@@ -6,6 +6,7 @@
 
 ---
 
+- [](#)
 - [Prerequisites](#prerequisites)
 - [Develop a Java application with `gradlew`](#develop-a-java-application-with-gradlew)
   - [get initial project](#get-initial-project)
@@ -20,6 +21,11 @@
   - [run the Java application with Jar:](#run-the-java-application-with-jar)
 - [References](#references)
 - [References for Tips](#references-for-tips)
+
+
+## Keywords
+- gradlew wrapper `Project Gradle version` `Environment System version` 
+- Ubuntu Java Gradle tutorial example
 
 ## Prerequisites
 - [install JDK on Ubuntu 20.04](https://github.com/cnruby/gradle_java/blob/basic_101/README.md)
