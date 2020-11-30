@@ -1,4 +1,4 @@
-<h1>Lesson 102: Hello Gradle and Java!</h1>
+<h1>Lesson 102: Hello Gradle!</h1>
 
 - install JDK on Ubuntu 20.04
 - install Gradle on Ubuntu 20.04
@@ -6,6 +6,7 @@
 
 ---
 
+- [Keywords](#keywords)
 - [Step 1: Prerequisites](#step-1-prerequisites)
 - [Step 2: install Gradle on Ubuntu](#step-2-install-gradle-on-ubuntu)
 - [Step 3: develop a Java application with Gradle](#step-3-develop-a-java-application-with-gradle)
@@ -23,6 +24,11 @@
   - [Solution](#solution)
 - [References](#references)
 - [References for Tips](#references-for-tips)
+
+
+## Keywords
+- Gradle `Gradle Java Application` `Gradle tasks` 
+- Ubuntu Java Testing Jar tutorial example
 
 ## Step 1: Prerequisites
 - [install JDK](https://github.com/cnruby/gradle_java/blob/basic_101/README.md)
