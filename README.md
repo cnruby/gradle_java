@@ -1,6 +1,5 @@
 <h1>Lesson 102: Hello Gradle!</h1>
 
-- install JDK on Ubuntu 20.04
 - install Gradle on Ubuntu 20.04
 - develop Java application with Gradle
 
