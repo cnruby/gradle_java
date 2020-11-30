@@ -89,7 +89,8 @@ BUILD SUCCESSFUL in 28s
 ### check the project Gradle version
 
 ```bash
-./gradlew -w
+./gradlew
+#./gradlew help
 ```
 
 Result:
