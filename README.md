@@ -16,8 +16,8 @@
 - [Keywords](#keywords)
 - [Prerequisites](#prerequisites)
 - [Create a Java Application with Gradle](#create-a-java-application-with-gradle)
-- [add the configuration for CI (CircleCI.com)](#add-the-configuration-for-ci-circlecicom)
-- [Programm the Java application](#programm-the-java-application)
+- [Add the configuration for CI (CircleCI.com)](#add-the-configuration-for-ci-circlecicom)
+- [Program the Java application](#program-the-java-application)
   - [change the build file `build.gradle`](#change-the-build-file-buildgradle)
   - [run the Java application](#run-the-java-application)
   - [test the Java application](#test-the-java-application)
@@ -43,7 +43,7 @@
 gradle init --project-name gradle_java --type java-application --dsl groovy --test-framework 'junit-jupiter' --package basic_105
 ```
 
-## add the configuration for CI (CircleCI.com)
+## Add the configuration for CI (CircleCI.com)
 
 ```bash
 mkdir .circleci
@@ -52,9 +52,8 @@ vi .circleci/config.yml
 ```
 
 ```bash
+# config.yml
 # Java Gradle CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-java/ for more details
 #
 version: 2
 jobs:
@@ -64,9 +63,6 @@ jobs:
       # - image: circleci/openjdk:11-jdk
       - image: azul/zulu-openjdk:11
 
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
 
     working_directory: ~/repo
@@ -114,7 +110,7 @@ jobs:
 ```
 
 
-## Programm the Java application
+## Program the Java application
 
 ### change the build file `build.gradle`
 
