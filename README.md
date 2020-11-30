@@ -6,7 +6,7 @@
 
 ---
 
-- [](#)
+- [Keywords](#keywords)
 - [Prerequisites](#prerequisites)
 - [Develop a Java application with `gradlew`](#develop-a-java-application-with-gradlew)
   - [get initial project](#get-initial-project)
