@@ -1,5 +1,5 @@
 <a href = "https://openjdk.java.net/">
-<img width = "90%" height = "auto" src = "https://img.shields.io/badge/Java-Programming%20Language-black?style=flat&logo=java" alt = "The Java Programming Language">
+<img width = "90%" height = "auto" src = "https://img.shields.io/badge/Java-Programming%20Language%20with%20Gradle-black?style=flat&logo=java" alt = "The Java Programming Language">
 </a>
 
 
@@ -10,6 +10,8 @@
 <h1>Lesson 105: Hello CircleCI!</h1>
 
 ---
+
+
 
 
 
