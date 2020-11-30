@@ -18,14 +18,16 @@
 - [Keywords](#keywords)
 - [Prerequisites](#prerequisites)
 - [Create a Java Application with Gradle](#create-a-java-application-with-gradle)
-- [Add the configuration for CI (CircleCI.com)](#add-the-configuration-for-ci-circlecicom)
+- [Use CircleCI.com](#use-circlecicom)
+  - [Add the CI (CircleCI.com) configuration for the application](#add-the-ci-circlecicom-configuration-for-the-application)
+  - [run CI on `CircleCI.com`](#run-ci-on-circlecicom)
 - [Program the Java application](#program-the-java-application)
   - [change the Gradle build file `build.gradle`](#change-the-gradle-build-file-buildgradle)
   - [run the Java application](#run-the-java-application)
   - [test the Java application](#test-the-java-application)
   - [build the Java application](#build-the-java-application)
   - [run the Java application with Jar:](#run-the-java-application-with-jar)
-- [Go to The CI Website `CircleCI.com`](#go-to-the-ci-website-circlecicom)
+- [Result on the CI Website `CircleCI.com`](#result-on-the-ci-website-circlecicom)
 - [References](#references)
 
 
@@ -46,7 +48,9 @@
 gradle init --project-name gradle_java --type java-application --dsl groovy --test-framework 'junit-jupiter' --package basic_105
 ```
 
-## Add the configuration for CI (CircleCI.com)
+## Use CircleCI.com
+
+### Add the CI (CircleCI.com) configuration for the application
 
 ```bash
 mkdir .circleci
@@ -111,6 +115,11 @@ jobs:
       # run application Jar
       - run: java -jar build/libs/gradle_java.jar
 ```
+
+### run CI on `CircleCI.com`
+1. Add the Github Project on the Website [CircleCI Account](https://circleci.com/vcs-authorize/)
+2. Commit the Project to GitHub.com
+3. View the `CircleCI.com`
 
 
 ## Program the Java application
@@ -179,7 +188,7 @@ Result:
 Hello world.
 ```
 
-## Go to The CI Website `CircleCI.com`
+## Result on the CI Website `CircleCI.com`
 - [CircleCI Account](https://circleci.com/vcs-authorize/)
 
 ![105_hello_circleci_com](docs/images/105_hello_circleci_com.png)
