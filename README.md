@@ -184,3 +184,5 @@ Hello world.
 ## References
 - https://circleci.com/
 - https://circleci.com/docs/2.0/status-badges/
+- https://github.com/wavesoftware/docker-circleci-zulujdk
+- https://circleci.com/docs/2.0/language-java/
