@@ -49,7 +49,8 @@ vi build.gradle
 
 ```bash
 gradle
-gradle :help
+#gradle help
+#gradle :help
 ```
 
 ### add the Java code
