@@ -4,7 +4,7 @@
 
 
 [![Ubuntu-%20(20.04LTS)](https://img.shields.io/badge/Ubuntu-%20(20.04LTS)-brightgreen)](https://ubuntu.com/)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/gradle/gradle?label=gradle&logo=gradle)](https://gradle.org/)
+[![GitHub release (latest by date)](https://img.shields.io/badge/Gradle-v6.6.1-black?style=flat&logo=gradle)](https://gradle.org/)
 [![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_105.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_105)
 
 <h1>Lesson 105: Hello CircleCI!</h1>
