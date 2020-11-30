@@ -85,6 +85,8 @@ gradle run
 Result:
 
 ```bash
+Starting a Gradle Daemon, 2 incompatible and 1 stopped Daemons could not be reused, use --status for details
+
 > Task :run
 Hello world.
 
