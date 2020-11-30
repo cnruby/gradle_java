@@ -1,4 +1,4 @@
-<h1>Lesson 1: Hello jabba!</h1>
+<h1>Lesson 101: Hello jabba!</h1>
 
 - install Java Version Manager tool `jabba` on Ubuntu 20.04
 - install JDK 8 and/or 11 with jabba on Ubuntu 20.04
@@ -16,6 +16,7 @@
   - [use default Java 8](#use-default-java-8)
 - [Step 2: Develop Java application](#step-2-develop-java-application)
   - [map for develop Java application](#map-for-develop-java-application)
+  - [get initial project version](#get-initial-project-version)
   - [create a simple Java application](#create-a-simple-java-application)
   - [create a Java application with directory `build`](#create-a-java-application-with-directory-build)
   - [create a Java application with directory `build` and `src`](#create-a-java-application-with-directory-build-and-src)
@@ -90,6 +91,14 @@ java -version
 
 ### map for develop Java application
 ![101_hello_jabba-Step2-develop-java-app](docs/images/101_hello_jabba-Step2-develop-java-app.png)
+
+### get initial project version
+
+```bash
+git clone https://github.com/cnruby/gradle_java.git basic_101
+git switch basic_000
+
+```
 
 ### create a simple Java application
 
