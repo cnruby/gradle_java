@@ -6,6 +6,7 @@
 
 ---
 
+- [Keywords](#keywords)
 - [Step1:  Install jabba and JDK on Ubuntu 20.04](#step1--install-jabba-and-jdk-on-ubuntu-2004)
   - [map for install jabba and JDK](#map-for-install-jabba-and-jdk)
   - [insatll jabba](#insatll-jabba)
@@ -21,6 +22,12 @@
   - [create a Java application with directory `build`](#create-a-java-application-with-directory-build)
   - [create a Java application with directory `build` and `src`](#create-a-java-application-with-directory-build-and-src)
 - [References](#references)
+
+
+## Keywords
+- `Java Version Manager` jvm jabba JDK
+- java javac compile run `Java Class Name` 
+- Ubuntu Java tutorial example java8 java11
 
 
 ## Step1:  Install jabba and JDK on Ubuntu 20.04
