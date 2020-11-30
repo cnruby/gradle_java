@@ -23,6 +23,7 @@
   - [test the Java application](#test-the-java-application)
   - [build the Java application](#build-the-java-application)
   - [run the Java application with Jar:](#run-the-java-application-with-jar)
+- [Go to The CI Website `CircleCI.com`](#go-to-the-ci-website-circlecicom)
 - [References](#references)
 
 
@@ -176,6 +177,12 @@ Result:
 ```bash
 Hello world.
 ```
+
+## Go to The CI Website `CircleCI.com`
+
+![105_hello_circleci_com](docs/images/105_hello_circleci_com.png)
+![105_hello_circleci_com_result](docs/images/105_hello_circleci_com_result.png)
+
 
 ## References
 - https://circleci.com/
