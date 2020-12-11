@@ -19,7 +19,6 @@
 
 
 - [Keywords](#keywords)
-- [Download This Project](#download-this-project)
 - [Step 1: Prerequisites](#step-1-prerequisites)
 - [Step 2: install Gradle on Ubuntu](#step-2-install-gradle-on-ubuntu)
 - [Step 3: develop a Java application with Gradle](#step-3-develop-a-java-application-with-gradle)
@@ -32,6 +31,7 @@
   - [build the Java application](#build-the-java-application)
   - [run the Java application on different OS System:](#run-the-java-application-on-different-os-system)
 - [Test the Java application](#test-the-java-application)
+- [Download This Project](#download-this-project)
 - [Tip:](#tip)
 - [Main References](#main-references)
 - [References](#references)
@@ -42,14 +42,6 @@
 ## Keywords
 - Gradle `Gradle Java Application` `Gradle tasks` 
 - Ubuntu Java Testing Jar tutorial example
-
-
-
-## Download This Project
-
-```bash
-git clone -b basic_102 https://github.com/cnruby/gradle_java.git basic_102
-```
 
 
 
@@ -170,6 +162,14 @@ View Result for Test:
 
 ```bash
 google-chrome build/reports/tests/test/index.html
+```
+
+
+
+## Download This Project
+
+```bash
+git clone -b basic_102 https://github.com/cnruby/gradle_java.git basic_102
 ```
 
 
