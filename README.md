@@ -25,7 +25,6 @@
 - [Create a Java Application with Gradle](#create-a-java-application-with-gradle)
 - [Develop the build file `build.gradle`](#develop-the-build-file-buildgradle)
   - [Add the third Package `Gson` to the Gradle build file `build.gradle`](#add-the-third-package-gson-to-the-gradle-build-file-buildgradle)
-  - [change the `applicationName`](#change-the-applicationname)
   - [build the file `build.gradle`](#build-the-file-buildgradle)
 - [Develop the Java application with the Third Package `Gson`](#develop-the-java-application-with-the-third-package-gson)
   - [change the Java Code](#change-the-java-code)
@@ -34,6 +33,7 @@
   - [build the project](#build-the-project)
   - [run the Java application on different OS System](#run-the-java-application-on-different-os-system)
 - [Download and Use This compelete Project](#download-and-use-this-compelete-project)
+- [Tip](#tip)
 - [References](#references)
 
 
@@ -56,6 +56,8 @@
 ```bash
 git clone -b basic_105 https://github.com/cnruby/gradle_java.git 106_gradle_java
 cd 106_gradle_java
+sed -i 's/basic_105/basic_106/g' build.gradle
+sed -i 's/'1.0.5'/'1.0.6'/g' build.gradle
 ```
 
 
@@ -73,18 +75,6 @@ vi ./build.gradle
 ...
 dependencies {
   implementation 'org.json:json:20201115'
-...
-```
-
-### change the `applicationName`
-
-```bash
-# FILE (./build.gradle)
-...
-startScripts {
-    applicationName = 'basic_106'
-    group = 'de.iotoi'
-    // version = '1.0.6'
 ...
 ```
 
@@ -170,6 +160,14 @@ git clone -b basic_106 https://github.com/cnruby/gradle_java.git basic_106
 cd basic_106
 ./gradlew run
 ```
+
+
+
+## Tip
+- About the `applicationName` in the `build.gradle`
+- About the `rootProject.name` in the `settings.gradle`
+
+![basic_106](doc/image/basic_106.png)
 
 
 
