@@ -35,7 +35,7 @@
   - [create a simple Java application](#create-a-simple-java-application)
   - [create a Java application with directory `build`](#create-a-java-application-with-directory-build)
   - [create a Java application with directory `build` and `src`](#create-a-java-application-with-directory-build-and-src)
-- [Download and Use This compelte Project](#download-and-use-this-compelte-project)
+- [Download and Use This compelete Project](#download-and-use-this-compelete-project)
 - [References](#references)
 
 
@@ -175,7 +175,7 @@ java -cp ./build App
 
 
 
-## Download and Use This compelte Project
+## Download and Use This compelete Project
 
 ```bash
 # Download
