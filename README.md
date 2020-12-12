@@ -31,7 +31,7 @@
   - [build the Java application](#build-the-java-application)
   - [run the Java application on different OS System:](#run-the-java-application-on-different-os-system)
 - [Test the Java application](#test-the-java-application)
-- [Download This Project](#download-this-project)
+- [Download and Use This compelte Project](#download-and-use-this-compelte-project)
 - [Tip:](#tip)
 - [Main References](#main-references)
 - [References](#references)
@@ -166,11 +166,19 @@ google-chrome build/reports/tests/test/index.html
 
 
 
-## Download This Project
+## Download and Use This compelte Project
 
 ```bash
+# Download
 git clone -b basic_102 https://github.com/cnruby/gradle_java.git basic_102
 ```
+
+```bash
+# Use
+cd basic_102
+./gradlew run
+```
+
 
 
 
