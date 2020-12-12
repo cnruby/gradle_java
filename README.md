@@ -368,3 +368,4 @@ The JavaApplication.setMainClassName(String) method has been deprecated. This is
 - https://docs.gradle.org/6.7.1/userguide/gradle_wrapper.html#sec:adding_wrapper
 - https://www.baeldung.com/gradle-run-java-main
 - https://newfivefour.com/gradle-run-jar-file.html
+- https://github.com/gradle/gradle/blob/master/subprojects/plugins/src/main/java/org/gradle/api/plugins/internal/DefaultJavaApplication.java
