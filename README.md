@@ -7,33 +7,42 @@
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/shyiko/jabba?label=jabba&logo=jabba)](https://github.com/shyiko/jabba)
 [![Java zulu-openjdk:11](https://img.shields.io/badge/Java-zulu%20openjdk:11-brightgreen?style=flat&logo=java)](https://www.azul.com/downloads/zulu-community/?package=jdk)
 [![GitHub release (latest by date)](https://img.shields.io/badge/Gradle-v6.6.1-black?style=flat&logo=gradle)](https://gradle.org/)
-[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_105.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_105)
+[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_106.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_106)
 
-<h1>Lesson 105: Hello CircleCI!</h1>
 
-- Develop a Java application with Gradle and CI
+
+
+<h1>Lesson 106: Hello Package!</h1>
+
+- Develop a Java application with Third Package
 
 ---
+
+
 
 - [Keywords](#keywords)
 - [Prerequisites](#prerequisites)
 - [Create a Java Application with Gradle](#create-a-java-application-with-gradle)
-- [Use CircleCI.com](#use-circlecicom)
-  - [Add the CI (CircleCI.com) configuration for the application](#add-the-ci-circlecicom-configuration-for-the-application)
-  - [run CI on `CircleCI.com`](#run-ci-on-circlecicom)
-- [Program the Java application](#program-the-java-application)
+- [Add the third Package to the build file `build.gradle`](#add-the-third-package-to-the-build-file-buildgradle)
   - [change the Gradle build file `build.gradle`](#change-the-gradle-build-file-buildgradle)
-  - [run the Java application](#run-the-java-application)
-  - [test the Java application](#test-the-java-application)
-  - [build the Java application](#build-the-java-application)
-  - [run the Java application with Jar:](#run-the-java-application-with-jar)
+  - [build the file `build.gradle`](#build-the-file-buildgradle)
+- [Develop the Java application with the Third Package `Gson`](#develop-the-java-application-with-the-third-package-gson)
+  - [change the Java Code](#change-the-java-code)
+  - [run the Java application on project](#run-the-java-application-on-project)
+- [Package the Java application](#package-the-java-application)
+  - [build the project](#build-the-project)
+  - [run the Java application on different OS System](#run-the-java-application-on-different-os-system)
+- [Download and Use This compelete Project](#download-and-use-this-compelete-project)
 - [Result on the CI Website `CircleCI.com`](#result-on-the-ci-website-circlecicom)
+- [Main References](#main-references)
 - [References](#references)
 
 
+
 ## Keywords
-- `Continuous Integration` CI `Continuous Deployment` CD CircleCI
-- Ubuntu Java Gradle tutorial example
+- Third Package Library
+- Ubuntu Java Gradle tutorial example `Continuous Integration` CI `Continuous Deployment` CD CircleCI
+
 
 
 ## Prerequisites
@@ -42,113 +51,62 @@
 - [CircleCI Account](https://circleci.com/vcs-authorize/)
 
 
+
 ## Create a Java Application with Gradle
 
 ```bash
-gradle init --project-name gradle_java --type java-application --dsl groovy --test-framework 'junit-jupiter' --package basic_105
+git clone https://github.com/cnruby/gradle_java.git 106_gradle_java
+git switch basic_106
+cd 106_gradle_java
 ```
 
-## Use CircleCI.com
-
-### Add the CI (CircleCI.com) configuration for the application
-
-```bash
-mkdir .circleci
-touch .circleci/config.yml
-vi .circleci/config.yml
-```
-
-```bash
-# config.yml
-# Java Gradle CircleCI 2.0 configuration file
-#
-version: 2
-jobs:
-  build:
-    docker:
-      # specify the version you desire here
-      # - image: circleci/openjdk:11-jdk
-      - image: azul/zulu-openjdk:11
-
-      # - image: circleci/postgres:9.4
-
-    working_directory: ~/repo
-
-    environment:
-      # Customize the JVM maximum heap limit
-      JVM_OPTS: -Xmx3200m
-      TERM: dumb
-
-    steps:
-      - checkout
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
-      # about Gradle
-      - run: ./gradlew --version
-
-      # project libraries
-      - run: ./gradlew dependencies
-
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: v1-dependencies-{{ checksum "build.gradle" }}
-
-      # compile application
-      - run: ./gradlew compileJava
-
-      # run application
-      - run: ./gradlew run
-      
-      # run application tests
-      - run: ./gradlew clean test
-
-      # build application
-      - run: ./gradlew clean build
-
-      # run application Jar
-      - run: java -jar build/libs/gradle_java.jar
-```
-
-### run CI on `CircleCI.com`
-1. Add the Github Project on the Website [CircleCI Account](https://circleci.com/vcs-authorize/)
-2. Commit the Project to GitHub.com
-3. View the `CircleCI.com`
 
 
-## Program the Java application
+## Add the third Package to the build file `build.gradle`
 
 ### change the Gradle build file `build.gradle`
 
 ```bash
-# build.gradle
+vi ./build.gradle
+```
+
+```bash
+# FILE (./build.gradle)
 ...
-ext {
-    javaMain = "basic_105.App"
-}
-
-application {
-    // Define the main class for the application.
-    mainClassName = javaMain
-}
-
-jar {
-    manifest {
-        attributes(
-                "Main-Class": javaMain
-        )
-    }
-}
+dependencies {
+  implementation 'org.json:json:20201115'
 ...
 ```
 
-### run the Java application
+### build the file `build.gradle`
+
+```bash
+./gradlew
+```
+
+
+
+## Develop the Java application with the Third Package `Gson`
+
+### change the Java Code
+
+```bash
+vi src/main/java/basic_106/App.java
+```
+
+```bash
+# FILE (src/main/java/basic_106/App.java)
+...
+        System.out.println(new App().getGreeting());
+
+        LongStream obj = new Random().longs(5,0,10);
+        String json = new Gson().toJson(obj.toArray());
+
+        System.out.println("json = " + json);
+...
+```
+
+### run the Java application on project
 
 ```bash
 ./gradlew run
@@ -159,44 +117,59 @@ Result:
 ```bash
 > Task :run
 Hello world.
+json = [3,5,7,6,7]
 
-BUILD SUCCESSFUL in 422ms
+BUILD SUCCESSFUL in 467ms
 2 actionable tasks: 2 executed
 ```
 
-### test the Java application
 
-```bash
-./gradlew clean test
-```
 
-### build the Java application
+## Package the Java application
  
+### build the project 
 ```bash
 ./gradlew clean build
 ```
 
-### run the Java application with Jar:
+### run the Java application on different OS System
 
 ```bash
-java -jar build/libs/gradle_java.jar
+unzip build/distributions/_gradle_java.zip 
+./_gradle_java/bin/basic_106
 ```
 
 Result:
 
 ```bash
 Hello world.
+json = [2,3,9,8,6]
 ```
+
+
+
+## Download and Use This compelete Project
+
+```bash
+# Download
+git clone -b basic_106 https://github.com/cnruby/gradle_java.git basic_106
+```
+
+```bash
+# Use
+cd basic_106
+./gradlew run
+```
+
+
 
 ## Result on the CI Website `CircleCI.com`
 - [CircleCI Account](https://circleci.com/vcs-authorize/)
 
-![105_hello_circleci_com](docs/images/105_hello_circleci_com.png)
-![105_hello_circleci_com_result](docs/images/105_hello_circleci_com_result.png)
 
+
+## Main References
 
 ## References
-- https://circleci.com/
-- https://circleci.com/docs/2.0/status-badges/
-- https://github.com/wavesoftware/docker-circleci-zulujdk
-- https://circleci.com/docs/2.0/language-java/
+- https://github.com/johnrengelman/shadow
+- 
