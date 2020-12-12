@@ -41,7 +41,7 @@
   - [build the Java application](#build-the-java-application)
   - [run the Java application on different OS System:](#run-the-java-application-on-different-os-system)
 - [Download and Use This compelete Project](#download-and-use-this-compelete-project)
-- [Help: "Deprecated Gradle features" in the future Gradle version were used in the file `build.gradle`](#help-deprecated-gradle-features-in-the-future-gradle-version-were-used-in-the-file-buildgradle)
+- [Help: "Deprecated Gradle features were used in the build file `build.gradle`"](#help-deprecated-gradle-features-were-used-in-the-build-file-buildgradle)
 - [Tips](#tips)
 - [References](#references)
 - [References for Tips](#references-for-tips)
@@ -301,7 +301,7 @@ cd basic_103
 
 
 
-## Help: "Deprecated Gradle features" in the future Gradle version were used in the file `build.gradle`
+## Help: "Deprecated Gradle features were used in the build file `build.gradle`"
 
 - Step 1: Download this project
 
@@ -325,6 +325,8 @@ Deprecated Gradle features were used in this build, making it incompatible with 
 ./gradlew --warning-mode all
 ```
 
+Result:
+
 ```bash
 > Configure project :
 The JavaApplication.setMainClassName(String) method has been deprecated. This is scheduled to be removed in Gradle 8.0. Use #getMainClass().set(...) instead. See https://docs.gradle.org/6.7.1/dsl/org.gradle.api.plugins.JavaApplication.html#org.gradle.api.plugins.JavaApplication:mainClass for more details.
@@ -340,8 +342,8 @@ The JavaApplication.setMainClassName(String) method has been deprecated. This is
 ./gradlew
 ```
 
-- Result exists NOT this message with "Deprecated Gradle features"! 
-- The code "mainClassName"(i.e JavaApplication.setMainClassName(String)) were used in this build file `build.gradle`. This is a "Deprecated Gradle feature for the future Gradle version".
+- Result exists NOT this message about "Deprecated Gradle features ..."! 
+- The code "mainClassName"(i.e JavaApplication.setMainClassName(String)) were used in this build file `build.gradle`.
 - Now The code "mainClass"(i.e JavaApplication.setMainClass(String)) is used in this build file. 
 
 
