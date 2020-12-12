@@ -23,8 +23,9 @@
 - [Keywords](#keywords)
 - [Prerequisites](#prerequisites)
 - [Create a Java Application with Gradle](#create-a-java-application-with-gradle)
-- [Add the third Package to the build file `build.gradle`](#add-the-third-package-to-the-build-file-buildgradle)
-  - [change the Gradle build file `build.gradle`](#change-the-gradle-build-file-buildgradle)
+- [Develop the build file `build.gradle`](#develop-the-build-file-buildgradle)
+  - [Add the third Package `Gson` to the Gradle build file `build.gradle`](#add-the-third-package-gson-to-the-gradle-build-file-buildgradle)
+  - [change the `applicationName`](#change-the-applicationname)
   - [build the file `build.gradle`](#build-the-file-buildgradle)
 - [Develop the Java application with the Third Package `Gson`](#develop-the-java-application-with-the-third-package-gson)
   - [change the Java Code](#change-the-java-code)
@@ -33,8 +34,6 @@
   - [build the project](#build-the-project)
   - [run the Java application on different OS System](#run-the-java-application-on-different-os-system)
 - [Download and Use This compelete Project](#download-and-use-this-compelete-project)
-- [Result on the CI Website `CircleCI.com`](#result-on-the-ci-website-circlecicom)
-- [Main References](#main-references)
 - [References](#references)
 
 
@@ -61,11 +60,11 @@ cd 106_gradle_java
 
 
 
-## Add the third Package to the build file `build.gradle`
+## Develop the build file `build.gradle`
 
-### change the Gradle build file `build.gradle`
+### Add the third Package `Gson` to the Gradle build file `build.gradle`
 
-```bash
+
 vi ./build.gradle
 ```
 
@@ -74,6 +73,18 @@ vi ./build.gradle
 ...
 dependencies {
   implementation 'org.json:json:20201115'
+...
+```
+
+### change the `applicationName`
+
+```bash
+# FILE (./build.gradle)
+...
+startScripts {
+    applicationName = 'basic_106'
+    group = 'de.iotoi'
+    // version = '1.0.6'
 ...
 ```
 
@@ -162,13 +173,5 @@ cd basic_106
 
 
 
-## Result on the CI Website `CircleCI.com`
-- [CircleCI Account](https://circleci.com/vcs-authorize/)
-
-
-
-## Main References
-
 ## References
 - https://github.com/johnrengelman/shadow
-- 
