@@ -9,11 +9,15 @@
 [![GitHub release (latest by date)](https://img.shields.io/badge/Gradle-v6.6.1-black?style=flat&logo=gradle)](https://gradle.org/)
 [![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_105.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_105)
 
+
+
 <h1>Lesson 105: Hello CircleCI!</h1>
 
 - Develop a Java application with Gradle and CI
 
 ---
+
+
 
 - [Keywords](#keywords)
 - [Prerequisites](#prerequisites)
@@ -21,19 +25,22 @@
 - [Use CircleCI.com](#use-circlecicom)
   - [Add the CI (CircleCI.com) configuration for the application](#add-the-ci-circlecicom-configuration-for-the-application)
   - [run CI on `CircleCI.com`](#run-ci-on-circlecicom)
-- [Program the Java application](#program-the-java-application)
-  - [change the Gradle build file `build.gradle`](#change-the-gradle-build-file-buildgradle)
+- [Run the Java application on Local System](#run-the-java-application-on-local-system)
   - [run the Java application](#run-the-java-application)
   - [test the Java application](#test-the-java-application)
+- [Package the Java apllication](#package-the-java-apllication)
   - [build the Java application](#build-the-java-application)
-  - [run the Java application with Jar:](#run-the-java-application-with-jar)
+  - [run the Java application on different OS System:](#run-the-java-application-on-different-os-system)
+- [Download and Use This compelete Project](#download-and-use-this-compelete-project)
 - [Result on the CI Website `CircleCI.com`](#result-on-the-ci-website-circlecicom)
 - [References](#references)
+
 
 
 ## Keywords
 - `Continuous Integration` CI `Continuous Deployment` CD CircleCI
 - Ubuntu Java Gradle tutorial example
+
 
 
 ## Prerequisites
@@ -42,11 +49,14 @@
 - [CircleCI Account](https://circleci.com/vcs-authorize/)
 
 
+
 ## Create a Java Application with Gradle
 
 ```bash
 gradle init --project-name gradle_java --type java-application --dsl groovy --test-framework 'junit-jupiter' --package basic_105
 ```
+
+
 
 ## Use CircleCI.com
 
@@ -112,8 +122,11 @@ jobs:
       # build application
       - run: ./gradlew clean build
 
-      # run application Jar
-      - run: java -jar build/libs/gradle_java.jar
+      # unzip application to OS System
+      - run: unzip build/distributions/_gradle_java.zip
+
+      # run application on OS System
+      - run: ./_gradle_java/bin/basic_105
 ```
 
 ### run CI on `CircleCI.com`
@@ -122,31 +135,8 @@ jobs:
 3. View the `CircleCI.com`
 
 
-## Program the Java application
 
-### change the Gradle build file `build.gradle`
-
-```bash
-# build.gradle
-...
-ext {
-    javaMain = "basic_105.App"
-}
-
-application {
-    // Define the main class for the application.
-    mainClassName = javaMain
-}
-
-jar {
-    manifest {
-        attributes(
-                "Main-Class": javaMain
-        )
-    }
-}
-...
-```
+## Run the Java application on Local System
 
 ### run the Java application
 
@@ -170,16 +160,21 @@ BUILD SUCCESSFUL in 422ms
 ./gradlew clean test
 ```
 
+
+
+## Package the Java apllication
+
 ### build the Java application
  
 ```bash
 ./gradlew clean build
 ```
 
-### run the Java application with Jar:
+### run the Java application on different OS System:
 
 ```bash
-java -jar build/libs/gradle_java.jar
+unzip build/distributions/_gradle_java.zip
+./_gradle_java/bin/basic_105
 ```
 
 Result:
@@ -188,11 +183,30 @@ Result:
 Hello world.
 ```
 
+
+
+## Download and Use This compelete Project
+
+```bash
+# Download
+git clone -b basic_105 https://github.com/cnruby/gradle_java.git basic_105
+```
+
+```bash
+# Use
+cd basic_105
+./gradlew run
+```
+
+
+
 ## Result on the CI Website `CircleCI.com`
 - [CircleCI Account](https://circleci.com/vcs-authorize/)
 
 ![105_hello_circleci_com](docs/images/105_hello_circleci_com.png)
 ![105_hello_circleci_com_result](docs/images/105_hello_circleci_com_result.png)
+
+
 
 
 ## References
