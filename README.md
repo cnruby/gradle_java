@@ -1,3 +1,15 @@
+<a href = "https://openjdk.java.net/">
+<img width = "90%" height = "auto" src = "https://img.shields.io/badge/Java-Programming%20Language%20with%20Gradle-black?style=flat&logo=java" alt = "The Java Programming Language">
+</a>
+
+
+[![Ubuntu-(20.04LTS)](https://img.shields.io/badge/Ubuntu-%2020.04LTS-brightgreen)](https://ubuntu.com/)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/shyiko/jabba?label=jabba&logo=jabba)](https://github.com/shyiko/jabba)
+[![Java zulu-openjdk:11](https://img.shields.io/badge/Java-zulu%20openjdk:11-brightgreen?style=flat&logo=java)](https://www.azul.com/downloads/zulu-community/?package=jdk)
+[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_101.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_101)
+
+
+
 <h1>Lesson 101: Hello jabba!</h1>
 
 - install Java Version Manager tool `jabba` on Ubuntu 20.04
@@ -5,6 +17,8 @@
 - develop simple Java applications
 
 ---
+
+
 
 - [Keywords](#keywords)
 - [Step1:  Install jabba and JDK on Ubuntu 20.04](#step1--install-jabba-and-jdk-on-ubuntu-2004)
@@ -21,13 +35,16 @@
   - [create a simple Java application](#create-a-simple-java-application)
   - [create a Java application with directory `build`](#create-a-java-application-with-directory-build)
   - [create a Java application with directory `build` and `src`](#create-a-java-application-with-directory-build-and-src)
+- [Download and Use This compelte Project](#download-and-use-this-compelte-project)
 - [References](#references)
+
 
 
 ## Keywords
 - `Java Version Manager` jvm jabba JDK
 - java javac compile run `.java` `.class` `Java Class Name` 
 - Ubuntu Java tutorial example java8 java11
+
 
 
 ## Step1:  Install jabba and JDK on Ubuntu 20.04
@@ -94,6 +111,8 @@ jabba alias default zulu@1.8.272
 java -version
 ```
 
+
+
 ## Step 2: Develop Java application
 
 ### map for develop Java application
@@ -102,9 +121,8 @@ java -version
 ### get initial project version
 
 ```bash
-git clone https://github.com/cnruby/gradle_java.git basic_101
-git switch basic_000
-
+git clone -b basic_000 https://github.com/cnruby/gradle_java.git basic_101
+cd basic_101
 ```
 
 ### create a simple Java application
@@ -154,7 +172,32 @@ java -cp ./build App
 #java -classpath ./build App
 >> Hallo Welt!
 ```
-¬¬
+
+
+
+## Download and Use This compelte Project
+
+```bash
+# Download
+git clone -b basic_101 https://github.com/cnruby/gradle_java.git basic_101
+```
+
+```bash
+# Use
+cd basic_101
+
+javac Hello.java
+java Hello
+
+javac -d ./buildSrc Nihao.java
+java -cp ./buildSrc Nihao
+
+javac -d ./build ./src/App.java
+java -cp ./build App
+```
+
+
+
 ## References
 - https://github.com/shyiko/jabba
 - JDK! https://developer.okta.com/blog/2019/01/16/which-java-sdk
