@@ -41,7 +41,7 @@
   - [build the Java application](#build-the-java-application)
   - [run the Java application on different OS System:](#run-the-java-application-on-different-os-system)
 - [Download and Use This compelete Project](#download-and-use-this-compelete-project)
-- [Help: What is it? "Deprecated Gradle features were used in this build"](#help-what-is-it-deprecated-gradle-features-were-used-in-this-build)
+- [Help: "Deprecated Gradle features" in the future Gradle version were used in the file `build.gradle`](#help-deprecated-gradle-features-in-the-future-gradle-version-were-used-in-the-file-buildgradle)
 - [Tips](#tips)
 - [References](#references)
 - [References for Tips](#references-for-tips)
@@ -301,8 +301,7 @@ cd basic_103
 
 
 
-## Help: What is it? "Deprecated Gradle features were used in this build"
-- "Deprecated Gradle features" in the future Gradle version can exists in the file `build.gradle`
+## Help: "Deprecated Gradle features" in the future Gradle version were used in the file `build.gradle`
 
 - Step 1: Download this project
 
