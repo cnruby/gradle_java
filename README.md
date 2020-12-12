@@ -55,8 +55,7 @@
 ## Create a Java Application with Gradle
 
 ```bash
-git clone https://github.com/cnruby/gradle_java.git 106_gradle_java
-git switch basic_106
+git clone -b basic_105 https://github.com/cnruby/gradle_java.git 106_gradle_java
 cd 106_gradle_java
 ```
 
