@@ -42,12 +42,6 @@
   - [run the Java application on different OS System:](#run-the-java-application-on-different-os-system)
 - [Download and Use This compelete Project](#download-and-use-this-compelete-project)
 - [Help: Was is this? "Deprecated Gradle features were used in this build"](#help-was-is-this-deprecated-gradle-features-were-used-in-this-build)
-  - [Step 1: Download this project](#step-1-download-this-project)
-  - [Step 2: comment Line 35 in the file `build.gradle`, and uncommit Line 36 in the file `build.gradle`](#step-2-comment-line-35-in-the-file-buildgradle-and-uncommit-line-36-in-the-file-buildgradle)
-  - [Step 3: run the follow command](#step-3-run-the-follow-command)
-  - [Use the follow command to show the individual deprecation warnings:](#use-the-follow-command-to-show-the-individual-deprecation-warnings)
-  - [Step 4: from this information we can comment Line 36 in the file `build.gradle`, and uncommit Line 35 in the file `build.gradle`](#step-4-from-this-information-we-can-comment-line-36-in-the-file-buildgradle-and-uncommit-line-35-in-the-file-buildgradle)
-  - [Step 5: run the follow command](#step-5-run-the-follow-command)
 - [Tips](#tips)
 - [References](#references)
 - [References for Tips](#references-for-tips)
@@ -310,11 +304,11 @@ cd basic_103
 ## Help: Was is this? "Deprecated Gradle features were used in this build"
 - "Deprecated Gradle features" in the future Gradle version can exists in the file `build.gradle`
 
-### Step 1: Download this project
+- Step 1: Download this project
 
-### Step 2: comment Line 35 in the file `build.gradle`, and uncommit Line 36 in the file `build.gradle`
+- Step 2: comment Line 35 in the file `build.gradle`, and uncommit Line 36 in the file `build.gradle`
 
-### Step 3: run the follow command
+- Step 3: run the follow command
 
 ```bash
 ./gradlew
@@ -326,7 +320,7 @@ Result:
 Deprecated Gradle features were used in this build, making it incompatible with Gradle 7.0.
 ```
 
-### Use the follow command to show the individual deprecation warnings:
+- Step 4: Use the follow command to show the individual deprecation warnings:
 
 ```bash
 ./gradlew --warning-mode all
@@ -339,9 +333,9 @@ The JavaApplication.setMainClassName(String) method has been deprecated. This is
         (Run with --stacktrace to get the full stack trace of this deprecation warning.)
 ```
 
-### Step 4: from this information we can comment Line 36 in the file `build.gradle`, and uncommit Line 35 in the file `build.gradle`
+- Step 5: from this information we can comment Line 36 in the file `build.gradle`, and uncommit Line 35 in the file `build.gradle`
 
-### Step 5: run the follow command
+- Step 6: run the follow command
 
 ```bash
 ./gradlew
