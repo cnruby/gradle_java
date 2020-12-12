@@ -1,6 +1,19 @@
+<a href = "https://openjdk.java.net/">
+<img width = "90%" height = "auto" src = "https://img.shields.io/badge/Java-Programming%20Language%20with%20Gradle-black?style=flat&logo=java" alt = "The Java Programming Language">
+</a>
+
+
+[![Ubuntu-(20.04LTS)](https://img.shields.io/badge/Ubuntu-%2020.04LTS-brightgreen)](https://ubuntu.com/)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/shyiko/jabba?label=jabba&logo=jabba)](https://github.com/shyiko/jabba)
+[![Java zulu-openjdk:11](https://img.shields.io/badge/Java-zulu%20openjdk:11-brightgreen?style=flat&logo=java)](https://www.azul.com/downloads/zulu-community/?package=jdk)
+[![GitHub release (latest by date)](https://img.shields.io/badge/Gradle-v6.7.1-black?style=flat&logo=gradle)](https://gradle.org/)
+[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_104.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_104)
+
+
+
 <h1>Lesson 104: Hello Single Project!</h1>
 
-- delevop a Single Java Appliction with `gradlew`
+- Delevop a Single Java Appliction with Gradle
 
 
 ---
@@ -10,25 +23,29 @@
 - [Create a Java application with Gradle](#create-a-java-application-with-gradle)
   - [create project folder](#create-project-folder)
   - [create a Java application with `gradle init`](#create-a-java-application-with-gradle-init)
-  - [check the project Gradle version](#check-the-project-gradle-version)
-- [programm the Java application](#programm-the-java-application)
+  - [check the project's Gradle version](#check-the-projects-gradle-version)
+- [Develop the Java application](#develop-the-java-application)
   - [change the build file `build.gradle`](#change-the-build-file-buildgradle)
   - [compile the Java application](#compile-the-java-application)
   - [run the Java application](#run-the-java-application)
   - [test the Java application](#test-the-java-application)
+- [Package the Java Application](#package-the-java-application)
   - [build the Java application](#build-the-java-application)
-  - [run the Java application with Jar:](#run-the-java-application-with-jar)
+  - [run the Java application on different OS System:](#run-the-java-application-on-different-os-system)
+- [Download and Use This compelete Project](#download-and-use-this-compelete-project)
+
 
 
 ## Keywords
-- `Single Java Project` `gradle init` package
-- Groovy
+- `Single Java Project` `gradle init` package Groovy
 - Ubuntu Java Gradle gradlew tutorial example
+
 
 
 ## Prerequisites
 - [install JDK on Ubuntu 20.04](https://github.com/cnruby/gradle_java/blob/basic_101/README.md)
 - [install Gradle on Ubuntu 20.04](https://github.com/cnruby/gradle_java/blob/basic_102/README.md)
+
 
 
 ## Create a Java application with Gradle
@@ -40,7 +57,6 @@ mkdir 104_gradle_java/ && cd 104_gradle_java/
 ```
 
 ### create a Java application with `gradle init`
-
 
 ```bash
 gradle init
@@ -76,8 +92,8 @@ Select test framework:
   4: JUnit Jupiter
 Enter selection (default: JUnit 4) [1..4] 4
 
-Project name (default: 104_gradle_java): gradle_java
-Source package (default: gradle_java): basic_104
+Project name (default: 104_gradle_java): _gradle_java
+Source package (default: gradle_java): de.iotoi
 
 > Task :init
 Get more help with your project: https://docs.gradle.org/6.6.1/userguide/tutorial_java_projects.html
@@ -86,7 +102,7 @@ BUILD SUCCESSFUL in 28s
 2 actionable tasks: 2 executed
 ```
 
-### check the project Gradle version
+### check the project's Gradle version
 
 ```bash
 ./gradlew
@@ -109,28 +125,20 @@ To see more detail about a task, run gradlew help --task <task>
 For troubleshooting, visit https://help.gradle.org
 ```
 
-## programm the Java application
+
+
+## Develop the Java application
 
 ### change the build file `build.gradle`
 
 ```bash
 # build.gradle
 ...
-ext {
-    javaMain = "basic_104.App"
-}
-
-application {
-    // Define the main class for the application.
-    mainClassName = javaMain
-}
-
-jar {
-    manifest {
-        attributes(
-                "Main-Class": javaMain
-        )
-    }
+startScripts {
+    applicationName = 'basic_104'
+    group = 'de.iotoi'
+    # version = '1.0.4'
+    sourceCompatibility = 11
 }
 ...
 ```
@@ -166,16 +174,21 @@ BUILD SUCCESSFUL in 422ms
 #./gradlew :test
 ```
 
+
+
+## Package the Java Application
+
 ### build the Java application
  
 ```bash
 ./gradlew clean build
 ```
 
-### run the Java application with Jar:
+### run the Java application on different OS System:
 
 ```bash
-java -jar build/libs/gradle_java.jar
+unzip build/distributions/_gradle_java.zip
+./_gradle_java/bin/basic_104
 ```
 
 Result:
@@ -185,3 +198,16 @@ Hello world.
 ```
 
 
+
+## Download and Use This compelete Project
+
+```bash
+# Download
+git clone -b basic_104 https://github.com/cnruby/gradle_java.git basic_104
+```
+
+```bash
+# Use
+cd basic_104
+./gradlew run
+```
