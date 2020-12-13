@@ -32,6 +32,15 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      # run Java Version
-      - run: java --version
-      - run: java -version
+      # install tools
+      - run: apt-get update -y
+      - run: apt-get install -y screen
+
+      # Archives all configured gretty products.
+      - run: ./gradlew archiveAllProducts
+
+      # start webserver
+      - run: screen -d -m -s "my_session_name" ./build/output/_gradle_java/start.sh
+
+      # stop webserver
+      - run: ./build/output/_gradle_java/stop.sh
