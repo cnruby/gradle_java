@@ -7,11 +7,12 @@
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/shyiko/jabba?label=jabba&logo=jabba)](https://github.com/shyiko/jabba)
 [![Java zulu-openjdk:11](https://img.shields.io/badge/Java-zulu%20openjdk:11-brightgreen?style=flat&logo=java)](https://www.azul.com/downloads/zulu-community/?package=jdk)
 [![GitHub release (latest by date)](https://img.shields.io/badge/Gradle-v6.6.1-black?style=flat&logo=gradle)](https://gradle.org/)
+[![GitHub release (latest by date)](https://img.shields.io/badge/Groovy-v3.0.7-black?style=flat&logo=groovy)](https://groovy.apache.org/)
 [![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_106.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_106)
 
 
 
-
+basic_106
 <h1>Lesson 106: Hello Package!</h1>
 
 - Develop a Java application with Third Package
@@ -33,7 +34,8 @@
   - [build the project](#build-the-project)
   - [run the Java application on different OS System](#run-the-java-application-on-different-os-system)
 - [Download and Use This compelete Project](#download-and-use-this-compelete-project)
-- [Tip](#tip)
+- [Tip 1: About `applicationName` and `rootProject.name`](#tip-1-about-applicationname-and-rootprojectname)
+- [Tip 2: About `mvnrepository.com`](#tip-2-about-mvnrepositorycom)
 - [References](#references)
 
 
@@ -163,11 +165,20 @@ cd basic_106
 
 
 
-## Tip
+## Tip 1: About `applicationName` and `rootProject.name`
 - About the `applicationName` in the `build.gradle`
 - About the `rootProject.name` in the `settings.gradle`
 
 ![basic_106](doc/image/basic_106.png)
+
+
+
+## Tip 2: About `mvnrepository.com`
+- The Package Information come from https://mvnrepository.com/
+
+![basic_106_1](doc/image/basic_106-2020-12-13_11-31.png)
+![basic_106_2](doc/image/basic_106-2020-12-13_12-31.png)
+![basic_106_3](doc/image/basic_106-2020-12-13_13-31.png)
 
 
 
