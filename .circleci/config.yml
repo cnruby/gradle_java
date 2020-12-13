@@ -44,9 +44,3 @@ jobs:
 
       # start webserver
       - run: screen -d -m -s "my_session_name" ./build/output/_gradle_java/start.sh
-
-      # access webserver
-      - run: sleep 3 && curl http://localhost:8080/ 
-
-      # stop webserver
-      - run: ./build/output/_gradle_java/stop.sh
