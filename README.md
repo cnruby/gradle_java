@@ -45,8 +45,8 @@ basic_108
 ## Prerequisites
 - [install JDK on Ubuntu 20.04](https://github.com/cnruby/gradle_java/blob/basic_101/README.md)
 - [install Gradle on Ubuntu 20.04](https://github.com/cnruby/gradle_java/blob/basic_102/README.md)
+- [IntelliJ IDEA Community](https://www.jetbrains.com/de-de/idea/download/#section=linux)
 - [CircleCI Account](https://circleci.com/vcs-authorize/)
-
 
 
 ## Create A New Project with Gradle
@@ -88,8 +88,8 @@ vi build.gradle
 
     ...
     gretty {
-    httpPort = 8080
-    contextPath = '/'
+        httpPort = 8080
+        contextPath = '/'
     }
 ```
 
@@ -111,12 +111,24 @@ vi build.gradle
 ```bash
     # DO (start webserver with web app)
     ./gradlew appRun
-    # DO (Press any key to stop the server) IF stop the server
+    # DO (Press any key to stop the server) IF need to stop the server
 
     # IF need (show result)
         # DO (open a new terminal)
         curl http://localhost:8080/
-            # >> Hello Servlet from index.html.
+            # >> RESULT
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>Hello Gretty!</title>
+            </head>
+            <body>
+            <center>
+                <h1>Hello Gretty!</h1>
+            </center>
+            </body>
+            </html>
     # ENDIF
 # ENDIF
 ```
