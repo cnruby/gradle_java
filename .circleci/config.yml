@@ -36,8 +36,17 @@ jobs:
       - run: apt-get update -y
       - run: apt-get install -y screen
 
-      # Archives all configured gretty products.
+      # build application
+      - run: ./gradlew clean build
+
+      # archives all configured gretty products.
       - run: ./gradlew archiveAllProducts
 
       # start webserver
-      - run: ./build/output/_gradle_java/start.sh
+      - run: screen -d -m -s "my_session_name" ./build/output/_gradle_java/start.sh
+
+      # access webserver
+      - run: sleep 3 && curl http://localhost:8080/ 
+
+      # stop webserver
+      - run: ./build/output/_gradle_java/stop.sh
