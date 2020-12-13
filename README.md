@@ -56,8 +56,10 @@ basic_106
 ## Create a Java Application with Gradle
 
 ```bash
-git clone -b basic_105 https://github.com/cnruby/gradle_java.git 106_gradle_java
-cd 106_gradle_java
+# DO (Get the initial Project from GitHub.com)
+git clone -b basic_105 https://github.com/cnruby/gradle_java.git 106_gradle_java && cd 106_gradle_java
+
+# DO ( change the project id )
 sed -i 's/basic_105/basic_106/g' build.gradle
 sed -i 's/'1.0.5'/'1.0.6'/g' build.gradle
 ```
@@ -68,21 +70,21 @@ sed -i 's/'1.0.5'/'1.0.6'/g' build.gradle
 
 ### Add the third Package `Gson` to the Gradle build file `build.gradle`
 
-
-vi ./build.gradle
-```
-
 ```bash
-# FILE (./build.gradle)
-...
-dependencies {
-  implementation 'org.json:json:20201115'
-...
+# DO (edit the build file `build.gradle`)
+vi ./build.gradle
+
+    # FILE (./build.gradle)
+    ...
+    dependencies {
+      implementation 'org.json:json:20201115'
+    ...
 ```
 
 ### build the file `build.gradle`
 
 ```bash
+# DO (build the gradle file `build.gradle`)
 ./gradlew
 ```
 
@@ -93,36 +95,33 @@ dependencies {
 ### change the Java Code
 
 ```bash
+# DO (edit the Java File)
 vi src/main/java/basic_106/App.java
-```
 
-```bash
-# FILE (src/main/java/basic_106/App.java)
-...
-        System.out.println(new App().getGreeting());
+    # FILE (src/main/java/basic_106/App.java)
+    ...
+            System.out.println(new App().getGreeting());
 
-        LongStream obj = new Random().longs(5,0,10);
-        String json = new Gson().toJson(obj.toArray());
+            LongStream obj = new Random().longs(5,0,10);
+            String json = new Gson().toJson(obj.toArray());
 
-        System.out.println("json = " + json);
-...
+            System.out.println("json = " + json);
+    ...
 ```
 
 ### run the Java application on project
 
 ```bash
+# DO (run the application)
 ./gradlew run
-```
 
-Result:
+    # >> RESULT
+    > Task :run
+    Hello world.
+    json = [3,5,7,6,7]
 
-```bash
-> Task :run
-Hello world.
-json = [3,5,7,6,7]
-
-BUILD SUCCESSFUL in 467ms
-2 actionable tasks: 2 executed
+    BUILD SUCCESSFUL in 467ms
+    2 actionable tasks: 2 executed
 ```
 
 
@@ -131,21 +130,21 @@ BUILD SUCCESSFUL in 467ms
  
 ### build the project 
 ```bash
+# DO (create a package for th project)
 ./gradlew clean build
 ```
 
 ### run the Java application on different OS System
 
 ```bash
-unzip build/distributions/_gradle_java.zip 
+# DO (unzip release version package)
+unzip build/distributions/_gradle_java.zip
+# DO (run the application)
 ./_gradle_java/bin/basic_106
-```
 
-Result:
-
-```bash
-Hello world.
-json = [2,3,9,8,6]
+    # >> RESULT
+    Hello world.
+    json = [2,3,9,8,6]
 ```
 
 
@@ -153,12 +152,12 @@ json = [2,3,9,8,6]
 ## Download and Use This compelete Project
 
 ```bash
-# Download
+# DO (download the whole project)
 git clone -b basic_106 https://github.com/cnruby/gradle_java.git basic_106
 ```
 
 ```bash
-# Use
+# Do (execute the application with two methods)
 cd basic_106
 ./gradlew run
 ```
