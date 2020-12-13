@@ -46,17 +46,17 @@ task releaseRun {
     group = 'de.iotoi'
     description = 'Unzip release version and run the application'
     doLast {
-        // // unzip app
-        // def cmdUnzip = 'unzip build/distributions/' + applicationName + '.zip'
-        // def procUnzip = cmdUnzip.execute()
-        // procUnzip.out.close()
-        // procUnzip.waitFor()
+        // unzip app
+        def cmdUnzip = 'unzip build/distributions/' + applicationName + '.zip'
+        def procUnzip = cmdUnzip.execute()
+        procUnzip.out.close()
+        procUnzip.waitFor()
 
-        // // run app
-        // def cmdApp = './' + applicationName + '/bin/' + startScripts.applicationName
-        // def procApp = cmdApp.execute()
-        // println procApp.text
-        // procApp.out.close()
-        // procApp.waitFor()
+        // run app
+        def cmdApp = './' + applicationName + '/bin/' + startScripts.applicationName
+        def procApp = cmdApp.execute()
+        println procApp.text
+        procApp.out.close()
+        procApp.waitFor()
     }
 }
