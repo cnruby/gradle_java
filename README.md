@@ -174,6 +174,17 @@ cd basic_106
 
 ## Tip 2: About `mvnrepository.com`
 - The Package Information come from https://mvnrepository.com/
+- The compile configuration has been deprecated for dependency declaration in the build file ``build.gradle.
+
+```bash
+# NOT USE
+// https://mvnrepository.com/artifact/com.google.code.gson/gson
+# compile group: 'com.google.code.gson', name: 'gson', version: '2.8.6'
+# USE
+implementation 'com.google.code.gson:gson:2.8.6'
+```
+
+
 
 ![basic_106_1](doc/image/basic_106-2020-12-13_11-31.png)
 ![basic_106_2](doc/image/basic_106-2020-12-13_12-31.png)
