@@ -139,7 +139,7 @@ vi build.gradle
 
 ### IF Exception(Address already in use)
 ```bash
-netstat -tapn | grep "8080"^
+netstat -tapn | grep "8080"
 sudo kill -9 <PROCESS_ID>
 ```
 
