@@ -52,6 +52,7 @@ basic_105
 ## Create a Java Application with Gradle
 
 ```bash
+# DO (Get the initial Project from GitHub.com)
 gradle init --project-name gradle_java --type java-application  \
 --dsl groovy --test-framework 'junit-jupiter' --package basic_105
 ```
@@ -187,12 +188,12 @@ unzip build/distributions/_gradle_java.zip
 ## Download and Use This compelete Project
 
 ```bash
-# Download
+# DO (download the whole project)
 git clone -b basic_105 https://github.com/cnruby/gradle_java.git basic_105
 ```
 
 ```bash
-# Use
+# Do (execute the application)
 cd basic_105
 ./gradlew run
 ```
