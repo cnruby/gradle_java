@@ -11,9 +11,10 @@
 
 
 basic_107
+<h1>TODO TODO TODO TODO</h1>
 <h1>Lesson 107: Hello Gradle Task!</h1>
 
-- Develop a Java application with Gradle and CI
+- Develop a Gradle Task with Groovy
 
 ---
 
