@@ -129,7 +129,7 @@ vi build.gradle
             </center>
             </body>
             </html>
-    # ENDIF
+    # ENDIF IF Web Server is running.
 # ENDIF
 ```
 
