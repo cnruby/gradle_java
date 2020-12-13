@@ -10,8 +10,8 @@
 [![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_105.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_105)
 
 
-
-<h1>Lesson 105: Hello CircleCI!</h1>
+basic_107
+<h1>Lesson 107: Hello Gradle Task!</h1>
 
 - Develop a Java application with Gradle and CI
 
