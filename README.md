@@ -30,6 +30,7 @@ basic_108
 - [Working Processes](#working-processes)
 - [Problems](#problems)
   - [IF Exception(Address already in use)](#if-exceptionaddress-already-in-use)
+- [Download and Use This compelete Project](#download-and-use-this-compelete-project)
 - [Main's References](#mains-references)
 - [References](#references)
 
@@ -153,6 +154,22 @@ vi build.gradle
 ```bash
 netstat -tapn | grep "8080"
 sudo kill -9 <PROCESS_ID>
+```
+
+
+
+## Download and Use This compelete Project
+
+```bash
+# DO (download the whole project)
+APP_ID=108 && git clone -b basic_${APP_ID}  \
+https://github.com/cnruby/gradle_java.git basic_${APP_ID} \
+cd basic_${APP_ID}
+```
+
+```bash
+# Do (execute the application)
+./gradlew appRun
 ```
 
 
