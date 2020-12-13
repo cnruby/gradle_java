@@ -34,7 +34,7 @@ jobs:
 
       # install tools
       - run: apt-get update -y
-      - run: apt-get install -y screen
+      - run: apt-get install -y screen curl
 
       # build application
       - run: ./gradlew clean build
