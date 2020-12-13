@@ -36,10 +36,10 @@ basic_002
 
 ### IF (local Docker Image from existing 'Docker Name')
 ```bash
-    # !!! create a docker image with docker name `alpine`
+    # DO (create a docker image with docker name `alpine`)
     docker pull alpine
 
-    # show all docker image
+    # DO (show all docker image)
     docker images
 
         # >> result:
@@ -48,16 +48,18 @@ basic_002
 
 ### ELSIF (local Docker Image from the file `Dockerfile`)
 ```bash
-    # !!! create local Docker Image from the file `Dockerfile`
     # Step 1: create and edit a file `Dockerfile`
+    # DO( create the file `Dockerfile`)
     touch Dockerfile
+    # DO( edit the file `Dockerfile`)
     vi Dockerfile
 
-    # this is code for the file ./Dockerfile:
+    # !!! this is code for the file ./Dockerfile:
     # (FILE) ./Dockerfile
     FROM alpine
 
     # Step 2: build an image from this file `Dockerfile`
+    # DO (create an image from this file `Dockerfile`)
     docker build --tag=image_alpine .
 
         # >> result for Step 2:
@@ -67,7 +69,7 @@ basic_002
         Successfully built d6e46aa2470d
         Successfully tagged image_alpine:latest
 
-    # show all docker images
+    # DO (show all docker images)
     docker images
 
         # >> result:
@@ -75,7 +77,7 @@ basic_002
         alpine                     latest                 d6e46aa2470d        6 weeks ago         5.57MB
         image_alpine               latest                 d6e46aa2470d        6 weeks ago         5.57MB
 
-# ELSE ... END
+# ELSE ... ENDIF
 ```
 
 
@@ -86,16 +88,18 @@ basic_002
 
 ### IF (Create, Start and Use the Container with random 'Container Name')
 ```bash
-    # !!! create, start and use a container
+    # DO (create, start and use a container)
     docker run -i -t alpine
         # !!! go to the linux alpine system
         # !!! the follow prompt `/ #` from os system
+        # DO (list directory)
         / # ls
         # >> result
         bin    dev    etc    home   lib    media  mnt    opt    proc   root   run    sbin   srv    sys    tmp    usr    var
+        # DO (exit os alpine system)
         / # exit
 
-    # >> show all containers
+    # DO (show all containers)
     docker container ls -a
 
         # >> result
@@ -105,35 +109,37 @@ basic_002
 
 ### ELSEIF (Create, Start and Use the Container with custum 'Container Name')
 ```bash
-    # !!! create, start and use a container with the name 'container_alpine'
+    # DO (create, start and use a container with the name 'container_alpine')
     docker run --name container_alpine -i -t alpine
         # !!! go to the linux alpine system
         # !!! the follow prompt `/ #` from os system
+        # DO (list directory)
         / # ls
         # >> result
         bin    dev    etc    home   lib    media  mnt    opt    proc   root   run    sbin   srv    sys    tmp    usr    var
+        # DO (exit os alpine system)
         / # exit
 
-    # show all containers
+    # DO (show all containers)
     docker container ls -a
 
         # >> result
         CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS                         PORTS               NAMES
         75bf19fdc449        alpine                "/bin/sh"                10 seconds ago      Exited (0) 5 seconds ago                           container_alpine
         bf7673b3cce6        alpine                "/bin/sh"                4 minutes ago       Exited (0) 4 minutes ago                           loving_hertz
-# ELSE ... END
+# ELSE ... ENDIF
 ```
 
 ### Start and Use An Existing Container
 
 ```bash
-# start a container with name 'container_alpine'
+# DO (start a container with name 'container_alpine')
 docker start container_alpine
 
-# use the container
+# DO (use the container)
 docker exec -i -t container_alpine /bin/sh
 
-# stop the container
+# DO (stop the container)
 docker stop container_alpine
 
 ```
@@ -145,12 +151,13 @@ docker stop container_alpine
 ### Use custum defined container name
 
 ```bash
-# run once
+# !!! run once
 docker pull alpine # if `alpine` exists not.
-# run only once with the container name `container_alpine`
+# !!! run only once with the container name `container_alpine`
 docker run --name container_alpine -i -t alpine
     # !!! go to the linux alpine system
     # !!! the follow prompt `/ #` from os system
+    # DO (exit os alpine system)
     / # exit
 
 # FOR LOOP
@@ -159,11 +166,13 @@ docker run --name container_alpine -i -t alpine
         docker exec -i -t container_alpine /bin/sh
             # !!! go to the linux alpine system
             # !!! the follow prompt `/ #` from os system
-            / # #DO (Things)
+            # DO (Things)
+            / # 
+            # DO (exit os alpine system)
             / # exit
-    # END IF you need to go to the alpine system
+    # ENDFOR IF you need to go to the alpine system
     docker stop container_alpine
-# END IF you use the alpine system
+# ENDFOR IF you use the alpine system
 ```
 
 ### Use random container name
@@ -171,25 +180,26 @@ docker run --name container_alpine -i -t alpine
 ```bash
 touch Dockerfile
 vi Dockerfile
-# FOR LOOP {
+# FOR LOOP
     vi Dockerfile # IF you need
     docker build --tag=<REPOSITORY> .
     docker run <REPOSITORY>
         # KEY (Ctrl+C or other exit)
-# END
+# ENDFOR
 ```
 
 ### Use commands `docker run` and `docker stop`
 
 ```bash
-# run once
+# !!! run once
 docker pull alpine # IF `alpine` exists not.
-# run only once with the container name `container_alpine_2`
+# !!! run only once with the container name `container_alpine_2`
 docker run --name container_alpine_2 -i -t alpine
     # !!! go to the linux alpine system
     # !!! the follow prompt `/ #` from os system
+    # DO (thing)
     / #
-# open a new terminal
+# DO (open a new terminal)
 docker stop container_alpine_2
 ```
 
@@ -223,6 +233,6 @@ docker system prune
 ## Download This compelete Project
 
 ```bash
-# Download
+# DO (Download)
 git clone -b basic_002 https://github.com/cnruby/gradle_java.git 002_gradle_java
 ```
