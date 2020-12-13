@@ -40,7 +40,4 @@ jobs:
       - run: ./gradlew archiveAllProducts
 
       # start webserver
-      - run: screen -d -m -s "my_session_name" ./build/output/_gradle_java/start.sh
-
-      # stop webserver
-      - run: sleep 5 && ./build/output/_gradle_java/stop.sh
+      - run: ./build/output/_gradle_java/start.sh
