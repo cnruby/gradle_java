@@ -6,12 +6,12 @@
 [![Ubuntu-(20.04LTS)](https://img.shields.io/badge/Ubuntu-%2020.04LTS-brightgreen)](https://ubuntu.com/)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/shyiko/jabba?label=jabba&logo=jabba)](https://github.com/shyiko/jabba)
 [![Java zulu-openjdk:11](https://img.shields.io/badge/Java-zulu%20openjdk:11-brightgreen?style=flat&logo=java)](https://www.azul.com/downloads/zulu-community/?package=jdk)
-[![GitHub release (latest by date)](https://img.shields.io/badge/Gradle-v6.6.1-black?style=flat&logo=gradle)](https://gradle.org/)
-[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_105.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_105)
+[![GitHub release (latest by date)](https://img.shields.io/badge/Gradle-v6.7.1-black?style=flat&logo=gradle)](https://gradle.org/)
+[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_107.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_107)
+
 
 
 basic_107
-<h1>TODO TODO TODO TODO</h1>
 <h1>Lesson 107: Hello Gradle Task!</h1>
 
 - Develop a Gradle Task with Groovy
@@ -23,24 +23,18 @@ basic_107
 - [Keywords](#keywords)
 - [Prerequisites](#prerequisites)
 - [Create a Java Application with Gradle](#create-a-java-application-with-gradle)
-- [Use CircleCI.com](#use-circlecicom)
-  - [Add the CI (CircleCI.com) configuration for the application](#add-the-ci-circlecicom-configuration-for-the-application)
-  - [run CI on `CircleCI.com`](#run-ci-on-circlecicom)
-- [Run the Java application on Local System](#run-the-java-application-on-local-system)
-  - [run the Java application](#run-the-java-application)
-  - [test the Java application](#test-the-java-application)
-- [Package the Java apllication](#package-the-java-apllication)
-  - [build the Java application](#build-the-java-application)
-  - [run the Java application on different OS System:](#run-the-java-application-on-different-os-system)
+- [Develop Gradle Task `releaseRun` for Java Application](#develop-gradle-task-releaserun-for-java-application)
+  - [add new task for the file `./build.gradle`](#add-new-task-for-the-file-buildgradle)
+  - [execute the Gradle task](#execute-the-gradle-task)
 - [Download and Use This compelete Project](#download-and-use-this-compelete-project)
-- [Result on the CI Website `CircleCI.com`](#result-on-the-ci-website-circlecicom)
 - [References](#references)
 
 
 
 ## Keywords
-- `Continuous Integration` CI `Continuous Deployment` CD CircleCI
+- `Grade Task` Grovvy
 - Ubuntu Java Gradle tutorial example
+- `Continuous Integration` CI `Continuous Deployment` CD CircleCI
 
 
 
@@ -54,134 +48,84 @@ basic_107
 ## Create a Java Application with Gradle
 
 ```bash
-gradle init --project-name gradle_java --type java-application --dsl groovy --test-framework 'junit-jupiter' --package basic_105
+# DO (Get the initial Project from GitHub.com)
+EXISTING_APP_ID=105 && NEW_APP_ID=107 && \
+git clone -b basic_$EXISTING_APP_ID      \
+https://github.com/cnruby/gradle_java.git ${NEW_APP_ID}_gradle_java \
+cd ${NEW_APP_ID}_gradle_java
+
+# DO (change the project id to new project id)
+./change_app_id.sh $NEW_APP_ID
 ```
 
 
 
-## Use CircleCI.com
+## Develop Gradle Task `releaseRun` for Java Application
 
-### Add the CI (CircleCI.com) configuration for the application
+### add new task for the file `./build.gradle`
 
 ```bash
-mkdir .circleci
-touch .circleci/config.yml
-vi .circleci/config.yml
+# DO (edit the build file `./build.gradle`)
+vi ./build.gradle
+
+    # FILE (./build.gradle)
+    ...
+    task releaseRun {
+        doLast {
+            // unzip app
+            def cmdUnzip = 'unzip build/distributions/' + applicationName + '.zip'
+            def procUnzip = cmdUnzip.execute()
+            procUnzip.out.close()
+            procUnzip.waitFor()
+
+            // run app
+            def cmdApp = './' + applicationName + '/bin/' + startScripts.applicationName
+            def procApp = cmdApp.execute()
+            println procApp.text
+            procApp.out.close()
+            procApp.waitFor()
+        }
+    }
+```
+
+### execute the Gradle task
+
+
+```bash
+# DO (check the gradle task)
+./gradlew help --task releaseRun
+
+
+    # >> Result
+    > Task :help
+    Detailed task information for releaseRun
+
+    Path
+        :releaseRun
+
+    Type
+        Task (org.gradle.api.Task)
+
+    Description
+        Unzip release version and run the application
+
+    Group
+        de.iotoi
+
+    BUILD SUCCESSFUL in 1s
+    1 actionable task: 1 executed
 ```
 
 ```bash
-# config.yml
-# Java Gradle CircleCI 2.0 configuration file
-#
-version: 2
-jobs:
-  build:
-    docker:
-      # specify the version you desire here
-      # - image: circleci/openjdk:11-jdk
-      - image: azul/zulu-openjdk:11
+# DO (run the new gradle task `releaseRun`)
+./gradlew releaseRun
 
-      # - image: circleci/postgres:9.4
+    # >> Result
+    > Task :releaseRun
+    Hello world.
 
-    working_directory: ~/repo
-
-    environment:
-      # Customize the JVM maximum heap limit
-      JVM_OPTS: -Xmx3200m
-      TERM: dumb
-
-    steps:
-      - checkout
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
-      # about Gradle
-      - run: ./gradlew --version
-
-      # project libraries
-      - run: ./gradlew dependencies
-
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: v1-dependencies-{{ checksum "build.gradle" }}
-
-      # compile application
-      - run: ./gradlew compileJava
-
-      # run application
-      - run: ./gradlew run
-      
-      # run application tests
-      - run: ./gradlew clean test
-
-      # build application
-      - run: ./gradlew clean build
-
-      # unzip application to OS System
-      - run: unzip build/distributions/_gradle_java.zip
-
-      # run application on OS System
-      - run: ./_gradle_java/bin/basic_105
-```
-
-### run CI on `CircleCI.com`
-1. Add the Github Project on the Website [CircleCI Account](https://circleci.com/vcs-authorize/)
-2. Commit the Project to GitHub.com
-3. View the `CircleCI.com`
-
-
-
-## Run the Java application on Local System
-
-### run the Java application
-
-```bash
-./gradlew run
-```
-
-Result:
-
-```bash
-> Task :run
-Hello world.
-
-BUILD SUCCESSFUL in 422ms
-2 actionable tasks: 2 executed
-```
-
-### test the Java application
-
-```bash
-./gradlew clean test
-```
-
-
-
-## Package the Java apllication
-
-### build the Java application
- 
-```bash
-./gradlew clean build
-```
-
-### run the Java application on different OS System:
-
-```bash
-unzip build/distributions/_gradle_java.zip
-./_gradle_java/bin/basic_105
-```
-
-Result:
-
-```bash
-Hello world.
+    BUILD SUCCESSFUL in 1s
+    1 actionable task: 1 executed
 ```
 
 
@@ -189,29 +133,24 @@ Hello world.
 ## Download and Use This compelete Project
 
 ```bash
-# Download
-git clone -b basic_105 https://github.com/cnruby/gradle_java.git basic_105
+# DO (download the whole project)
+APP_ID=107 && git clone -b basic_${APP_ID}  \
+https://github.com/cnruby/gradle_java.git basic_${APP_ID} \
+cd basic_${APP_ID}
 ```
 
 ```bash
-# Use
-cd basic_105
+# Do (execute the application with two methods)
 ./gradlew run
+
+./gradlew clean build
+./gradlew releaseRun
 ```
-
-
-
-## Result on the CI Website `CircleCI.com`
-- [CircleCI Account](https://circleci.com/vcs-authorize/)
-
-![105_hello_circleci_com](docs/images/105_hello_circleci_com.png)
-![105_hello_circleci_com_result](docs/images/105_hello_circleci_com_result.png)
-
 
 
 
 ## References
-- https://circleci.com/
-- https://circleci.com/docs/2.0/status-badges/
-- https://github.com/wavesoftware/docker-circleci-zulujdk
-- https://circleci.com/docs/2.0/language-java/
+- https://www.unix.com/shell-programming-and-scripting/179833-getting-first-two-characters-variable.html
+- https://stackoverflow.com/questions/159148/groovy-executing-shell-commands
+- https://stackoverflow.com/questions/30020286/how-can-i-specify-a-category-for-a-gradle-task
+- https://www.cyberciti.biz/faq/how-to-use-sed-to-find-and-replace-text-in-files-in-linux-unix-shell/

@@ -59,8 +59,5 @@ jobs:
       # build application
       - run: ./gradlew clean build
 
-      # unzip application to OS System
-      - run: unzip build/distributions/_gradle_java.zip
-
-      # run application on OS System
-      - run: ./_gradle_java/bin/basic_105
+      # execute application release on OS System
+      - run: ./gradlew releaseRun
