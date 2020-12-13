@@ -10,6 +10,7 @@
 [![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_105.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_105)
 
 
+
 basic_105
 <h1>Lesson 105: Hello CircleCI!</h1>
 
@@ -26,8 +27,6 @@ basic_105
   - [Add the CI (CircleCI.com) configuration for the application](#add-the-ci-circlecicom-configuration-for-the-application)
   - [run CI on `CircleCI.com`](#run-ci-on-circlecicom)
 - [Run the Java application on Local System](#run-the-java-application-on-local-system)
-  - [run the Java application](#run-the-java-application)
-  - [test the Java application](#test-the-java-application)
 - [Package the Java apllication](#package-the-java-apllication)
   - [build the Java application](#build-the-java-application)
   - [run the Java application on different OS System:](#run-the-java-application-on-different-os-system)
@@ -53,7 +52,8 @@ basic_105
 ## Create a Java Application with Gradle
 
 ```bash
-gradle init --project-name gradle_java --type java-application --dsl groovy --test-framework 'junit-jupiter' --package basic_105
+gradle init --project-name gradle_java --type java-application  \
+--dsl groovy --test-framework 'junit-jupiter' --package basic_105
 ```
 
 
@@ -63,70 +63,71 @@ gradle init --project-name gradle_java --type java-application --dsl groovy --te
 ### Add the CI (CircleCI.com) configuration for the application
 
 ```bash
+# DO (create a folder for CircleCI.com configuration file)
 mkdir .circleci
+# DO (create a new configuration file)
 touch .circleci/config.yml
+# DO (edit a new configuration file)
 vi .circleci/config.yml
-```
 
-```bash
-# config.yml
-# Java Gradle CircleCI 2.0 configuration file
-#
-version: 2
-jobs:
-  build:
-    docker:
-      # specify the version you desire here
-      # - image: circleci/openjdk:11-jdk
-      - image: azul/zulu-openjdk:11
+    # FILE (.circleci/config.yml) 
+    # Java Gradle CircleCI 2.0 configuration file
+    #
+    version: 2
+    jobs:
+      build:
+        docker:
+          # specify the version you desire here
+          # - image: circleci/openjdk:11-jdk
+          - image: azul/zulu-openjdk:11
 
-      # - image: circleci/postgres:9.4
+          # - image: circleci/postgres:9.4
 
-    working_directory: ~/repo
+        working_directory: ~/repo
 
-    environment:
-      # Customize the JVM maximum heap limit
-      JVM_OPTS: -Xmx3200m
-      TERM: dumb
+        environment:
+          # Customize the JVM maximum heap limit
+          JVM_OPTS: -Xmx3200m
+          TERM: dumb
 
-    steps:
-      - checkout
+        steps:
+          - checkout
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+          # Download and cache dependencies
+          - restore_cache:
+              keys:
+                - v1-dependencies-{{ checksum "build.gradle" }}
+                # fallback to using the latest cache if no exact match is found
+                - v1-dependencies-
 
-      # about Gradle
-      - run: ./gradlew --version
+          # about Gradle
+          - run: ./gradlew --version
 
-      # project libraries
-      - run: ./gradlew dependencies
+          # project libraries
+          - run: ./gradlew dependencies
 
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: v1-dependencies-{{ checksum "build.gradle" }}
+          - save_cache:
+              paths:
+                - ~/.gradle
+              key: v1-dependencies-{{ checksum "build.gradle" }}
 
-      # compile application
-      - run: ./gradlew compileJava
+          # compile application
+          - run: ./gradlew compileJava
 
-      # run application
-      - run: ./gradlew run
-      
-      # run application tests
-      - run: ./gradlew clean test
+          # run application
+          - run: ./gradlew run
+          
+          # run application tests
+          - run: ./gradlew clean test
 
-      # build application
-      - run: ./gradlew clean build
+          # build application
+          - run: ./gradlew clean build
 
-      # unzip application to OS System
-      - run: unzip build/distributions/_gradle_java.zip
+          # unzip application to OS System
+          - run: unzip build/distributions/_gradle_java.zip
 
-      # run application on OS System
-      - run: ./_gradle_java/bin/basic_105
+          # run application on OS System
+          - run: ./_gradle_java/bin/basic_105
 ```
 
 ### run CI on `CircleCI.com`
@@ -138,26 +139,22 @@ jobs:
 
 ## Run the Java application on Local System
 
-### run the Java application
-
 ```bash
+# DO (run the Java application)
 ./gradlew run
-```
 
-Result:
+    # >> RESULT
+    > Task :run
+    Hello world.
 
-```bash
-> Task :run
-Hello world.
+    BUILD SUCCESSFUL in 422ms
+    2 actionable tasks: 2 executed
+    ```
 
-BUILD SUCCESSFUL in 422ms
-2 actionable tasks: 2 executed
-```
+    ### test the Java application
 
-### test the Java application
-
-```bash
-./gradlew clean test
+    ```bash
+    ./gradlew clean test
 ```
 
 
@@ -167,20 +164,22 @@ BUILD SUCCESSFUL in 422ms
 ### build the Java application
  
 ```bash
+# DO (create a package for the project)
 ./gradlew clean build
 ```
 
 ### run the Java application on different OS System:
 
 ```bash
+# DO (unzip release version package)
 unzip build/distributions/_gradle_java.zip
+# DO (run the application)
 ./_gradle_java/bin/basic_105
-```
 
-Result:
+    # >> RESULT
 
-```bash
-Hello world.
+    ```bash
+    Hello world.
 ```
 
 
