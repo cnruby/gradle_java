@@ -5,4 +5,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
+    <servlet>
+        <servlet-name>halloWelt</servlet-name>
+        <servlet-class>de.iotoi.HelloWorldServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>halloWelt</servlet-name>
+        <url-pattern>/hello</url-pattern>
+        <!--url-pattern>/</url-pattern-->
+    </servlet-mapping>
 </web-app>
