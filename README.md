@@ -3,18 +3,20 @@
 </a>
 
 
+
 [![Ubuntu-(20.04LTS)](https://img.shields.io/badge/Ubuntu-%2020.04LTS-brightgreen)](https://ubuntu.com/)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/shyiko/jabba?label=jabba&logo=jabba)](https://github.com/shyiko/jabba)
 [![Java zulu-openjdk:11](https://img.shields.io/badge/Java-zulu%20openjdk:11-brightgreen?style=flat&logo=java)](https://www.azul.com/downloads/zulu-community/?package=jdk)
-[![GitHub release (latest by date)](https://img.shields.io/badge/Gradle-v6.7.1-black?style=flat&logo=gradle)](https://gradle.org/)
-[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_105.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_105)
+[![GitHub release (latest by date)](https://img.shields.io/badge/Gradle-v6.6.1-black?style=flat&logo=gradle)](https://gradle.org/)
+[![Ubuntu-(20.04LTS)](https://img.shields.io/badge/Docker-%2019.03.13-brightgreen)](https://www.docker.com/)
+[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_110.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_110)
 
 
 
-basic_105
-<h1>Lesson 105: Hello CircleCI!</h1>
+basic_110
+<h1>Lesson 110: Hello App with Docker!</h1>
 
-- Develop a Java application with Gradle and CI
+- Develop a Java application with Docker, Gradle and CI
 
 ---
 
@@ -22,23 +24,23 @@ basic_105
 
 - [Keywords](#keywords)
 - [Prerequisites](#prerequisites)
-- [Create a Java Application with Gradle](#create-a-java-application-with-gradle)
-- [Use CircleCI.com](#use-circlecicom)
-  - [Add the CI (CircleCI.com) configuration for the application](#add-the-ci-circlecicom-configuration-for-the-application)
-  - [run CI on `CircleCI.com`](#run-ci-on-circlecicom)
-- [Run the Java application on Local System](#run-the-java-application-on-local-system)
-- [Package the Java apllication](#package-the-java-apllication)
-  - [build the Java application](#build-the-java-application)
-  - [run the Java application on different OS System:](#run-the-java-application-on-different-os-system)
-- [Download and Use This compelete Project](#download-and-use-this-compelete-project)
-- [Result on the CI Website `CircleCI.com`](#result-on-the-ci-website-circlecicom)
+- [Create a Java Application from GitHub.com](#create-a-java-application-from-githubcom)
+- [Create Docker Image](#create-docker-image)
+  - [Add the Docker build file `Dockerfile`](#add-the-docker-build-file-dockerfile)
+  - [Build the Docker Image](#build-the-docker-image)
+- [Develop the Java application](#develop-the-java-application)
+  - [run the Java application on Local Project](#run-the-java-application-on-local-project)
+  - [add a new tasks for the project](#add-a-new-tasks-for-the-project)
+  - [check the new task `releaseRun`](#check-the-new-task-releaserun)
+- [run the Java application on Docker](#run-the-java-application-on-docker)
+- [Working Processes](#working-processes)
 - [References](#references)
 
 
 
 ## Keywords
-- `Continuous Integration` CI `Continuous Deployment` CD CircleCI
-- Ubuntu Java Gradle tutorial example
+- `Java Application` Docker
+- Ubuntu Gradle tutorial example `Continuous Integration` CI `Continuous Deployment` CD CircleCI
 
 
 
@@ -46,171 +48,141 @@ basic_105
 - [install JDK on Ubuntu 20.04](https://github.com/cnruby/gradle_java/blob/basic_101/README.md)
 - [install Gradle on Ubuntu 20.04](https://github.com/cnruby/gradle_java/blob/basic_102/README.md)
 - [CircleCI Account](https://circleci.com/vcs-authorize/)
+- [install Docker on Ubuntu](https://docs.docker.com/engine/install/ubuntu/) OR [Using Docker](https://github.com/cnruby/gradle_java/tree/basic_002)
 
 
 
-## Create a Java Application with Gradle
+## Create a Java Application from GitHub.com
 
 ```bash
-# DO (Get the initial Project from GitHub.com)
-gradle init --project-name gradle_java --type java-application  \
---dsl groovy --test-framework 'junit-jupiter' --package basic_105
+EXISTING_APP_ID=105 && NEW_APP_ID=110 && \
+git clone -b basic_${EXISTING_APP_ID} \
+https://github.com/cnruby/gradle_java.git ${NEW_APP_ID}_gradle_java && \
+cd ${NEW_APP_ID}_gradle_java
 ```
 
 
 
-## Use CircleCI.com
+## Create Docker Image
 
-### Add the CI (CircleCI.com) configuration for the application
+### Add the Docker build file `Dockerfile`
 
 ```bash
-# DO (create a folder for CircleCI.com configuration file)
-mkdir .circleci
-# DO (create a new configuration file)
-touch .circleci/config.yml
-# DO (edit a new configuration file)
-vi .circleci/config.yml
+# DO (create a new docker build file)
+touch Dockerfile
+# DO (edit the docker file ./Dockerfile)
+vi Dockerfile
 
-    # FILE (.circleci/config.yml) 
-    # Java Gradle CircleCI 2.0 configuration file
-    #
-    version: 2
-    jobs:
-      build:
-        docker:
-          # specify the version you desire here
-          # - image: circleci/openjdk:11-jdk
-          - image: azul/zulu-openjdk:11
+    # FILE (./Dockerfile)
+    FROM azul/zulu-openjdk-alpine:11.0.6-jre
 
-          # - image: circleci/postgres:9.4
-
-        working_directory: ~/repo
-
-        environment:
-          # Customize the JVM maximum heap limit
-          JVM_OPTS: -Xmx3200m
-          TERM: dumb
-
-        steps:
-          - checkout
-
-          # Download and cache dependencies
-          - restore_cache:
-              keys:
-                - v1-dependencies-{{ checksum "build.gradle" }}
-                # fallback to using the latest cache if no exact match is found
-                - v1-dependencies-
-
-          # about Gradle
-          - run: ./gradlew --version
-
-          # project libraries
-          - run: ./gradlew dependencies
-
-          - save_cache:
-              paths:
-                - ~/.gradle
-              key: v1-dependencies-{{ checksum "build.gradle" }}
-
-          # compile application
-          - run: ./gradlew compileJava
-
-          # run application
-          - run: ./gradlew run
-          
-          # run application tests
-          - run: ./gradlew clean test
-
-          # build application
-          - run: ./gradlew clean build
-
-          # unzip application to OS System
-          - run: unzip build/distributions/_gradle_java.zip
-
-          # run application on OS System
-          - run: ./_gradle_java/bin/basic_105
+    RUN apk update && apk add bash
+    WORKDIR /app
+    COPY /_gradle_java/ /app/
+    CMD ["./bin/basic_110"]
 ```
 
-### run CI on `CircleCI.com`
-1. Add the Github Project on the Website [CircleCI Account](https://circleci.com/vcs-authorize/)
-2. Commit the Project to GitHub.com
-3. View the `CircleCI.com`
+### Build the Docker Image
+```bash
+# DO (create a new docker image)
+docker build --tag=110_gradle_java .
+```
 
 
 
-## Run the Java application on Local System
+## Develop the Java application
+
+### run the Java application on Local Project
 
 ```bash
-# DO (run the Java application)
+# DO (run the application)
 ./gradlew run
 
-    # >> RESULT
+    # >> Result:
+    Starting a Gradle Daemon (subsequent builds will be faster)
+
     > Task :run
     Hello world.
 
-    BUILD SUCCESSFUL in 422ms
-    2 actionable tasks: 2 executed
-    ```
+    BUILD SUCCESSFUL in 2s
+    2 actionable tasks: 2 execute
+```
 
-    ### test the Java application
+### add a new tasks for the project
 
-    ```bash
-    ./gradlew clean test
+```bash
+# DO (edit the file ./build.gradde)
+vi ./build.gradde
+
+    # FILE (./build.gradde)
+    ...
+    task releaseRun {
+        group = 'de.iotoi'
+        description = 'Unzip release and run the application'
+        doLast {
+            // unzip app
+            def cmdUnzip = 'unzip build/distributions/' + applicationName + '.zip'
+            def procUnzip = cmdUnzip.execute()
+            procUnzip.out.close()
+            procUnzip.waitFor()
+
+            // run app
+            def cmdApp = './' + applicationName + '/bin/' + startScripts.applicationName
+            def procApp = cmdApp.execute()
+            println procApp.text
+            procApp.out.close()
+            procApp.waitFor()
+        }
+    }    
+```
+
+### check the new task `releaseRun`
+```bash
+./gradlew tasks | grep releaseRun
+
+    # >> Result
+    releaseRun - Unzip release and run the application
 ```
 
 
 
-## Package the Java apllication
-
-### build the Java application
- 
-```bash
-# DO (create a package for the project)
-./gradlew clean build
-```
-
-### run the Java application on different OS System:
+## run the Java application on Docker
 
 ```bash
-# DO (unzip release version package)
-unzip build/distributions/_gradle_java.zip
-# DO (run the application)
-./_gradle_java/bin/basic_105
+# DO (clean, bundle, unzip and run the project as a distribution)
+./gradlew clean build releaseRun
 
-    # >> RESULT
+# DO (create a new docker image)
+docker build --tag=110_gradle_java .
 
-    ```bash
+# DO (run the Java application on Docker)
+docker run 110_gradle_java
+
+    # >> Result:
     Hello world.
 ```
 
 
 
-## Download and Use This compelete Project
+## Working Processes
 
 ```bash
-# DO (download the whole project)
-git clone -b basic_105 https://github.com/cnruby/gradle_java.git basic_105
+# FOR
+    # DO ( change any code ) IF need
+    ./gradlew clean build
+    # IF will check the apllication
+        ./gradlew run
+    # ENDIF
+    # IF ( change any code ) 
+        docker build --tag=110_gradle_java .
+    # ENDIF
+    docker run 110_gradle_java
+# ENDFOR
 ```
-
-```bash
-# Do (execute the application)
-cd basic_105
-./gradlew run
-```
-
-
-
-## Result on the CI Website `CircleCI.com`
-- [CircleCI Account](https://circleci.com/vcs-authorize/)
-
-![105_hello_circleci_com](docs/images/105_hello_circleci_com.png)
-![105_hello_circleci_com_result](docs/images/105_hello_circleci_com_result.png)
-
 
 
 
 ## References
-- https://circleci.com/
-- https://circleci.com/docs/2.0/status-badges/
-- https://github.com/wavesoftware/docker-circleci-zulujdk
-- https://circleci.com/docs/2.0/language-java/
+- https://www.digitalocean.com/community/tutorials/so-installieren-und-verwenden-sie-docker-auf-ubuntu-18-04-de
+- https://docs.docker.com/engine/install/ubuntu/
+- https://gretty-gradle-plugin.github.io/gretty-doc/Getting-started.html

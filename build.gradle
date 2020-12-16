@@ -7,9 +7,9 @@ plugins {
 }
 
 startScripts {
-    applicationName = 'basic_105'
+    applicationName = 'basic_110'
     group = 'de.iotoi'
-    // version = '1.0.5'
+    // version = '1.1.0'
     sourceCompatibility = 11
 }
 
@@ -39,4 +39,23 @@ application {
 test {
     // Use junit platform for unit tests
     useJUnitPlatform()
+}
+
+task releaseRun {
+    group = 'de.iotoi'
+    description = 'Unzip release and run the application'
+    doLast {
+        // unzip app
+        def cmdUnzip = 'unzip build/distributions/' + applicationName + '.zip'
+        def procUnzip = cmdUnzip.execute()
+        procUnzip.out.close()
+        procUnzip.waitFor()
+
+        // run app
+        def cmdApp = './' + applicationName + '/bin/' + startScripts.applicationName
+        def procApp = cmdApp.execute()
+        println procApp.text
+        procApp.out.close()
+        procApp.waitFor()
+    }
 }
