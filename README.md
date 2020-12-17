@@ -9,6 +9,7 @@
 [![Java zulu-openjdk:11](https://img.shields.io/badge/Java-zulu%20openjdk:11-brightgreen?style=flat&logo=java)](https://www.azul.com/downloads/zulu-community/?package=jdk)
 [![GitHub release (latest by date)](https://img.shields.io/badge/Gradle-v6.6.1-black?style=flat&logo=gradle)](https://gradle.org/)
 [![Docker-(2019.03.13)](https://img.shields.io/badge/Docker-%2019.03.13-brightgreen)](https://www.docker.com/)
+[![IntelliJ IEAD Community Version](https://img.shields.io/badge/IntelliJ%20IEAD%20Community%20Version-blue?style=flat)](https://www.jetbrains.com/de-de/idea/download/#section=linux)
 [![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_110.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_110)
 
 
