@@ -105,7 +105,7 @@ vi Dockerfile
 ```
 
 ```bash
-# DO (create a docker images)
+# DO (create a docker image)
 docker build --tag=111_gradle_java .
 docker run -p 8080:8080 111_gradle_java
 ```
@@ -154,7 +154,7 @@ docker run -p 8080:8080 111_gradle_java
 
 ### IF ( need to get help )
 ```bash
-    ./gradlew tasks | grep 
+    ./gradlew tasks | grep archiveAllProducts
 ```
 ### ELSE ( start the web application )
 ```bash
