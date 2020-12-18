@@ -45,8 +45,9 @@ jobs:
           key: gradle-repo-v1-{{ .Branch }}-{{ checksum "build.gradle" }}
               
       # install tools
-      - run: apt update -y
-      - run: apt install -y screen
+      # - run: apt update -y
+      - run: dnf install screen
+      - run: screen –version
 
       # build application
       - run: ./gradlew clean build
