@@ -29,6 +29,7 @@ jobs:
             screen –version
 
   test:
+    docker:
     working_directory: ~/repo
 
     steps:
