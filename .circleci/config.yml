@@ -46,7 +46,7 @@ jobs:
           key: gradle-repo-v1-{{ .Branch }}-{{ checksum "build.gradle" }}
               
       # install tool screen
-      - steps:
+      - step:
         - run: cat /etc/*-release
         - run: apt update -y
         - run: apt install screen -y
@@ -54,7 +54,7 @@ jobs:
           command: root
 
       # build application
-      - steps: 
+      - step: 
         - run: ./gradlew clean build
           command: jetty
 
