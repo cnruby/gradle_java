@@ -25,7 +25,7 @@ jobs:
             whoami
             cat /etc/*-release
             apt update -y
-            apt install screen -y
+            apt install screen curl -y
             screen –version
 
       - checkout
@@ -55,19 +55,26 @@ jobs:
             ./gradlew clean build
 
       - run:
-          name: "webapp_on_project"
+          name: "start webapp on project"
           command: |
             screen -d -m -s "webapp_on_project" ./gradlew appRun
 
-      # # archives all configured gretty products.
-      # - run: ./gradlew archiveAllProducts
+      - run:
+          name: "archives all configured gretty products"
+          command: |
+            ./gradlew archiveAllProducts
 
-      # # start webserver on local
-      # - run: screen -d -m -s "webapp_on_local" ./build/output/_gradle_java/start.sh
+      - run:
+          name: "start webapp on local"
+          command: |
+            screen -d -m -s "webapp_on_local" ./build/output/_gradle_java/start.sh
 
-      # # start webserver on docker
-      # - run: ls -al /var/lib/jetty/webapps/
-      # - run: cp -rf ./build/libs/_gradle_java.war /var/lib/jetty/webapps/ROOT.war
+      - run:
+          name: "start webapp on docker"
+          command: |
+            ls -al /var/lib/jetty/webapps/
+            cp -rf ./build/libs/_gradle_java.war /var/lib/jetty/webapps/ROOT.war
 
-      # # access the web server on docker
-      # - run: curl http://localhost:8080/
+      - run:
+          name: "access the web server on docker"
+            curl http://localhost:8080/
