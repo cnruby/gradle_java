@@ -10,6 +10,7 @@ jobs:
       #- image: circleci/openjdk:11-jdk
       # - image: azul/zulu-openjdk:11
       - image: jetty:9.4.35-jre11
+        user: root
       # https://stackoverflow.com/questions/50320263/change-user-on-circleci
 
       # Specify service dependencies here if necessary
@@ -48,9 +49,7 @@ jobs:
       # install tool screen
       - run: cat /etc/*-release
       - run: apt update -y
-        command: root
       - run: apt install screen -y
-        command: root
       - run: screen –version
 
       # build application
