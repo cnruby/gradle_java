@@ -39,11 +39,18 @@ jobs:
       # build application
       - run: ./gradlew clean build
 
-      # start webserver
+      # start webserver on project
       - run: screen -d -m -s "webapp_on_project" ./gradlew appRun
 
       # archives all configured gretty products.
       - run: ./gradlew archiveAllProducts
 
-      # start webserver
-      - run: screen -d -m -s "my_session_name" ./build/output/_gradle_java/start.sh
+      # start webserver on local
+      - run: screen -d -m -s "webapp_on_local" ./build/output/_gradle_java/start.sh
+
+      # start webserver on docker
+      - run: ls -al /var/lib/jetty/webapps/
+      - run: cp -rf ./build/libs/_gradle_java.war /var/lib/jetty/webapps/ROOT.war
+
+      # access the web server on docker
+      - run: curl http://localhost:8080/
