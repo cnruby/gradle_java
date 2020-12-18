@@ -46,11 +46,12 @@ jobs:
           key: gradle-repo-v1-{{ .Branch }}-{{ checksum "build.gradle" }}
               
       # install tool screen
-      - user: root
-      - run: cat /etc/*-release
-      - run: apt update -y
-      - run: apt install screen -y
-      - run: screen –version
+      - step:
+        user: root
+        run: cat /etc/*-release
+        run: apt update -y
+        run: apt install screen -y
+        run: screen –version
 
       # build application
       - step: 
