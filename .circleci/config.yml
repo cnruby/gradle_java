@@ -6,7 +6,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: jetty:9.4.35-jdk11
+      - image: circleci/jetty:9.4.35-jdk11
         user: root
       # https://stackoverflow.com/questions/50320263/change-user-on-circleci
       # https://blog.sshn.me/posts/circleci-change-user/
@@ -77,7 +77,7 @@ jobs:
 
   deploy:
     docker:
-      - image: jetty:9.4.35-jdk11
+      - image: circleci/jetty:9.4.35-jdk11
         user: root
 
     environment:
