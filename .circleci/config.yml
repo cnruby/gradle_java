@@ -74,8 +74,25 @@ jobs:
           command: |
             ls -al /var/lib/jetty/webapps/
             cp -rf ./build/libs/_gradle_java.war /var/lib/jetty/webapps/ROOT.war
-
+  test:
+    docker:
+      - image: jetty:9.4.35-jdk11
+        user: jetty
+    steps:
       - run:
           name: "access the web server on docker"
           command: |
             curl http://localhost:8080/
+
+
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      - hold:
+          type: approval
+          requires:
+            - build
+      - test:
+          requires:
+            - hold
