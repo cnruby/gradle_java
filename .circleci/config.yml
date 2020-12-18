@@ -65,8 +65,6 @@ jobs:
           name: "build application"
           command: |
             whoami
-            logout
-            whoami
             ./gradlew clean build
 
       # # build application
