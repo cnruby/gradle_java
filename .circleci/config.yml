@@ -29,10 +29,6 @@ jobs:
             screen –version
 
   test:
-    docker:
-      - image: jetty:9.4.35-jdk11
-        user: jetty
-
     working_directory: ~/repo
 
     steps:
@@ -61,6 +57,10 @@ jobs:
           command: |
             whoami
             ./gradlew clean build
+
+      - run:
+          name: "webapp_on_project"
+          command: |
             screen -d -m -s "webapp_on_project" ./gradlew appRun
 
       # # archives all configured gretty products.
