@@ -45,7 +45,7 @@ jobs:
           key: gradle-repo-v1-{{ .Branch }}-{{ checksum "build.gradle" }}
               
       # install tool screen
-      - run: sudo apt-get update
+      - run: apt-get update
       - run: apt install screen
       - run: screen –version
 
