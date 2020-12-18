@@ -45,10 +45,13 @@ jobs:
           key: gradle-repo-v1-{{ .Branch }}-{{ checksum "build.gradle" }}
               
       # install tool screen
+      # https://stackoverflow.com/questions/50320263/change-user-on-circleci
+      - user: root
       - run: cat /etc/*-release
       - run: apt update -y
       - run: apt install screen -y
       - run: screen –version
+      - user: jetty
 
       # build application
       - run: ./gradlew clean build
