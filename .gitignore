@@ -14,4 +14,4 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 /gradle_java.iml
 /.idea/
-.circleci/config.yml.bak
+.circleci/*.bak

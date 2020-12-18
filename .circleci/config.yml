@@ -22,17 +22,14 @@ jobs:
       - run: 
           name: install tool screen
           command: |
-            whoami          
+            whoami
             cat /etc/*-release
             apt update -y
             apt install screen -y
             screen –version
+            su jetty
+            whoami
 
-  test:
-    docker:
-    working_directory: ~/repo
-
-    steps:
       - checkout
 
       # /var/lib/jetty/repo
@@ -76,12 +73,3 @@ jobs:
 
       # # access the web server on docker
       # - run: curl http://localhost:8080/
-
-workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - build
-      - test:
-          requires:
-            - build
