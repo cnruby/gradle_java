@@ -4,13 +4,14 @@
 #
 version: 2
 jobs:
+  <<: *defaults
   build:
     docker:
       # specify the version you desire here
       #- image: circleci/openjdk:11-jdk
       # - image: azul/zulu-openjdk:11
       - image: jetty:9.4.35-jre11
-        # user: root
+        user: root
       # https://stackoverflow.com/questions/50320263/change-user-on-circleci
 
       # Specify service dependencies here if necessary
@@ -51,17 +52,13 @@ jobs:
           name: install tool screen
           command: |            
             cat /etc/*-release
-            sudo apt update -y
-            sudo apt install screen -y
+            apt update -y
+            apt install screen -y
             screen –version
 
   test:
-    docker:
-      - image: jetty:9.4.35-jre11
-        user: root
+    <<: *defaults
     steps:                  
-      - checkout
-
       # build application
       - run: ./gradlew clean build
 
@@ -80,3 +77,12 @@ jobs:
 
       # access the web server on docker
       - run: curl http://localhost:8080/
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
