@@ -27,8 +27,6 @@ jobs:
             apt update -y
             apt install screen -y
             screen –version
-            su jetty
-            whoami
 
       - checkout
 

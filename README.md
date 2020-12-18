@@ -300,5 +300,4 @@ docker run -p 8080:8080 111_gradle_java
 - https://docs.gradle.org/current/userguide/building_java_projects.html#sec:building_java_webapps
 - https://unix.stackexchange.com/questions/35183/how-do-i-identify-which-linux-distro-is-running
 - https://nickjanetakis.com/blog/docker-tip-2-the-difference-between-copy-and-add-in-a-dockerile
-
-```
+- https://circleci.com/docs/2.0/configuration-reference/#executors-requires-version-21
