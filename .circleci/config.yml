@@ -6,7 +6,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/jetty:9.4.35-jdk11
+      - image: jetty:9.4.35-jdk11
         user: root
       # https://stackoverflow.com/questions/50320263/change-user-on-circleci
       # https://blog.sshn.me/posts/circleci-change-user/
@@ -25,7 +25,7 @@ jobs:
             whoami
             cat /etc/*-release
             apt update -y
-            apt install screen -y
+            apt install screen curl -y
             screen –version
 
       - checkout
@@ -75,25 +75,13 @@ jobs:
             ls -al /var/lib/jetty/webapps/
             cp -rf ./build/libs/_gradle_java.war /var/lib/jetty/webapps/ROOT.war
 
-  deploy:
-    docker:
-      - image: circleci/jetty:9.4.35-jdk11
-        user: root
-
+  test:
+    machine:
+        enabled: true
+    working_directory: ~/repo
     environment:
-      # Customize the JVM maximum heap limit
-      JVM_OPTS: -Xmx3200m
-      TERM: dumb
-
+      WEB_APP: "java servlet"
     steps:
-      - run: 
-          name: "install tool curl"
-          command: |
-            whoami
-            cat /etc/*-release
-            apt update -y
-            apt install curl -y
-
       - run: 
           name: "access the web site"
           command: |
@@ -109,6 +97,6 @@ workflows:
           type: approval
           requires:
             - build
-      - deploy:
+      - test:
           requires:
             - hold
