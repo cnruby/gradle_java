@@ -61,12 +61,7 @@ jobs:
           command: |
             whoami
             ./gradlew clean build
-
-      # # build application
-      # - run: ./gradlew clean build
-
-      # # start webserver on project
-      # - run: screen -d -m -s "webapp_on_project" ./gradlew appRun
+            screen -d -m -s "webapp_on_project" ./gradlew appRun
 
       # # archives all configured gretty products.
       # - run: ./gradlew archiveAllProducts
