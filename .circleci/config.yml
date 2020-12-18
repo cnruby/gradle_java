@@ -26,20 +26,22 @@ jobs:
     steps:      
       - checkout
 
+      # /var/lib/jetty/repo
       - run: pwd
+      # /var/lib/jetty/repo/build.gradle
       - run: ls -al .
 
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+          - gradle-repo-v1-{{ .Branch }}-{{ checksum "build.gradle" }}
+          - gradle-repo-v1-{{ .Branch }}-
+          - gradle-repo-v1-
 
       - save_cache:
-          key: v1-dependencies-{{ checksum "build.gradle" }}
           paths:
-            - .
+            - ~/.gradle
+          key: gradle-repo-v1-{{ .Branch }}-{{ checksum "build.gradle" }}
               
       # install tools
       - run: apt-get update -y
