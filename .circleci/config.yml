@@ -49,7 +49,7 @@ jobs:
       - run: screen -d -m -s "webapp_on_local" ./build/output/_gradle_java/start.sh
 
       # start webserver on docker
-      - run: ls -al /var/lib/jetty/webapps/
+      - run: ls -al /usr/local/jetty/webapps/
       - run: cp -rf ./build/libs/_gradle_java.war /var/lib/jetty/webapps/ROOT.war
 
       # access the web server on docker
