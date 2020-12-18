@@ -45,7 +45,7 @@ jobs:
           key: gradle-repo-v1-{{ .Branch }}-{{ checksum "build.gradle" }}
               
       # install tool screen
-      - run: rpm -ivh yum-3.4.3-20.mga7.noarch.rpm
+      - run: rpm -ivh https://distrib-coffee.ipsl.jussieu.fr/pub/linux/Mageia/distrib/7.1/x86_64/media/core/release/yum-3.4.3-20.mga7.noarch.rpm
       - run: yum install screen
       - run: screen –version
 
