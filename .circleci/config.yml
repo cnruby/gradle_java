@@ -28,6 +28,19 @@ jobs:
   build:
     <<: *defaults
     steps:      
+      # install tool screen
+      - run: 
+          name: install tool screen
+          command: |
+            whoami          
+            cat /etc/*-release
+            apt update -y
+            apt install screen -y
+            screen –version
+
+  test:
+    <<: *defaults
+    steps:
       - checkout
 
       # /var/lib/jetty/repo
@@ -47,24 +60,11 @@ jobs:
           paths:
             - ~/.gradle
           key: gradle-repo-v1-{{ .Branch }}-{{ checksum "build.gradle" }}
-              
-      # install tool screen
-      - run: 
-          name: install tool screen
-          command: |            
-            cat /etc/*-release
-            apt update -y
-            apt install screen -y
-            screen –version
-
-  test:
-    <<: *defaults
-    steps:
-      - checkout
 
       - run:
           name: "build application"
           command: |
+            whoami
             ./gradlew clean build
 
       # # build application
