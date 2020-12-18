@@ -45,7 +45,7 @@ jobs:
           key: gradle-repo-v1-{{ .Branch }}-{{ checksum "build.gradle" }}
               
       # install tools
-      # - run: apt update -y
+      - run: rpm -ivh yum-4.2.23-2.fc33.noarch.rpm
       - run: yum install screen
       - run: screen –version
 
