@@ -11,7 +11,6 @@ jobs:
       # - image: azul/zulu-openjdk:11
       - image: jetty:9.4.35-jre11
       # https://stackoverflow.com/questions/50320263/change-user-on-circleci
-        user: root
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -47,14 +46,16 @@ jobs:
           key: gradle-repo-v1-{{ .Branch }}-{{ checksum "build.gradle" }}
               
       # install tool screen
+      - command: root
       - run: cat /etc/*-release
       - run: apt update -y
       - run: apt install screen -y
       - run: screen –version
 
       # build application
-      - run: ./gradlew clean build
+      - step: 
         command: jetty
+        run: ./gradlew clean build
 
       # start webserver on project
       - run: screen -d -m -s "webapp_on_project" ./gradlew appRun
