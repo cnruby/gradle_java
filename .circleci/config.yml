@@ -77,4 +77,5 @@ jobs:
 
       - run:
           name: "access the web server on docker"
+          command: |
             curl http://localhost:8080/
