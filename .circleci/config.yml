@@ -53,9 +53,8 @@ jobs:
       - run: screen –version
 
       # build application
-      - run: 
-        command: jetty        
       - run: ./gradlew clean build
+        command: jetty
 
       # start webserver on project
       - run: screen -d -m -s "webapp_on_project" ./gradlew appRun
