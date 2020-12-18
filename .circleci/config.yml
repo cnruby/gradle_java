@@ -2,10 +2,7 @@
 #
 # Check https://circleci.com/docs/2.0/language-java/ for more details
 #
-version: 2
-jobs:
-  <<: *defaults
-  build:
+defaults: &defaults
     docker:
       # specify the version you desire here
       #- image: circleci/openjdk:11-jdk
@@ -26,6 +23,10 @@ jobs:
       JVM_OPTS: -Xmx3200m
       TERM: dumb
 
+version: 2
+jobs:
+  build:
+    <<: *defaults
     steps:      
       - checkout
 
@@ -58,25 +59,28 @@ jobs:
 
   test:
     <<: *defaults
-    steps:                  
-      # build application
-      - run: ./gradlew clean build
+    steps:
+      - run:
+          command: whoami      
 
-      # start webserver on project
-      - run: screen -d -m -s "webapp_on_project" ./gradlew appRun
+      # # build application
+      # - run: ./gradlew clean build
 
-      # archives all configured gretty products.
-      - run: ./gradlew archiveAllProducts
+      # # start webserver on project
+      # - run: screen -d -m -s "webapp_on_project" ./gradlew appRun
 
-      # start webserver on local
-      - run: screen -d -m -s "webapp_on_local" ./build/output/_gradle_java/start.sh
+      # # archives all configured gretty products.
+      # - run: ./gradlew archiveAllProducts
 
-      # start webserver on docker
-      - run: ls -al /var/lib/jetty/webapps/
-      - run: cp -rf ./build/libs/_gradle_java.war /var/lib/jetty/webapps/ROOT.war
+      # # start webserver on local
+      # - run: screen -d -m -s "webapp_on_local" ./build/output/_gradle_java/start.sh
 
-      # access the web server on docker
-      - run: curl http://localhost:8080/
+      # # start webserver on docker
+      # - run: ls -al /var/lib/jetty/webapps/
+      # - run: cp -rf ./build/libs/_gradle_java.war /var/lib/jetty/webapps/ROOT.war
+
+      # # access the web server on docker
+      # - run: curl http://localhost:8080/
 
 workflows:
   version: 2
