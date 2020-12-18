@@ -52,6 +52,13 @@ jobs:
       - run: apt install screen -y
       - run: screen –version
 
+test:
+    docker:
+      - image: jetty:9.4.35-jre11
+        user: root
+    steps:                  
+      - checkout
+
       # build application
       - run: ./gradlew clean build
 
