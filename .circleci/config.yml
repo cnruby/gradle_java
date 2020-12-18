@@ -46,7 +46,7 @@ jobs:
               
       # install tools
       # - run: apt update -y
-      - run: dnf install screen
+      - run: yum install screen
       - run: screen –version
 
       # build application
