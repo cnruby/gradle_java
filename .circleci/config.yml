@@ -17,7 +17,7 @@ jobs:
       JVM_OPTS: -Xmx3200m
       TERM: dumb
 
-    steps:
+    steps:      
       # install tool screen
       - run: 
           name: install tool screen
@@ -25,7 +25,7 @@ jobs:
             whoami
             cat /etc/*-release
             apt update -y
-            apt install screen curl -y
+            apt install screen -y
             screen –version
 
       - checkout
@@ -74,29 +74,3 @@ jobs:
           command: |
             ls -al /var/lib/jetty/webapps/
             cp -rf ./build/libs/_gradle_java.war /var/lib/jetty/webapps/ROOT.war
-
-  test:
-    machine:
-        enabled: true
-    working_directory: ~/repo
-    environment:
-      WEB_APP: "java servlet"
-    steps:
-      - run: 
-          name: "access the web site"
-          command: |
-            curl http://localhost:8080/
-
-
-workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - build
-      - hold:
-          type: approval
-          requires:
-            - build
-      - test:
-          requires:
-            - hold
