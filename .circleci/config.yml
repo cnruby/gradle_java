@@ -48,8 +48,9 @@ jobs:
               
       # install tool screen
       - run: 
+          user: root
           name: install tool screen
-          command: root
+          command: |            
             cat /etc/*-release
             apt update -y
             apt install screen -y
