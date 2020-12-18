@@ -32,6 +32,7 @@ jobs:
       - run: ls -al .
 
       # Download and cache dependencies
+      # https://circleci.com/docs/2.0/caching/
       - restore_cache:
           keys:
           - gradle-repo-v1-{{ .Branch }}-{{ checksum "build.gradle" }}
@@ -44,8 +45,8 @@ jobs:
           key: gradle-repo-v1-{{ .Branch }}-{{ checksum "build.gradle" }}
               
       # install tools
-      - run: apt-get update -y
-      - run: apt-get install -y screen
+      - run: apt update -y
+      - run: apt install -y screen
 
       # build application
       - run: ./gradlew clean build
