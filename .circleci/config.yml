@@ -45,7 +45,7 @@ jobs:
           key: gradle-repo-v1-{{ .Branch }}-{{ checksum "build.gradle" }}
               
       # install tool screen
-      - run: lsb_release -a
+      - run: set -xe ; lsb_release -a
       - run: apt update
       - run: apt install screen
       - run: screen –version
