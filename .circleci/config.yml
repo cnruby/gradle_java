@@ -27,6 +27,7 @@ jobs:
       - checkout
 
       - run: pwd
+      - run: ls -al .
 
       # Download and cache dependencies
       - restore_cache:
