@@ -60,8 +60,8 @@ jobs:
   test:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: /var/lib/jetty/repo
+      - checkout
+
       - run:
           name: "build application"
           command: |
