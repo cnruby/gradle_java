@@ -65,7 +65,7 @@ jobs:
           name: "build application"
           command: |
             whoami
-            su - jetty
+            logout
             whoami
             ./gradlew clean build
 
