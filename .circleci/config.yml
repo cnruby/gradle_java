@@ -6,12 +6,11 @@ version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
-      - image: jetty:9.4.35-jre11
+      - image: jetty:9.4.35-jdk11
         user: root
       # https://stackoverflow.com/questions/50320263/change-user-on-circleci
-
-    working_directory: ~/repo
+      # https://blog.sshn.me/posts/circleci-change-user/
+      # https://circleci.com/blog/how-to-do-vulnerability-management-with-docker-and-ci-cd/
 
     environment:
       # Customize the JVM maximum heap limit
@@ -24,13 +23,25 @@ jobs:
           name: install tool screen
           command: |
             whoami          
+            cat /etc/*-release
+            apt update -y
+            apt install screen -y
+            screen –version
 
+  test:
+    docker:
+      - image: jetty:9.4.35-jdk11
+        user: jetty
+
+    working_directory: ~/repo
+
+    steps:
       - checkout
 
       # /var/lib/jetty/repo
-      - run: java -version
+      - run: pwd
       # /var/lib/jetty/repo/build.gradle
-      - run: ls -al ./build.gradle
+      - run: ls -al .
 
       # Download and cache dependencies
       # https://circleci.com/docs/2.0/caching/
@@ -49,3 +60,32 @@ jobs:
           name: "build application"
           command: |
             whoami
+            ./gradlew clean build
+
+      # # build application
+      # - run: ./gradlew clean build
+
+      # # start webserver on project
+      # - run: screen -d -m -s "webapp_on_project" ./gradlew appRun
+
+      # # archives all configured gretty products.
+      # - run: ./gradlew archiveAllProducts
+
+      # # start webserver on local
+      # - run: screen -d -m -s "webapp_on_local" ./build/output/_gradle_java/start.sh
+
+      # # start webserver on docker
+      # - run: ls -al /var/lib/jetty/webapps/
+      # - run: cp -rf ./build/libs/_gradle_java.war /var/lib/jetty/webapps/ROOT.war
+
+      # # access the web server on docker
+      # - run: curl http://localhost:8080/
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
