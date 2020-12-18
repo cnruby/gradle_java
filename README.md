@@ -214,16 +214,16 @@ docker run -p 8080:8080 111_gradle_java
         # DO (Press Ctrl+C to stop the server) 
     # ENDIF
         # >> Result
-        2020-12-17 20:04:59.954:INFO::main: Logging initialized @190ms to org.eclipse.jetty.util.log.StdErrLog
-        2020-12-17 20:05:00.417:INFO:oejs.Server:main: jetty-9.4.35.v20201120; built: 2020-11-20T21:17:03.964Z; git: bdc54f03a5e0a7e280fab27f55c3c75ee8da89fb; jvm 15.0.1+9-18
-        2020-12-17 20:05:00.468:INFO:oejdp.ScanningAppProvider:main: Deployment monitor [file:///var/lib/jetty/webapps/] at interval 1
-        2020-12-17 20:05:01.353:INFO:oeja.AnnotationConfiguration:main: Scanning elapsed time=421ms
-        2020-12-17 20:05:01.660:INFO:oejs.session:main: DefaultSessionIdManager workerName=node0
-        2020-12-17 20:05:01.660:INFO:oejs.session:main: No SessionScavenger set, using defaults
-        2020-12-17 20:05:01.662:INFO:oejs.session:main: node0 Scavenging every 600000ms
-        2020-12-17 20:05:01.738:INFO:oejsh.ContextHandler:main: Started o.e.j.w.WebAppContext@7adda9cc{ROOT,/,file:///tmp/jetty/jetty-0_0_0_0-8080-ROOT_war-_-any-10753278825682717788/webapp/,AVAILABLE}{/var/lib/jetty/webapps/ROOT.war}
-        2020-12-17 20:05:01.774:INFO:oejs.AbstractConnector:main: Started ServerConnector@616ac46a{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
-        2020-12-17 20:05:01.775:INFO:oejs.Server:main: Started @2034ms
+        2020-12-18 11:33:40.121:INFO::main: Logging initialized @415ms to org.eclipse.jetty.util.log.StdErrLog
+        2020-12-18 11:33:40.798:INFO:oejs.Server:main: jetty-9.4.35.v20201120; built: 2020-11-20T21:17:03.964Z; git: bdc54f03a5e0a7e280fab27f55c3c75ee8da89fb; jvm 11.0.9.1+1
+        2020-12-18 11:33:40.863:INFO:oejdp.ScanningAppProvider:main: Deployment monitor [file:///var/lib/jetty/webapps/] at interval 1
+        2020-12-18 11:33:42.071:INFO:oeja.AnnotationConfiguration:main: Scanning elapsed time=572ms
+        2020-12-18 11:33:42.463:INFO:oejs.session:main: DefaultSessionIdManager workerName=node0
+        2020-12-18 11:33:42.463:INFO:oejs.session:main: No SessionScavenger set, using defaults
+        2020-12-18 11:33:42.466:INFO:oejs.session:main: node0 Scavenging every 600000ms
+        2020-12-18 11:33:42.556:INFO:oejsh.ContextHandler:main: Started o.e.j.w.WebAppContext@6fd83fc1{ROOT,/,file:///tmp/jetty/jetty-0_0_0_0-8080-ROOT_war-_-any-6326391873217820744/webapp/,AVAILABLE}{/var/lib/jetty/webapps/ROOT.war}
+        2020-12-18 11:33:42.646:INFO:oejs.AbstractConnector:main: Started ServerConnector@6b98a075{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+        2020-12-18 11:33:42.649:INFO:oejs.Server:main: Started @2969ms
 # ENDIF
 ```
 
