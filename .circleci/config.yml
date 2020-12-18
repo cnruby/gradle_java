@@ -46,8 +46,8 @@ jobs:
               
       # install tool screen
       - run: cat /etc/*-release
-      - run: sudo apt update -y
-      - run: sudo apt install screen -y
+      - run: apt update -y
+      - run: apt install screen -y
       - run: screen –version
 
       # build application
