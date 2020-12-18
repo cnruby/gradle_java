@@ -10,7 +10,7 @@ jobs:
       #- image: circleci/openjdk:11-jdk
       # - image: azul/zulu-openjdk:11
       - image: jetty:9.4.35-jre11
-        user: root
+        # user: root
       # https://stackoverflow.com/questions/50320263/change-user-on-circleci
 
       # Specify service dependencies here if necessary
@@ -47,12 +47,15 @@ jobs:
           key: gradle-repo-v1-{{ .Branch }}-{{ checksum "build.gradle" }}
               
       # install tool screen
-      - run: cat /etc/*-release
-      - run: apt update -y
-      - run: apt install screen -y
-      - run: screen –version
+      - run: 
+          name: install tool screen
+          command: root
+            cat /etc/*-release
+            apt update -y
+            apt install screen -y
+            screen –version
 
-test:
+  test:
     docker:
       - image: jetty:9.4.35-jre11
         user: root
