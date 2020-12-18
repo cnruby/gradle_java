@@ -39,6 +39,9 @@ jobs:
       # build application
       - run: ./gradlew clean build
 
+      # start webserver
+      - run: screen -d -m -s "webapp_on_project" ./gradlew appRun
+
       # archives all configured gretty products.
       - run: ./gradlew archiveAllProducts
 
