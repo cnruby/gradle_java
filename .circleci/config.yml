@@ -47,16 +47,16 @@ jobs:
               
       # install tool screen
       - steps:
-        user: root
-        run: cat /etc/*-release
-        run: apt update -y
-        run: apt install screen -y
-        run: screen –version
+        - run: cat /etc/*-release
+        - run: apt update -y
+        - run: apt install screen -y
+        - run: screen –version
+          command: root
 
       # build application
       - steps: 
-        user: jetty
-        run: ./gradlew clean build
+        - run: ./gradlew clean build
+          command: jetty
 
       # start webserver on project
       - run: screen -d -m -s "webapp_on_project" ./gradlew appRun
