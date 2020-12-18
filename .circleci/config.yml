@@ -36,6 +36,11 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
+      - save_cache:
+          key: v1-dependencies-{{ checksum "build.gradle" }}
+          paths:
+            - .
+              
       # install tools
       - run: apt-get update -y
       - run: apt-get install -y screen
