@@ -1,4 +1,4 @@
-name: Create..Release..for..GitHub
+name: Create--Release--for--GitHub
 
 on: 
   push:
@@ -7,11 +7,11 @@ on:
 
 jobs:
   build:
-    name: Create..Release
+    name: Create--Release
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout..Code
+      - name: Checkout--Code
         uses: actions/checkout@v2
       - name: CREATE RELEASE FOR BRANCH "main"
         id: create_release
@@ -19,8 +19,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: up..to..basic_111
-          release_name: The..Release..Up..to..the..Project "basic_111"
+          tag_name: up_to_basic_111
+          release_name: The--Release--Up--to--the--Project "basic_111"
           body: |
             All projects in this release
             - Lesson 101..=111
