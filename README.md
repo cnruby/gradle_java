@@ -15,7 +15,7 @@ Hello "gradle_java"!
 
 - Lesson 101: [Hello jabba!](https://github.com/cnruby/gradle_java/tree/basic_101)
 - Lesson 102: [Hello Gradle!](https://github.com/cnruby/gradle_java/tree/basic_102)
-- Lesson 103: [Hello `gradlew` and Java!](https://github.com/cnruby/gradle_java/tree/basic_103)
+- Lesson 103: [Hello `gradlew`!](https://github.com/cnruby/gradle_java/tree/basic_103)
 - Lesson 104: [Hello Single Project!](https://github.com/cnruby/gradle_java/tree/basic_104)
 - Lesson 105: [Hello CircleCI!](https://github.com/cnruby/gradle_java/tree/basic_105)
 - Lesson 106: [Hello Package!](https://github.com/cnruby/gradle_java/tree/basic_106)
@@ -23,7 +23,7 @@ Hello "gradle_java"!
 - Lesson 108: [Hello Gretty!](https://github.com/cnruby/gradle_java/tree/basic_108)
 - Lesson 109: [Hello Servlet!](https://github.com/cnruby/gradle_java/tree/basic_109)
 - Lesson 110: [Hello App with Docker!](https://github.com/cnruby/gradle_java/tree/basic_110)
-- Lesson 111: Hello jetty!
+- Lesson 111: [Hello jetty!](https://github.com/cnruby/gradle_java/tree/basic_111)
 - Lesson 112: Hello tomcat!
 - Hello JUnit 5!
 - Hello Two Projects!
