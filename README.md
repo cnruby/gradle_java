@@ -24,9 +24,9 @@ basic_111
 
 - [Keywords](#keywords)
 - [Prerequisites](#prerequisites)
-- [Create a Java Application from GitHub.com](#create-a-java-application-from-githubcom)
+- [Create a Java Web Application from GitHub.com](#create-a-java-web-application-from-githubcom)
 - [Add a Docker build file `Dockerfile`](#add-a-docker-build-file-dockerfile)
-- [Create and Start a Container with Java Application](#create-and-start-a-container-with-java-application)
+- [Create and Start a Container with Java Web Application](#create-and-start-a-container-with-java-web-application)
 - [Develop the Web Application on Project](#develop-the-web-application-on-project)
   - [IF ( need to get help )](#if--need-to-get-help-)
   - [ELSE ( start the application )](#else--start-the-application-)
@@ -66,14 +66,14 @@ basic_111
 
 
 
-## Create a Java Application from GitHub.com
+## Create a Java Web Application from GitHub.com
 
 ```bash
 # DO (open a new terminal)
-EXISTING_APP_ID=109 && NEW_APP_ID=111 && \
-git clone -b basic_${EXISTING_APP_ID} \
-https://github.com/cnruby/gradle_java.git ${NEW_APP_ID}_gradle_java && \
-cd ${NEW_APP_ID}_gradle_java
+EXISTING_APP_ID=109 && NEW_APP_ID=111 \
+&& git clone -b basic_${EXISTING_APP_ID} \
+    https://github.com/cnruby/gradle_java.git ${NEW_APP_ID}_gradle_java \
+&& cd ${NEW_APP_ID}_gradle_java
 ```
 
 ```bash
@@ -98,7 +98,7 @@ vi Dockerfile
 
 
 
-## Create and Start a Container with Java Application
+## Create and Start a Container with Java Web Application
 
 ```bash
 # DO (build the web application)
@@ -297,8 +297,8 @@ docker run -p 8080:8080 111_gradle_java
 ```bash
 # DO (download the whole project)
 APP_ID=111 && git clone -b basic_${APP_ID}  \
-https://github.com/cnruby/gradle_java.git basic_${APP_ID} \
-cd basic_${APP_ID}
+    https://github.com/cnruby/gradle_java.git basic_${APP_ID} \
+&& cd basic_${APP_ID}
 ```
 
 ```bash
