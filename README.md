@@ -14,7 +14,7 @@ basic_101
 
 - install Java Version Manager tool `jabba` on Ubuntu 20.04
 - install JDK 8 and/or 11 with jabba on Ubuntu 20.04
-- develop simple Java applications
+- develop simple Java application
 
 ---
 
