@@ -30,7 +30,7 @@ basic_109
 - [Analyse the Url Route](#analyse-the-url-route)
   - [IF using ( `<url-pattern>/</url-pattern>` ) in the file 'web.xml'](#if-using--url-patternurl-pattern--in-the-file-webxml)
   - [ELSEIF using `(<url-pattern>/hello</url-pattern>)` in the file 'web.xml'](#elseif-using-url-patternhellourl-pattern-in-the-file-webxml)
-- [Download and Use This compelete Project](#download-and-use-this-compelete-project)
+- [Download and Use This complete Project](#download-and-use-this-complete-project)
 - [Tip What is it? Deprecated Gradle features were used in this build](#tip-what-is-it-deprecated-gradle-features-were-used-in-this-build)
   - [Warning](#warning)
   - [Solution](#solution)
@@ -215,7 +215,7 @@ vi src/main/java/de/iotoi/HelloWorldServlet.java
 
 
 
-## Download and Use This compelete Project
+## Download and Use This complete Project
 
 ```bash
 # DO (download the whole project)
