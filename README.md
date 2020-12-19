@@ -30,7 +30,7 @@ basic_108
 - [Working Processes](#working-processes)
 - [Problems](#problems)
   - [IF Exception(Address already in use)](#if-exceptionaddress-already-in-use)
-- [Download and Use This compelete Project](#download-and-use-this-compelete-project)
+- [Download and Use This complete Project](#download-and-use-this-complete-project)
 - [Main's References](#mains-references)
 - [References](#references)
 
@@ -158,7 +158,7 @@ sudo kill -9 <PROCESS_ID>
 
 
 
-## Download and Use This compelete Project
+## Download and Use This complete Project
 
 ```bash
 # DO (download the whole project)
