@@ -2,13 +2,13 @@ name: Create--Release--for--GitHub
 
 on: 
   push:
-    branches:
+    # branches:
+    branches-ignore:
       - main
 
 jobs:
   build:
     name: Create--Release
-    if: false
     runs-on: ubuntu-latest
 
     steps:
