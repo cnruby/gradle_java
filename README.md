@@ -7,7 +7,7 @@
 [![Java zulu-openjdk:11](https://img.shields.io/badge/Java-zulu%20openjdk:11-brightgreen?style=flat&logo=java)](https://www.azul.com/downloads/zulu-community/?package=jdk)
 [![IntelliJ IEAD Community Version](https://img.shields.io/badge/IntelliJ%20IEAD%20Community%20Version-blue?style=flat)](https://www.jetbrains.com/de-de/idea/download/#section=linux)
 [![Docker-(2019.03.13)](https://img.shields.io/badge/Docker-%2019.03.13-brightgreen)](https://www.docker.com/)
-[![jetty-(9.4.35)](https://img.shields.io/github/v/release/eclipse/jetty.project?logo=jetty&style=plastic)](https://github.com/eclipse/jetty.project)
+[![docker jetty-(9.4.35)](https://img.shields.io/github/v/release/eclipse/jetty.project?logo=jetty&style=plastic)](https://github.com/eclipse/jetty.project)
 [![gretty-(2.0.0)](https://img.shields.io/github/v/tag/akhikhl/gretty?label=gretty&logo=gretty&style=plastic)](https://github.com/akhikhl/gretty)
 [![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_111.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_111)
 
@@ -50,7 +50,7 @@ basic_111
 
 
 ## Keywords
-- Gretty jetty tomcat `Web Application` `web-app` `gradle plugin` `web server`
+- Gretty jetty `Web Application` `web-app` `gradle plugin` `web server`
 - Ubuntu Java Gradle tutorial example
 - `Continuous Integration` CI `Continuous Deployment` CD CircleCI
 
