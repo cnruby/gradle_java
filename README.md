@@ -35,6 +35,7 @@ basic_110
   - [check the new task `releaseRun`](#check-the-new-task-releaserun)
 - [run the Java application on Docker](#run-the-java-application-on-docker)
 - [Working Processes](#working-processes)
+- [Download and Use This complete Project](#download-and-use-this-complete-project)
 - [References](#references)
 
 
@@ -179,6 +180,39 @@ docker run 110_gradle_java
     # ENDIF
     docker run 110_gradle_java
 # ENDFOR
+```
+
+
+
+## Download and Use This complete Project
+
+```bash
+# DO (download the whole project)
+APP_ID=110 && git clone -b basic_${APP_ID}  \
+https://github.com/cnruby/gradle_java.git basic_${APP_ID} \
+cd basic_${APP_ID}
+```
+
+```bash
+# DO (build the application)
+./gradlew clean build
+
+# DO (create a docker image)
+docker build --tag=110_gradle_java .
+
+# DO (run a docker container)
+docker run 110_gradle_java
+```
+
+```bash
+# DO (use the application)
+google-chrome http://localhost:8080/
+    # >> Result
+    Hello Jetty!
+
+google-chrome http://localhost:8080/hello
+    # >> Result
+    [4,1,5,9,3]
 ```
 
 
