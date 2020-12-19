@@ -200,7 +200,7 @@ cd basic_${APP_ID}
 # DO (create a docker image)
 docker build --tag=110_gradle_java .
 
-# DO (run a docker container)
+# DO (run a docker container with Java App)
 docker run 110_gradle_java
 
     # >> Result
