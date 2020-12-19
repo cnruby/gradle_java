@@ -1,10 +1,9 @@
+name: Create Release Java project with Gradle
 on:
   push:
     # Sequence of patterns matched against refs/tags
     tags:
-      - 'v0.0.111' # Push events to matching v*, i.e. v1.0, v20.15.10
-
-name: Create Release
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 jobs:
   build:
