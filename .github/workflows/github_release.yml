@@ -13,14 +13,14 @@ jobs:
     steps:
       - name: Checkout--Code
         uses: actions/checkout@v2
-      - name: CREATE RELEASE FOR BRANCH "main"
+      - name: Create--Release--for--Branch--"main"
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
           tag_name: up_to_basic_111
-          release_name: The--Release--Up--to--the--Project "basic_111"
+          release_name: Project--"basic_111"--Up--to--The--Release
           body: |
             All projects in this release
             - Lesson 101..=111
