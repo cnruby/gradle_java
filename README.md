@@ -12,7 +12,8 @@
 
 
 
-<h1>Lesson 103: Hello `gradlew` and Java!</h1>
+basic_103
+<h1>Lesson 103: Hello `gradlew`!</h1>
 
 - develop Java application with `gradlew`
 - upgrade a project-wide gradle version to the another
@@ -40,7 +41,7 @@
 - [Package the Java Application](#package-the-java-application)
   - [build the Java application](#build-the-java-application)
   - [run the Java application on different OS System:](#run-the-java-application-on-different-os-system)
-- [Download and Use This compelete Project](#download-and-use-this-compelete-project)
+- [Download and Use This complete Project](#download-and-use-this-complete-project)
 - [Help: "Deprecated Gradle features were used in the build file `build.gradle`"](#help-deprecated-gradle-features-were-used-in-the-build-file-buildgradle)
 - [Tips](#tips)
 - [References](#references)
@@ -286,7 +287,7 @@ Hello world.
 
 
 
-## Download and Use This compelete Project
+## Download and Use This complete Project
 
 ```bash
 # Download
