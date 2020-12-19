@@ -43,6 +43,7 @@ basic_111
 - [Use jetty docker image with different port](#use-jetty-docker-image-with-different-port)
   - [IF access the jetty server port 8080](#if-access-the-jetty-server-port-8080)
   - [ELSEIF access the jetty server port 80](#elseif-access-the-jetty-server-port-80)
+- [Download and Use This complete Project](#download-and-use-this-complete-project)
 - [Main's References](#mains-references)
 - [References](#references)
 
@@ -287,6 +288,39 @@ docker run -p 8080:8080 111_gradle_java
             [6,5,5,8,9]
     # ENDIF
 # ENDIF
+```
+
+
+
+## Download and Use This complete Project
+
+```bash
+# DO (download the whole project)
+APP_ID=111 && git clone -b basic_${APP_ID}  \
+https://github.com/cnruby/gradle_java.git basic_${APP_ID} \
+cd basic_${APP_ID}
+```
+
+```bash
+# DO (build the application)
+./gradlew clean build
+
+# DO (create a docker image)
+docker build --tag=111_gradle_java .
+
+# DO (run a docker container with Java Web App)
+docker run -p 80:8080 111_gradle_java
+```
+
+```bash
+# DO (use the application)
+google-chrome http://localhost:80/
+    # >> Result
+    Hello Jetty!
+
+google-chrome http://localhost:80/hello
+    # >> Result
+    [7,7,7,7,0]
 ```
 
 
