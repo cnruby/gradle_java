@@ -6,8 +6,9 @@ plugins {
 
 final author = 'Gudao Luo'
 final artifactId = 'gradle_java'
-group "de.iotoi"
-version '1.1.1'
+final sourceCompatibility = JavaVersion.VERSION_11
+final group = "de.iotoi"
+final version = '1.1.1'
 
 repositories {
     jcenter()
