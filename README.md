@@ -33,7 +33,7 @@ basic_106
 - [Package the Java application](#package-the-java-application)
   - [build the project](#build-the-project)
   - [run the Java application on different OS System](#run-the-java-application-on-different-os-system)
-- [Download and Use This compelete Project](#download-and-use-this-compelete-project)
+- [Download and Use This complete Project](#download-and-use-this-complete-project)
 - [Tip 1: About `applicationName` and `rootProject.name`](#tip-1-about-applicationname-and-rootprojectname)
 - [Tip 2: About `mvnrepository.com`](#tip-2-about-mvnrepositorycom)
 - [References](#references)
@@ -149,7 +149,7 @@ unzip build/distributions/_gradle_java.zip
 
 
 
-## Download and Use This compelete Project
+## Download and Use This complete Project
 
 ```bash
 # DO (download the whole project)
