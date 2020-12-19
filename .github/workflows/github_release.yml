@@ -23,7 +23,31 @@ jobs:
           tag_name: basic__112__01
           release_name: Project--"basic_112"--for--The--Release
           body: |
-            project in this release
+            PROJECT IN THIS RELEASE
             - develop simple web app with docker and tomcat
+
+            ```bash
+              # DO (download the file)
+              # DO (unzip the file)
+              unzip gradle_java-basic__112__01.zip && cd gradle_java-basic__112__01
+
+              # DO (build the application)
+              ./gradlew clean build
+
+              # DO (create a docker image)
+              docker build --tag=112_gradle_java .
+
+              # DO (run a docker container with Java Web App)
+              docker run -p 80:8080 112_gradle_java
+
+              # DO (use the application)
+              google-chrome http://localhost:80/
+                  # >> Result
+                  Hello Tomcat!
+
+              google-chrome http://localhost:80/hello
+                  # >> Result
+                  [7,7,7,7,0]
+            ```
           draft: false
           prerelease: false

@@ -1,17 +1,17 @@
 # This workflow will build a package using Gradle and then publish it to GitHub packages when a release is created
 # For more information see: https://github.com/actions/setup-java#publishing-using-gradle
 
-name: Gradle--Actions--for--Java
+name: Gradle--Actions--for--Java--basic_112
 
 # on: [push]
 on: 
   push:
     branches-ignore:
-      - main
+      - basic_112
 
 jobs:
   build:
-    name: Build--Java--App
+    name: Build--Java--App--basic_112
     runs-on: ubuntu-latest
 
     steps:
@@ -23,7 +23,7 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
-    - name: Build--with--Gradle
+    - name: Build--with--Gradle--basic_112
       run: ./gradlew clean build
 
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
