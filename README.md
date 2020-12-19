@@ -202,17 +202,9 @@ docker build --tag=110_gradle_java .
 
 # DO (run a docker container)
 docker run 110_gradle_java
-```
 
-```bash
-# DO (use the application)
-google-chrome http://localhost:8080/
     # >> Result
-    Hello Jetty!
-
-google-chrome http://localhost:8080/hello
-    # >> Result
-    [4,1,5,9,3]
+    Hello world.
 ```
 
 
