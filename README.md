@@ -10,6 +10,7 @@
 [![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_102.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_102)
 
 
+basic_102
 <h1>Lesson 102: Hello Gradle!</h1>
 
 - install Gradle on Ubuntu 20.04
@@ -31,7 +32,7 @@
   - [build the Java application](#build-the-java-application)
   - [run the Java application on different OS System:](#run-the-java-application-on-different-os-system)
 - [Test the Java application](#test-the-java-application)
-- [Download and Use This compelete Project](#download-and-use-this-compelete-project)
+- [Download and Use This complete Project](#download-and-use-this-complete-project)
 - [Tip:](#tip)
 - [Main References](#main-references)
 - [References](#references)
@@ -166,7 +167,7 @@ google-chrome build/reports/tests/test/index.html
 
 
 
-## Download and Use This compelete Project
+## Download and Use This complete Project
 
 ```bash
 # Download
