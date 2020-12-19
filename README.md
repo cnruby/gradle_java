@@ -26,7 +26,7 @@ basic_107
 - [Develop Gradle Task `releaseRun` for Java Application](#develop-gradle-task-releaserun-for-java-application)
   - [add new task for the file `./build.gradle`](#add-new-task-for-the-file-buildgradle)
   - [execute the Gradle task](#execute-the-gradle-task)
-- [Download and Use This compelete Project](#download-and-use-this-compelete-project)
+- [Download and Use This complete Project](#download-and-use-this-complete-project)
 - [References](#references)
 
 
@@ -130,7 +130,7 @@ vi ./build.gradle
 
 
 
-## Download and Use This compelete Project
+## Download and Use This complete Project
 
 ```bash
 # DO (download the whole project)
