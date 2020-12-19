@@ -11,6 +11,7 @@
 
 
 
+basic_104
 <h1>Lesson 104: Hello Single Project!</h1>
 
 - Delevop a Single Java Appliction with Gradle
@@ -32,7 +33,7 @@
 - [Package the Java Application](#package-the-java-application)
   - [build the Java application](#build-the-java-application)
   - [run the Java application on different OS System:](#run-the-java-application-on-different-os-system)
-- [Download and Use This compelete Project](#download-and-use-this-compelete-project)
+- [Download and Use This complete Project](#download-and-use-this-complete-project)
 
 
 
@@ -199,7 +200,7 @@ Hello world.
 
 
 
-## Download and Use This compelete Project
+## Download and Use This complete Project
 
 ```bash
 # Download
