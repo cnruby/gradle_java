@@ -74,5 +74,5 @@ jobs:
       - run:
           name: "start webapp on docker"
           command: |
-            ls -al /var/lib/jetty/webapps/
+            ls -al /usr/local/tomcat/webapps/
             cp -rf ./build/libs/_gradle_java.war /usr/local/tomcat/webapps/ROOT.war
