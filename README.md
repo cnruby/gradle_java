@@ -67,7 +67,8 @@ basic_112
 ```bash
 # DO (open a new terminal)
 EXISTING_APP_ID=109 && NEW_APP_ID=112 \
-&& git clone -b basic_${EXISTING_APP_ID} https://github.com/cnruby/gradle_java.git ${NEW_APP_ID}_gradle_java \
+&& git clone -b basic_${EXISTING_APP_ID}  \
+    https://github.com/cnruby/gradle_java.git ${NEW_APP_ID}_gradle_java \
 && cd ${NEW_APP_ID}_gradle_java
 ```
 
@@ -253,8 +254,8 @@ docker run -p 8080:8080 112_gradle_java
 ```bash
 # DO (download the whole project)
 APP_ID=112 && git clone -b basic_${APP_ID}  \
-https://github.com/cnruby/gradle_java.git basic_${APP_ID} \
-cd basic_${APP_ID}
+    https://github.com/cnruby/gradle_java.git basic_${APP_ID} \
+&& cd basic_${APP_ID}
 ```
 
 ```bash
@@ -288,4 +289,4 @@ google-chrome http://localhost:80/hello
 - https://hub.docker.com/_/tomcat
 - https://docs.gradle.org/current/userguide/building_java_projects.html#sec:building_java_webapps
 - https://unix.stackexchange.com/questions/35183/how-do-i-identify-which-linux-distro-is-running
-- 
+- https://stackoverflow.com/questions/14925073/tomcat-how-to-find-out-running-tomcat-version
