@@ -1,0 +1,29 @@
+name: Create--Release--basic_112--for--GitHub
+
+on: 
+  push:
+    branches:
+    # branches-ignore:
+      - basic_112
+
+jobs:
+  build:
+    name: Create--Release--basic_112
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout--Code
+        uses: actions/checkout@v2
+      - name: Create--Release--for--Branch--"basic_112"
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: basic__112__01
+          release_name: Project--"basic_112"--for--The--Release
+          body: |
+            project in this release
+            - develop simple web app with docker and tomcat
+          draft: false
+          prerelease: false
