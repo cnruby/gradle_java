@@ -9,7 +9,7 @@
 [![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_101.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_101)
 
 
-
+basic_101
 <h1>Lesson 101: Hello jabba!</h1>
 
 - install Java Version Manager tool `jabba` on Ubuntu 20.04
@@ -35,7 +35,7 @@
   - [create a simple Java application](#create-a-simple-java-application)
   - [create a Java application with directory `build`](#create-a-java-application-with-directory-build)
   - [create a Java application with directory `build` and `src`](#create-a-java-application-with-directory-build-and-src)
-- [Download and Use This compelete Project](#download-and-use-this-compelete-project)
+- [Download and Use This complete Project](#download-and-use-this-complete-project)
 - [References](#references)
 
 
@@ -175,7 +175,7 @@ java -cp ./build App
 
 
 
-## Download and Use This compelete Project
+## Download and Use This complete Project
 
 ```bash
 # Download
@@ -201,36 +201,3 @@ java -cp ./build App
 ## References
 - https://github.com/shyiko/jabba
 - JDK! https://developer.okta.com/blog/2019/01/16/which-java-sdk
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
