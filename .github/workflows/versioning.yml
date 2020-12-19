@@ -1,32 +1,17 @@
-name: Create Release Java project with Gradle
+name: Create Release
+
 on:
   push:
-    # Sequence of patterns matched against refs/tags
-    tags:
-      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+    branches:
+      - master
 
 jobs:
   build:
-    name: Create Release for GitHub
-    runs-on: ubuntu-latest
-
+    name: Create Release
+    runs-on: ['self-hosted']
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
+        uses: zendesk/action-create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body: |
-            To branch baisc_111 in this Release
-            - Lesson 101..=111
-            - Lesson 000..=002
-          draft: false
-          prerelease: false
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
