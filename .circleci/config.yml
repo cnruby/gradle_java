@@ -7,8 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      #- image: circleci/openjdk:11-jdk
-      - image: azul/zulu-openjdk:11
+      - image: tomcat:9.0.41-jdk11
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -23,24 +22,57 @@ jobs:
       TERM: dumb
 
     steps:      
+      # install tool screen
+      - run: 
+          name: install tool screen
+          command: |
+            whoami
+            cat /etc/*-release
+            apt update -y
+            apt install screen -y
+            screen –version
+
       - checkout
 
+      - run: pwd
+      - run: ls -al .
+
       # Download and cache dependencies
+      # https://circleci.com/docs/2.0/caching/
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+          - gradle-repo-v1-{{ .Branch }}-{{ checksum "build.gradle" }}
+          - gradle-repo-v1-{{ .Branch }}-
+          - gradle-repo-v1-
 
-      # install tools
-      - run: apt-get update -y
-      - run: apt-get install -y screen
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: gradle-repo-v1-{{ .Branch }}-{{ checksum "build.gradle" }}
 
-      # build application
-      - run: ./gradlew clean build
+      - run:
+          name: "build application"
+          command: |
+            whoami
+            ./gradlew clean build
 
-      # archives all configured gretty products.
-      - run: ./gradlew archiveAllProducts
+      - run:
+          name: "start webapp on project"
+          command: |
+            screen -d -m -s "webapp_on_project" ./gradlew appRun
 
-      # start webserver
-      - run: screen -d -m -s "my_session_name" ./build/output/_gradle_java/start.sh
+      - run:
+          name: "archives all configured gretty products"
+          command: |
+            ./gradlew archiveAllProducts
+
+      - run:
+          name: "start webapp on local"
+          command: |
+            screen -d -m -s "webapp_on_local" ./build/output/_gradle_java/start.sh
+
+      - run:
+          name: "start webapp on docker"
+          command: |
+            ls -al /var/lib/jetty/webapps/
+            cp -rf ./build/libs/_gradle_java.war /usr/local/tomcat/webapps/ROOT.war

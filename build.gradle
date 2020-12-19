@@ -27,5 +27,4 @@ dependencies {
 gretty {
     httpPort = 8080
     contextPath = '/'
-    // contextPath = '/goto_web_xml'
 }
