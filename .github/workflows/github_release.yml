@@ -35,15 +35,15 @@ jobs:
               # DO (unzip the file)
               unzip basic__101__01.zip && cd gradle_java-basic__101__01
 
-              # DO (build the application)
+              # DO (build and run the application `Hello`)
               javac Hello.java
               java Hello
 
-              # run Nihao application
+              # DO (build and run the application `Nihao`)
               javac -d ./buildSrc Nihao.java
               java -cp ./buildSrc Nihao
               
-              # run App application
+              # DO (build and run the application `App`)
               javac -d ./build ./src/App.java
               java -cp ./build App
             ```
