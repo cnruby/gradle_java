@@ -1,4 +1,4 @@
-name: Gradle--Actions--for--basic_113
+name: CI--basic_113
 
 # on: [push]
 on: 
@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: Build--and--Run--Java--App
+    name: Build--and--Run--Java--App--for--Gradle
     runs-on: ubuntu-latest
 
     steps:
