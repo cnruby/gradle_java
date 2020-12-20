@@ -20,20 +20,20 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: basic__101__01
+          tag_name: v0.101.1
           release_name: Project--"basic_101"--for--The--Release
           body: |
-            ### PROJECT IN THIS RELEASE
+            ### ABOUT
             - develop simple java app with the command `javac` and `java`
             
-            ### USING THIS PROJECT
+            ### USAGE
 
             ```bash
               # DO (download the zip file)
-              wget https://github.com/cnruby/gradle_java/archive/basic__101__01.zip
+              wget https://github.com/cnruby/gradle_java/archive/v0.101.1.zip -O gradle_java-v0.101.1.zip
 
               # DO (unzip the file)
-              unzip basic__101__01.zip && cd gradle_java-basic__101__01
+              unzip gradle_java-v0.101.1.zip && cd gradle_java-v0.101.1
 
               # DO (build and run the application `Hello`)
               javac Hello.java
