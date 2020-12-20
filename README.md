@@ -28,7 +28,7 @@ touch .github/workflows/github_release.yml
 # DO (edit the GitHub Action file)
 nano .github/workflows/github_release.yml
 
-    # FILE (./github_release.yml)
+    # FILE (.github/workflows/github_release.yml)
     name: Release--basic_003
 
     on: 
