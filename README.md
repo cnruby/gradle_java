@@ -94,11 +94,10 @@ google-chrome https://github.com/cnruby/gradle_java/actions
 
 ```bash
 # DO (View The Release)
-google-chrome https://github.com/cnruby/gradle_java/releases
+google-chrome https://github.com/cnruby/gradle_java/releases/tag/v0.003.1
 ```
 
 ![View The Release](doc/image/basic_003_release.png)
-
 
 
 
