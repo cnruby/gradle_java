@@ -1,0 +1,42 @@
+name: Release--basic_003
+
+on: 
+  push:
+    branches:
+    # branches-ignore:
+      - basic_003
+
+jobs:
+  build:
+    name: Create--Release--basic_003
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout--Code
+        uses: actions/checkout@v2
+      - name: Create--Release--for--Branch--basic_003
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: v0.003.1
+          release_name: Project--basic_003--for--The--Release
+          body: |
+            ### ABOUT
+              - learn a project release with GitHub Actions Release
+              
+              ### View The Project
+
+            ```bash
+              # DO (download the zip file)
+              wget https://github.com/cnruby/gradle_java/archive/v0.003.1.zip -O gradle_java-v0.003.1.zip
+
+              # DO (unzip the file)
+              unzip gradle_java-v0.003.1.zip && cd gradle_java-0.003.1
+
+              # DO (view the code for GitHub Actions Release)
+              cat .github/workflows/github_release.yml
+            ```
+          draft: false
+          prerelease: false
