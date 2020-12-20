@@ -29,22 +29,22 @@ basic_113
 - [Use GitHub Actions CI](#use-github-actions-ci)
   - [Add the CI (GitHub.com) configuration for the project](#add-the-ci-githubcom-configuration-for-the-project)
 - [Push the GitHub Action CI file to GitHub](#push-the-github-action-ci-file-to-github)
-- [View The Actions on GibHub.com](#view-the-actions-on-gibhubcom)
-- [Download and Use This complete Project](#download-and-use-this-complete-project)
+- [View The GitHub Actions on GibHub.com](#view-the-github-actions-on-gibhubcom)
+- [Download and View This complete Project](#download-and-view-this-complete-project)
 - [References](#references)
 
 
 
 ## Keywords
-- `Continuous Integration` CI `Continuous Deployment` CD CircleCI
-- Ubuntu Java Gradle tutorial example
+- `Continuous Integration` CI `Continuous Deployment` CD `GitHub Actions`
+- Ubuntu Java Gradle tutorial example CircleCI
 
 
 
 ## Prerequisites
 - [install JDK on Ubuntu 20.04](https://github.com/cnruby/gradle_java/blob/basic_101/README.md)
 - [install Gradle on Ubuntu 20.04](https://github.com/cnruby/gradle_java/blob/basic_102/README.md)
-- [CircleCI Account](https://circleci.com/vcs-authorize/)
+- [GitHub Account](https://github.com/)
 
 
 
@@ -89,8 +89,36 @@ touch .github/workflows/gradle_actions.yml
 nano .github/workflows/gradle_actions.yml
 
     # FILE (.github/workflows/gradle_actions.yml)
+    name: CI--basic_113
 
+    # on: [push]
+    on: 
+      push:
+        branches:
+          - basic_113
 
+    jobs:
+      build:
+        name: Build--and--Run--Java--App--for--Gradle
+        runs-on: ubuntu-latest
+
+        steps:
+        - uses: actions/checkout@v2
+        - name: Set--up--JDK--11
+          uses: actions/setup-java@v1
+          with:
+            java-version: 11
+            server-id: github
+            settings-path: ${{ github.workspace }}
+
+        - name: Run--with--Gradle
+          run: ./gradlew run
+
+        - name: Install--with--Gradle
+          run: ./gradlew installDist
+          
+        - name: run--pplication--on--Ubuntu--OS
+          run: ./build/install/_gradle_java/bin/basic_113
 ```
 
 
@@ -105,16 +133,20 @@ git push
 
 
 
-## View The Actions on GibHub.com
+## View The GitHub Actions on GibHub.com
 
 ```bash
 # DO (View The GitHub Actions)
 google-chrome https://github.com/cnruby/gradle_java/actions
 ```
 
+![Step 1](doc/image/basic_113_gradle_actions-01.png)
+![Step 2](doc/image/basic_113_gradle_actions-02.png)
+![Step 3](doc/image/basic_113_gradle_actions-03.png)
 
 
-## Download and Use This complete Project
+
+## Download and View This complete Project
 
 ```bash
 # DO (download the whole project)
@@ -123,23 +155,8 @@ git clone -b basic_113 https://github.com/cnruby/gradle_java.git basic_113 \
 ```
 
 ```bash
-# 1. Usage for the project
-
-# DO (build and run the application `App`)
-./gradlew run
-```
-
-```bash
-# 2. Usage for OS
-
-# DO (Install the project as a distribution as-is)
-./gradlew installDist
-
-# DO (run the application `App` for Ubuntu OS)
-./build/install/_gradle_java/bin/basic_113
-
-# DO (run the application `App` for Winsows OS)
-./build/install/_gradle_java/bin/basic_113.bat
+# DO (View the GitHub Actions Ci file)
+cat .github/workflows/gradle-actions.yml
 ```
 
 
