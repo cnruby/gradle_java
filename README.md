@@ -28,14 +28,14 @@ touch .github/workflows/github_release.yml
 # DO (edit the GitHub Action file)
 nano .github/workflows/github_release.yml
 
-    # FILE (./Dockerfile)
+    # FILE (./github_release.yml)
     name: Release--basic_003
 
     on: 
         push:
             branches:
             # branches-ignore:
-            - basic_003
+                - basic_003
 
     jobs:
     build:
@@ -140,7 +140,7 @@ google-chrome https://github.com/cnruby/gradle_java/releases/tag/v0.003.1
     on: 
         push:
             branches:
-            - basic_003
+                - basic_003
 ...
 ```
 
@@ -150,7 +150,7 @@ google-chrome https://github.com/cnruby/gradle_java/releases/tag/v0.003.1
     on: 
         push:
             branches-ignore:
-            - basic_003
+                - basic_003
 ...
 ```
 
