@@ -4,7 +4,7 @@
 # Usage
 # ./change_app_id <NEU_APP_IP>
 
-sed -i "s/basic_104/basic_${1}/g" build.gradle
+sed -i "s/basic_115/basic_${1}/g" build.gradle
 N1=`echo $1 | cut -c1-1`
 N2=`echo $1 | cut -c2-2`
 N3=`echo $1 | cut -c3-3`

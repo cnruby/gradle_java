@@ -42,25 +42,11 @@ jobs:
       # project libraries
       - run: ./gradlew dependencies
 
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: v1-dependencies-{{ checksum "build.gradle" }}
-
-      # compile application
-      - run: ./gradlew compileJava
-
       # run application
-      - run: ./gradlew run
+      - run: ./gradlew -q app:run
       
-      # run application tests
-      - run: ./gradlew clean test
-
       # build application
-      - run: ./gradlew clean build
-
-      # unzip application to OS System
-      - run: unzip build/distributions/_gradle_java.zip
+      - run: ./gradlew app:installDist
 
       # run application on OS System
-      - run: ./_gradle_java/bin/basic_104
+      - run: ./app/build/install/app/bin/basic_115
