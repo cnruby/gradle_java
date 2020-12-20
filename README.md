@@ -8,5 +8,6 @@
 [![IntelliJ IEAD Community Version](https://img.shields.io/badge/IntelliJ%20IEAD%20Community%20Version-blue?style=flat)](https://www.jetbrains.com/de-de/idea/download/#section=linux)
 [![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_000.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_000)
 
-basic_000
-# Hello "gradle_java"!
+
+basic_003
+# Hello GitHub Actions Release!
