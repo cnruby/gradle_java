@@ -1,27 +1,27 @@
-name: Release--basic_104
+name: Release--basic_114
 
 on: 
   push:
-    branches:
-    # branches-ignore:
-      - basic_104
+    # branches:
+    branches-ignore:
+      - basic_114
 
 jobs:
   build:
-    name: Create--Release--"basic_104"
+    name: Create--Release--"basic_114"
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout--Code
         uses: actions/checkout@v2
-      - name: Create--Release--for--Branch--"basic_104"
+      - name: Create--Release--for--Branch--"basic_114"
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: v0.104.1
-          release_name: Project--"basic_104"--for--The--Release
+          tag_name: v0.114.1
+          release_name: Project--"basic_114"--for--The--Release
           body: |
             ### ABOUT
             - develop simple Java application with Gradle
@@ -29,27 +29,43 @@ jobs:
             ### USAGE
             ```bash
               # DO (download the zip file)
-              wget https://github.com/cnruby/gradle_java/archive/v0.104.1.zip -O gradle_java-0.104.1.zip
+              wget https://github.com/cnruby/gradle_java/archive/v0.114.1.zip -O gradle_java-0.114.1.zip
 
               # DO (unzip the file)
-              unzip gradle_java-0.104.1.zip && cd gradle_java-0.104.1
+              unzip gradle_java-0.114.1.zip && cd gradle_java-0.114.1
 
-              ```bash
+
               # 1. Usage for the project
 
-              # DO (build and run the application `App`)
-              ./gradlew run
+              # DO (build and run the subproject `app`)
+              ./gradlew app:run
 
-              # 2. Usage for OS
+              # DO (build and run the subproject `example`)
+              ./gradlew example:run
 
-              # DO (Install the project as a distribution as-is)
-              ./gradlew installDist
 
-              # DO (run the application `App` for Ubuntu OS)
-              ./build/install/_gradle_java/bin/basic_104
+              # 2. Usage Subproject `app` for OS
 
-              # DO (run the application `App` for Winsows OS)
-              ./build/install/_gradle_java/bin/basic_104.bat
+              # DO (install the subproject `app` as a distribution as-is)
+              ./gradlew app:installDist
+
+              # DO (run application for the subproject `app` for Ubuntu OS)
+              ./app/build/install/app/bin/basic_114
+
+              # DO (run application for the subproject `app` for Winsows OS)
+              ./app/build/install/app/bin/basic_114.bat
+
+
+              # 3. Usage Subproject `example` for OS
+
+              # DO (install the subproject `example` as a distribution as-is)
+              ./gradlew example:installDist
+
+              # DO (run application for the subproject `example` for Ubuntu OS)
+              ./example/build/install/example/bin/basic_114
+
+              # DO (run application for the subproject `example` for Winsows OS)
+              ./example/build/install/example/bin/basic_114.bat
             ```
           draft: false
           prerelease: false

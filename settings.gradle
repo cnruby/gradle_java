@@ -6,3 +6,4 @@
  */
 
 rootProject.name = '_gradle_java'
+include ("app", "example")
