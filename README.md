@@ -29,7 +29,7 @@ Hello "gradle_java"!
 
 ## Learn Java with Gradlee
 
-|		|		|		|
+|	Learn	|	Java	|	Language	|
 |	-	|	-	|	-	|	-	|
 | Lesson 101: [Hello jabba!](https://github.com/cnruby/gradle_java/tree/basic_101) | Lesson 102: [Hello Gradle!](https://github.com/cnruby/gradle_java/tree/basic_102)	| Lesson 103: [Hello `gradlew`!](https://github.com/cnruby/gradle_java/tree/basic_103)	|
 | Lesson 104: [Hello Single Project!](https://github.com/cnruby/gradle_java/tree/basic_104) | Lesson 105: [Hello CircleCI!](https://github.com/cnruby/gradle_java/tree/basic_105) | Lesson 106: [Hello Package!](https://github.com/cnruby/gradle_java/tree/basic_106) |
