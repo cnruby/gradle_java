@@ -61,10 +61,10 @@ nano .github/workflows/github_release.yml
 
                 ```bash
                 # DO (download the zip file)
-                wget https://github.com/cnruby/gradle_java/archive/v0.003.1.zip -O gradle_java-v0.003.1.zip
+                wget https://github.com/cnruby/gradle_java/archive/v0.003.1.zip -O gradle_java-0.003.1.zip
 
                 # DO (unzip the file)
-                unzip gradle_java-v0.003.1.zip && cd gradle_java-0.003.1
+                unzip gradle_java-0.003.1.zip && cd gradle_java-0.003.1
 
                 # DO (view the code for GitHub Actions Release)
                 cat .github/workflows/github_release.yml
