@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: Build--and--Run--Java--App--for--Gradle
+    name: Build--and--Run--Java--App
     runs-on: ubuntu-latest
 
     steps:
@@ -27,7 +27,7 @@ jobs:
     - name: Install--with--Gradle
       run: ./gradlew installDist
       
-    - name: run--pplication--on--Ubuntu--OS
+    - name: run--application--on--Ubuntu--OS
       run: ./build/install/_gradle_java/bin/basic_113
 
     # - name: build--the--project--with--Gradle

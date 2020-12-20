@@ -37,7 +37,7 @@ basic_113
 
 ## Keywords
 - `Continuous Integration` CI `Continuous Deployment` CD `GitHub Actions`
-- Ubuntu Java Gradle tutorial example CircleCI
+- Ubuntu Java Gradle tutorial example Application
 
 
 
@@ -99,7 +99,7 @@ nano .github/workflows/gradle_actions.yml
 
     jobs:
       build:
-        name: Build--and--Run--Java--App--for--Gradle
+        name: Build--and--Run--Java--App
         runs-on: ubuntu-latest
 
         steps:
@@ -117,7 +117,7 @@ nano .github/workflows/gradle_actions.yml
         - name: Install--with--Gradle
           run: ./gradlew installDist
           
-        - name: run--pplication--on--Ubuntu--OS
+        - name: run--application--on--Ubuntu--OS
           run: ./build/install/_gradle_java/bin/basic_113
 ```
 
