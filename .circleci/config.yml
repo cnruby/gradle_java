@@ -32,6 +32,9 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
+      # install tools
+      - run: apt-get update -y
+      
       # about Gradle
       - run: ./gradlew --version
 
