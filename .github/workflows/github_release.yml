@@ -1,0 +1,57 @@
+name: Release--basic_102
+
+on: 
+  push:
+    branches:
+    # branches-ignore:
+      - basic_102
+
+jobs:
+  build:
+    name: Create--Release--basic_102
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout--Code
+        uses: actions/checkout@v2
+      - name: Create--Release--for--Branch--"basic_102"
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: v0.102.1
+          release_name: Project--"basic_102"--for--The--Release
+          body: |
+            ### ABOUT
+            - develop simple Java application with Gradle
+            
+            ### USAGE
+            ```bash
+              # DO (download the zip file)
+              wget https://github.com/cnruby/gradle_java/archive/v0.102.1.zip -O gradle_java-v0.102.1.zip
+
+              # DO (unzip the file)
+              unzip gradle_java-v0.102.1.zip && cd gradle_java-0.102.1
+
+              # 1. Usage for the project
+
+              # DO (build and run the application `App`)
+              ./gradlew run
+
+              # 2. Usage for OS
+
+              # DO (Bundle the project as a distribution)
+              ./gradlew distZip
+
+              # DO (Unzip the distribution)
+              unzip build/distributions/_gradle_java.zip
+
+              # DO (run the application `App` for Ubuntu OS)
+              ./_gradle_java/bin/basic_102
+
+              # DO (run the application `App` for Winsows OS)
+              ./_gradle_java/bin/basic_102.bat
+            ```
+          draft: false
+          prerelease: false

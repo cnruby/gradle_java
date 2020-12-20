@@ -171,19 +171,37 @@ google-chrome build/reports/tests/test/index.html
 
 ```bash
 # Download
-git clone -b basic_102 https://github.com/cnruby/gradle_java.git basic_102
+git clone -b basic_102 https://github.com/cnruby/gradle_java.git basic_102 \
+&& cd basic_102
 ```
 
 ```bash
-# Use
-cd basic_102
+# 1. Usage for the project
+
+# DO (build and run the application `App`)
 ./gradlew run
+```
+
+```bash
+# 2. Usage for OS
+
+# DO (Bundle the project as a distribution)
+./gradlew distZip
+
+# DO (Unzip the distribution)
+unzip build/distributions/_gradle_java.zip
+
+# DO (run the application `App` for Ubuntu OS)
+./_gradle_java/bin/basic_102
+
+# DO (run the application `App` for Winsows OS)
+./_gradle_java/bin/basic_102.bat
 ```
 
 
 
 ## Tip:
-- Do Not use the command `java -jar` to run the Java application.
+- Do Not use the command `java -jar` to run the Java application for the project.
 
 
 
