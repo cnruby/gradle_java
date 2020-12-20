@@ -32,10 +32,6 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      # install tools
-      - run: apt-get update -y
-      - run: apt-get install -y unzip
-
       # about Gradle
       - run: ./gradlew --version
 
@@ -48,10 +44,10 @@ jobs:
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
       # compile application
-      - run: ./gradlew compileJava
+      - run: ./gradlew app:compileJava example:compileJava
 
       # run application
-      - run: ./gradlew run
+      - run: ./gradlew app:run example:run
       
       # run application tests
       - run: ./gradlew clean test
@@ -60,7 +56,7 @@ jobs:
       - run: ./gradlew app:installDist example:installDist
 
       - run: 
-        - name: run application on OS System
-        - command: |
+          name: run application on OS System
+          command: |
             ./app/build/install/app/bin/basic_114
             ./example/build/install/example/bin/basic_114
