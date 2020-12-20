@@ -1,0 +1,40 @@
+name: Gradle--Actions--for--basic_113
+
+# on: [push]
+on: 
+  push:
+    branches:
+    # branches-ignore:
+      - basic_113
+
+jobs:
+  build:
+    name: Build--and--Run--Java--App
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set--up--JDK--11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+        server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+        settings-path: ${{ github.workspace }} # location for the settings.xml file
+
+    - name: Run--with--Gradle
+      run: ./gradlew run
+
+    - name: Install--with--Gradle
+      run: ./gradlew installDist
+      
+    - name: run--pplication--on--Ubuntu--OS
+      run: ./build/install/_gradle_java/bin/basic_113
+
+    # - name: build--the--project--with--Gradle
+    #   run: ./gradlew build
+    
+    # - name: unzip--the--project
+    #   run: unzip build/distributions/_gradle_java.zip
+
+    # - name: run--pplication--on--Ubuntu--OS
+    #   run: ./_gradle_java/bin/basic_113
