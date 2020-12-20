@@ -8,8 +8,10 @@
 [![Java zulu-openjdk:11](https://img.shields.io/badge/Java-zulu%20openjdk:11-brightgreen?style=flat&logo=java)](https://www.azul.com/downloads/zulu-community/?package=jdk)
 [![GitHub release (latest by date)](https://img.shields.io/badge/Gradle-v6.7.1-black?style=flat&logo=gradle)](https://gradle.org/)
 [![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_104.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_104)
+[![Release--basic_104](https://github.com/cnruby/gradle_java/workflows/Release--basic_104/badge.svg?branch=basic_104)](https://github.com/cnruby/gradle_java/actions)
 
 
+---
 
 basic_104
 <h1>Lesson 104: Hello Single Project!</h1>
@@ -208,7 +210,18 @@ git clone -b basic_104 https://github.com/cnruby/gradle_java.git basic_104
 ```
 
 ```bash
-# Use
-cd basic_104
+# 1. Usage for the project
+
+# DO (build and run the application `App`)
 ./gradlew run
-```
+
+# 2. Usage for OS
+
+# DO (Install the project as a distribution as-is)
+./gradlew installDist
+
+# DO (run the application `App` for Ubuntu OS)
+./build/install/_gradle_java/bin/basic_104
+
+# DO (run the application `App` for Winsows OS)
+./build/install/_gradle_java/bin/basic_104.bat
