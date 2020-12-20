@@ -83,21 +83,21 @@ git push
 
 
 
-## Step 3: View The Release on GibHub.com
+## Step 3: View The Actions and Release on GibHub.com
 
 ```bash
 # DO (View The GitHub Actions)
 google-chrome https://github.com/cnruby/gradle_java/actions
 ```
 
-![View The GitHub Actions]()
+![View The GitHub Actions](doc/image/basic_003_actions.png)
 
 ```bash
 # DO (View The Release)
 google-chrome https://github.com/cnruby/gradle_java/releases
 ```
 
-![View The Release]()
+![View The Release](doc/image/basic_003_release.png)
 
 
 

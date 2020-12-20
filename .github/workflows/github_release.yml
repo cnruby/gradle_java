@@ -24,7 +24,7 @@ jobs:
           release_name: Project--basic_003--for--The--Release
           body: |
             ### ABOUT
-              - learn a project release with GitHub Actions Release
+              - learn to publish a project release as GitHub with GitHub Actions
               
               ### View The Project
 
