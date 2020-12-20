@@ -8,7 +8,7 @@
 [![Java zulu-openjdk:11](https://img.shields.io/badge/Java-zulu%20openjdk:11-brightgreen?style=flat&logo=java)](https://www.azul.com/downloads/zulu-community/?package=jdk)
 [![Gradle-v6.7.1](https://img.shields.io/badge/Gradle-v6.7.1-black?style=flat&logo=gradle)](https://gradle.org/)
 [![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_113.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_113)
-
+[![CI--basic_113](https://github.com/cnruby/gradle_java/workflows/CI--basic_113/badge.svg?branch=basic_113)](https://github.com/cnruby/gradle_java/actions?query=workflow%3ACI--basic_113)
 
 
 
