@@ -33,7 +33,7 @@ jobs:
               wget https://github.com/cnruby/gradle_java/archive/basic__101__01.zip
 
               # DO (unzip the file)
-              unzip basic__101__01.zip && cd basic__101__01
+              unzip basic__101__01.zip && cd gradle_java-basic__101__01
 
               # DO (build the application)
               javac Hello.java
