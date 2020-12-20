@@ -28,7 +28,7 @@ basic_002
   - [Use random container name](#use-random-container-name)
   - [Use commands `docker run` and `docker stop`](#use-commands-docker-run-and-docker-stop)
 - [Remove local Image and local Container](#remove-local-image-and-local-container)
-- [Download This compelete Project](#download-this-compelete-project)
+- [Download This complete Project](#download-this-complete-project)
 
 
 
@@ -230,7 +230,7 @@ docker system prune
 
 
 
-## Download This compelete Project
+## Download This complete Project
 
 ```bash
 # DO (Download)
