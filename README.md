@@ -156,7 +156,7 @@ google-chrome https://github.com/cnruby/gradle_java/releases/tag/v0.003.1
 
 
 
-## Download This compelete Project
+## Download This complete Project
 
 ```bash
 # DO (Download)
