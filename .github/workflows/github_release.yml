@@ -1,4 +1,4 @@
-name: Release--basic_101--for--GitHub
+name: Release--basic_101
 
 on: 
   push:
@@ -33,7 +33,7 @@ jobs:
               wget https://github.com/cnruby/gradle_java/archive/v0.101.1.zip -O gradle_java-v0.101.1.zip
 
               # DO (unzip the file)
-              unzip gradle_java-v0.101.1.zip && cd gradle_java-v0.101.1
+              unzip gradle_java-v0.101.1.zip && cd gradle_java-0.101.1
 
               # DO (build and run the application `Hello`)
               javac Hello.java
