@@ -10,6 +10,8 @@
 [![Release--basic_003](https://github.com/cnruby/gradle_java/workflows/Release--basic_003/badge.svg?branch=basic_003)](https://github.com/cnruby/gradle_java/releases/tag/v0.003.1)
 
 
+---
+
 
 basic_003
 <h1>Hello GitHub Actions Release!</h1>
@@ -24,7 +26,7 @@ mkdir -p .github/workflows
 touch .github/workflows/github_release.yml
 
 # DO (edit the GitHub Action file)
-vi .github/workflows/github_release.yml
+nano .github/workflows/github_release.yml
 
     # FILE (./Dockerfile)
     name: Release--basic_003
@@ -101,9 +103,33 @@ google-chrome https://github.com/cnruby/gradle_java/releases/tag/v0.003.1
 
 
 
+## Working Processes
+
+```bash
+# FOR loop
+    # DO (change any code )
+    # DO (edit the file `github_release.yml`)    
+    nano .github/workflows/github_release.yml
+    # DO (Ctrl+O, ENTER, Ctrl+X)
+
+        # OLD FILE (.github/workflows/github_release.yml)
+        ...
+        tag_name: v0.003.1
+        ...
+
+        # NEW FILE (.github/workflows/github_release.yml)
+        ...
+        tag_name: v0.003.2
+        ...
+# ENDFOR
+```
+
+
+
 ## Tip 1: About the File `github_release.yml`
 
 ![github_release.yml](doc/image/basic_003-2020-12-20_08-29.png)
+
 
 
 ## Tip 2: Enable and Disable the GitHub Actions Release
