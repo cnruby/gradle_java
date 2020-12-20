@@ -25,7 +25,7 @@ jobs:
           body: |
             ### ABOUT
             - develop simple Java application with Gradle and GitHub Actions CI
-            
+
             ### USAGE
             ```bash
               # DO (download the zip file)
@@ -35,6 +35,9 @@ jobs:
               unzip gradle_java-0.113.1.zip && cd gradle_java-0.113.1
 
               ```bash
+              # 0. View the GitHub Actions CI Code
+              cat .github/workflows/gradle_actions.yml
+
               # 1. Usage for the project
 
               # DO (build and run the application `App`)

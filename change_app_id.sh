@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 # This file is used for another project.
 
-sed -i "s/basic_105/basic_${1}/g" build.gradle
+sed -i "s/basic_113/basic_${1}/g" build.gradle
 N1=`echo $1 | cut -c1-1`
 N2=`echo $1 | cut -c2-2`
 N3=`echo $1 | cut -c3-3`

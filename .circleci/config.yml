@@ -63,4 +63,4 @@ jobs:
       - run: unzip build/distributions/_gradle_java.zip
 
       # run application on OS System
-      - run: ./_gradle_java/bin/basic_105
+      - run: ./_gradle_java/bin/basic_113
