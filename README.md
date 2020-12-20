@@ -12,6 +12,7 @@
 [![Release--basic_113](https://github.com/cnruby/gradle_java/workflows/Release--basic_113/badge.svg?branch=basic_113)](https://github.com/cnruby/gradle_java/actions?query=workflow%3ARelease--basic_113)
 
 
+---
 
 basic_113
 <h1>Lesson 113: Hello GitHub Actions CI!</h1>
@@ -91,7 +92,6 @@ nano .github/workflows/gradle_actions.yml
     # FILE (.github/workflows/gradle_actions.yml)
     name: CI--basic_113
 
-    # on: [push]
     on: 
       push:
         branches:
