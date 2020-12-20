@@ -6,12 +6,13 @@ name: Gradle--Actions--for--Java
 # on: [push]
 on: 
   push:
+    # branches:
     branches-ignore:
       - main
 
 jobs:
   build:
-    name: Build--Java-App
+    name: Build--Java--App
     runs-on: ubuntu-latest
 
     steps:

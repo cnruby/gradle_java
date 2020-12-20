@@ -40,7 +40,8 @@ Hello "gradle_java"!
 - Lesson 109: [Hello Servlet!](https://github.com/cnruby/gradle_java/tree/basic_109)
 - Lesson 110: [Hello App with Docker!](https://github.com/cnruby/gradle_java/tree/basic_110)
 - Lesson 111: [Hello jetty!](https://github.com/cnruby/gradle_java/tree/basic_111)
-- Lesson 112: Hello tomcat!
+- Lesson 112: [Hello tomcat!](https://github.com/cnruby/gradle_java/tree/basic_112)
+- Lesson 113: [Hello GitHub Actions CI!](https://github.com/cnruby/gradle_java/tree/basic_113) 
 - Hello JUnit 5!
 - Hello Two Projects!
 - Hello My Library!
@@ -51,9 +52,10 @@ Hello "gradle_java"!
 
 
 ## Learn Tools and Others
-- [Hello IntelliJ IDEA!](https://github.com/cnruby/gradle_java/tree/basic_001)
-- [Hello Docker!](https://github.com/cnruby/gradle_java/tree/basic_002)
-- ...
+- [basic_001 Hello IntelliJ IDEA!](https://github.com/cnruby/gradle_java/tree/basic_001)
+- [basic_002 Hello Docker!](https://github.com/cnruby/gradle_java/tree/basic_002)
+- [basic_003 Hello GitHub Actions Release!](https://github.com/cnruby/gradle_java/tree/basic_003)
+
 
 
 ## References GitHub Actions
@@ -62,6 +64,7 @@ Hello "gradle_java"!
 - https://medium.com/faun/automate-your-build-release-with-github-actions-367c0febf5fd
 - https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/introduction-to-github-actions
 - https://github.community/t/how-can-i-disable-a-github-action/17049/6
+
 
 
 ## References Gralde
