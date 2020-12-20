@@ -26,7 +26,7 @@ basic_001
 - https://www.jetbrains.com/help/idea/gradle.html
 - https://tomgregory.com/5-tips-for-using-gradle-with-intellij-idea-2019/
 
-## Download This compelete Project
+## Download This complete Project
 
 ```bash
 # Download
