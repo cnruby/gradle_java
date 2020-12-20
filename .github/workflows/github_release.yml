@@ -2,8 +2,8 @@ name: Release--basic_102
 
 on: 
   push:
-    branches:
-    # branches-ignore:
+    # branches:
+    branches-ignore:
       - basic_102
 
 jobs:
@@ -29,10 +29,10 @@ jobs:
             ### USAGE
             ```bash
               # DO (download the zip file)
-              wget https://github.com/cnruby/gradle_java/archive/v0.102.1.zip -O gradle_java-v0.102.1.zip
+              wget https://github.com/cnruby/gradle_java/archive/v0.102.1.zip -O gradle_java-0.102.1.zip
 
               # DO (unzip the file)
-              unzip gradle_java-v0.102.1.zip && cd gradle_java-0.102.1
+              unzip gradle_java-0.102.1.zip && cd gradle_java-0.102.1
 
               # 1. Usage for the project
 
