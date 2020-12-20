@@ -10,7 +10,7 @@ startScripts {
     applicationName = 'basic_103'
     group = 'de.iotoi'
     // version = '1.0.3'
-    sourceCompatibility = 1.8
+    sourceCompatibility = JavaVersion.VERSION_11
 }
 
 repositories {

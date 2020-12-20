@@ -43,7 +43,7 @@ basic_103
   - [run the Java application on different OS System:](#run-the-java-application-on-different-os-system)
 - [Download and Use This complete Project](#download-and-use-this-complete-project)
 - [Help: "Deprecated Gradle features were used in the build file `build.gradle`"](#help-deprecated-gradle-features-were-used-in-the-build-file-buildgradle)
-- [Tips](#tips)
+- [Tip: Diffrence between the commands `gradlew` and `gradle`](#tip-diffrence-between-the-commands-gradlew-and-gradle)
 - [References](#references)
 - [References for Tips](#references-for-tips)
 
@@ -291,13 +291,28 @@ Hello world.
 
 ```bash
 # Download
-git clone -b basic_103 https://github.com/cnruby/gradle_java.git basic_103
+git clone -b basic_103 https://github.com/cnruby/gradle_java.git basic_103 \
+&& cd basic_103
 ```
 
 ```bash
-# Use
-cd basic_103
+# 1. Usage for the project
+
+# DO (build and run the application `App`)
 ./gradlew run
+```
+
+```bash
+# 2. Usage for OS
+
+# DO (Install the project as a distribution as-is)
+./gradlew installDist
+
+# DO (run the application `App` for Ubuntu OS)
+./build/install/_gradle_java/bin/basic_103
+
+# DO (run the application `App` for Winsows OS)
+./build/install/_gradle_java/bin/basic_103.bat
 ```
 
 
@@ -350,8 +365,9 @@ The JavaApplication.setMainClassName(String) method has been deprecated. This is
 
 
 
-## Tips
-- ALWAYS use the project's Gradle version to develop application. Use the system's Gradle to add wrapper to a project or create a new project etc.
+## Tip: Diffrence between the commands `gradlew` and `gradle`
+- ALWAYS use the project's Gradle version to develop application. 
+- Use the system's Gradle to add wrapper to a project or create a new project etc.
 
 
 
