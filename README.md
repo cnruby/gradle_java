@@ -50,10 +50,7 @@ Hello "gradle_java"!
 | 118 |  |  |  |  |
 
 - Hello JUnit 5!
-- Hello Two Projects!
-- Hello My Library!
 - Hello Multi-Project!
-- Hello My Library!
 
 
 
