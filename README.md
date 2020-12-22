@@ -17,6 +17,21 @@ basic_003
 <h1>Hello GitHub Actions Release!</h1>
 
 
+- [Keywords](#keywords)
+- [Step1: Add a GitHub Action file `github_release.yml`](#step1-add-a-github-action-file-github_releaseyml)
+- [Step 2: Push the GitHub Actions release file to GitHub](#step-2-push-the-github-actions-release-file-to-github)
+- [Step 3: View The Actions and Release on GibHub.com](#step-3-view-the-actions-and-release-on-gibhubcom)
+- [Working Processes](#working-processes)
+- [Tip 1: About the File `github_release.yml`](#tip-1-about-the-file-github_releaseyml)
+- [Tip 2: Enable and Disable the GitHub Actions Release](#tip-2-enable-and-disable-the-github-actions-release)
+- [Download This complete Project](#download-this-complete-project)
+- [References](#references)
+
+## Keywords
+- `GitHub Actions` Release 
+- Ubuntu Java Gradle tutorial example
+
+
 
 ## Step1: Add a GitHub Action file `github_release.yml`
 
