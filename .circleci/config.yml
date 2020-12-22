@@ -35,3 +35,7 @@ jobs:
       # run Java Version
       - run: java --version
       - run: java -version
+
+workflows:
+  build:
+    jobs:
