@@ -27,7 +27,7 @@ basic_004
 ---
 
 ## Keywords
-- jcenter package `central repository` Maven
+- jcenter package `central repository` Maven `JFrog Bintray`
 - Ubuntu Java Gradle tutorial example
 
 
