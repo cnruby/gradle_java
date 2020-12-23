@@ -45,9 +45,10 @@ basic_116 Hello Gradle Properties!
   - [add a gradle task `propertiesGroovy`](#add-a-gradle-task-propertiesgroovy)
   - [Use the properties from groovy file](#use-the-properties-from-groovy-file)
 - [About the properties for `./build.gradle`](#about-the-properties-for-buildgradle)
+  - [Use the command line properties for `./build.gradle`](#use-the-command-line-properties-for-buildgradle)
   - [Use the system properties for `./build.gradle`](#use-the-system-properties-for-buildgradle)
   - [Use the gradle properties for `./build.gradle`](#use-the-gradle-properties-for-buildgradle)
-  - [Use the command line and groovy properties for `./build.gradle`](#use-the-command-line-and-groovy-properties-for-buildgradle)
+  - [Use the groovy properties for `./build.gradle`](#use-the-groovy-properties-for-buildgradle)
 - [Tip: Use Gradle Tasks](#tip-use-gradle-tasks)
 
 
@@ -333,6 +334,23 @@ nano ./build.gradle
 - The above tasks are ONLY used to how to use the properties
 - The follow codes are used for develop the code.
 
+### Use the command line properties for `./build.gradle`
+
+```bash
+# DO (edit the file "./build.gradle")
+nano ./build.gradle
+
+    # FILE (./build.gradle)
+    ...
+    bintrayUser = project.findProperty("BINTRAY_USER")
+    bintrayApiKey = project.findProperty("BINTRAY_API_KEY")
+    gpgPassphrase = project.findProperty("GPG_PASSPHRASE")
+    repositories {
+        jcenter()
+    }
+    ...
+```
+
 ### Use the system properties for `./build.gradle`
 ```bash
 # DO (edit the file "./build.gradle")
@@ -340,9 +358,9 @@ nano ./build.gradle
 
     # FILE (./build.gradle)
     ...
-    def sysBintrayUser = System.getenv("BINTRAY_USER")
-    def sysBintrayApiKey = System.getenv('BINTRAY_API_KEY')
-    def sysGpgPassphrase = System.getenv('GPG_PASSPHRASE')
+    bintrayUser = System.getenv("BINTRAY_USER")
+    bintrayApiKey = System.getenv('BINTRAY_API_KEY')
+    gpgPassphrase = System.getenv('GPG_PASSPHRASE')
     repositories {
         jcenter()
     }
@@ -363,7 +381,7 @@ nano ./build.gradle
     ...
 ```
 
-### Use the command line and groovy properties for `./build.gradle`
+### Use the groovy properties for `./build.gradle`
 - !!! WARNING: The any groovy properties file like `jcenter.properties` with `password` etc. SHOULD NOT BE IN THIS PROJECT
 
 ```bash
@@ -373,16 +391,15 @@ nano ./build.gradle
     # FILE (./build.gradle)
     ...
     apply from: System.getenv("HOME") + "/jcenter.properties"
-    def groovyBintrayUser = project.findProperty("bintrayUser")
-    def groovyBintrayApiKey = project.findProperty("bintrayApiKey")
-    def groovyGpgPassphrase = project.findProperty("gpgPassphrase")
+
+    bintrayUser = project.findProperty("bintrayUser")
+    bintrayApiKey = project.findProperty("bintrayApiKey")
+    gpgPassphrase = project.findProperty("gpgPassphrase")
     repositories {
         jcenter()
     }
     ...
 ```
-
-
 
 ## Tip: Use Gradle Tasks
 
