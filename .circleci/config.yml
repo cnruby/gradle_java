@@ -46,7 +46,7 @@ jobs:
             ./gradlew check
             ./gradlew propertiesGradle
             cp ./jcenter.properties.sample ../jcenter.properties
-          ./gradlew propertiesGroovy
+            ./gradlew propertiesGroovy
             export BINTRAY_USER=username
             export BINTRAY_API_KEY=1234567890qwertyuiopasdfghjklzxcvbnm1234
             export GPG_PASSPHRASE=password
