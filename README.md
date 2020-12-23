@@ -201,7 +201,9 @@ cat ~/.bashrc
     # >> Result
 ```
 
-![bashrc](doc/image/basic_116-bashrc.png)
+<div align="right">
+ <img src="doc/image/basic_116-bashrc.png" >
+</div>
 
 ### Use the properties from system file
 ```bash
