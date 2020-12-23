@@ -2,6 +2,8 @@ plugins {
     id 'java'
 }
 
+apply from: "./version.properties"
+
 final author = 'Gudao Luo'
 final artifactId = 'gradle_java'
 final sourceCompatibility = JavaVersion.VERSION_11
@@ -38,6 +40,7 @@ task propertiesGradle {
     description = 'Get Properties from gradle properties file'
 
     doLast {
+        apply from: "./version.properties"
         def projectVersion = project.findProperty("version")
 
         println "projectVersion = " + projectVersion
@@ -47,7 +50,7 @@ task propertiesGradle {
 task propertiesGroovy {
     group = 'de.iotoi'
     description = 'Get Properties from groovy file'
-    apply from: System.getenv("HOME") + "/jcenter.properties" 
+    apply from: System.getenv("HOME") + "/jcenter.properties"
 
     doLast {
         def groovyBintrayUser = project.findProperty("bintrayUser")
