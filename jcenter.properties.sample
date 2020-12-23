@@ -1,0 +1,5 @@
+ext {
+    bintrayUser = "username_groovy"
+    bintrayApiKey = "1234567890qwertyuiopasdfghjklzxcvbnm1234"
+    gpgPassphrase = "password_groovy"
+}

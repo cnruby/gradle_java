@@ -6,11 +6,54 @@ final author = 'Gudao Luo'
 final artifactId = 'gradle_java'
 final sourceCompatibility = JavaVersion.VERSION_11
 group = "de.iotoi"
-version = '1.1.1'
+version = project.findProperty("version")
+println "version = " + version
 
 repositories {
     jcenter()
 }
 
 dependencies {
+}
+
+task propertiesSystem {
+    group = 'de.iotoi'
+    description = 'Get Properties from system file'
+
+    doLast {
+        def sysBintrayUser = System.getenv("BINTRAY_USER")
+        def sysBintrayApiKey = System.getenv('BINTRAY_API_KEY')
+        def sysGpgPassphrase = System.getenv('GPG_PASSPHRASE')
+
+        println "sysBintrayUser = " + sysBintrayUser
+        println "sysBintrayApiKey = " + sysBintrayApiKey
+        println "sysGpgPassphrase = " + sysGpgPassphrase
+    }
+}
+
+task propertiesGradle {
+    group = 'de.iotoi'
+    description = 'Get Properties from gradle properties file'
+
+    doLast {
+        def projectVersion = project.findProperty("version")
+
+        println "projectVersion = " + projectVersion
+    }
+}
+
+task propertiesGroovy {
+    group = 'de.iotoi'
+    description = 'Get Properties from groovy file'
+    apply from: "../jcenter.properties" 
+
+    doLast {
+        def groovyBintrayUser = project.findProperty("bintrayUser")
+        def groovyBintrayApiKey = project.findProperty("bintrayApiKey")
+        def groovyGpgPassphrase = project.findProperty("gpgPassphrase")
+        
+        println "groovyBintrayUser = " + groovyBintrayUser
+        println "groovyBintrayApiKey = " + groovyBintrayApiKey
+        println "groovyGpgPassphrase = " + groovyGpgPassphrase
+    }
 }

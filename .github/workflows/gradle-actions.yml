@@ -8,7 +8,7 @@ on:
   push:
     # branches:
     branches-ignore:
-      - main
+      - basic_116
 
 jobs:
   build:
@@ -24,8 +24,17 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
-    - name: Build--with--Gradle
-      run: ./gradlew clean build
+    - name: Use--the--project
+      run: |
+        ./gradlew check
+        ./gradlew propertiesGradle
+          cp ./jcenter.properties.sample ../jcenter.properties
+         ./gradlew propertiesGroovy
+          export BINTRAY_USER=username
+          export BINTRAY_API_KEY=1234567890qwertyuiopasdfghjklzxcvbnm1234
+          export GPG_PASSPHRASE=password
+          ./gradlew propertiesSystem
+
 
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
     # the publishing section of your build.gradle
