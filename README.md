@@ -27,6 +27,7 @@ basic_116 Hello Gradle Properties!
 
 - [Keywords](#keywords)
 - [Prerequisites](#prerequisites)
+- [Create a Gradle Project from GitHub.com](#create-a-gradle-project-from-githubcom)
 - [Method 1: From command line](#method-1-from-command-line)
   - [add a gradle task `propertiesCommand`](#add-a-gradle-task-propertiescommand)
   - [Use the properties from command line](#use-the-properties-from-command-line)
@@ -66,6 +67,22 @@ basic_116 Hello Gradle Properties!
 ## Prerequisites
 - [install JDK on Ubuntu 20.04](https://github.com/cnruby/gradle_java/blob/basic_101/README.md)
 - [install Gradle on Ubuntu 20.04](https://github.com/cnruby/gradle_java/blob/basic_102/README.md)
+
+
+
+## Create a Gradle Project from GitHub.com
+
+```bash
+# DO (open a new terminal)
+NEW_APP_ID=116 \
+&& git clone https://github.com/cnruby/gradle_java.git ${NEW_APP_ID}_gradle_java \
+&& cd ${NEW_APP_ID}_gradle_java
+```
+
+```bash
+# DO (check the project)
+./gradlew check
+```
 
 
 
