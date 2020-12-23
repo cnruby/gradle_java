@@ -38,14 +38,15 @@ jobs:
 
       - run:
           name: "project libraries"
-          command: ./gradlew dependencies
+          command: |
+            cp ./jcenter.properties.sample ../jcenter.properties
+            ./gradlew dependencies
 
       - run:
           name: "Use the project"
           command: |
             ./gradlew check
             ./gradlew propertiesGradle
-            cp ./jcenter.properties.sample ../jcenter.properties
             ./gradlew propertiesGroovy
             export BINTRAY_USER=username
             export BINTRAY_API_KEY=1234567890qwertyuiopasdfghjklzxcvbnm1234
