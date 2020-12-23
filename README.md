@@ -163,3 +163,7 @@ cat .github/workflows/gradle-actions.yml
 
 ## References
 - https://github.com/actions/setup-java#publishing-using-gradle
+- https://gabrieltanner.org/blog/an-introduction-to-github-actions
+- https://fireship.io/lessons/five-useful-github-actions-examples/
+- https://github.com/actions/starter-workflows
+- 
