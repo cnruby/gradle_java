@@ -115,7 +115,7 @@ nano ./build.gradle
 
 ## Method 2: From Gradle Properties File
 - !!! WARNING: The `password` and `API Key` etc SHOULD NOT BE SAVED IN the file `gradle.properties`, please use the method 1 or 3.
-- The gradle properties file name must be `gradle.properties` and in project's root folder
+- The gradle properties file name must be `gradle.properties` and in project's root folder. otherwise use the method 3
 - change real value for the follow commands
 
 ### add properties to gradle properties file `gradle.properties`
@@ -198,7 +198,8 @@ nano ./build.gradle
         description = 'Get Properties from groovy file'
 
         doLast {
-            apply from: System.getenv("HOME") + "/jcenter.properties" 
+            apply from: System.getenv("HOME") + "/jcenter.properties"
+
             def groovyBintrayUser = project.findProperty("bintrayUser")
             def groovyBintrayApiKey = project.findProperty("bintrayApiKey")
             def groovyGpgPassphrase = project.findProperty("gpgPassphrase")
@@ -246,16 +247,16 @@ nano ./build.gradle
 ```
 
 ### Use the gradle properties for `./build.gradle`
-- !!! WARNING: The `password` and `API Key` etc SHOULD NOT BE SAVED IN THE file `gradle.properties`
+- !!! WARNING: The `password` and `API Key` etc SHOULD NOT be saved in the file `gradle.properties`
 
 ```bash
 # DO (edit the file "./build.gradle")
 nano ./build.gradle
 
-    # FILE (./build.gradle)
+    # FILE (./build.gradle)    
     ...
     group = "your_group"
-    version = project.findProperty("version")
+    version = project.property("version")
     ...
 ```
 
