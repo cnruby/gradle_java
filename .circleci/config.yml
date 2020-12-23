@@ -47,6 +47,7 @@ jobs:
       - run:
           name: "Use the project"
           command: |
+            ./gradlew propertiesCommand -PBINTRAY_USER=username_cmd -PBINTRAY_API_KEY=1234567890qwertyuiopasdfghjklzxcvbnm1234 -PGPG_PASSPHRASE=password_cmd
             ./gradlew propertiesGradle
             ./gradlew propertiesGroovy
             export BINTRAY_USER=username

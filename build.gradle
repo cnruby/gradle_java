@@ -7,15 +7,30 @@ final artifactId = 'gradle_java'
 final sourceCompatibility = JavaVersion.VERSION_11
 group = "de.iotoi"
 version = project.findProperty("version")
-println "version = " + version
+// println "version = " + version
 version = project.property("version")
-println "version = " + version
+// println "version = " + version
 
 repositories {
     jcenter()
 }
 
 dependencies {
+}
+
+task propertiesCommand {
+    group = 'de.iotoi'
+    description = 'Get Properties from command line'
+
+    doLast {
+        def cmdBintrayUser = project.findProperty("BINTRAY_USER")
+        def cmdBintrayApiKey = project.findProperty('BINTRAY_API_KEY')
+        def cmdGpgPassphrase = project.findProperty('GPG_PASSPHRASE')
+
+        println "cmdBintrayUser = " + cmdBintrayUser
+        println "cmdBintrayApiKey = " + cmdBintrayApiKey
+        println "cmdGpgPassphrase = " + cmdGpgPassphrase
+    }
 }
 
 task propertiesSystem {
@@ -35,7 +50,7 @@ task propertiesSystem {
 
 task propertiesGradle {
     group = 'de.iotoi'
-    description = 'Get Properties from gradle properties file'
+    description = 'Get Properties from default gradle properties file'
 
     doLast {
         // apply from: "./gradle.properties"
