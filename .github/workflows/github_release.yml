@@ -24,7 +24,7 @@ jobs:
           release_name: Project--"basic_116"--for--The--Release
           body: |
             ### ABOUT
-            - develop simple Java application with Gradle and GitHub Actions CI
+            - How to Use Gradle Properties in the build file
 
             ### USAGE
             ```bash

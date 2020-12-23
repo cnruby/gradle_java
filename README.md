@@ -19,6 +19,9 @@
 basic_116 Hello Gradle Properties!
 <h1>Lesson 116: Hello Gradle Properties!</h1>
 
+- How to Use Gradle Properties in the build file
+
+
 ---
 
 
@@ -55,7 +58,7 @@ basic_116 Hello Gradle Properties!
 ---
 
 ## Keywords
-- `gradle properties` Gradle gradlew `gradle projects` groovy `system variable` 
+- `gradle properties` Gradle gradlew `gradle projects` groovy `system variable` `build file`
 - Ubuntu Java tutorial example terminal shell
 
 
