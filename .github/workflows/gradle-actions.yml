@@ -1,13 +1,13 @@
 # This workflow will build a package using Gradle and then publish it to GitHub packages when a release is created
 # For more information see: https://github.com/actions/setup-java#publishing-using-gradle
 
-name: Gradle--Actions--for--Java
+name: CI--basic_116
 
 # on: [push]
 on: 
   push:
-    branches:
-    # branches-ignore:
+    # branches:
+    branches-ignore:
       - basic_116
 
 jobs:

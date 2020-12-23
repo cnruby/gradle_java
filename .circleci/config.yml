@@ -33,19 +33,20 @@ jobs:
             - v1-dependencies-
 
       - run: 
-          name: "#about Gradle version"
-          command: ./gradlew --version
+          name: "Check gradle version"
+          command: |
+            ./gradlew --version
 
       - run:
-          name: "project libraries"
+          name: "Check project libraries"
           command: |
-            cp ./jcenter.properties.sample ../jcenter.properties
+            cp ./jcenter.properties.sample $HOME/jcenter.properties
+            ./gradlew check
             ./gradlew dependencies
 
       - run:
           name: "Use the project"
           command: |
-            ./gradlew check
             ./gradlew propertiesGradle
             ./gradlew propertiesGroovy
             export BINTRAY_USER=username

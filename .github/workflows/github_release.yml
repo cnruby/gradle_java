@@ -41,13 +41,14 @@ jobs:
               cat ./gradle.properties
 
               # 1. Run all checks
+              cp ./jcenter.properties.sample ~/jcenter.properties
               ./gradlew check
+              ./gradlew dependencies
 
               # 2. Use the project task "propertiesGradle"              
               ./gradlew propertiesGradle
 
               # 3. Use the project task "propertiesGroovy"
-              cp ./jcenter.properties.sample ../jcenter.properties
               ./gradlew propertiesGroovy
 
               # 4. Use the project task "propertiesSystem"

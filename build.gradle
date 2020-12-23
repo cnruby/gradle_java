@@ -8,6 +8,8 @@ final sourceCompatibility = JavaVersion.VERSION_11
 group = "de.iotoi"
 version = project.findProperty("version")
 println "version = " + version
+version = project.property("version")
+println "version = " + version
 
 repositories {
     jcenter()
@@ -45,7 +47,7 @@ task propertiesGradle {
 task propertiesGroovy {
     group = 'de.iotoi'
     description = 'Get Properties from groovy file'
-    apply from: "../jcenter.properties" 
+    apply from: System.getenv("HOME") + "/jcenter.properties" 
 
     doLast {
         def groovyBintrayUser = project.findProperty("bintrayUser")
