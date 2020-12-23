@@ -54,6 +54,9 @@ basic_116 Hello Gradle Properties!
   - [Use the gradle properties for `./build.gradle`](#use-the-gradle-properties-for-buildgradle)
   - [Use the groovy properties for `./build.gradle`](#use-the-groovy-properties-for-buildgradle)
 - [Tip: Use Gradle Tasks](#tip-use-gradle-tasks)
+- [Download and Use This complete Project](#download-and-use-this-complete-project)
+  - [Download the complete Project](#download-the-complete-project)
+  - [Usage for the project](#usage-for-the-project)
 
 
 ---
@@ -438,3 +441,14 @@ nano ./build.gradle
     propertiesSystem - Get Properties from system file
     ...
 ```
+
+## Download and Use This complete Project
+
+### Download the complete Project
+```bash
+# DO (download)
+git clone -b basic_116 https://github.com/cnruby/gradle_java.git basic_116
+```
+
+### Usage for the project
+- [Project--"basic_116"--for--The--Release](https://github.com/cnruby/gradle_java/releases/tag/v0.116.1)
