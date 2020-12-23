@@ -15,7 +15,7 @@
 ---
 
 
-basic_116
+basic_116 Hello Gradle Properties!
 <h1>Lesson 116: Hello Gradle Properties!</h1>
 
 ---

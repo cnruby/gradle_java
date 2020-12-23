@@ -6,8 +6,8 @@ name: Gradle--Actions--for--Java
 # on: [push]
 on: 
   push:
-    # branches:
-    branches-ignore:
+    branches:
+    # branches-ignore:
       - basic_116
 
 jobs:
@@ -24,16 +24,20 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
-    - name: Use--the--project
+    - name: Check--the--project
       run: |
         ./gradlew check
+        cp ./jcenter.properties.sample ../jcenter.properties
+        ./gradlew dependencies
+
+    - name: Use--the--project
+      run: |
         ./gradlew propertiesGradle
-          cp ./jcenter.properties.sample ../jcenter.properties
-         ./gradlew propertiesGroovy
-          export BINTRAY_USER=username
-          export BINTRAY_API_KEY=1234567890qwertyuiopasdfghjklzxcvbnm1234
-          export GPG_PASSPHRASE=password
-          ./gradlew propertiesSystem
+        ./gradlew propertiesGroovy
+        export BINTRAY_USER=username
+        export BINTRAY_API_KEY=1234567890qwertyuiopasdfghjklzxcvbnm1234
+        export GPG_PASSPHRASE=password
+        ./gradlew propertiesSystem
 
 
     # The USERNAME and TOKEN need to correspond to the credentials environment variables used in
