@@ -2,8 +2,8 @@ name: Release--basic_116
 
 on: 
   push:
-    # branches:
-    branches-ignore:
+    branches:
+    # branches-ignore:
       - basic_116
 
 jobs:
@@ -45,13 +45,16 @@ jobs:
               ./gradlew check
               ./gradlew dependencies
 
-              # 2. Use the project task "propertiesGradle"              
+              # 2. Use the project task "propertiesCommand"              
+              ./gradlew propertiesCommand -PBINTRAY_USER=username_cmd -PBINTRAY_API_KEY=1234567890qwertyuiopasdfghjklzxcvbnm1234 -PGPG_PASSPHRASE=password_cmd
+
+              # 3. Use the project task "propertiesGradle"              
               ./gradlew propertiesGradle
 
-              # 3. Use the project task "propertiesGroovy"
+              # 4. Use the project task "propertiesGroovy"
               ./gradlew propertiesGroovy
 
-              # 4. Use the project task "propertiesSystem"
+              # 5. Use the project task "propertiesSystem"
               export BINTRAY_USER=username
               export BINTRAY_API_KEY=1234567890qwertyuiopasdfghjklzxcvbnm1234
               export GPG_PASSPHRASE=password
