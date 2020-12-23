@@ -287,9 +287,9 @@ nano ../jcenter.properties
 
     # FILE (./jcenter.properties)
     ext {
-        bintrayUser = "username"
+        bintrayUser = "username_groovy"
         bintrayApiKey = "1234567890qwertyuiopasdfghjklzxcvbnm1234"
-        gpgPassphrase = "password"
+        gpgPassphrase = "password_groovy"
     }
 ```
 
