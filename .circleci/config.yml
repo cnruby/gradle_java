@@ -39,14 +39,14 @@ jobs:
       # about Gradle
       - run: ./gradlew --version
 
-      # project libraries
-      - run: ./gradlew dependencies
+      # # project libraries
+      # - run: ./gradlew dependencies
 
-      # run application
-      - run: ./gradlew -q app:run
+      # # run application
+      # - run: ./gradlew -q app:run
       
-      # build application
-      - run: ./gradlew app:installDist
+      # # build application
+      # - run: ./gradlew app:installDist
 
-      # run application on OS System
-      - run: ./app/build/install/app/bin/basic_115
+      # # run application on OS System
+      # - run: ./app/build/install/app/bin/basic_118

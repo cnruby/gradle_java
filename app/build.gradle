@@ -3,21 +3,14 @@ plugins {
     id 'application'
 }
 
-startScripts {
-    applicationName = 'basic_115'
-    group = 'de.iotoi'
-    // version = '1.1.5'
-    sourceCompatibility = JavaVersion.VERSION_11
-}
-
-description = 'The main application for the project'
-
 repositories {
+    mavenCentral()
     jcenter()
 }
 
 dependencies {
-    implementation project(':lib')
+//    implementation project(':lib')
+     implementation 'de.iotoi:lib:0.118.1'
 }
 
 application {

@@ -1,15 +1,60 @@
 plugins {
     id 'java'
     id 'java-library'
+
+   id 'com.jfrog.bintray' version '1.8.5'
+   id 'maven-publish'
 }
 
-group = 'de.iotoi.hello'
 sourceCompatibility = JavaVersion.VERSION_11
 
-description = 'The library for the subproject `app`'
+apply from: System.getenv("HOME") + "/jcenter.properties"
+
 
 repositories {
     jcenter()
 }
 dependencies {}
 test {}
+
+// create the files *-sources.jar
+task sourcesJar(type: Jar, dependsOn: classes){
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts{
+    archives sourcesJar
+}
+
+publishing{
+    publications{
+        "$project.name"(MavenPublication){
+            from components.java
+            groupId project.findProperty("group")
+            artifactId archivesBaseName
+            version project.findProperty("version")
+            artifact sourcesJar
+        }
+    }
+}
+
+bintray{
+    user = project.findProperty("bintrayUser")
+    key = project.findProperty("bintrayApiKey")
+    publications = ["$project.name"]
+    publish = true // !!!
+    pkg{
+        repo = 'gradle_java_jcenter'
+        name = project.findProperty("applicationName")
+        desc = project.findProperty("description")
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/cnruby/gradle_java'
+        labels = ['java, demo, jcenter, library, gradle, bintray, publish']
+        version {
+            name = project.findProperty("version")
+            released = new Date()
+        }
+    }
+}
+
