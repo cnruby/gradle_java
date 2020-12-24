@@ -26,21 +26,35 @@ jobs:
             ### ABOUT
             - How to Publish Application to jcenter
             
-            ### USAGE
+            ### USAGE            
             ```bash
+              # 0. Download and Unzip the project
+
               # DO (download the zip file)
               wget https://github.com/cnruby/gradle_java/archive/v0.117.1.zip -O gradle_java-0.117.1.zip
 
               # DO (unzip the file)
               unzip gradle_java-0.117.1.zip && cd gradle_java-0.117.1
 
-              ```bash
-              # 1. Usage for the project
+              # 1. Run the java application on project
 
-              # DO (build and run the application `App`)
+              # DO (copy a jcenter's username and password sample file)
+              cp ./jcenter.properties.sample ~/jcenter.properties
+              
+              # DO (edit the real jcenter's username and password)
+              # !!! first sign in JCenter by jcenter's username and password              
+              nano ~/jcenter.properties
+
+              # DO (check the application `App`)
+              ./gradlew -q check
+                  # >> Result: nothing
+              
+              # DO (run the application `App`)
               ./gradlew run
+                  # >> Result
+                  Hello world.
 
-              # 2. Usage for OS
+              # 2. Run the java application on Local OS
 
               # DO (Install the project as a distribution as-is)
               ./gradlew installDist
@@ -51,10 +65,25 @@ jobs:
               # DO (run the application `App` for Winsows OS)
               ./build/install/_gradle_java/bin/basic_117.bat
 
-              # 3 Usage for JCenter
-              wget https://dl.bintray.com/cnruby/gradle_java_jcenter/de/iotoi/_gradle_java/0.117.1/_gradle_java-0.117.1.zip
+              # 3. Upload the Java Application to JCenter
+              ./gradlew clean build bintrayUpload
+
+              # 4. Use the java application from JCenter
+
+              # DO (download the zip file)
+              # !!! change the `<your_jcenter_username>` and `<your_jcenter_repo_name>`
+              wget https://dl.bintray.com/<your_jcenter_username>/<your_jcenter_repo_name>/de/iotoi/_gradle_java/0.117.1/_gradle_java-0.117.1.zip
+
+              # DO (unzip the file)
               unzip _gradle_java-0.117.1.zip
+
+              # DO (run the application `App` for Ubuntu OS)
               ./_gradle_java-0.117.1/bin/basic_117
+
+              # DO (run the application `App` for Winsows OS)
+              ./_gradle_java-0.117.1/bin/basic_117.bat
+                  # >> Result
+                  Hello world.
             ```
           draft: false
           prerelease: false
