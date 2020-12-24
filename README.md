@@ -30,6 +30,7 @@ basic_117 Hello Publishing Application!
 - [Develop the Java Project](#develop-the-java-project)
   - [add a new gradle properties file](#add-a-new-gradle-properties-file)
   - [add the plugin to the build file `build.gradle`](#add-the-plugin-to-the-build-file-buildgradle)
+  - [add a gradle properties file `gradle.properties`](#add-a-gradle-properties-file-gradleproperties)
   - [add configuration to the build file `build.gradle`](#add-configuration-to-the-build-file-buildgradle)
   - [define publishing content to the build file `build.gradle`](#define-publishing-content-to-the-build-file-buildgradle)
   - [configre the jecnter's values](#configre-the-jecnters-values)
@@ -114,6 +115,18 @@ nano ./build.gradle
     ...
 ```
 
+### add a gradle properties file `gradle.properties`
+
+```bash
+# DO (create the file "./gradle.properties")
+touch ./gradle.properties
+
+# DO (edit the file "./gradle.properties")
+nano ./gradle.properties
+    # FILE (./gradle.properties)
+    version=0.117.1
+```
+
 ### add configuration to the build file `build.gradle`
 - should change all words with beginning `your`.
 
@@ -130,7 +143,7 @@ nano ./build.gradle
     }
     version = project.findProperty("version")
 
-    apply from: '../jcenter_api_key.properties'
+    apply from: System.getenv("HOME") + "/jcenter.properties"
     ...
 ```
 
