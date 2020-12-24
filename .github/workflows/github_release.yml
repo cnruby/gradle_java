@@ -1,38 +1,38 @@
-name: Release--basic_104
+name: Release--basic_117
 
 on: 
   push:
-    branches:
-    # branches-ignore:
-      - basic_104
+    # branches:
+    branches-ignore:
+      - basic_117
 
 jobs:
   build:
-    name: Create--Release--"basic_104"
+    name: Create--Release--"basic_117"
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout--Code
         uses: actions/checkout@v2
-      - name: Create--Release--for--Branch--"basic_104"
+      - name: Create--Release--for--Branch--"basic_117"
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: v0.104.1
-          release_name: Project--"basic_104"--for--The--Release
+          tag_name: v0.117.1
+          release_name: Project--"basic_117"--for--The--Release
           body: |
             ### ABOUT
-            - develop simple Java application with Gradle
+            - How to Publish Application to jcenter
             
             ### USAGE
             ```bash
               # DO (download the zip file)
-              wget https://github.com/cnruby/gradle_java/archive/v0.104.1.zip -O gradle_java-0.104.1.zip
+              wget https://github.com/cnruby/gradle_java/archive/v0.117.1.zip -O gradle_java-0.117.1.zip
 
               # DO (unzip the file)
-              unzip gradle_java-0.104.1.zip && cd gradle_java-0.104.1
+              unzip gradle_java-0.117.1.zip && cd gradle_java-0.117.1
 
               ```bash
               # 1. Usage for the project
@@ -46,10 +46,15 @@ jobs:
               ./gradlew installDist
 
               # DO (run the application `App` for Ubuntu OS)
-              ./build/install/_gradle_java/bin/basic_104
+              ./build/install/_gradle_java/bin/basic_117
 
               # DO (run the application `App` for Winsows OS)
-              ./build/install/_gradle_java/bin/basic_104.bat
+              ./build/install/_gradle_java/bin/basic_117.bat
+
+              # 3 Usage for JCenter
+              wget https://dl.bintray.com/cnruby/gradle_java_jcenter/de/iotoi/_gradle_java/0.117.1/_gradle_java-0.117.1.zip
+              unzip _gradle_java-0.117.1.zip
+              ./_gradle_java-0.117.1/bin/basic_117
             ```
           draft: false
           prerelease: false

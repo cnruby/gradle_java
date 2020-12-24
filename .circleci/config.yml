@@ -34,7 +34,7 @@ jobs:
 
       # install tools
       - run: apt-get update -y
-      - run: apt-get install -y unzip
+      - run: apt-get install -y unzip wget
 
       # about Gradle
       - run: ./gradlew --version
@@ -47,20 +47,29 @@ jobs:
             - ~/.gradle
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
-      # compile application
-      - run: ./gradlew compileJava
+      - run: 
+          name: "compile, test and run the application"
+          command: |
+            ./gradlew compileJava
+            ./gradlew run
+            ./gradlew clean test
 
-      # run application
-      - run: ./gradlew run
-      
-      # run application tests
-      - run: ./gradlew clean test
+      - run:
+          name: "build application"
+          command: |
+            ./gradlew clean build
 
-      # build application
-      - run: ./gradlew clean build
 
-      # unzip application to OS System
-      - run: unzip build/distributions/_gradle_java.zip
+      - run: 
+          name: "unzip application to OS, and run it on OS"
+          command: |
+            unzip build/distributions/_gradle_java.zip
+            ./_gradle_java/bin/basic_117
 
-      # run application on OS System
-      - run: ./_gradle_java/bin/basic_104
+      - run:
+          name: "test the application from jcenter"
+          command: |
+            wget https://dl.bintray.com/cnruby/gradle_java_jcenter/de/iotoi/_gradle_java/0.117.1/_gradle_java-0.117.1.zip
+            unzip _gradle_java-0.117.1.zip
+            ./_gradle_java-0.117.1/bin/basic_117 
+

@@ -6,222 +6,269 @@
 [![Ubuntu-(20.04LTS)](https://img.shields.io/badge/Ubuntu-%2020.04LTS-brightgreen)](https://ubuntu.com/)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/shyiko/jabba?label=jabba&logo=jabba)](https://github.com/shyiko/jabba)
 [![Java zulu-openjdk:11](https://img.shields.io/badge/Java-zulu%20openjdk:11-brightgreen?style=flat&logo=java)](https://www.azul.com/downloads/zulu-community/?package=jdk)
-[![GitHub release (latest by date)](https://img.shields.io/badge/Gradle-v6.7.1-black?style=flat&logo=gradle)](https://gradle.org/)
-[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_104.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_104)
-[![Release--basic_104](https://github.com/cnruby/gradle_java/workflows/Release--basic_104/badge.svg?branch=basic_104)](https://github.com/cnruby/gradle_java/actions)
+[![Gradle-v6.7.1](https://img.shields.io/badge/Gradle-v6.7.1-black?style=flat&logo=gradle)](https://gradle.org/)
+[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_117.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_117)
+[![Release--basic_117](https://github.com/cnruby/gradle_java/workflows/Release--basic_117/badge.svg?branch=basic_117)](https://github.com/cnruby/gradle_java/actions)
 
 
 ---
 
-basic_104
-<h1>Lesson 104: Hello Single Project!</h1>
+basic_117 Hello Publishing Application!
+<h1>Lesson 117: Hello Publishing Application!</h1>
 
-- Delevop a Single Java Appliction with Gradle
+- How to Publish `Java Application` to JCenter
 
 
 ---
 
 - [Keywords](#keywords)
 - [Prerequisites](#prerequisites)
-- [Create a Java application with Gradle](#create-a-java-application-with-gradle)
-  - [create project folder](#create-project-folder)
-  - [create a Java application with `gradle init`](#create-a-java-application-with-gradle-init)
-  - [check the project's Gradle version](#check-the-projects-gradle-version)
-- [Develop the Java application](#develop-the-java-application)
-  - [change the build file `build.gradle`](#change-the-build-file-buildgradle)
-  - [compile the Java application](#compile-the-java-application)
-  - [run the Java application](#run-the-java-application)
-  - [test the Java application](#test-the-java-application)
-- [Package the Java Application](#package-the-java-application)
+- [Create a Gradle Project from GitHub.com](#create-a-gradle-project-from-githubcom)
+- [Develop the Java Project](#develop-the-java-project)
+  - [add a new gradle properties file](#add-a-new-gradle-properties-file)
+  - [add the plugin to the build file `build.gradle`](#add-the-plugin-to-the-build-file-buildgradle)
+  - [add configuration to the build file `build.gradle`](#add-configuration-to-the-build-file-buildgradle)
+  - [define publishing content to the build file `build.gradle`](#define-publishing-content-to-the-build-file-buildgradle)
+  - [configre the jecnter's values](#configre-the-jecnters-values)
+- [Publish the Java Application](#publish-the-java-application)
   - [build the Java application](#build-the-java-application)
-  - [run the Java application on different OS System:](#run-the-java-application-on-different-os-system)
+  - [publish the Java Application to JCenter](#publish-the-java-application-to-jcenter)
+  - [Result on JCenter](#result-on-jcenter)
+- [Use the published Application](#use-the-published-application)
+- [Working Process](#working-process)
 - [Download and Use This complete Project](#download-and-use-this-complete-project)
+  - [Download the project](#download-the-project)
+  - [Usage for the project](#usage-for-the-project)
+- [Main's References](#mains-references)
+- [Refeneces](#refeneces)
 
 
 
 ## Keywords
-- `Single Java Project` `gradle init` package Groovy
-- Ubuntu Java Gradle gradlew tutorial example
+- `Java Application` `Java Project` `gradle bintrayUpload` `publish package` package `publish application`
+- Ubuntu Java Gradle gradlew tutorial example Groovy
 
 
 
 ## Prerequisites
 - [install JDK on Ubuntu 20.04](https://github.com/cnruby/gradle_java/blob/basic_101/README.md)
 - [install Gradle on Ubuntu 20.04](https://github.com/cnruby/gradle_java/blob/basic_102/README.md)
+- [Jcenter Account](https://bintray.com/login?forwardedFrom=%2F)
+- [Learn "Hello jcenter!"](https://github.com/cnruby/gradle_java/tree/basic_004)
+- [Learn "Hello Gradle Properties!"](https://github.com/cnruby/gradle_java/tree/basic_116)
 
 
 
-## Create a Java application with Gradle
-
-### create project folder
+## Create a Gradle Project from GitHub.com
 
 ```bash
-mkdir 104_gradle_java/ && cd 104_gradle_java/
+# DO (open a new terminal)
+NEW_APP_ID=116 \
+&& git clone https://github.com/cnruby/gradle_java.git ${NEW_APP_ID}_gradle_java \
+&& cd ${NEW_APP_ID}_gradle_java
 ```
 
-### create a Java application with `gradle init`
-
 ```bash
-gradle init
-```
-
-Result:
-
-```bash
-Select type of project to generate:
-  1: basic
-  2: application
-  3: library
-  4: Gradle plugin
-Enter selection (default: basic) [1..4] 2
-
-Select implementation language:
-  1: C++
-  2: Groovy
-  3: Java
-  4: Kotlin
-  5: Swift
-Enter selection (default: Java) [1..5] 3
-
-Select build script DSL:
-  1: Groovy
-  2: Kotlin
-Enter selection (default: Groovy) [1..2] 1
-
-Select test framework:
-  1: JUnit 4
-  2: TestNG
-  3: Spock
-  4: JUnit Jupiter
-Enter selection (default: JUnit 4) [1..4] 4
-
-Project name (default: 104_gradle_java): _gradle_java
-Source package (default: gradle_java): de.iotoi
-
-> Task :init
-Get more help with your project: https://docs.gradle.org/6.6.1/userguide/tutorial_java_projects.html
-
-BUILD SUCCESSFUL in 28s
-2 actionable tasks: 2 executed
-```
-
-### check the project's Gradle version
-
-```bash
-./gradlew
-#./gradlew help
-```
-
-Result:
-
-```bash
-Welcome to Gradle 6.6.1.
-
-To run a build, run gradlew <task> ...
-
-To see a list of available tasks, run gradlew tasks
-
-To see a list of command-line options, run gradlew --help
-
-To see more detail about a task, run gradlew help --task <task>
-
-For troubleshooting, visit https://help.gradle.org
+# DO (check the project)
+./gradlew -q check
+    # >> Result: nothing
 ```
 
 
 
-## Develop the Java application
+## Develop the Java Project
 
-### change the build file `build.gradle`
+
+### add a new gradle properties file
 
 ```bash
-# build.gradle
-...
-startScripts {
-    applicationName = 'basic_104'
-    group = 'de.iotoi'
-    # version = '1.0.4'
-    sourceCompatibility = 11
+# DO (create a new file)
+touch ../jcenter_api_key.properties
+
+# DO (edit the file)
+nano ../jcenter_api_key.properties
+    # FILE (../jcenter_api_key.properties)
+    ext {
+        bintrayUser = "your_username"
+        bintrayApiKey = "your_api_key"
+    }
+```
+
+### add the plugin to the build file `build.gradle`
+
+```bash
+# DO (edit the file "./build.gradle")
+nano ./build.gradle
+    # FILE (./build.gradle)
+    ...
+    plugins {
+        id 'java'
+        id 'application'
+
+        id 'com.jfrog.bintray' version '1.8.5'
+        id 'maven-publish'
+    }
+    ...
+```
+
+### add configuration to the build file `build.gradle`
+- should change all words with beginning `your`.
+
+```bash
+# DO (edit the file "./build.gradle")
+nano ./build.gradle
+    # FILE (./build.gradle)
+    ...
+    startScripts {
+        applicationName = 'your_app_name'  # can not be the same project name
+        group = 'your.group.name'
+        sourceCompatibility = JavaVersion.VERSION_11
+        description = 'your_description!'
+    }
+    version = project.findProperty("version")
+
+    apply from: '../jcenter_api_key.properties'
+    ...
+```
+
+### define publishing content to the build file `build.gradle`
+
+```bash
+# DO (edit the file "./build.gradle")
+nano ./build.gradle
+    # FILE (./build.gradle)
+    ...
+    publishing{
+        publications{
+            DemoJcenter(MavenPublication){
+                groupId startScripts.group
+                artifactId archivesBaseName
+                version project.version
+                artifact distZip
+            }
+        }
+    }
+```
+
+### configre the jecnter's values
+- should change all words with beginning `your`.
+
+```bash
+bintray{
+    user = project.findProperty("bintrayUser")
+    key = project.findProperty("bintrayApiKey")
+    publications = ['DemoJcenter']
+    publish = true // !!!
+    pkg{
+        repo = 'your_jcenter_repo'
+        name = startScripts.applicationName
+        desc = startScripts.description
+        licenses = ['Apache-2.0']
+        vcsUrl = 'your_github_repo_link'
+        labels = ['your labels']
+        version {
+            name = project.version
+            released = new Date()
+        }
+    }
 }
-...
-```
-
-### compile the Java application
-
-```bash
-./gradlew compileJava
-#./gradlew :compileJava
-```
-
-### run the Java application
-
-```bash
-./gradlew run
-#./gradlew :run
-```
-
-Result:
-
-```bash
-> Task :run
-Hello world.
-
-BUILD SUCCESSFUL in 422ms
-2 actionable tasks: 2 executed
-```
-
-### test the Java application
-
-```bash
-./gradlew test
-#./gradlew :test
 ```
 
 
 
-## Package the Java Application
+## Publish the Java Application
 
 ### build the Java application
- 
+
 ```bash
-./gradlew clean build
+./gradlew -q clean build
+    # >> Result: nothing
 ```
 
-### run the Java application on different OS System:
+### publish the Java Application to JCenter
 
 ```bash
-unzip build/distributions/_gradle_java.zip
-./_gradle_java/bin/basic_104
+# DO (publish the Java Application to JCenter)
+./gradlew bintrayUpload
+    # >> Result
+    > Task :bintrayUpload
+    Uploading to https://api.bintray.com/content/cnruby/gradle_java_jcenter/basic_117/0.117.1/de/iotoi/_gradle_java/0.117.1/_gradle_java-0.117.1.zip...
+    Uploaded to 'https://api.bintray.com/content/cnruby/gradle_java_jcenter/basic_117/0.117.1/de/iotoi/_gradle_java/0.117.1/_gradle_java-0.117.1.zip'.
+    Uploading to https://api.bintray.com/content/cnruby/gradle_java_jcenter/basic_117/0.117.1/de/iotoi/_gradle_java/0.117.1/_gradle_java-0.117.1.pom...
+    Uploaded to 'https://api.bintray.com/content/cnruby/gradle_java_jcenter/basic_117/0.117.1/de/iotoi/_gradle_java/0.117.1/_gradle_java-0.117.1.pom'.
+
+    Deprecated Gradle features were used in this build, making it incompatible with Gradle 7.0.
+    Use '--warning-mode all' to show the individual deprecation warnings.
+    See https://docs.gradle.org/6.7.1/userguide/command_line_interface.html#sec:command_line_warnings
+
+    BUILD SUCCESSFUL in 7s
+    8 actionable tasks: 4 executed, 4 up-to-date
 ```
 
-Result:
+### Result on JCenter
+
+<div align="right">
+ <img src="doc/image/basic_117-Overview.png" width=500>
+ <img src="doc/image/basic_117-Files.png" width=500>
+ <img src="doc/image/basic_117-Zip.png" width=500>
+</div>
+
+
+
+## Use the published Application
 
 ```bash
-Hello world.
+# DO (Download the zip file)
+wget https://dl.bintray.com/cnruby/gradle_java_jcenter/de/iotoi/_gradle_java/0.117.1/_gradle_java-0.117.1.zip
+
+# DO (unzip the file)
+unzip _gradle_java-0.117.1.zip
+
+# DO (run the java applcation)
+./_gradle_java-0.117.1/bin/basic_117
+```
+
+
+
+## Working Process
+
+```bash
+# FOR loop
+  # DO (change a code)
+  # DO (commit and push the code)
+  # DO (build the project)
+  ./gradlew -q clean build
+  # DO (publish the application)
+  ./gradlew bintrayUpload
+  # DO (view the jcenter)
+  google-chrome https://bintray.com/login?forwardedFrom=%2F
+# ENDFOR
 ```
 
 
 
 ## Download and Use This complete Project
 
+### Download the project
 ```bash
-# Download
-git clone -b basic_104 https://github.com/cnruby/gradle_java.git basic_104
+# DO (download)
+git clone -b basic_117 https://github.com/cnruby/gradle_java.git basic_117
 ```
 
-```bash
-# 1. Usage for the project
+### Usage for the project
+- [Project--"basic_117"--for--The--Release](https://github.com/cnruby/gradle_java/releases/tag/v0.117.1)
 
-# DO (build and run the application `App`)
-./gradlew run
 
-# 2. Usage for OS
 
-# DO (Install the project as a distribution as-is)
-./gradlew installDist
+## Main's References
+- https://docs.gradle.org/current/userguide/distribution_plugin.html
 
-# DO (run the application `App` for Ubuntu OS)
-./build/install/_gradle_java/bin/basic_104
-
-# DO (run the application `App` for Winsows OS)
-./build/install/_gradle_java/bin/basic_104.bat
+## Refeneces
+- https://jcenter.bintray.com/de/iotoi/demo-jcenter/
+- https://dl.bintray.com/cnruby/gradle_java_jcenter/de/iotoi/demo-jcenter/
+- https://livebook.manning.com/book/gradle-in-action/
+- https://github.com/bintray/bintray-examples
+- https://bintray.com/login?forwardedFrom=%2F
+- https://github.com/bintray/gradle-bintray-plugin
+- https://plugins.gradle.org/plugin/com.jfrog.bintray
+- 
