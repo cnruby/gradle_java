@@ -10,7 +10,7 @@ startScripts {
     applicationName = 'basic_117'
     group = 'de.iotoi'
     sourceCompatibility = JavaVersion.VERSION_11
-    description = 'Hello Publish jcenter!'
+    description = 'Hello Publishing Application!'
 }
 version = project.findProperty("version")
 

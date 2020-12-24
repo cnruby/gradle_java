@@ -86,11 +86,11 @@ NEW_APP_ID=117 \
 
 ```bash
 # DO (create a new file)
-touch ../jcenter_api_key.properties
+touch ~/jcenter.properties
 
 # DO (edit the file)
-nano ../jcenter_api_key.properties
-    # FILE (../jcenter_api_key.properties)
+nano ~/jcenter.properties
+    # FILE (~/jcenter.properties)
     ext {
         bintrayUser = "your_username"
         bintrayApiKey = "your_api_key"
