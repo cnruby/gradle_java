@@ -38,12 +38,11 @@ jobs:
         
     - name: build application
       run: |
-        ./gradlew clean build
+        ./gradlew clean build installDist
 
-    - name: unzip application to OS, and run it on OS
+    - name: run application to OS
       run: |
-        unzip build/distributions/_gradle_java-0.117.1.zip
-        ./_gradle_java/bin/basic_117
+        build/install/_gradle_java/bin/basic_117
 
     - name: test the application from jcenter
       run: |

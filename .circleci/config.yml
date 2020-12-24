@@ -34,7 +34,7 @@ jobs:
 
       # install tools
       - run: apt-get update -y
-      - run: apt-get install -y unzip wget
+      - run: apt-get install -y wget
 
       # about Gradle
       - run: ./gradlew --version
@@ -61,14 +61,13 @@ jobs:
       - run:
           name: "build application"
           command: |
-            ./gradlew clean build
+            ./gradlew clean build installDist
 
 
       - run: 
-          name: "unzip application to OS, and run it on OS"
+          name: "run application to OS"
           command: |
-            unzip build/distributions/_gradle_java-0.117.1.zip
-            ./_gradle_java/bin/basic_117
+            build/install/_gradle_java/bin/basic_117
 
       - run:
           name: "test the application from jcenter"
