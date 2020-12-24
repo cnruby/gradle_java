@@ -7,8 +7,9 @@
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/shyiko/jabba?label=jabba&logo=jabba)](https://github.com/shyiko/jabba)
 [![Java zulu-openjdk:11](https://img.shields.io/badge/Java-zulu%20openjdk:11-brightgreen?style=flat&logo=java)](https://www.azul.com/downloads/zulu-community/?package=jdk)
 [![Gradle-v6.7.1](https://img.shields.io/badge/Gradle-v6.7.1-black?style=flat&logo=gradle)](https://gradle.org/)
-[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_117.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_117)
+[![CI--basic_117](https://github.com/cnruby/gradle_java/workflows/CI--basic_117/badge.svg?branch=basic_117)](https://github.com/cnruby/gradle_java/actions?query=workflow%3ACI--basic_117)
 [![Release--basic_117](https://github.com/cnruby/gradle_java/workflows/Release--basic_117/badge.svg?branch=basic_117)](https://github.com/cnruby/gradle_java/actions)
+[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_117.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_117)
 
 
 ---
@@ -63,7 +64,7 @@ basic_117 Hello Publishing Application!
 
 ```bash
 # DO (open a new terminal)
-NEW_APP_ID=116 \
+NEW_APP_ID=117 \
 && git clone https://github.com/cnruby/gradle_java.git ${NEW_APP_ID}_gradle_java \
 && cd ${NEW_APP_ID}_gradle_java
 ```

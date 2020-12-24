@@ -67,7 +67,7 @@ jobs:
       - run: 
           name: "unzip application to OS, and run it on OS"
           command: |
-            unzip build/distributions/_gradle_java.zip
+            unzip build/distributions/_gradle_java-0.117.1.zip
             ./_gradle_java/bin/basic_117
 
       - run:
