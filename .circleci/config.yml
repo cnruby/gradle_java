@@ -39,8 +39,12 @@ jobs:
       # about Gradle
       - run: ./gradlew --version
 
-      # project libraries
-      - run: ./gradlew dependencies
+      - run:
+          name: "Check project libraries"
+          command: |
+            cp ./jcenter.properties.sample ../jcenter.properties
+            ./gradlew check
+            ./gradlew dependencies
 
       - save_cache:
           paths:
