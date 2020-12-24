@@ -6,8 +6,8 @@ name: CI--basic_117
 # on: [push]
 on: 
   push:
-    # branches:
-    branches-ignore:
+    branches:
+    # branches-ignore:
       - basic_117
 
 jobs:
@@ -26,7 +26,7 @@ jobs:
 
     - name: Check--the--project
       run: |
-        cp ./jcenter.properties.sample ~/jcenter.properties
+        cp ./jcenter.properties.sample $HOME/jcenter.properties
         ./gradlew check
         ./gradlew dependencies
 

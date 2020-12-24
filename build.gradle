@@ -14,7 +14,7 @@ startScripts {
 }
 version = project.findProperty("version")
 
-apply from: '../jcenter_api_key.properties'
+apply from: System.getenv("HOME") + "/jcenter.properties"
 
 repositories {
     jcenter()
