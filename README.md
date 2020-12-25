@@ -12,6 +12,7 @@
 [![Release--basic_118](https://github.com/cnruby/gradle_java/workflows/Release--basic_118/badge.svg?branch=basic_118)](https://github.com/cnruby/gradle_java/actions)
 [ ![Download](https://api.bintray.com/packages/cnruby/gradle_java_jcenter/basic_118/images/download.svg?version=0.118.1) ](https://bintray.com/cnruby/gradle_java_jcenter/basic_118/0.118.1/link)
 
+
 ---
 
 
