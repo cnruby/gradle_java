@@ -15,7 +15,7 @@
 ---
 
 
-!!! TODO basic_118 Hello Publishing Library!
+basic_118 Hello Publishing Library!
 <h1>Lesson 118: Hello Publishing Library!</h1>
 
 - Publish a Java Library from multi-project to JCenter
