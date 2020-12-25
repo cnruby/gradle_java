@@ -42,7 +42,7 @@ jobs:
 
     - name: run application to OS
       run: |
-        build/install/_gradle_java/bin/basic_118
+        ./app/build/install/app/bin/app
 
     - name: get the the library from JCenter
       run: |
