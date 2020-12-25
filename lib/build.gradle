@@ -1,60 +1,61 @@
 plugins {
-    id 'java'
     id 'java-library'
 
    id 'com.jfrog.bintray' version '1.8.5'
    id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_11
-
 apply from: System.getenv("HOME") + "/jcenter.properties"
 
-
-repositories {
-    jcenter()
-}
 dependencies {}
 test {}
 
+tasks.named('jar') {
+    baseName = project.libraryName
+    manifest {
+        attributes('Implementation-Title': project.libraryName,
+                   'Implementation-Version': project.version)
+    }
+}
+
 // create the files *-sources.jar
 task sourcesJar(type: Jar, dependsOn: classes){
+    baseName = project.libraryName
     classifier = 'sources'
     from sourceSets.main.allSource
 }
 
-artifacts{
-    archives sourcesJar
-}
+// artifacts{
+//     archives sourcesJar
+// }
 
 publishing{
     publications{
         "$project.name"(MavenPublication){
             from components.java
-            groupId project.findProperty("group")
-            artifactId archivesBaseName
-            version project.findProperty("version")
+            groupId project.group
+            artifactId project.libraryName
+            version project.version
             artifact sourcesJar
         }
     }
 }
 
 bintray{
-    user = project.findProperty("bintrayUser")
-    key = project.findProperty("bintrayApiKey")
+    user = project.bintrayUser
+    key = project.bintrayApiKey
     publications = ["$project.name"]
     publish = true // !!!
     pkg{
-        repo = 'gradle_java_jcenter'
-        name = project.findProperty("applicationName")
-        desc = project.findProperty("description")
+        repo = project.bintrayRepo
+        name = project.libraryName
+        desc = project.description
         licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/cnruby/gradle_java'
+        vcsUrl = project.vcsUrl
         labels = ['java, demo, jcenter, library, gradle, bintray, publish']
         version {
-            name = project.findProperty("version")
+            name = project.version
             released = new Date()
         }
     }
 }
-

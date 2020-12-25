@@ -13,11 +13,11 @@
 
 ---
 
-!!! TODO basic_118 Hello Publishing Library!
-<h1>Lesson 118: Hello Publishing Library!</h1>
+!!! TODO basic_119 Hello Bintray!
+<h1>Lesson 119: Hello Bintray!</h1>
 
-- Delevop a multi-project with Java Appliction and Own Java Library
-- Develop a multi-project from a project with single application
+- Use Your Own Java Library from bintray.com
+- Show mutual relations between bintray.com and JCenter
 
 
 ---
@@ -25,23 +25,21 @@
 
 - [Keywords](#keywords)
 - [Prerequisites](#prerequisites)
-- [Create a Java Project from GitHub.com](#create-a-java-project-from-githubcom)
-- [Develop the Gradle build file](#develop-the-gradle-build-file)
-  - [add a gralde properties file `gradle.properties`](#add-a-gralde-properties-file-gradleproperties)
-- [Develop the subproject `lib`](#develop-the-subproject-lib)
-  - [change the gradle build file `lib/build.gradle`](#change-the-gradle-build-file-libbuildgradle)
-- [Develop the subproject `app`](#develop-the-subproject-app)
-  - [change the gradle build file `app/build.gradle`](#change-the-gradle-build-file-appbuildgradle)
-- [check, build and run the main Java application](#check-build-and-run-the-main-java-application)
-- [Publish the Library](#publish-the-library)
+- [Map for JCenter and bintray.com](#map-for-jcenter-and-bintraycom)
+- [Create a Java Project from `GitHub.com`](#create-a-java-project-from-githubcom)
+- [Use and Test The Library from the Website `bintrag.com`](#use-and-test-the-library-from-the-website-bintragcom)
+  - [download the library package from bintray.com](#download-the-library-package-from-bintraycom)
+  - [change the build file `build.gradle` for the subproject "app"](#change-the-build-file-buildgradle-for-the-subproject-app)
+- [Use The Library from the `JCenter`](#use-the-library-from-the-jcenter)
 - [Download and Use This complete Project](#download-and-use-this-complete-project)
+- [Main's Referenecs](#mains-referenecs)
 - [Referenecs](#referenecs)
 
 
 
 
 ## Keywords
-- `Java Multi-Project` `gradle projects` `own java library`
+- `Java Multi-Project` `gradle projects` `own java library` bintray.com jcenter
 - Ubuntu Java Gradle gradlew tutorial example library
 
 
@@ -49,14 +47,20 @@
 ## Prerequisites
 - [install JDK on Ubuntu 20.04](https://github.com/cnruby/gradle_java/blob/basic_101/README.md)
 - [install Gradle on Ubuntu 20.04](https://github.com/cnruby/gradle_java/blob/basic_102/README.md)
+- [Bintray Account](https://bintray.com/login?forwardedFrom=%2F)
+
+
+## Map for JCenter and bintray.com
+
+![basic_119](doc/image/basic_119.png)
 
 
 
-## Create a Java Project from GitHub.com
+## Create a Java Project from `GitHub.com`
 
 ```bash
 # DO (open a new terminal)
-EXISTING_APP_ID=115 && NEW_APP_ID=118 \
+EXISTING_APP_ID=118 && NEW_APP_ID=119 \
 && git clone -b basic_${EXISTING_APP_ID}  \
     https://github.com/cnruby/gradle_java.git ${NEW_APP_ID}_gradle_java \
 && cd ${NEW_APP_ID}_gradle_java
@@ -69,164 +73,63 @@ EXISTING_APP_ID=115 && NEW_APP_ID=118 \
 
 
 
-## Develop the Gradle build file
+## Use and Test The Library from the Website `bintrag.com`
 
-### add a gralde properties file `gradle.properties`
+
+### download the library package from bintray.com
 
 ```bash
-# DO (create a file ./gradle.properties)
-touch ./gradle.properties
+# DO (make a folder "./libs")
+mkdir libs
 
-# DO (edit the file ./gradle.properties)
-nano ./gradle.properties
-
-    # FILE (./gradle.properties)
-    applicationName=basic_118
-    group=de.iotoi
-    description=Hello Publishing Library!
-    version=0.118.1
+# DO (Download the Bintray.com Library Package)
+wget -P ./libs/ https://dl.bintray.com/cnruby/gradle_java_jcenter/de/iotoi/basic_118/0.118.1/basic_118-0.118.1.jar
 ```
 
-
-
-## Develop the subproject `lib`
-
-### change the gradle build file `lib/build.gradle`
+### change the build file `build.gradle` for the subproject "app"
 
 ```bash
-nano lib/build.gradle
-
-    # FILE (lib/build.gradle)
-    plugins {
-        id 'java'
-        id 'java-library'
-        id 'com.jfrog.bintray' version '1.8.5'
-        id 'maven-publish'
-    }
-
-    sourceCompatibility = JavaVersion.VERSION_11
-    apply from: System.getenv("HOME") + "/jcenter.properties"
-
-    repositories { jcenter() }
-    dependencies {}
-    test {}
-
-    task sourcesJar(type: Jar, dependsOn: classes){
-        classifier = 'sources'
-        from sourceSets.main.allSource
-    }
-
-    artifacts{
-        archives sourcesJar
-    }
-
-    publishing{
-        publications{
-            "$project.name"(MavenPublication){
-                from components.java
-                groupId project.findProperty("group")
-                artifactId archivesBaseName
-                version project.findProperty("version")
-                artifact sourcesJar
-            }
-        }
-    }
-
-    bintray{
-        user = project.findProperty("bintrayUser")
-        key = project.findProperty("bintrayApiKey")
-        publications = ["$project.name"]
-        publish = true // !!!
-        pkg{
-            repo = 'gradle_java_jcenter'
-            name = project.findProperty("applicationName")
-            desc = project.findProperty("description")
-            licenses = ['Apache-2.0']
-            vcsUrl = 'https://github.com/cnruby/gradle_java'
-            labels = ['java, demo, jcenter, library, gradle, bintray, publish']
-            version {
-                name = project.findProperty("version")
-                released = new Date()
-            }
-        }
-    }
-```
-
-
-
-## Develop the subproject `app`
-
-### change the gradle build file `app/build.gradle`
-
-```bash
-nano app/build.gradle
-
-    # FILE (app/build.gradle)
-    plugins {
-        id 'java'
-        id 'application'
-    }
-
-    repositories { jcenter() }
-
+# DO (edit the file ./app/build.gradle)
+nano ./app/build.gradle
+    # FILE ()
+    ...
     dependencies {
-        implementation project(':lib')
+        implementation files("${rootProject.projectDir}/libs/basic_118-0.118.1.jar")
     }
-
-    application {
-        mainClass = "de.iotoi.App"
-    }
-
-    test {}
-```
-
-
-
-## check, build and run the main Java application
-
-```bash
-# DO (build subproject `app` and `lib`)
-./gradlew -q check
-    # >> Result: nothing
 ```
 
 ```bash
-# DO (build subproject `app` and `lib`)
-./gradlew clean app:build
-```
-
-```bash
-# DO (run the java application for the subproject `app` )
+# DO (run the application with the library)
 ./gradlew -q app:run
-    # >> Result:
+
+    # >> Result
     Hello world.
 ```
 
 
-## Publish the Library
+
+## Use The Library from the `JCenter`
 
 ```bash
-# DO (check)
-./gradlew check
-    # >> Result: nothing
+# DO (View your JCenter Library Package)
+google-chrome https://jcenter.bintray.com/de/iotoi/basic_118/0.118.1
+```
 
-# DO (build and publsih the java library)
-./gradlew clean build bintrayPublish
+```bash
+# DO (edit the file ./app/build.gradle)
+nano ./app/build.gradle
+    # FILE (./app/build.gradle)
+    ...
+    dependencies {
+        implementation 'de.iotoi:basic_118:0.118.1
+    }
+```
+
+```bash
+# DO (run the application with the library)
+/gradlew -q app:run
     # >> Result
-    > Task :lib:bintrayUpload
-    Uploading to https://api.bintray.com/content/cnruby/gradle_java_jcenter/basic_118/0.118.1/de/iotoi/lib/0.118.1/lib-0.118.1-sources.jar...
-    Uploaded to 'https://api.bintray.com/content/cnruby/gradle_java_jcenter/basic_118/0.118.1/de/iotoi/lib/0.118.1/lib-0.118.1-sources.jar'.
-    Uploading to https://api.bintray.com/content/cnruby/gradle_java_jcenter/basic_118/0.118.1/de/iotoi/lib/0.118.1/lib-0.118.1.jar...
-    Uploaded to 'https://api.bintray.com/content/cnruby/gradle_java_jcenter/basic_118/0.118.1/de/iotoi/lib/0.118.1/lib-0.118.1.jar'.
-    Uploading to https://api.bintray.com/content/cnruby/gradle_java_jcenter/basic_118/0.118.1/de/iotoi/lib/0.118.1/lib-0.118.1.pom...
-    Uploaded to 'https://api.bintray.com/content/cnruby/gradle_java_jcenter/basic_118/0.118.1/de/iotoi/lib/0.118.1/lib-0.118.1.pom'.
-
-    Deprecated Gradle features were used in this build, making it incompatible with Gradle 7.0.
-    Use '--warning-mode all' to show the individual deprecation warnings.
-    See https://docs.gradle.org/6.7.1/userguide/command_line_interface.html#sec:command_line_warnings
-
-    BUILD SUCCESSFUL in 8s
-    8 actionable tasks: 5 executed, 3 up-to-date
+    Hello world.
 ```
 
 
@@ -235,13 +138,17 @@ nano app/build.gradle
 
 ```bash
 # Download
-git clone -b basic_118 https://github.com/cnruby/gradle_java.git basic_118
+git clone -b basic_119 https://github.com/cnruby/gradle_java.git basic_119
 ```
 
 ```bash
 # Usage for the project
-google-chrome https://github.com/cnruby/gradle_java/releases/tag/v0.118.1
+google-chrome https://github.com/cnruby/gradle_java/releases/tag/v0.119.1
 ```
+
+
+## Main's Referenecs
+- http://andresalmiray.com/publishing-artifacts-to-maven-central-with-bintray-gradle/
 
 
 
@@ -251,4 +158,10 @@ google-chrome https://github.com/cnruby/gradle_java/releases/tag/v0.118.1
 - https://www.flowsquad.io/blog/2020-05-29-devops-mit-github-teil-1-github-packages-mit-gradle/
 - https://docs.github.com/en/free-pro-team@latest/packages/guides/configuring-gradle-for-use-with-github-packages
 - https://docs.github.com/en/free-pro-team@latest/actions/guides/publishing-java-packages-with-gradle
-   
+- https://medium.com/@anitaa_1990/6-easy-steps-to-upload-your-android-library-to-bintray-jcenter-59e6030c8890
+- https://www.jfrog.com/confluence/display/BT/Central+Repositories
+- https://stackoverflow.com/questions/42035918/there-is-no-add-to-jcenter-button-in-https-bintray-com
+- https://stackoverflow.com/questions/1078524/how-to-specify-the-location-with-wget
+- https://stackoverflow.com/questions/20700053/how-to-add-local-jar-file-dependency-to-build-gradle-file
+- https://stackoverflow.com/questions/17262856/how-to-set-the-project-name-group-version-plus-source-target-compatibility-in
+
