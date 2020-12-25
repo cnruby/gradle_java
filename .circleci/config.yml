@@ -62,7 +62,7 @@ jobs:
           name: "run application on Local OS System"
           command: |
             ./gradlew app:installDist
-            ./app/build/install/app/bin/basic_118
+            ./app/build/install/app/bin/app
 
       - run:
           name: "get the library package from JCenter"

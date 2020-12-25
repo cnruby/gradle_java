@@ -69,10 +69,10 @@ jobs:
                 ./gradlew app:installDist
 
                 # DO (run application for the subproject `app` for Ubuntu OS)
-                ./app/build/install/app/bin/basic_118
+                ./app/build/install/app/bin/app
 
                 # DO (run application for the subproject `app` for Winsows OS)
-                ./app/build/install/app/bin/basic_118.bat
+                ./app/build/install/app/bin/app.bat
 
               # 4. MUST Push the java project to your GitHub
 
