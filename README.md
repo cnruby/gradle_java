@@ -45,9 +45,12 @@ Hello "gradle_java"!
 | 113 |  | [Hello GitHub Actions CI!](https://github.com/cnruby/gradle_java/tree/basic_113) |  |  |
 | 114 |  |  |  | [Hello Simple Multi-Project!](https://github.com/cnruby/gradle_java/tree/basic_114) |
 | 115 |  |  |  | [Hello Own Library!](https://github.com/cnruby/gradle_java/tree/basic_115) |
-| 116 |  |  |  |  |
-| 117 |  |  |  |  |
-| 118 |  |  |  |  |
+| 116 |  | [Hello Gradle Properties!](https://github.com/cnruby/gradle_java/tree/basic_116) |  |  |
+| 117 | [Hello Publishing Application!](https://github.com/cnruby/gradle_java/tree/basic_117) |  |  |  |
+| 118 |  |  |  | [Hello Publishing Library!](https://github.com/cnruby/gradle_java/tree/basic_118) |
+|  |  |  |  |
+|  |  |  |  |
+|  |  |  |  |
 
 - Hello JUnit 5!
 - Hello Multi-Project!
