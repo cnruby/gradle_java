@@ -28,31 +28,31 @@ Hello "gradle_java"!
 
 ## Learn Java with Gradlee
 
-| Lesson |	Project App	|	Project Comman	|	Project Web App	| Multi-Project |
-|---------|-------------|-------------|-------------|-------------|
-| 101 | [Hello jabba!](https://github.com/cnruby/gradle_java/tree/basic_101) |  |  |
-| 102 |  | [Hello Gradle!](https://github.com/cnruby/gradle_java/tree/basic_102) |  |  |  |
-| 103 |  | [Hello `gradlew`!](https://github.com/cnruby/gradle_java/tree/basic_103) |  |  |  |
-| 104 | [Hello Single Project!](https://github.com/cnruby/gradle_java/tree/basic_104) |  |  |  |
-| 105 | [Hello CircleCI!](https://github.com/cnruby/gradle_java/tree/basic_105) |  |  |  |
-| 106 |  | [Hello Package!](https://github.com/cnruby/gradle_java/tree/basic_106) |  |  |
-| 107 |  | [Hello Gradle Task!](https://github.com/cnruby/gradle_java/tree/basic_107) |  |  |
-| 108 |  |  | [Hello Gretty!](https://github.com/cnruby/gradle_java/tree/basic_108) |  |
-| 109 |  |  | [Hello Servlet!](https://github.com/cnruby/gradle_java/tree/basic_109) |  |
-| 110 | [Hello App with Docker!](https://github.com/cnruby/gradle_java/tree/basic_110) |  |  |  |
-| 111 |  |  | [Hello jetty!](https://github.com/cnruby/gradle_java/tree/basic_111) |  |
-| 112 |  |  | [Hello tomcat!](https://github.com/cnruby/gradle_java/tree/basic_112) |  |
-| 113 |  | [Hello GitHub Actions CI!](https://github.com/cnruby/gradle_java/tree/basic_113) |  |  |
-| 114 |  |  |  | [Hello Simple Multi-Project!](https://github.com/cnruby/gradle_java/tree/basic_114) |
-| 115 |  |  |  | [Hello Own Library!](https://github.com/cnruby/gradle_java/tree/basic_115) |
-| 116 |  | [Hello Gradle Properties!](https://github.com/cnruby/gradle_java/tree/basic_116) |  |  |
-| 117 | [Hello Publishing Application!](https://github.com/cnruby/gradle_java/tree/basic_117) |  |  |  |
-| 118 |  |  |  | TODO [Hello Publishing Library!](https://github.com/cnruby/gradle_java/tree/basic_118) |
-| 119 |  |  | TODO [Hello Bintray!](https://github.com/cnruby/gradle_java/tree/basic_119) |
-| 120 |  |  |  |
-| 121 |  |  |  |
-| 122 |  |  |  |
-| 123 |  |  |  |
+| Lesson |	Project App	|	Project Comman	|	Project Web App	| Multi-Project | Project Library |
+|---------|-------------|-------------|-------------|-------------|-------------|
+| 101 | [Hello jabba!](https://github.com/cnruby/gradle_java/tree/basic_101) |  |  |  |  |
+| 102 |  | [Hello Gradle!](https://github.com/cnruby/gradle_java/tree/basic_102) |  |  |  |  |
+| 103 |  | [Hello `gradlew`!](https://github.com/cnruby/gradle_java/tree/basic_103) |  |  |  |  |
+| 104 | [Hello Single Project!](https://github.com/cnruby/gradle_java/tree/basic_104) |  |  |  |  |
+| 105 | [Hello CircleCI!](https://github.com/cnruby/gradle_java/tree/basic_105) |  |  |  |  |
+| 106 |  | [Hello Package!](https://github.com/cnruby/gradle_java/tree/basic_106) |  |  |  |
+| 107 |  | [Hello Gradle Task!](https://github.com/cnruby/gradle_java/tree/basic_107) |  |  |  |
+| 108 |  |  | [Hello Gretty!](https://github.com/cnruby/gradle_java/tree/basic_108) |  |  |
+| 109 |  |  | [Hello Servlet!](https://github.com/cnruby/gradle_java/tree/basic_109) |  |  |
+| 110 | [Hello App with Docker!](https://github.com/cnruby/gradle_java/tree/basic_110) |  |  |  |  |
+| 111 |  |  | [Hello jetty!](https://github.com/cnruby/gradle_java/tree/basic_111) |  |  |
+| 112 |  |  | [Hello tomcat!](https://github.com/cnruby/gradle_java/tree/basic_112) |  |  |
+| 113 |  | [Hello GitHub Actions CI!](https://github.com/cnruby/gradle_java/tree/basic_113) |  |  |  |
+| 114 | [Hello Simple Multi-Project!](https://github.com/cnruby/gradle_java/tree/basic_114) |  |  | [Hello Simple Multi-Project!](https://github.com/cnruby/gradle_java/tree/basic_114) |  |
+| 115 | [Hello Own Library!](https://github.com/cnruby/gradle_java/tree/basic_115) |  |  | [Hello Own Library!](https://github.com/cnruby/gradle_java/tree/basic_115) | [Hello Own Library!](https://github.com/cnruby/gradle_java/tree/basic_115) |
+| 116 |  | [Hello Gradle Properties!](https://github.com/cnruby/gradle_java/tree/basic_116) |  |  |  |
+| 117 | [Hello Publishing Application!](https://github.com/cnruby/gradle_java/tree/basic_117) |  |  |  |  |
+| 118 | TODO [Hello Publishing Library!](https://github.com/cnruby/gradle_java/tree/basic_118) |  |  | TODO [Hello Publishing Library!](https://github.com/cnruby/gradle_java/tree/basic_118) | TODO [Hello Publishing Library!](https://github.com/cnruby/gradle_java/tree/basic_118) |
+| 119 | TODO [Hello Bintray!](https://github.com/cnruby/gradle_java/tree/basic_119) |  |  | TODO [Hello Bintray!](https://github.com/cnruby/gradle_java/tree/basic_119) | TODO [Hello Bintray!](https://github.com/cnruby/gradle_java/tree/basic_119) |
+| 120 |  |  |  |  |  |
+| 121 |  |  |  |  |  |
+| 122 |  |  |  |  |  |
+| 123 |  |  |  |  |  |
 
 - Hello JUnit 5!
 - Hello Multi-Project!
