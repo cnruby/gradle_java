@@ -1,27 +1,27 @@
-name: Release--basic_115
+name: Release--basic_118
 
 on: 
   push:
     # branches:
     branches-ignore:
-      - basic_115
+      - basic_118
 
 jobs:
   build:
-    name: Create--Release--"basic_115"
+    name: Create--Release--"basic_118"
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout--Code
         uses: actions/checkout@v2
-      - name: Create--Release--for--Branch--"basic_115"
+      - name: Create--Release--for--Branch--"basic_118"
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: v0.115.1
-          release_name: Project--"basic_115"--for--The--Release
+          tag_name: v0.118.1
+          release_name: Project--"basic_118"--for--The--Release
           body: |
             ### ABOUT
             - develop simple Java application with Gradle
@@ -29,28 +29,57 @@ jobs:
             ### USAGE
             ```bash
               # DO (download the zip file)
-              wget https://github.com/cnruby/gradle_java/archive/v0.115.1.zip -O gradle_java-0.115.1.zip
+              wget https://github.com/cnruby/gradle_java/archive/v0.118.1.zip -O gradle_java-0.118.1.zip
 
               # DO (unzip the file)
-              unzip gradle_java-0.115.1.zip && cd gradle_java-0.115.1
+              unzip gradle_java-0.118.1.zip && cd gradle_java-0.118.1
 
+              # 1. change your bintray info
 
-              # 1. Usage for the project
+                # DO (copy a jcenter's username and password sample file)
+                cp ./jcenter.properties.sample ~/jcenter.properties
+                
+                # DO (edit the real jcenter's username and password)
+                # !!! first sign in JCenter by jcenter's username and password              
+                nano ~/jcenter.properties
 
-              # DO (build and run the subproject `app`)
-              ./gradlew -q app:run
+                # DO (edit the gradle properties file)
+                nano ./gradle.properties
+                    # FILE (./gradle.properties)
+                    bintrayRepo=<your_bintray_repo>
+                    libraryName=<your_library_name>
+                    group=<your_group_name>
+                    version=<your_library_version>
+                    description=<your_library_description>
+                    vcsUrl=<your_library_github_repo_link>
+                
+                # DO (check the application `App`)
+                ./gradlew -q check
+                    # >> Result: nothing
 
+              # 2. Usage for the project
 
-              # 2. Usage Subproject `app` for OS
+                # DO (build and run the subproject `app`)
+                ./gradlew -q app:run
+                    # >> Result: Hello world.
 
-              # DO (install the subproject `app` as a distribution as-is)
-              ./gradlew app:installDist
+              # 3. Usage Subproject `app` for Local OS
 
-              # DO (run application for the subproject `app` for Ubuntu OS)
-              ./app/build/install/app/bin/basic_115
+                # DO (install the subproject `app` as a distribution as-is)
+                ./gradlew app:installDist
 
-              # DO (run application for the subproject `app` for Winsows OS)
-              ./app/build/install/app/bin/basic_115.bat
+                # DO (run application for the subproject `app` for Ubuntu OS)
+                ./app/build/install/app/bin/basic_118
+
+                # DO (run application for the subproject `app` for Winsows OS)
+                ./app/build/install/app/bin/basic_118.bat
+
+              # 4. MUST Push the java project to your GitHub
+
+              # 5. Publish the library to bintray.com
+                ./gradlew clean build bintrayUpdate
+
+              # 6 Goto bintray.com
             ```
           draft: false
           prerelease: false

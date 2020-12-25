@@ -34,19 +34,36 @@ jobs:
 
       # install tools
       - run: apt-get update -y
-      - run: apt-get install -y unzip
+      - run: apt-get install -y unzip wget
 
       # about Gradle
       - run: ./gradlew --version
 
-      # # project libraries
-      # - run: ./gradlew dependencies
+      # about Gradle
+      - run: ./gradlew --version
 
-      # # run application
-      # - run: ./gradlew -q app:run
+      - run:
+          name: "Check project libraries"
+          command: |
+            ./gradlew check
+            ./gradlew dependencies
+
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle" }}
+
+      - run: 
+          name: "run application on project"
+          command: ./gradlew -q app:run
       
-      # # build application
-      # - run: ./gradlew app:installDist
+      - run:
+          name: "run application on Local OS System"
+          command: |
+            ./gradlew app:installDist
+            ./app/build/install/app/bin/basic_118
 
-      # # run application on OS System
-      # - run: ./app/build/install/app/bin/basic_118
+      - run:
+          name: "get the library package from JCenter"
+          command: |
+            wget https://jcenter.bintray.com/de/iotoi/basic_118/0.118.1/basic_118-0.118.1.jar

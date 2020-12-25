@@ -1,16 +1,9 @@
 plugins {
-    id 'java'
     id 'application'
 }
 
-repositories {
-    mavenCentral()
-    jcenter()
-}
-
 dependencies {
-//    implementation project(':lib')
-     implementation 'de.iotoi:lib:0.118.1'
+    implementation project(':lib')
 }
 
 application {
