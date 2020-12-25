@@ -170,6 +170,7 @@ nano ./app/build.gradle
 ### change the gradle build file `lib/build.gradle`
 
 ```bash
+# DO (edit the file `lib/build.gradle`)
 nano lib/build.gradle
 
     # FILE (lib/build.gradle)
