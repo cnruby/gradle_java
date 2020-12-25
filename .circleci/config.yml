@@ -45,6 +45,7 @@ jobs:
       - run:
           name: "Check project libraries"
           command: |
+            cp ./jcenter.properties.sample $HOME/jcenter.properties
             ./gradlew check
             ./gradlew dependencies
 
