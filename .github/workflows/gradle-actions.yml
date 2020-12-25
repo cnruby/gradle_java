@@ -24,13 +24,6 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
-  - name: Cache Gradle packages
-    uses: actions/cache@v2
-    with:
-      path: ~/.gradle/caches
-      key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-      restore-keys: ${{ runner.os }}-gradle
-
     - name: Check--the--project
       run: |
         cp ./jcenter.properties.sample ~/jcenter.properties
