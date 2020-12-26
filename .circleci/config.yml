@@ -121,6 +121,7 @@ jobs:
           command: |
             docker build --tag=120_gradle_java_image .
             docker run -d --name=120_gradle_java_container -p 80:8080 120_gradle_java_image
+            run: sleep 5 && nc -vz localhost 80 && curl http://localhost:80/
 
 
       # - run:
