@@ -106,11 +106,11 @@ jobs:
       - run:
           name: "archives all configured gretty products"
           command: |
-            docker build --tag=120_gradle_java_image .
-            docker run d --name=120_gradle_java_container -p 80:8080 120_gradle_java_image
+            docker build --tag=120_gradle_java .
+            docker run d --name=120_gradle_java -p 80:8080 120_gradle_java
             curl http://localhost:80/
             curl http://localhost:80/hello
-            docker stop 120_gradle_java_container
+            docker stop 120_gradle_java
 
 workflows:
   build:
