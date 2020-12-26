@@ -14,7 +14,7 @@
 
 
 
-basic_110
+basic_110 Hello App with Docker!
 <h1>Lesson 110: Hello App with Docker!</h1>
 
 - Develop a Java application with Docker, Gradle and CI

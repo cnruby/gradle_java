@@ -32,6 +32,10 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
+      # install tools
+      - run: apt-get update -y
+      - run: apt-get install -y unzip wget
+
       # about Gradle
       - run: ./gradlew --version
 
