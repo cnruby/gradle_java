@@ -8,12 +8,12 @@ MAINTAINER G.Luo
 
 # https://nickjanetakis.com/blog/docker-tip-2-the-difference-between-copy-and-add-in-a-dockerile
 #ADD /build/libs/_gradle_java.war /var/lib/jetty/webapps/ROOT.war
-# ADD /build/libs/_gradle_java.war /var/lib/jetty/webapps/root.war
+ADD /build/libs/_gradle_java.war /var/lib/jetty/webapps/root.war
 #COPY /build/libs/_gradle_java.war /var/lib/jetty/webapps/ROOT.war
 #COPY /build/libs/_gradle_java.war /var/lib/jetty/webapps/root.war
 
-# FROM Maven Local
-ADD /_gradle_java.war /var/lib/jetty/webapps/ROOT.war
+# FROM Maven Local or bintray.com
+# ADD /_gradle_java.war /var/lib/jetty/webapps/ROOT.war
 
 USER root
 RUN apt-get update

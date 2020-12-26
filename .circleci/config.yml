@@ -98,9 +98,32 @@ jobs:
             ls -al /var/lib/jetty/webapps/
             cp -rf ./build/libs/_gradle_java-0.120.1.war /var/lib/jetty/webapps/ROOT.war
 
+  bintray_build:
+    <<: *defaults
+    steps:      
+      - checkout
+  
+      - run:
+          name: "build application"
+          command: |
+            whoami
+            cp ./jcenter.properties.sample ~/jcenter.properties
+            ./gradlew clean build
+
+      - run:
+          name: "archives all configured gretty products"
+          command: |
+            ./gradlew archiveAllProducts
+
+      - run:
+          name: "archives all configured gretty products"
+          command: |
+            docker build --tag=120_gradle_java .
+            docker run -p 80:8080 120_gradle_java
 
 workflows:
   build:
     jobs:
       - project_build
       - local_build
+      - bintray_build
