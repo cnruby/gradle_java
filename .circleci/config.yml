@@ -107,8 +107,8 @@ jobs:
           name: "install tool curl"
           command: |
             cat /etc/*-release
-            apt update -y
-            apt install curl -y
+            sudo apt update -y
+            sudo apt install curl -y
 
       - run:
           name: "archives all configured gretty products"
