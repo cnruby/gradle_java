@@ -2,8 +2,8 @@ name: Release--basic_117
 
 on: 
   push:
-    branches:
-    # branches-ignore:
+    # branches:
+    branches-ignore:
       - basic_117
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: v0.117.1
+          tag_name: v0.117.2
           release_name: Project--"basic_117"--for--The--Release
           body: |
             ### ABOUT
@@ -31,10 +31,10 @@ jobs:
               # 0. Download and Unzip the project
 
                 # DO (download the zip file)
-                wget https://github.com/cnruby/gradle_java/archive/v0.117.1.zip -O gradle_java-0.117.1.zip
+                wget https://github.com/cnruby/gradle_java/archive/v0.117.2.zip -O gradle_java-0.117.2.zip
 
                 # DO (unzip the file)
-                unzip gradle_java-0.117.1.zip && cd gradle_java-0.117.1
+                unzip gradle_java-0.117.2.zip && cd gradle_java-0.117.2
 
               # 1. Run the java application on project
 
@@ -74,16 +74,16 @@ jobs:
 
                 # DO (download the zip file)
                 # !!! change the `<your_jcenter_username>` and `<your_jcenter_repo_name>`
-                wget https://dl.bintray.com/<your_jcenter_username>/<your_jcenter_repo_name>/de/iotoi/_gradle_java/0.117.1/_gradle_java-0.117.1.zip
+                wget https://dl.bintray.com/<your_jcenter_username>/<your_jcenter_repo_name>/de/iotoi/_gradle_java/0.117.2/_gradle_java-0.117.2.zip
 
                 # DO (unzip the file)
-                unzip _gradle_java-0.117.1.zip
+                unzip _gradle_java-0.117.2.zip
 
                 # DO (run the application `App` for Ubuntu OS)
-                ./_gradle_java-0.117.1/bin/basic_117
+                ./_gradle_java-0.117.2/bin/basic_117
 
                 # DO (run the application `App` for Winsows OS)
-                ./_gradle_java-0.117.1/bin/basic_117.bat
+                ./_gradle_java-0.117.2/bin/basic_117.bat
                     # >> Result
                     Hello world.
             ```

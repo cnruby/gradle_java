@@ -6,13 +6,7 @@ plugins {
     id 'maven-publish'
 }
 
-startScripts {
-    applicationName = 'basic_117'
-    group = 'de.iotoi'
-    sourceCompatibility = JavaVersion.VERSION_11
-    description = 'Hello Publishing Application!'
-}
-version = project.findProperty("version")
+sourceCompatibility = JavaVersion.VERSION_11
 
 apply from: System.getenv("HOME") + "/jcenter.properties"
 
@@ -36,9 +30,9 @@ test {
 
 publishing{
     publications{
-        DemoJcenter(MavenPublication){
-            groupId startScripts.group
-            artifactId archivesBaseName
+        "$project.name"(MavenPublication){
+            groupId project.group
+            artifactId project.applicationName
             version project.version
             artifact distZip
         }
@@ -46,17 +40,17 @@ publishing{
 }
 
 bintray{
-    user = project.findProperty("bintrayUser")
-    key = project.findProperty("bintrayApiKey")
-    publications = ['DemoJcenter']
+    user = project.bintrayUser
+    key = project.bintrayApiKey
+    publications = ["$project.name"]
     publish = true // !!!
     pkg{
-        repo = 'gradle_java_jcenter'
-        name = startScripts.applicationName
+        repo = project.bintrayRepo
+        name = project.applicationName
         desc = startScripts.description
         licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/cnruby/gradle_java'
-        labels = ['java, demo, jcenter, library, gradle, bintray, publish']
+        vcsUrl = project.vcsUrl
+        labels = ['java, demo, jcenter, library, gradle, bintray, publish, example, tutorial']
         version {
             name = project.version
             released = new Date()

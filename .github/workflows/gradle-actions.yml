@@ -46,6 +46,6 @@ jobs:
 
     - name: test the application from jcenter
       run: |
-        wget https://dl.bintray.com/cnruby/gradle_java_jcenter/de/iotoi/_gradle_java/0.117.1/_gradle_java-0.117.1.zip
-        unzip _gradle_java-0.117.1.zip
-        ./_gradle_java-0.117.1/bin/basic_117
+        wget https://dl.bintray.com/cnruby/gradle_java_jcenter/de/iotoi/basic_117/0.117.2/basic_117-0.117.2.zip
+        unzip _gradle_java-0.117.2.zip
+        ./_gradle_java-0.117.2/bin/basic_117

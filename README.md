@@ -10,7 +10,7 @@
 [![CI--basic_117](https://github.com/cnruby/gradle_java/workflows/CI--basic_117/badge.svg?branch=basic_117)](https://github.com/cnruby/gradle_java/actions?query=workflow%3ACI--basic_117)
 [![Release--basic_117](https://github.com/cnruby/gradle_java/workflows/Release--basic_117/badge.svg?branch=basic_117)](https://github.com/cnruby/gradle_java/actions)
 [![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_117.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_117)
-[ ![Download](https://api.bintray.com/packages/cnruby/gradle_java_jcenter/basic_117/images/download.svg?version=0.117.1) ](https://bintray.com/cnruby/gradle_java_jcenter/basic_117/0.117.1/link)
+[![Download](https://api.bintray.com/packages/cnruby/gradle_java_jcenter/basic_117/images/download.svg?version=0.117.2) ](https://bintray.com/cnruby/gradle_java_jcenter/basic_117/0.117.2/link)
 
 
 ---
@@ -57,7 +57,7 @@ basic_117 Hello Publishing Application!
 ## Prerequisites
 - [install JDK on Ubuntu 20.04](https://github.com/cnruby/gradle_java/blob/basic_101/README.md)
 - [install Gradle on Ubuntu 20.04](https://github.com/cnruby/gradle_java/blob/basic_102/README.md)
-- [Jcenter Account](https://bintray.com/login?forwardedFrom=%2F)
+- [Bintray Account](https://bintray.com/login?forwardedFrom=%2F)
 - [Learn "Hello jcenter!"](https://github.com/cnruby/gradle_java/tree/basic_004)
 - [Learn "Hello Gradle Properties!"](https://github.com/cnruby/gradle_java/tree/basic_116)
 
