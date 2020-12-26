@@ -194,3 +194,4 @@ google-chrome https://github.com/cnruby/gradle_java/releases/tag/v0.119.1
 - https://stackoverflow.com/questions/20700053/how-to-add-local-jar-file-dependency-to-build-gradle-file
 - https://stackoverflow.com/questions/17262856/how-to-set-the-project-name-group-version-plus-source-target-compatibility-in
 - https://proandroiddev.com/tip-work-with-third-party-projects-locally-with-gradle-961d6c9efb02
+- https://stackoverflow.com/questions/59838/how-can-i-check-if-a-directory-exists-in-a-bash-shell-script

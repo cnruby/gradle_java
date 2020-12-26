@@ -5,6 +5,11 @@ plugins {
    id 'maven-publish'
 }
 
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
 apply from: System.getenv("HOME") + "/jcenter.properties"
 
 dependencies {}

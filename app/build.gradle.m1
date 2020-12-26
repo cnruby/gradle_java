@@ -2,6 +2,11 @@ plugins {
     id 'application'
 }
 
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
 dependencies {
     // implementation project(':lib')
     implementation files("${rootProject.projectDir}/libs/basic_118-0.118.1.jar")
