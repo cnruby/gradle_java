@@ -72,7 +72,7 @@ jobs:
             ./gradlew -q app:run
 
       - run: 
-          name: ""
+          name: "Use a Library Package from Maven Local"
           command: |
             cp -f app/build.gradle.m3 app/build.gradle
             ./gradlew clean build publishToMavenLocal
