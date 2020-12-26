@@ -58,7 +58,9 @@ jobs:
       - run: 
           name: "Use and Test The Library from the Website `bintrag.com"
           command: |
-            mkdir libs
+            if [ ! -d "libs" ]; then
+              mkdir libs
+            fi
             wget -P ./libs/ https://dl.bintray.com/cnruby/gradle_java_jcenter/de/iotoi/basic_118/0.118.1/basic_118-0.118.1.jar
             cp -f app/build.gradle.m1 app/build.gradle
             ./gradlew -q app:run
