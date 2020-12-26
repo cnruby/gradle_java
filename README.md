@@ -16,7 +16,7 @@
 ---
 
 
-basic_117 v3 Hello Publishing Application!
+basic_117 v2 Hello Publishing Application!
 <h1>Lesson 117: Hello Publishing Application!</h1>
 
 - How to Publish `Java Application` to JCenter
