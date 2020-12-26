@@ -39,14 +39,40 @@ jobs:
       # about Gradle
       - run: ./gradlew --version
 
-      # # project libraries
-      # - run: ./gradlew dependencies
+      - run:
+          name: "Check project libraries"
+          command: |
+            cp ./jcenter.properties.sample $HOME/jcenter.properties
+            ./gradlew check
+            ./gradlew dependencies
 
-      # # run application
-      # - run: ./gradlew -q app:run
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle" }}
+
+      - run: 
+          name: "run application on project"
+          command: ./gradlew -q app:run
+
+      - run: 
+          name: "Use and Test The Library from the Website `bintrag.com"
+          command: |
+            mkdir libs
+            wget -P ./libs/ https://dl.bintray.com/cnruby/gradle_java_jcenter/de/iotoi/basic_118/0.118.1/basic_118-0.118.1.jar
+            cp -f app/build.gradle.m1 app/build.gradle
+            ./gradlew -q app:run
+          
+      - run: 
+          name: "Use The Library from the `JCenter`"
+          command: |
+            cp -f app/build.gradle.m2 app/build.gradle
+            ./gradlew -q app:run
+
+      - run: 
+          name: ""
+          command: |
+            cp -f app/build.gradle.m3 app/build.gradle
+            ./gradlew clean build publishToMavenLocal
+            ./gradlew -q app:run
       
-      # # build application
-      # - run: ./gradlew app:installDist
-
-      # # run application on OS System
-      # - run: ./app/build/install/app/bin/basic_118

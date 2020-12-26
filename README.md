@@ -13,7 +13,7 @@
 
 ---
 
-!!! TODO basic_119 Hello Bintray!
+basic_119 Hello Bintray!
 <h1>Lesson 119: Hello Bintray!</h1>
 
 - Use Your Own Java Library from bintray.com
@@ -27,10 +27,11 @@
 - [Prerequisites](#prerequisites)
 - [Map for JCenter and bintray.com](#map-for-jcenter-and-bintraycom)
 - [Create a Java Project from `GitHub.com`](#create-a-java-project-from-githubcom)
-- [Use and Test The Library from the Website `bintrag.com`](#use-and-test-the-library-from-the-website-bintragcom)
+- [Method 1: Use and Test The Library from the Website `bintrag.com`](#method-1-use-and-test-the-library-from-the-website-bintragcom)
   - [download the library package from bintray.com](#download-the-library-package-from-bintraycom)
   - [change the build file `build.gradle` for the subproject "app"](#change-the-build-file-buildgradle-for-the-subproject-app)
-- [Use The Library from the `JCenter`](#use-the-library-from-the-jcenter)
+- [Method 2: Use The Library from the `JCenter`](#method-2-use-the-library-from-the-jcenter)
+- [Method 3: Use a Library Package from Maven Local](#method-3-use-a-library-package-from-maven-local)
 - [Download and Use This complete Project](#download-and-use-this-complete-project)
 - [Main's Referenecs](#mains-referenecs)
 - [Referenecs](#referenecs)
@@ -73,7 +74,7 @@ EXISTING_APP_ID=118 && NEW_APP_ID=119 \
 
 
 
-## Use and Test The Library from the Website `bintrag.com`
+## Method 1: Use and Test The Library from the Website `bintrag.com`
 
 
 ### download the library package from bintray.com
@@ -108,7 +109,7 @@ nano ./app/build.gradle
 
 
 
-## Use The Library from the `JCenter`
+## Method 2: Use The Library from the `JCenter`
 
 ```bash
 # DO (View your JCenter Library Package)
@@ -134,6 +135,33 @@ nano ./app/build.gradle
 
 
 
+## Method 3: Use a Library Package from Maven Local
+
+```bash
+# DO (publish to Local System)
+./gradlew clean build publishToMavenLocal
+
+# DO (view the library package)
+ls -al ./.m2/repository/de/iotoi/basic_119/0.119.1/basic_119-0.119.1.jar 
+```
+
+```bash
+# DO (edit the file ./app/build.gradle)
+nano ./app/build.gradle
+    # FILE (./app/build.gradle)
+    ...
+    dependencies {
+        implementation files(System.getenv("HOME") + "/.m2/repository/de/iotoi/basic_119/0.119.1/basic_119-0.119.1.jar") 
+    }
+```
+
+```bash
+# DO (run the application)
+./gradlew -q app:run
+```
+
+
+
 ## Download and Use This complete Project
 
 ```bash
@@ -145,6 +173,7 @@ git clone -b basic_119 https://github.com/cnruby/gradle_java.git basic_119
 # Usage for the project
 google-chrome https://github.com/cnruby/gradle_java/releases/tag/v0.119.1
 ```
+
 
 
 ## Main's Referenecs
@@ -164,4 +193,4 @@ google-chrome https://github.com/cnruby/gradle_java/releases/tag/v0.119.1
 - https://stackoverflow.com/questions/1078524/how-to-specify-the-location-with-wget
 - https://stackoverflow.com/questions/20700053/how-to-add-local-jar-file-dependency-to-build-gradle-file
 - https://stackoverflow.com/questions/17262856/how-to-set-the-project-name-group-version-plus-source-target-compatibility-in
-
+- https://proandroiddev.com/tip-work-with-third-party-projects-locally-with-gradle-961d6c9efb02
