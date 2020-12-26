@@ -47,7 +47,7 @@ bintray{
     pkg{
         repo = project.bintrayRepo
         name = project.applicationName
-        desc = startScripts.description
+        desc = project.description
         licenses = ['Apache-2.0']
         vcsUrl = project.vcsUrl
         labels = ['java, demo, jcenter, library, gradle, bintray, publish, example, tutorial']

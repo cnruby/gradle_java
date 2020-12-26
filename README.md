@@ -10,13 +10,13 @@
 [![CI--basic_117](https://github.com/cnruby/gradle_java/workflows/CI--basic_117/badge.svg?branch=basic_117)](https://github.com/cnruby/gradle_java/actions?query=workflow%3ACI--basic_117)
 [![Release--basic_117](https://github.com/cnruby/gradle_java/workflows/Release--basic_117/badge.svg?branch=basic_117)](https://github.com/cnruby/gradle_java/actions)
 [![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_117.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_117)
-[![Download](https://api.bintray.com/packages/cnruby/gradle_java_jcenter/basic_117/images/download.svg?version=0.117.2) ](https://bintray.com/cnruby/gradle_java_jcenter/basic_117/0.117.2/link)
+[![Download](https://api.bintray.com/packages/cnruby/gradle_java_jcenter/basic_117/images/download.svg?version=0.117.3) ](https://bintray.com/cnruby/gradle_java_jcenter/basic_117/0.117.2/link)
 
 
 ---
 
 
-basic_117 v2 Hello Publishing Application!
+basic_117 v3 Hello Publishing Application!
 <h1>Lesson 117: Hello Publishing Application!</h1>
 
 - How to Publish `Java Application` to JCenter
