@@ -14,7 +14,7 @@ defaults: &defaults
     TERM: dumb
 
 jobs:
-  _build:
+  project_build:
     <<: *defaults
     steps:      
       # install tool screen
