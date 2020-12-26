@@ -67,12 +67,12 @@ jobs:
       - run: 
           name: "run application to OS"
           command: |
-            build/install/_gradle_java/bin/basic_117
+            ./build/install/_gradle_java/bin/_gradle_java
 
       - run:
           name: "test the application from jcenter"
           command: |
             wget https://dl.bintray.com/cnruby/gradle_java_jcenter/de/iotoi/basic_117/0.117.2/basic_117-0.117.2.zip
-            unzip _gradle_java-0.117.2.zip
-            ./_gradle_java-0.117.2/bin/basic_117 
+            unzip basic_117-0.117.2.zip
+            ./_gradle_java-0.117.2/bin/_gradle_java
 
