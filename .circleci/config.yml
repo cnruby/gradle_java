@@ -111,12 +111,16 @@ jobs:
             sudo apt install curl -y
 
       - run:
-          name: "archives all configured gretty products"
+          name: "start webserver with web app"
           command: |
             docker build --tag=120_gradle_java_image .
             docker run -d --name=120_gradle_java_container -p 80:8080 120_gradle_java_image
-            curl http://localhost:80/
-            curl http://localhost:80/hello
+
+      - run:
+          name: "browse thw website"
+          command: |
+            curl http://127.0.0.1:80/
+            curl http://127.0.0.1:80/hello
             docker stop 120_gradle_java_container
 
 workflows:
