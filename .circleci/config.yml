@@ -99,26 +99,10 @@ jobs:
             cp -rf ./build/libs/_gradle_java-0.120.1.war /var/lib/jetty/webapps/ROOT.war
 
   bintray_build:
-    <<: *defaults
+    machine: true
     steps:      
       - checkout
   
-      - run:
-          name: "build application"
-          command: |
-            whoami
-            cp ./jcenter.properties.sample ~/jcenter.properties
-            ./gradlew clean build
-
-      - run:
-          name: "archives all configured gretty products"
-          command: |
-            ./gradlew archiveAllProducts
-
-      - setup_remote_docker:
-          version: 19.03.13
-          docker_layer_caching: true
-
       - run:
           name: "archives all configured gretty products"
           command: |
