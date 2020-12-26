@@ -104,11 +104,11 @@ jobs:
       - checkout
   
       - run: 
-        name: install tool curl
-        command: |
-          cat /etc/*-release
-          apt update -y
-          apt install curl -y
+          name: "install tool curl"
+          command: |
+            cat /etc/*-release
+            apt update -y
+            apt install curl -y
 
       - run:
           name: "archives all configured gretty products"
