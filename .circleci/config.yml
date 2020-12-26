@@ -13,22 +13,22 @@ defaults: &defaults
     JVM_OPTS: -Xmx3200m
     TERM: dumb
 
+  steps:      
+    # install tool screen
+    - run: 
+        name: install tool screen
+        command: |
+          whoami
+          cat /etc/*-release
+          apt update -y
+          apt install screen -y
+          screen –version
+
+    - checkout
+
 jobs:
   project_build:
     <<: *defaults
-    steps:      
-      # install tool screen
-      - run: 
-          name: install tool screen
-          command: |
-            whoami
-            cat /etc/*-release
-            apt update -y
-            apt install screen -y
-            screen –version
-
-      - checkout
-
       # /var/lib/jetty/repo
       - run: pwd
       # /var/lib/jetty/repo/build.gradle
@@ -61,19 +61,6 @@ jobs:
 
   local_build:
     <<: *defaults
-    steps:      
-      # install tool screen
-      - run: 
-          name: install tool screen
-          command: |
-            whoami
-            cat /etc/*-release
-            apt update -y
-            apt install screen -y
-            screen –version
-
-      - checkout
-
       # Download and cache dependencies
       # https://circleci.com/docs/2.0/caching/
       - restore_cache:
@@ -108,7 +95,7 @@ jobs:
           name: "start webapp on docker"
           command: |
             ls -al /var/lib/jetty/webapps/
-            cp -rf ./build/libs/_gradle_java.war /var/lib/jetty/webapps/ROOT.war
+            cp -rf ./build/libs/_gradle_java-0.120.1.war /var/lib/jetty/webapps/ROOT.war
 
 
 workflows:
