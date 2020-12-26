@@ -39,14 +39,16 @@
   - [add bintray.com account](#add-bintraycom-account)
   - [change the build file `./build.gradle`](#change-the-build-file-buildgradle)
   - [publish web application](#publish-web-application)
+- [Use The Web Application from bintray.com](#use-the-web-application-from-bintraycom)
+  - [Show Web Application Result](#show-web-application-result-1)
 - [Develop the Web Application on Project](#develop-the-web-application-on-project)
   - [IF ( need to get help )](#if--need-to-get-help--1)
   - [ELSE ( start the application )](#else--start-the-application--1)
-  - [Show Web Application Result](#show-web-application-result-1)
+  - [Show Web Application Result](#show-web-application-result-2)
 - [Develop the Web Application on Local](#develop-the-web-application-on-local)
   - [IF ( need to get help )](#if--need-to-get-help--2)
   - [ELSE ( start the web application )](#else--start-the-web-application-)
-  - [Show Web Application Result](#show-web-application-result-2)
+  - [Show Web Application Result](#show-web-application-result-3)
 - [Working Processes](#working-processes)
 - [Download and Use This complete Project](#download-and-use-this-complete-project)
 - [References](#references)
@@ -66,7 +68,6 @@
 - [IntelliJ IDEA Community](https://www.jetbrains.com/de-de/idea/download/#section=linux)
 - [CircleCI Account](https://circleci.com/vcs-authorize/)
 - [install Docker on Ubuntu](https://docs.docker.com/engine/install/ubuntu/) OR [Using Docker](https://github.com/cnruby/gradle_java/tree/basic_002)
-- 
 
 
 
@@ -151,7 +152,6 @@ vi Dockerfile
 
 
 ## Publish Web Application to JCenter
-
 
 ### add bintray.com account
 ```bash
@@ -260,6 +260,32 @@ nano ./build.gradle
 
 
 
+## Use The Web Application from bintray.com
+
+
+```bash
+# DO (download war from bintray.com)
+wget https://dl.bintray.com/cnruby/gradle_java_jcenter/de/iotoi/basic_120/0.120.1/basic_120-0.120.1.war -O _gradle_java.war
+
+# DO (create a docker image)
+docker build --tag=120_gradle_java .
+
+# DO (use a docker container)
+docker run -p 80:8080 120_gradle_java
+```
+
+### Show Web Application Result
+```bash
+    # DO (open a new terminal)
+    google-chrome http://localhost:80/
+        # >> Result
+        Hello Publishing Web App!
+    google-chrome http://localhost:80/hello
+        # >> Result
+        [8,3,2,1,8]
+```
+
+
 
 ## Develop the Web Application on Project
 
@@ -343,7 +369,6 @@ nano ./build.gradle
         # >> Result
         [8,3,2,1,8]
 ```
-
 
 
 

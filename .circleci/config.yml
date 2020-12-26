@@ -1,22 +1,20 @@
-# Java Gradle CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-java/ for more details
-#
+defaults: &defaults
+  docker:
+    - image: jetty:9.4.35-jdk11
+      user: root
+    # https://stackoverflow.com/questions/50320263/change-user-on-circleci
+    # https://blog.sshn.me/posts/circleci-change-user/
+    # https://circleci.com/blog/how-to-do-vulnerability-management-with-docker-and-ci-cd/
+
+  environment:
+    # Customize the JVM maximum heap limit
+    JVM_OPTS: -Xmx3200m
+    TERM: dumb
+
 version: 2
 jobs:
-  build:
-    docker:
-      - image: jetty:9.4.35-jdk11
-        user: root
-      # https://stackoverflow.com/questions/50320263/change-user-on-circleci
-      # https://blog.sshn.me/posts/circleci-change-user/
-      # https://circleci.com/blog/how-to-do-vulnerability-management-with-docker-and-ci-cd/
-
-    environment:
-      # Customize the JVM maximum heap limit
-      JVM_OPTS: -Xmx3200m
-      TERM: dumb
-
+  _build:
+    <<: *defaults
     steps:      
       # install tool screen
       - run: 
@@ -52,12 +50,48 @@ jobs:
           name: "build application"
           command: |
             whoami
+            cp ./jcenter.properties.sample ~/jcenter.properties
             ./gradlew clean build
 
       - run:
           name: "start webapp on project"
           command: |
             screen -d -m -s "webapp_on_project" ./gradlew appRun
+
+  local_build:
+    <<: *defaults
+    steps:      
+      # install tool screen
+      - run: 
+          name: install tool screen
+          command: |
+            whoami
+            cat /etc/*-release
+            apt update -y
+            apt install screen -y
+            screen –version
+
+      - checkout
+
+      # Download and cache dependencies
+      # https://circleci.com/docs/2.0/caching/
+      - restore_cache:
+          keys:
+          - gradle-repo-v1-{{ .Branch }}-{{ checksum "build.gradle" }}
+          - gradle-repo-v1-{{ .Branch }}-
+          - gradle-repo-v1-
+
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: gradle-repo-v1-{{ .Branch }}-{{ checksum "build.gradle" }}
+
+      - run:
+          name: "build application"
+          command: |
+            whoami
+            cp ./jcenter.properties.sample ~/jcenter.properties
+            ./gradlew clean build
 
       - run:
           name: "archives all configured gretty products"
@@ -74,3 +108,10 @@ jobs:
           command: |
             ls -al /var/lib/jetty/webapps/
             cp -rf ./build/libs/_gradle_java.war /var/lib/jetty/webapps/ROOT.war
+
+
+workflows:
+  build:
+    jobs:
+      - project_build
+      - local_build
