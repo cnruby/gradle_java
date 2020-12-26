@@ -100,6 +100,7 @@ jobs:
 
   bintray_build:
     machine: true
+    user: root
     steps:      
       - checkout
   
@@ -107,8 +108,8 @@ jobs:
           name: "install tool curl"
           command: |
             cat /etc/*-release
-            sudo apt update -y
-            sudo apt install curl -y
+            apt update -y
+            apt install curl -y
 
       - run:
           name: "archives all configured gretty products"
