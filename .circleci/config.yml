@@ -14,8 +14,6 @@ defaults: &defaults
     TERM: dumb
 
   steps:      
-    - checkout
-
     # Download and cache dependencies
     # https://circleci.com/docs/2.0/caching/
     - restore_cache:
@@ -43,6 +41,8 @@ jobs:
   project_build:
     <<: *defaults
     steps:      
+    - checkout
+
       # /var/lib/jetty/repo
       - run: pwd
       # /var/lib/jetty/repo/build.gradle
@@ -63,6 +63,8 @@ jobs:
   local_build:
     <<: *defaults
     steps:      
+      - checkout
+  
       - run:
           name: "build application"
           command: |
