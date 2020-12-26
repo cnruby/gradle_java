@@ -6,8 +6,8 @@ name: CI--basic_119
 # on: [push]
 on: 
   push:
-    branches:
-    # branches-ignore:
+    # branches:
+    branches-ignore:
       - basic_119
 
 jobs:
@@ -40,7 +40,7 @@ jobs:
       run: |
           ./gradlew -q app:run
 
-    - name: "Use and Test The Library from the Website `bintrag.com"
+    - name: Use and Test The Library from the Website `bintrag.com
       run: |
           if [ ! -d "libs" ]; then
             mkdir libs
@@ -49,12 +49,12 @@ jobs:
           cp -f app/build.gradle.m1 app/build.gradle
           ./gradlew -q app:run
           
-    - name: "Use The Library from the `JCenter`"
+    - name: Use The Library from the JCenter
       run: |
           cp -f app/build.gradle.m2 app/build.gradle
           ./gradlew -q app:run
 
-    - name: "Use a Library Package from Maven Local"
+    - name: Use a Library Package from Maven Local
       run: |
           cp -f app/build.gradle.m3 app/build.gradle
           ./gradlew clean build publishToMavenLocal

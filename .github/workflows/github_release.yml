@@ -2,8 +2,8 @@ name: Release--basic_119
 
 on: 
   push:
-    # branches:
-    branches-ignore:
+    branches:
+    # branches-ignore:
       - basic_119
 
 jobs:
@@ -34,23 +34,25 @@ jobs:
               # DO (unzip the file)
               unzip gradle_java-0.119.1.zip && cd gradle_java-0.119.1
 
-
-              # 1. Usage for the project
-
               # DO (build and run the subproject `app`)
               ./gradlew -q app:run
 
+              # DO (Use and Test The Library from the Website `bintrag.com)
+              if [ ! -d "libs" ]; then
+                mkdir libs
+              fi
+              wget -P ./libs/ https://dl.bintray.com/cnruby/gradle_java_jcenter/de/iotoi/basic_118/0.118.1/basic_118-0.118.1.jar
+              cp -f app/build.gradle.m1 app/build.gradle
+              ./gradlew -q app:run
+                  
+              # DO (Use The Library from the `JCenter`)
+              cp -f app/build.gradle.m2 app/build.gradle
+              ./gradlew -q app:run
 
-              # 2. Usage Subproject `app` for OS
-
-              # DO (install the subproject `app` as a distribution as-is)
-              ./gradlew app:installDist
-
-              # DO (run application for the subproject `app` for Ubuntu OS)
-              ./app/build/install/app/bin/basic_119
-
-              # DO (run application for the subproject `app` for Winsows OS)
-              ./app/build/install/app/bin/basic_119.bat
+            - name: "Use a Library Package from Maven Local"
+              cp -f app/build.gradle.m3 app/build.gradle
+              ./gradlew clean build publishToMavenLocal
+              ./gradlew -q app:run
             ```
           draft: false
           prerelease: false
