@@ -111,10 +111,17 @@ jobs:
             sudo apt install curl wget -y
 
       - run:
+          name: "get war file from bintray.com"
+          command: |
+            rm -rf _gradle_java.war
+            wget https://dl.bintray.com/cnruby/gradle_java_jcenter/de/iotoi/basic_120/0.120.1/basic_120-0.120.1.war -O _gradle_java.war
+
+      - run:
           name: "start webserver with web app"
           command: |
             docker build --tag=120_gradle_java_image .
             docker run -d --name=120_gradle_java_container -p 80:8080 120_gradle_java_image
+
 
       # - run:
       #     name: "browse the website"
