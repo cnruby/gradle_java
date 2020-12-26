@@ -1,3 +1,5 @@
+version: 2.1
+
 defaults: &defaults
   docker:
     - image: jetty:9.4.35-jdk11
@@ -11,7 +13,6 @@ defaults: &defaults
     JVM_OPTS: -Xmx3200m
     TERM: dumb
 
-version: 2
 jobs:
   _build:
     <<: *defaults
