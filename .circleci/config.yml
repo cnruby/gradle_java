@@ -41,7 +41,7 @@ jobs:
   project_build:
     <<: *defaults
     steps:      
-    - checkout
+      - checkout
 
       # /var/lib/jetty/repo
       - run: pwd
