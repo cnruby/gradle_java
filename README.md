@@ -49,7 +49,7 @@ Hello "gradle_java"!
 | 117 | [Hello Publishing Application!](https://github.com/cnruby/gradle_java/tree/basic_117) |  |  |  |  |
 | 118 | [Hello Publishing Library!](https://github.com/cnruby/gradle_java/tree/basic_118) |  |  | [Hello Publishing Library!](https://github.com/cnruby/gradle_java/tree/basic_118) | [Hello Publishing Library!](https://github.com/cnruby/gradle_java/tree/basic_118) |
 | 119 | [Hello Bintray!](https://github.com/cnruby/gradle_java/tree/basic_119) |  |  | [Hello Bintray!](https://github.com/cnruby/gradle_java/tree/basic_119) | [Hello Bintray!](https://github.com/cnruby/gradle_java/tree/basic_119) |
-| 120 |  |  |  |  |  |
+| 120 |  |  |  | [Hello Publishing Web App!](https://github.com/cnruby/gradle_java/tree/basic_120) |  |
 | 121 |  |  |  |  |  |
 | 122 |  |  |  |  |  |
 | 123 |  |  |  |  |  |
