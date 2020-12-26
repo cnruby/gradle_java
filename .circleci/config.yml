@@ -108,6 +108,9 @@ jobs:
           command: |
             docker build --tag=120_gradle_java .
             docker run -p 80:8080 120_gradle_java
+            curl http://localhost:8080/
+            curl http://localhost:8080/hello
+            docker stop 120_gradle_java
 
 workflows:
   build:
