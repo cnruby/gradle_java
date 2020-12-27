@@ -7,7 +7,6 @@
 [![Ubuntu-(20.04LTS)](https://img.shields.io/badge/Ubuntu-%2020.04LTS-brightgreen)](https://ubuntu.com/)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/shyiko/jabba?label=jabba&logo=jabba)](https://github.com/shyiko/jabba)
 [![Java zulu-openjdk:11](https://img.shields.io/badge/Java-zulu%20openjdk:11-brightgreen?style=flat&logo=java)](https://www.azul.com/downloads/zulu-community/?package=jdk)
-![Gradle--Actions--for--Java](https://github.com/cnruby/gradle_java/workflows/Gradle--Actions--for--Java/badge.svg?branch=main)
 [![CircleCI](https://circleci.com/gh/cnruby/gradle_java.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java)
 
 ---
@@ -19,14 +18,14 @@ Hello "gradle_java"!
 
 
 
-- [Learn Java with Gradlee](#learn-java-with-gradlee)
+- [Learn Java with Gradle](#learn-java-with-gradle)
 - [Learn Tools and Others](#learn-tools-and-others)
 - [References GitHub Actions](#references-github-actions)
-- [References Gralde](#references-gralde)
+- [References Gradle](#references-gradle)
 
 
 
-## Learn Java with Gradlee
+## Learn Java with Gradle
 
 | Lesson |	Project App	|	Project Comman	|	Project Web App	| Multi-Project | Project Library |
 |---------|-------------|-------------|-------------|-------------|-------------|
@@ -59,12 +58,11 @@ Hello "gradle_java"!
 
 
 
-
 ## Learn Tools and Others
 - [basic_001 Hello IntelliJ IDEA!](https://github.com/cnruby/gradle_java/tree/basic_001)
 - [basic_002 Hello Docker!](https://github.com/cnruby/gradle_java/tree/basic_002)
 - [basic_003 Hello GitHub Actions Release!](https://github.com/cnruby/gradle_java/tree/basic_003)
-
+- [basic_004 Hello JCenter!](https://github.com/cnruby/gradle_java/tree/basic_004)
 
 
 ## References GitHub Actions
@@ -76,5 +74,5 @@ Hello "gradle_java"!
 
 
 
-## References Gralde
+## References Gradle
 - https://stackoverflow.com/questions/11749384/gradle-include-properties-file/33484783
