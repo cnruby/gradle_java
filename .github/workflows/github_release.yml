@@ -24,7 +24,8 @@ jobs:
           release_name: Project--"basic_120"--for--The--Release
           body: |
             ### ABOUT
-            - develop simple Java application with Gradle
+            - Publish A Web Application to JCenter
+            - Publish A Web Application to Maven Local
             
             ### USAGE
             ```bash
