@@ -6,8 +6,8 @@ name: CI--basic_118
 # on: [push]
 on: 
   push:
-    branches:
-    # branches-ignore:
+    # branches:
+    branches-ignore:
       - basic_118
 
 jobs:

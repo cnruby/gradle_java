@@ -262,7 +262,7 @@ nano lib/build.gradle
     # >> Result: nothing
 
 # DO (build and publsih the java library)
-./gradlew clean build bintrayPublish
+./gradlew clean build bintrayUpload
     # >> Result
     > Task :lib:bintrayUpload
     Uploading to https://api.bintray.com/content/cnruby/gradle_java_jcenter/basic_118/0.118.1/de/iotoi/lib/0.118.1/lib-0.118.1-sources.jar...

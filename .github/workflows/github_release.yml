@@ -77,7 +77,7 @@ jobs:
               # 4. MUST Push the java project to your GitHub
 
               # 5. Publish the library to bintray.com
-                ./gradlew clean build bintrayUpdate
+                ./gradlew clean build bintrayUpload
 
               # 6 Goto bintray.com
             ```
