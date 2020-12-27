@@ -33,7 +33,7 @@ basic_117 v2 Hello Publishing Application!
   - [add a gradle properties file `gradle.properties`](#add-a-gradle-properties-file-gradleproperties)
   - [add configuration to the build file `build.gradle`](#add-configuration-to-the-build-file-buildgradle)
   - [define publishing content to the build file `build.gradle`](#define-publishing-content-to-the-build-file-buildgradle)
-  - [configre the jecnter's values](#configre-the-jecnters-values)
+  - [configure the JCenter's values](#configure-the-jcenters-values)
 - [Publish the Java Application](#publish-the-java-application)
   - [build the Java application](#build-the-java-application)
   - [publish the Java Application to JCenter](#publish-the-java-application-to-jcenter)
@@ -166,7 +166,7 @@ nano ./build.gradle
     }
 ```
 
-### configre the jecnter's values
+### configure the JCenter's values
 - should change all words with beginning `your`.
 
 ```bash
@@ -240,7 +240,7 @@ wget https://dl.bintray.com/cnruby/gradle_java_jcenter/de/iotoi/_gradle_java/0.1
 # DO (unzip the file)
 unzip _gradle_java-0.117.1.zip
 
-# DO (run the java applcation)
+# DO (run the java application)
 ./_gradle_java-0.117.1/bin/basic_117
 ```
 
