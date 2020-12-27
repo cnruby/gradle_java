@@ -44,7 +44,7 @@ basic_117 v2 Hello Publishing Application!
   - [Download the project](#download-the-project)
   - [Usage for the project](#usage-for-the-project)
 - [Main's References](#mains-references)
-- [Refeneces](#refeneces)
+- [References](#references)
 
 
 
@@ -279,7 +279,7 @@ git clone -b basic_117 https://github.com/cnruby/gradle_java.git basic_117
 ## Main's References
 - https://docs.gradle.org/current/userguide/distribution_plugin.html
 
-## Refeneces
+## References
 - https://jcenter.bintray.com/de/iotoi/demo-jcenter/
 - https://dl.bintray.com/cnruby/gradle_java_jcenter/de/iotoi/demo-jcenter/
 - https://livebook.manning.com/book/gradle-in-action/
