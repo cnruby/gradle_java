@@ -41,7 +41,6 @@ jobs:
             apt update -y
             apt install screen netcat -y
             screen –version
-            nc -v
 
       # /var/lib/jetty/repo
       - run: pwd
@@ -101,14 +100,6 @@ jobs:
             screen -d -m -s "webapp_on_local" ./build/output/_gradle_java/start.sh
 
       - run:
-          name: "browse the website"
-          command: |
-            sleep 5 && nc -vz localhost 8080
-            curl http://127.0.0.1:8080/
-            curl http://127.0.0.1:8080/hello
-            ./build/output/_gradle_java/stop.sh
-
-      - run:
           name: "start webapp on docker"
           command: |
             ls -al /var/lib/jetty/webapps/
@@ -165,6 +156,7 @@ jobs:
           name: "start webserver with web app"
           command: |
             docker build --tag=120_gradle_java_image .
+            docker container rm 120_gradle_java_container
             docker run -d --name=120_gradle_java_container -p 80:8080 120_gradle_java_image
 
       - run:
