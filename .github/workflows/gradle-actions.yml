@@ -24,13 +24,15 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
-    - name: install tool screen
+    - name: install tools
       run: |
         whoami
         cat /etc/*-release
-        apt update -y
-        apt install screen wget unzip -y
+        sudo apt update -y
+        sudo apt install screen wget unzip -y
         screen –version
+        wget --version
+        unzip --version
 
     - name: Check--the--project
       run: |
