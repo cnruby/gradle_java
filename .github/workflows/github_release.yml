@@ -1,0 +1,91 @@
+name: Release--basic_120
+
+on: 
+  push:
+    branches:
+    # branches-ignore:
+      - basic_120
+
+jobs:
+  build:
+    name: Create--Release--"basic_120"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout--Code
+        uses: actions/checkout@v2
+      - name: Create--Release--for--Branch--"basic_120"
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: v0.120.1
+          release_name: Project--"basic_120"--for--The--Release
+          body: |
+            ### ABOUT
+            - develop simple Java application with Gradle
+            
+            ### USAGE
+            ```bash
+              # DO (download the zip file)
+              wget https://github.com/cnruby/gradle_java/archive/v0.120.1.zip -O gradle_java-0.120.1.zip
+
+              # DO (unzip the file)
+              unzip gradle_java-0.120.1.zip && cd gradle_java-0.120.1
+
+              # 1. change your bintray info
+
+                # DO (copy a JCenter's username and password sample file)
+                cp ./jcenter.properties.sample ~/jcenter.properties
+                
+                # DO (edit the real JCenter's username and password)
+                # !!! first sign in JCenter by JCenter's username and password              
+                nano ~/jcenter.properties
+
+                # DO (edit the gradle properties file)
+                nano ./gradle.properties
+                    # FILE (./gradle.properties)
+                    bintrayRepo=<your_bintray_repo>
+                    libraryName=<your_library_name>
+                    group=<your_group_name>
+                    version=<your_library_version>
+                    description=<your_library_description>
+                    vcsUrl=<your_library_github_repo_link>
+                
+                # DO (check the web application)
+                ./gradlew -q check
+                    # >> Result: nothing
+
+              # 2. Usage for the project
+
+                # DO (spin up the web application)
+                ./gradlew -q appRun
+
+                curl http://127.0.0.1:8080/
+                curl http://127.0.0.1:8080/hello
+
+                # DO (Enter Ctrl+C, then stop web server)
+
+              # 3. MUST Push the web application to your GitHub
+
+              # 4. Publish the library to bintray.com
+                ./gradlew clean build bintrayUpload
+
+              # 5. Goto bintray.com
+                # DO (add your package to jcenter)
+                # !!! waiting for approved
+
+              # 6. Test the published web application
+                rm -rf _gradle_java.war
+                wget https://jcenter.bintray.com/de/iotoi/basic_120/0.120.1/basic_120-0.120.1.war -O _gradle_java.war
+                docker build --tag=120_gradle_java_image .
+                docker container rm 120_gradle_java_container
+                docker run -d --name=120_gradle_java_container -p 80:8080 120_gradle_java_image
+                sleep 5 && nc -vz localhost 80
+                curl http://127.0.0.1:80/
+                curl http://127.0.0.1:80/hello
+                docker stop 120_gradle_java_container
+            ```
+          draft: false
+          prerelease: false

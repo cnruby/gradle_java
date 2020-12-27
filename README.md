@@ -10,7 +10,6 @@
 [![Docker-(2019.03.13)](https://img.shields.io/badge/Docker-%2019.03.13-brightgreen)](https://www.docker.com/)
 [![docker jetty-(9.4.35)](https://img.shields.io/github/v/release/eclipse/jetty.project?logo=jetty&style=plastic)](https://github.com/eclipse/jetty.project)
 [![gretty-(2.0.0)](https://img.shields.io/github/v/tag/akhikhl/gretty?label=gretty&logo=gretty&style=plastic)](https://github.com/akhikhl/gretty)
-[![CI--basic_120](https://github.com/cnruby/gradle_java/workflows/CI--basic_120/badge.svg?branch=basic_120)](https://github.com/cnruby/gradle_java/actions?query=workflow%3ACI--basic_120)
 [![Release--basic_120](https://github.com/cnruby/gradle_java/workflows/Release--basic_120/badge.svg?branch=basic_120)](https://github.com/cnruby/gradle_java/actions)
 [![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_120.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_120)
 [ ![Download](https://api.bintray.com/packages/cnruby/gradle_java_jcenter/basic_120/images/download.svg?version=0.120.1) ](https://bintray.com/cnruby/gradle_java_jcenter/basic_120/0.120.1/link)
@@ -18,7 +17,7 @@
 
 --- 
 
-!!! TODO basic_120 Hello Publishing Web App!
+basic_120 Hello Publishing Web App!
 <h1>Lesson 120: Hello Publishing Web App!</h1>
 
 - Publish A Web Application to Maven Local
@@ -36,27 +35,17 @@
   - [ELSE ( start the application )](#else--start-the-application-)
   - [Show Web Application Result](#show-web-application-result)
 - [Publish Web Application to JCenter](#publish-web-application-to-jcenter)
+  - [change the gradle properties file `gradle.properties`](#change-the-gradle-properties-file-gradleproperties)
   - [add bintray.com account](#add-bintraycom-account)
   - [change the build file `./build.gradle`](#change-the-build-file-buildgradle)
   - [publish web application](#publish-web-application)
-- [Use The Web Application from bintray.com](#use-the-web-application-from-bintraycom)
-  - [Show Web Application Result](#show-web-application-result-1)
-- [Develop the Web Application on Project](#develop-the-web-application-on-project)
-  - [IF ( need to get help )](#if--need-to-get-help--1)
-  - [ELSE ( start the application )](#else--start-the-application--1)
-  - [Show Web Application Result](#show-web-application-result-2)
-- [Develop the Web Application on Local](#develop-the-web-application-on-local)
-  - [IF ( need to get help )](#if--need-to-get-help--2)
-  - [ELSE ( start the web application )](#else--start-the-web-application-)
-  - [Show Web Application Result](#show-web-application-result-3)
-- [Working Processes](#working-processes)
 - [Download and Use This complete Project](#download-and-use-this-complete-project)
 - [References](#references)
 
 
 
 ## Keywords
-- bintray jcenter publish Gretty jetty `Web Application` `web-app` 
+- bintray JCenter publish Gretty jetty `Web Application` `web-app` 
 - Ubuntu Java Gradle tutorial example `gradle plugin` `web server`
 - `Continuous Integration` CI `Continuous Deployment` CD CircleCI
 
@@ -153,14 +142,39 @@ vi Dockerfile
 
 ## Publish Web Application to JCenter
 
+### change the gradle properties file `gradle.properties`
+```bash
+# DO (edit the gradle properties file)
+nano ./gradle.properties
+    # FILE (./gradle.properties)
+    applicationName=basic_120
+    bintrayRepo=gradle_java_jcenter
+    group=de.iotoi
+    version=0.120.1
+    description=Hello Publishing Web App!
+    vcsUrl=https://github.com/cnruby/gradle_java
+```
+
 ### add bintray.com account
 ```bash
-# DO (copy a jcenter's username and password sample file)
+# DO (copy a JCenter's username and password sample file)
 cp ./jcenter.properties.sample ~/jcenter.properties
+    # FILE (./jcenter.properties.sample)
+    ext {
+        bintrayUser = "username"
+        bintrayApiKey = "1234567890qwertyuiopasdfghjklzxcvbnm1234"
+        gpgPassphrase = "password"
+    }
 
-# DO (edit the real jcenter's username and password)
-# !!! first sign in JCenter by jcenter's username and password              
+# DO (edit the real JCenter's username and password)
+# !!! first sign in JCenter by JCenter's username and password              
 nano ~/jcenter.properties
+    # FILE (./jcenter.properties.sample)
+    ext {
+        bintrayUser = "<your_bintray_username>"
+        bintrayApiKey = "<your_bintray_api_key>"
+        gpgPassphrase = "<your_bintray_password>"
+    }
 
 # DO (check the application `App`)
 ./gradlew -q check
@@ -175,11 +189,11 @@ nano ./build.gradle
         id 'java-library'
         id 'com.jfrog.bintray' version '1.8.5'
         id 'maven-publish'
+        id 'war'
     }
 
     sourceCompatibility = JavaVersion.VERSION_11
     apply from: System.getenv("HOME") + "/jcenter.properties"
-    apply plugin: 'war'
     apply from: 'https://raw.github.com/gretty-gradle-plugin/gretty/master/pluginScripts/gretty.plugin'
 
     repositories {
@@ -237,8 +251,9 @@ nano ./build.gradle
 ```
 
 ### publish web application
+
 ```bash
-# DO (Publish)
+# DO (Publish the web application)
 ./gradlew clean build bintrayUpload
 
     # >> Result
@@ -256,137 +271,6 @@ nano ./build.gradle
 
     BUILD SUCCESSFUL in 1m 23s
     8 actionable tasks: 6 executed, 2 up-to-date
-```
-
-
-
-## Use The Web Application from bintray.com
-
-
-```bash
-# DO (download war from bintray.com)
-wget https://dl.bintray.com/cnruby/gradle_java_jcenter/de/iotoi/basic_120/0.120.1/basic_120-0.120.1.war -O _gradle_java.war
-
-# DO (create a docker image)
-docker build --tag=120_gradle_java .
-
-# DO (use a docker container)
-docker run -p 80:8080 120_gradle_java
-```
-
-### Show Web Application Result
-```bash
-    # DO (open a new terminal)
-    google-chrome http://localhost:80/
-        # >> Result
-        Hello Publishing Web App!
-    google-chrome http://localhost:80/hello
-        # >> Result
-        [8,3,2,1,8]
-```
-
-
-
-## Develop the Web Application on Project
-
-### IF ( need to get help )
-```bash
-    ./gradlew tasks | grep appRun
-```
-### ELSE ( start the application )
-```bash
-    # DO (change any code)    
-    ./gradlew appRun
-    # DO (Press any key to stop the server) IF stop the server
-# ENDIF
-```
-
-### Show Web Application Result
-```bash
-    # DO (open a new terminal)
-    curl http://localhost:8080/
-        # >> Result
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <title>Hello Publishing Web App!</title>
-        </head>
-        <body>
-        <center>
-            <h1>Hello Publishing Web App!</h1>
-        </center>
-        </body>
-        </html>
-    curl -L http://localhost:8080/hello
-        # >> Result
-        [8,3,2,1,8]
-```
-
-
-
-## Develop the Web Application on Local
-
-### IF ( need to get help )
-```bash
-    ./gradlew tasks | grep archiveAllProducts
-```
-### ELSE ( start the web application )
-```bash
-    # DO (change any code)
-    # DO (create a web application on local)
-    ./gradlew archiveAllProducts
-    # DO (start a web server with web application)
-    ./build/output/_gradle_java/start.sh
-    # IF stop the web server
-        # DO (open a new terminal)
-        # DO (stop the web server) 
-        ./build/output/_gradle_java/stop.sh
-    # ENDIF
-# ENDIF
-```
-
-### Show Web Application Result
-```bash
-    # DO (open a new terminal)
-    # DO (access the HTML file)
-    curl http://localhost:8080/
-        # >> Result
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <title>Hello Publishing Web App!</title>
-        </head>
-        <body>
-        <center>
-            <h1>Hello Publishing Web App!</h1>
-        </center>
-        </body>
-        </html>
-    # DO (access the Java Servlet)
-    curl -L http://localhost:8080/hello
-        # >> Result
-        [8,3,2,1,8]
-```
-
-
-
-## Working Processes
-
-```bash
-# FOR loop
-    # DO (change any code )
-    # IF use Gretty jetty to develop the web application on project
-        # GOTO [Develop the Web Application on Project]
-    # ENDIF
-    # IF use Gretty jetty to develop the web application on local system
-        # GOTO [Develop the Web Application on Local]
-    # ENDIF
-    # IF use jetty Docker to develop the web application
-        # GOTO [Develop the Web Application on Docker]
-    # ENDIF
-# ENDFOR
 ```
 
 
