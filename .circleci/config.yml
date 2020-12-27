@@ -34,13 +34,14 @@ jobs:
       - checkout
 
       - run: 
-          name: install tool screen
+          name: install tools
           command: |
             whoami
             cat /etc/*-release
             apt update -y
-            apt install screen -y
+            apt install screen netcat -y
             screen –version
+            nc -v
 
       # /var/lib/jetty/repo
       - run: pwd
@@ -74,12 +75,12 @@ jobs:
   
       # install tool screen
       - run: 
-          name: install tool screen
+          name: install tools
           command: |
             whoami
             cat /etc/*-release
             apt update -y
-            apt install screen -y
+            apt install screen netcat -y
             screen –version
 
       - run:
@@ -128,11 +129,11 @@ jobs:
       - checkout
 
       - run: 
-          name: "install tool curl"
+          name: "install tools"
           command: |
             cat /etc/*-release
             sudo apt update -y
-            sudo apt install curl wget -y
+            sudo apt install curl wget netcat -y
 
       - run:
           name: "get war file from bintray.com"

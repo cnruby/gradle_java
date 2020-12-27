@@ -29,7 +29,7 @@ jobs:
         whoami
         cat /etc/*-release
         sudo apt update -y
-        sudo apt install screen wget unzip -y
+        sudo apt install screen wget unzip netcat -y
         screen –version
         wget --version
         unzip --version
