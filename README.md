@@ -13,6 +13,7 @@
 [![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_110.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_110)
 
 
+---
 
 basic_110 Hello App with Docker!
 <h1>Lesson 110: Hello App with Docker!</h1>
@@ -113,10 +114,10 @@ docker build --tag=110_gradle_java .
 ### add a new tasks for the project
 
 ```bash
-# DO (edit the file ./build.gradde)
-vi ./build.gradde
+# DO (edit the file ./build.gradle)
+vi ./build.gradle
 
-    # FILE (./build.gradde)
+    # FILE (./build.gradle)
     ...
     task releaseRun {
         group = 'de.iotoi'
@@ -172,7 +173,7 @@ docker run 110_gradle_java
 # FOR
     # DO ( change any code ) IF need
     ./gradlew clean build
-    # IF will check the apllication
+    # IF will check the application
         ./gradlew run
     # ENDIF
     # IF ( change any code ) 
