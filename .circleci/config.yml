@@ -33,7 +33,6 @@ jobs:
     steps:      
       - checkout
 
-      # install tool screen
       - run: 
           name: install tool screen
           command: |
@@ -58,7 +57,15 @@ jobs:
       - run:
           name: "start webapp on project"
           command: |
-            screen -d -m -s "webapp_on_project" ./gradlew appRun
+            screen -d -m -s "webapp_on_project" ./gradlew jettyStart
+
+      - run:
+          name: "browse the website"
+          command: |
+            sleep 5 && nc -vz localhost 8080
+            curl http://127.0.0.1:8080/
+            curl http://127.0.0.1:8080/hello
+            ./gradlew jettyStop
 
   local_build:
     <<: *defaults
@@ -93,10 +100,25 @@ jobs:
             screen -d -m -s "webapp_on_local" ./build/output/_gradle_java/start.sh
 
       - run:
+          name: "browse the website"
+          command: |
+            sleep 5 && nc -vz localhost 8080
+            curl http://127.0.0.1:8080/
+            curl http://127.0.0.1:8080/hello
+            ./build/output/_gradle_java/stop.sh
+
+      - run:
           name: "start webapp on docker"
           command: |
             ls -al /var/lib/jetty/webapps/
             cp -rf ./build/libs/_gradle_java-0.120.1.war /var/lib/jetty/webapps/ROOT.war
+
+      - run:
+          name: "browse the website"
+          command: |
+            sleep 5 && nc -vz localhost 8080
+            curl http://127.0.0.1:8080/
+            curl http://127.0.0.1:8080/hello
 
   bintray_build:
     machine: true
@@ -117,6 +139,26 @@ jobs:
           command: |
             rm -rf _gradle_java.war
             wget https://dl.bintray.com/cnruby/gradle_java_jcenter/de/iotoi/basic_120/0.120.1/basic_120-0.120.1.war -O _gradle_java.war
+
+      - run:
+          name: "start webserver with web app"
+          command: |
+            docker build --tag=120_gradle_java_image .
+            docker run -d --name=120_gradle_java_container -p 80:8080 120_gradle_java_image
+
+      - run:
+          name: "browse the website"
+          command: |
+            sleep 5 && nc -vz localhost 80
+            curl http://127.0.0.1:80/
+            curl http://127.0.0.1:80/hello
+            docker stop 120_gradle_java_container
+
+      - run:
+          name: "get war file from JCenter"
+          command: |
+            rm -rf _gradle_java.war
+            wget https://jcenter.bintray.com/de/iotoi/basic_120/0.120.1/basic_120-0.120.1.war -O _gradle_java.war
 
       - run:
           name: "start webserver with web app"

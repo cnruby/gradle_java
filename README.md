@@ -410,3 +410,4 @@ APP_ID=120 && git clone -b basic_${APP_ID}  \
 ## References
 - https://github.com/bintray/bintray-examples/blob/master/gradle-example/build.gradle
 - https://circleci.com/docs/2.0/building-docker-images/
+- https://docs.gradle.org/current/userguide/war_plugin.html
