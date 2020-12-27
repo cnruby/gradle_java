@@ -29,9 +29,13 @@ jobs:
         whoami
         cat /etc/*-release
         sudo apt update -y
-        sudo apt install screen wget unzip netcat -y
+        sudo apt install screen wget netcat -y
         screen –version
         wget --version
+
+    - name: install tool unzip
+      run: |
+        sudo apt install unzip -y
         unzip --version
 
     - name: Check--the--project

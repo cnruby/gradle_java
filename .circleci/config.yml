@@ -59,13 +59,13 @@ jobs:
           command: |
             screen -d -m -s "webapp_on_project" ./gradlew jettyStart
 
-      - run:
-          name: "browse the website"
-          command: |
-            sleep 5 && nc -vz localhost 8080
-            curl http://127.0.0.1:8080/
-            curl http://127.0.0.1:8080/hello
-            ./gradlew jettyStop
+      # - run:
+      #     name: "browse the website"
+      #     command: |
+      #       sleep 5 && nc -vz localhost 8080
+      #       curl http://127.0.0.1:8080/
+      #       curl http://127.0.0.1:8080/hello
+      #       ./gradlew jettyStop
 
   local_build:
     <<: *defaults
@@ -105,12 +105,12 @@ jobs:
             ls -al /var/lib/jetty/webapps/
             cp -rf ./build/libs/_gradle_java-0.120.1.war /var/lib/jetty/webapps/ROOT.war
 
-      - run:
-          name: "browse the website"
-          command: |
-            sleep 5 && nc -vz localhost 8080
-            curl http://127.0.0.1:8080/
-            curl http://127.0.0.1:8080/hello
+      # - run:
+      #     name: "browse the website"
+      #     command: |
+      #       sleep 5 && nc -vz localhost 8080
+      #       curl http://127.0.0.1:8080/
+      #       curl http://127.0.0.1:8080/hello
 
   bintray_build:
     machine: true
