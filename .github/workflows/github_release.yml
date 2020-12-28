@@ -2,8 +2,8 @@ name: Release--basic_121
 
 on: 
   push:
-    # branches:
-    branches-ignore:
+    branches:
+    # branches-ignore:
       - basic_121
 
 jobs:
