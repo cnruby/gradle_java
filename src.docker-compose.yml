@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  src_disk_gradle_java:
+    build:
+      context: .
+      dockerfile: Dockerfiles/src.dist.Dockerfile
+  src_disk_as_is_gradle_java:
+    build:
+      context: .
+      dockerfile: Dockerfiles/src.distAsIs.Dockerfile
+  src_project_gradle_java:
+    build:
+      context: .
+      dockerfile: Dockerfiles/src.project.Dockerfile
+
+  alpine:
+    image: "alpine"

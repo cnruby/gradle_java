@@ -63,7 +63,6 @@ jobs:
           command: |
             ./gradlew clean build installDist
 
-
       - run: 
           name: "run application to OS"
           command: |
@@ -72,7 +71,8 @@ jobs:
       - run:
           name: "test the application from jcenter"
           command: |
-            wget https://dl.bintray.com/cnruby/gradle_java_jcenter/de/iotoi/basic_117/0.117.2/basic_117-0.117.2.zip
-            unzip basic_117-0.117.2.zip
-            ./_gradle_java-0.117.2/bin/_gradle_java
+            rm -rf _gradle_java-0.117.1 
+            wget https://dl.bintray.com/cnruby/gradle_java_jcenter/de/iotoi/_gradle_java/0.117.1/_gradle_java-0.117.1.zip
+            unzip _gradle_java-0.117.1.zip
+            ./_gradle_java-0.117.1/bin/basic_117
 

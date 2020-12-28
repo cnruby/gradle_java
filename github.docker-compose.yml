@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  github_disk_gradle_java:
+    build:
+      context: .
+      dockerfile: Dockerfiles/github.dist.Dockerfile
+  github_disk_as_is_gradle_java:
+    build:
+      context: .
+      dockerfile: Dockerfiles/github.distAsIs.Dockerfile
+  github_project_gradle_java:
+    build:
+      context: .
+      dockerfile: Dockerfiles/github.project.Dockerfile
+
+  alpine:
+    image: "alpine"
