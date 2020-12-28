@@ -2,8 +2,8 @@ name: Release--basic_117
 
 on: 
   push:
-    # branches:
-    branches-ignore:
+    branches:
+    # branches-ignore:
       - basic_117
 
 jobs:
@@ -38,11 +38,11 @@ jobs:
 
               # 1. Run the java application on project
 
-                # DO (copy a jcenter's username and password sample file)
+                # DO (copy a JCenter's username and password sample file)
                 cp ./jcenter.properties.sample ~/jcenter.properties
                 
-                # DO (edit the real jcenter's username and password)
-                # !!! first sign in JCenter by jcenter's username and password              
+                # DO (edit the real JCenter's username and password)
+                # !!! first sign in JCenter by JCenter's username and password              
                 nano ~/jcenter.properties
 
                 # DO (check the application `App`)
@@ -62,12 +62,12 @@ jobs:
                 # DO (run the application `App` for Ubuntu OS)
                 ./build/install/_gradle_java/bin/basic_117
 
-                # DO (run the application `App` for Winsows OS)
+                # DO (run the application `App` for Windows OS)
                 ./build/install/_gradle_java/bin/basic_117.bat
 
               # 3. Upload the Java Application to JCenter
 
-                # DO (clean, build and upload the appliction)
+                # DO (clean, build and upload the application)
                 ./gradlew clean build bintrayUpload
 
               # 4. Use the java application from JCenter
@@ -82,7 +82,7 @@ jobs:
                 # DO (run the application `App` for Ubuntu OS)
                 ./_gradle_java-0.117.2/bin/basic_117
 
-                # DO (run the application `App` for Winsows OS)
+                # DO (run the application `App` for Windows OS)
                 ./_gradle_java-0.117.2/bin/basic_117.bat
                     # >> Result
                     Hello world.

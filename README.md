@@ -16,7 +16,7 @@
 ---
 
 
-basic_117 v2 Hello Publishing Application!
+basic_117 v3 Hello Publishing Application!
 <h1>Lesson 117: Hello Publishing Application!</h1>
 
 - How to Publish `Java Application` to JCenter
@@ -272,7 +272,7 @@ git clone -b basic_117 https://github.com/cnruby/gradle_java.git basic_117
 ```
 
 ### Usage for the project
-- [Project--"basic_117"--for--The--Release](https://github.com/cnruby/gradle_java/releases/tag/v0.117.1)
+- [Project--"basic_117"--for--The--Release](https://github.com/cnruby/gradle_java/releases/tag/v0.117.3)
 
 
 
