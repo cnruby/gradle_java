@@ -26,6 +26,7 @@ basic_121 Hello Application Run!
 
 - [Keywords](#keywords)
 - [Prerequisites](#prerequisites)
+- [Map for this Project](#map-for-this-project)
 - [Create a Gradle Project from GitHub.com](#create-a-gradle-project-from-githubcom)
 - [Run the Java Project for Develop](#run-the-java-project-for-develop)
   - [Run this project as a JVM application](#run-this-project-as-a-jvm-application)
@@ -60,9 +61,11 @@ basic_121 Hello Application Run!
 ## Prerequisites
 - [install JDK on Ubuntu 20.04](https://github.com/cnruby/gradle_java/blob/basic_101/README.md)
 - [install Gradle on Ubuntu 20.04](https://github.com/cnruby/gradle_java/blob/basic_102/README.md)
-- [Bintray Account](https://bintray.com/login?forwardedFrom=%2F)
-- [Learn "Hello jcenter!"](https://github.com/cnruby/gradle_java/tree/basic_004)
-- [Learn "Hello Gradle Properties!"](https://github.com/cnruby/gradle_java/tree/basic_116)
+
+
+
+## Map for this Project
+![](doc/image/basic_121.png)
 
 
 
