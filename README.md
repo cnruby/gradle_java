@@ -41,7 +41,6 @@ basic_122 Hello Web App Run!
 - [Run the Web published Application on Docker](#run-the-web-published-application-on-docker)
 - [Download and Use This complete Project](#download-and-use-this-complete-project)
   - [Usage for the project](#usage-for-the-project)
-- [References](#references)
 
 
 
@@ -454,8 +453,3 @@ APP_ID=122 && git clone -b basic_${APP_ID}  \
 
 ### Usage for the project
 - [Project--"basic_122"--for--The--Release](https://github.com/cnruby/gradle_java/releases/tag/v0.122.1)
-
-
-
-## References
-- 
