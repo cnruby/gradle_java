@@ -10,11 +10,12 @@
 [![docker jetty-(9.4.35)](https://img.shields.io/github/v/release/eclipse/jetty.project?logo=jetty&style=plastic)](https://github.com/eclipse/jetty.project)
 [![gretty-(2.0.0)](https://img.shields.io/github/v/tag/akhikhl/gretty?label=gretty&logo=gretty&style=plastic)](https://github.com/akhikhl/gretty)
 [![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_122.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_122)
+[![Release--basic_122](https://github.com/cnruby/gradle_java/workflows/Release--basic_122/badge.svg?branch=basic_122)](https://github.com/cnruby/gradle_java/actions)
 
 
 ---
 
-basic_122 Hello Web App Run
+basic_122 Hello Web App Run!
 <h1>Lesson 122: Hello Web App Run!</h1>
 
 - How to Run A Web Application with Local Project
