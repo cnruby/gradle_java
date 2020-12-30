@@ -13,10 +13,10 @@
 
 ---
 
-basic_115
+basic_115 Hello Own Library!
 <h1>Lesson 115: Hello Own Library!</h1>
 
-- Delevop a multi-project with Java Appliction and Own Java Library
+- Develop a multi-project with Java Application and Own Java Library
 - Develop a multi-project from a project with single application
 
 
@@ -29,17 +29,17 @@ basic_115
 - [Develop the Java multi-project](#develop-the-java-multi-project)
   - [view the structure of a multi-project](#view-the-structure-of-a-multi-project)
   - [change the setting file `settings.gradle`](#change-the-setting-file-settingsgradle)
-- [add two subprojects to this project](#add-two-subprojects-to-this-project)
-- [Develop the subproject `lib`](#develop-the-subproject-lib)
+- [add two sub-projects to this project](#add-two-sub-projects-to-this-project)
+- [Develop the sub-project `lib`](#develop-the-sub-project-lib)
   - [change the gradle build file `lib/build.gradle`](#change-the-gradle-build-file-libbuildgradle)
-  - [change the Java file for subproject `lib`](#change-the-java-file-for-subproject-lib)
-- [Develop the subproject `app`](#develop-the-subproject-app)
+  - [change the Java file for sub-project `lib`](#change-the-java-file-for-sub-project-lib)
+- [Develop the sub-project `app`](#develop-the-sub-project-app)
   - [change the gradle build file `app/build.gradle`](#change-the-gradle-build-file-appbuildgradle)
-  - [change the Java file for subproject `app`](#change-the-java-file-for-subproject-app)
+  - [change the Java file for sub-project `app`](#change-the-java-file-for-sub-project-app)
   - [build the main Java application](#build-the-main-java-application)
-  - [run the java application for the subproject `app`](#run-the-java-application-for-the-subproject-app)
+  - [run the java application for the sub-project `app`](#run-the-java-application-for-the-sub-project-app)
 - [Download and Use This complete Project](#download-and-use-this-complete-project)
-- [Referenecs](#referenecs)
+- [References](#references)
 
 
 
@@ -115,19 +115,19 @@ nano ./settings.gradle
 ```
 
 
-## add two subprojects to this project
+## add two sub-projects to this project
 
 ```bash
 # DO (make two subproject folders)
 mkdir app lib
 
-# DO (copy the current project build file `build.gradle` to subprojects root folder)
+# DO (copy the current project build file `build.gradle` to sub-projects root folder)
 xargs -n 1 cp -v build.gradle <<< "./app/ ./lib/"
 
-# DO (copy the current project `src` folder to subprojects root folder)
+# DO (copy the current project `src` folder to sub-projects root folder)
 xargs -n 1 cp -vr src <<< "./app/ ./lib/"
 
-# DO (remvoe the the current project build file `build.gradle` and folder `src`)
+# DO (remove the the current project build file `build.gradle` and folder `src`)
 rm build.gradle && rm -rf src
 
 # DO (remove the testing java file)
@@ -178,7 +178,7 @@ nano lib/build.gradle
 
 
 
-## Develop the subproject `lib`
+## Develop the sub-project `lib`
 
 
 ### change the gradle build file `lib/build.gradle`
@@ -204,7 +204,7 @@ nano lib/build.gradle
     test {}
 ```
 
-### change the Java file for subproject `lib`
+### change the Java file for sub-project `lib`
 
 ```bash
 # DO (change the java file `lib/src/main/java/de/iotoi/App.java`)
@@ -222,7 +222,7 @@ mv lib/src/main/java/de/iotoi/App.java lib/src/main/java/de/iotoi/Lib.java
 
 
 
-## Develop the subproject `app`
+## Develop the sub-project `app`
 
 ### change the gradle build file `app/build.gradle`
 
@@ -259,7 +259,7 @@ nano app/build.gradle
     test {}
 ```
 
-### change the Java file for subproject `app`
+### change the Java file for sub-project `app`
 
 ```bash
 # DO (change the java file `app/src/main/java/de/iotoi/App.java`)
@@ -282,7 +282,7 @@ nano app/src/main/java/de/iotoi/App.java
 ./gradlew clean app:build
 ```
 
-### run the java application for the subproject `app` 
+### run the java application for the sub-project `app` 
 
 ```bash
 ./gradlew -q app:run
@@ -307,7 +307,7 @@ google-chrome https://github.com/cnruby/gradle_java/releases/tag/v0.115.1
 
 
 
-## Referenecs
+## References
 - https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/introduction-to-github-actions
 - https://medium.com/@shanemyrick/publishing-to-github-packages-with-gradle-and-github-actions-4ad842634c4e
 - https://www.flowsquad.io/blog/2020-05-29-devops-mit-github-teil-1-github-packages-mit-gradle/
