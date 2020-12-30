@@ -48,10 +48,12 @@ Hello "gradle_java"!
 | 117 | [Hello Publishing Application!](https://github.com/cnruby/gradle_java/tree/basic_117) |  |  |  |  |
 | 118 | [Hello Publishing Library!](https://github.com/cnruby/gradle_java/tree/basic_118) |  |  | [Hello Publishing Library!](https://github.com/cnruby/gradle_java/tree/basic_118) | [Hello Publishing Library!](https://github.com/cnruby/gradle_java/tree/basic_118) |
 | 119 | [Hello Bintray!](https://github.com/cnruby/gradle_java/tree/basic_119) |  |  | [Hello Bintray!](https://github.com/cnruby/gradle_java/tree/basic_119) | [Hello Bintray!](https://github.com/cnruby/gradle_java/tree/basic_119) |
-| 120 |  |  |  | [Hello Publishing Web App!](https://github.com/cnruby/gradle_java/tree/basic_120) |  |
-| 121 |  |  |  |  |  |
-| 122 |  |  |  |  |  |
+| 120 |  |  | [Hello Publishing Web App!](https://github.com/cnruby/gradle_java/tree/basic_120) |  |  |
+| 121 | [Hello Application Run!](https://github.com/cnruby/gradle_java/tree/basic_121) |  |  |  |  |
+| 122 |  |  | [Hello Web App Run!](https://github.com/cnruby/gradle_java/tree/basic_122) |  |  |
 | 123 |  |  |  |  |  |
+| 124 |  |  |  |  |  |
+| 125 |  |  |  |  |  |
 
 - Hello JUnit 5!
 - Hello Multi-Project!
