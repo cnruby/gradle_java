@@ -1,23 +1,20 @@
+# https://hub.docker.com/_/gradle
+FROM gradle:6.7.1-jdk11 AS gradle_build
+WORKDIR /home/gradle/src
+RUN wget https://jcenter.bintray.com/de/iotoi/basic_120/0.120.1/basic_120-0.120.1.war -O _gradle_java.war
+RUN ls -al /home/gradle/src
+
 # https://hub.docker.com/_/jetty
 FROM jetty:9.4.35-jre11
-# https://github.com/plantuml/plantuml-server/blob/master/Dockerfile.jetty
-# XXTODO
-# FROM jetty
-# FROM jetty:11.0.0-jre11
-MAINTAINER G.Luo
+MAINTAINER Gudao Luo
 
-# https://nickjanetakis.com/blog/docker-tip-2-the-difference-between-copy-and-add-in-a-dockerile
-ADD /build/libs/_gradle_java.war /var/lib/jetty/webapps/ROOT.war
-# ADD /build/libs/_gradle_java.war /var/lib/jetty/webapps/root.war
-#COPY /build/libs/_gradle_java.war /var/lib/jetty/webapps/ROOT.war
-#COPY /build/libs/_gradle_java.war /var/lib/jetty/webapps/root.war
+# USER root
+# RUN apt-get update && apt install wget
 
-USER root
-RUN apt-get update
+# USER jetty
+# RUN cat /etc/*-release
+# RUN java -version
 
-USER jetty
-RUN cat /etc/*-release
-RUN java -version
+COPY --from=gradle_build /home/gradle/src/_gradle_java.war  /var/lib/jetty/webapps/ROOT.war
 
-# Make port 8080 available to the world outside this container
 EXPOSE 8080
