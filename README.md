@@ -66,7 +66,6 @@ basic_122 Hello Web App Run!
 
 
 ## Create a Java Web Application from GitHub.com
-
 ```bash
 # DO (open a new terminal)
 EXISTING_APP_ID=111 && NEW_APP_ID=122 \
