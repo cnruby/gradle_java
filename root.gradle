@@ -1,0 +1,11 @@
+plugins {
+    id 'java'
+}
+
+sourceCompatibility = JavaVersion.VERSION_11
+description = 'This is a multi-project'
+
+repositories {
+    mavenCentral()
+    jcenter()
+}

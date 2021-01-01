@@ -1,0 +1,8 @@
+rootProject.name = '_gradle_java'
+include ("app", "lib")
+
+for (project in rootProject.children) {
+    project.projectDir = file("codename/${project.name}")
+}
+
+

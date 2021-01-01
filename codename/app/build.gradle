@@ -1,0 +1,13 @@
+plugins {
+    id 'application'
+}
+
+startScripts {
+    applicationName = 'basic_123'
+    group = 'de.iotoi'
+} 
+description = 'The main application for the project'
+
+dependencies { implementation project(':lib') }
+application { mainClass = "de.iotoi.App" }
+test {}

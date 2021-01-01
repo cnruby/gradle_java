@@ -1,27 +1,27 @@
-name: Release--basic_115
+name: Release--basic_123
 
 on: 
   push:
-    # branches:
-    branches-ignore:
-      - basic_115
+    branches:
+    # branches-ignore:
+      - basic_123
 
 jobs:
   build:
-    name: Create--Release--"basic_115"
+    name: Create--Release--"basic_123"
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout--Code
         uses: actions/checkout@v2
-      - name: Create--Release--for--Branch--"basic_115"
+      - name: Create--Release--for--Branch--"basic_123"
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: v0.115.1
-          release_name: Project--"basic_115"--for--The--Release
+          tag_name: v0.123.1
+          release_name: Project--"basic_123"--for--The--Release
           body: |
             ### ABOUT
             - develop simple Java application with Gradle
@@ -29,10 +29,10 @@ jobs:
             ### USAGE
             ```bash
               # DO (download the zip file)
-              wget https://github.com/cnruby/gradle_java/archive/v0.115.1.zip -O gradle_java-0.115.1.zip
+              wget https://github.com/cnruby/gradle_java/archive/v0.123.1.zip -O gradle_java-0.123.1.zip
 
               # DO (unzip the file)
-              unzip gradle_java-0.115.1.zip && cd gradle_java-0.115.1
+              unzip gradle_java-0.123.1.zip && cd gradle_java-0.123.1
 
 
               # 1. Usage for the project
@@ -47,10 +47,10 @@ jobs:
               ./gradlew app:installDist
 
               # DO (run application for the subproject `app` for Ubuntu OS)
-              ./app/build/install/app/bin/basic_115
+              ./codename/app/build/install/app/bin/basic_123
 
-              # DO (run application for the subproject `app` for Winsows OS)
-              ./app/build/install/app/bin/basic_115.bat
+              # DO (run application for the subproject `app` for Windows OS)
+              ./codename/app/build/install/app/bin/basic_123.bat
             ```
           draft: false
           prerelease: false

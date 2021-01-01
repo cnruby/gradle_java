@@ -49,4 +49,4 @@ jobs:
       - run: ./gradlew app:installDist
 
       # run application on OS System
-      - run: ./app/build/install/app/bin/basic_115
+      - run: ./codename/app/build/install/app/bin/basic_123

@@ -7,17 +7,16 @@
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/shyiko/jabba?label=jabba&logo=jabba)](https://github.com/shyiko/jabba)
 [![Java zulu-openjdk:11](https://img.shields.io/badge/Java-zulu%20openjdk:11-brightgreen?style=flat&logo=java)](https://www.azul.com/downloads/zulu-community/?package=jdk)
 [![GitHub release (latest by date)](https://img.shields.io/badge/Gradle-v6.7.1-black?style=flat&logo=gradle)](https://gradle.org/)
-[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_115.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_115)
-[![Release--basic_115](https://github.com/cnruby/gradle_java/workflows/Release--basic_115/badge.svg?branch=basic_115)](https://github.com/cnruby/gradle_java/actions)
+[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_123.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_123)
+[![Release--basic_123](https://github.com/cnruby/gradle_java/workflows/Release--basic_123/badge.svg?branch=basic_123)](https://github.com/cnruby/gradle_java/actions)
 
 
 ---
 
-basic_115
-<h1>Lesson 115: Hello Own Library!</h1>
+basic_123 Hello Multi-Project
+<h1>Lesson 123: Hello Multi-Project!</h1>
 
-- Delevop a multi-project with Java Appliction and Own Java Library
-- Develop a multi-project from a project with single application
+- Develop a multi-project with Java Application and Java Library
 
 
 ---
@@ -25,27 +24,34 @@ basic_115
 
 - [Keywords](#keywords)
 - [Prerequisites](#prerequisites)
-- [Create a Java Project from GitHub.com](#create-a-java-project-from-githubcom)
-- [Develop the Java multi-project](#develop-the-java-multi-project)
+- [Map for the project](#map-for-the-project)
+- [Create a Multi-Project from GitHub.com](#create-a-multi-project-from-githubcom)
+  - [](#)
+- [The gradle build files for the multi-project](#the-gradle-build-files-for-the-multi-project)
+  - [Add the gradle build file for the root project](#add-the-gradle-build-file-for-the-root-project)
+  - [change the gradle build file for the sub-project `app`](#change-the-gradle-build-file-for-the-sub-project-app)
+  - [change the gradle build file for the sub-project `lib`](#change-the-gradle-build-file-for-the-sub-project-lib)
+  - [Check the multi-project](#check-the-multi-project)
   - [view the structure of a multi-project](#view-the-structure-of-a-multi-project)
   - [change the setting file `settings.gradle`](#change-the-setting-file-settingsgradle)
-- [add two subprojects to this project](#add-two-subprojects-to-this-project)
-- [Develop the subproject `lib`](#develop-the-subproject-lib)
-  - [change the gradle build file `lib/build.gradle`](#change-the-gradle-build-file-libbuildgradle)
-  - [change the Java file for subproject `lib`](#change-the-java-file-for-subproject-lib)
-- [Develop the subproject `app`](#develop-the-subproject-app)
-  - [change the gradle build file `app/build.gradle`](#change-the-gradle-build-file-appbuildgradle)
-  - [change the Java file for subproject `app`](#change-the-java-file-for-subproject-app)
-  - [build the main Java application](#build-the-main-java-application)
-  - [run the java application for the subproject `app`](#run-the-java-application-for-the-subproject-app)
+  - [Tree for the Version](#tree-for-the-version)
+- [Multi-Project Version 1.0](#multi-project-version-10)
+  - [Develop this Version 1.0](#develop-this-version-10)
+  - [Tree for The Version 1.0](#tree-for-the-version-10)
+- [Multi-Project Version 2.0](#multi-project-version-20)
+  - [Develop this Version 2.0](#develop-this-version-20)
+  - [Tree for The Version 2.0](#tree-for-the-version-20)
+- [Multi-Project Version 2.1](#multi-project-version-21)
+  - [Develop this Version 2.1](#develop-this-version-21)
+  - [Tree for The Version 2.1](#tree-for-the-version-21)
 - [Download and Use This complete Project](#download-and-use-this-complete-project)
-- [Referenecs](#referenecs)
+- [References](#references)
 
 
 
 
 ## Keywords
-- `Java Multi-Project` `gradle projects` `own java library`
+- `Java Multi-Project` `gradle projects` `java library`
 - Ubuntu Java Gradle gradlew tutorial example library
 
 
@@ -56,11 +62,17 @@ basic_115
 
 
 
-## Create a Java Project from GitHub.com
+## Map for the project
+![]()
 
+
+
+## Create a Multi-Project from GitHub.com
+
+### 
 ```bash
 # DO (open a new terminal)
-EXISTING_APP_ID=104 && NEW_APP_ID=115 \
+EXISTING_APP_ID=111 && NEW_APP_ID=123 \
 && git clone -b basic_${EXISTING_APP_ID}  \
     https://github.com/cnruby/gradle_java.git ${NEW_APP_ID}_gradle_java \
 && cd ${NEW_APP_ID}_gradle_java
@@ -68,12 +80,83 @@ EXISTING_APP_ID=104 && NEW_APP_ID=115 \
 
 ```bash
 # DO (check the project)
-./gradlew check
+./gradlew -q check
+    # >> Result: nothing
+./gradlew -q app:run
+    # >> Result
+    Hello world.
 ```
 
 
 
-## Develop the Java multi-project
+## The gradle build files for the multi-project
+
+### Add the gradle build file for the root project
+
+```bash
+touch ./build.gradle
+nano ./build.gradle
+    # FILE (./build.gradle)
+    plugins {
+        id 'java'
+    }
+
+    sourceCompatibility = JavaVersion.VERSION_11
+    description = 'This is a multi-project'
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+```
+
+### change the gradle build file for the sub-project `app`
+
+```bash
+touch ./app/build.gradle
+nano ./app/build.gradle
+    # FILE (./app/build.gradle)
+    plugins {
+        id 'application'
+    }
+
+    startScripts {
+        applicationName = 'basic_115'
+        group = 'de.iotoi'
+    } 
+    description = 'The main application for the project'
+
+    dependencies { implementation project(':lib') }
+    application { mainClass = "de.iotoi.App" }
+    test {}
+```
+
+### change the gradle build file for the sub-project `lib`
+
+```bash
+touch ./lib/build.gradle
+nano ./lib/build.gradle
+    # FILE (./lib/build.gradle)
+    plugins {
+        id 'java-library'
+    }
+
+    description = 'The library application for the project'
+
+    dependencies { }
+```
+
+### Check the multi-project
+```bash
+# DO (check the project)
+./gradlew -q check
+    # >> Result: nothing
+
+# DO (run the application)
+./gradlew -q app:run
+    # >> Result
+    Hello world.
+```
 
 ### view the structure of a multi-project
 
@@ -83,11 +166,15 @@ EXISTING_APP_ID=104 && NEW_APP_ID=115 \
 
     # >> Result
     ------------------------------------------------------------
-    Root project
+    Root project - This is a multi-project
     ------------------------------------------------------------
 
-    Root project '_gradle_java'
-    No sub-projects
+    Root project '_gradle_java' - This is a multi-project
+    +--- Project ':app' - The main application for the project
+    \--- Project ':lib' - The library application for the project
+
+    To see a list of the tasks of a project, run gradlew <project-path>:tasks
+    For example, try running gradlew :app:tasks
 ```
 
 ### change the setting file `settings.gradle`
@@ -115,180 +202,222 @@ nano ./settings.gradle
 ```
 
 
-## add two subprojects to this project
+### Tree for the Version
 
-```bash
-# DO (make two subproject folders)
-mkdir app lib
-
-# DO (copy the current project build file `build.gradle` to subprojects root folder)
-xargs -n 1 cp -v build.gradle <<< "./app/ ./lib/"
-
-# DO (copy the current project `src` folder to subprojects root folder)
-xargs -n 1 cp -vr src <<< "./app/ ./lib/"
-
-# DO (remvoe the the current project build file `build.gradle` and folder `src`)
-rm build.gradle && rm -rf src
-
-# DO (remove the testing java file)
-rm app/src/test/java/de/iotoi/AppTest.java lib/src/test/java/de/iotoi/AppTest.java
 ```
-
-```bash
-# DO (add description to subproject `app`)
-nano app/build.gradle
-
-    # FILE (app/build.gradle)
-    ...
-    description = 'The main application for the project'
-    ...
-```
-
-```bash
-# DO (add description to subproject `lib`)
-nano lib/build.gradle
-
-    # FILE (lib/build.gradle)
-    ...
-    // id 'application'
-    id 'java-library'
-    ...
-    description = 'The library for the subproject `app`'
-    ...
-    // application {
-    //     // Define the main class for the application.
-    //     mainClass = "de.iotoi.App"
-    // }
-    ...
-```
-
-```bash
-# DO (check the multi-project again)
-./gradlew -q projects
-
-    # >> Result
-    ------------------------------------------------------------
-    Root project
-    ------------------------------------------------------------
-
-    Root project '_gradle_java'
-    +--- Project ':app' - The main application for the project
-    \--- Project ':lib' - The library for the subproject `app`
+.
+├── app
+│  ├── build.gradle
+│  └── src
+├── build.gradle
+├── lib
+│  ├── build.gradle
+│  └── src
+└── settings.gradle
 ```
 
 
 
-## Develop the subproject `lib`
+## Multi-Project Version 1.0
 
-
-### change the gradle build file `lib/build.gradle`
-
+### Develop this Version 1.0
 ```bash
-nano lib/build.gradle
+# DO (make a folder for many sub-projects)
+mkdir codename
 
-    # FILE (lib/build.gradle)
-    plugins {
-        id 'java'
-        id 'java-library'
-    }
+# DO (move the sub-project 'lib' to the folder 'codename')
+mv ./lib/ ./codename
 
-    group = 'de.iotoi'
-    sourceCompatibility = JavaVersion.VERSION_11
-
-    description = 'The library for the subproject `app`'
-
-    repositories {
-        jcenter()
-    }
-    dependencies {}
-    test {}
+# DO (change the gradle settings file 'settings.gradle')
+cp ./settings.gradle.v0 ./settings.gradle
+    # FILE (./settings.gradle.v0)
+    rootProject.name = '_gradle_java'
+    include ("app", "lib")
 ```
 
-### change the Java file for subproject `lib`
-
 ```bash
-# DO (change the java file `lib/src/main/java/de/iotoi/App.java`)
-mv lib/src/main/java/de/iotoi/App.java lib/src/main/java/de/iotoi/Lib.java
+# DO (run the application)
+./gradlew app:run
+    # Result
+    FAILURE: Build failed with an exception.
 
-    # FILE (lib/src/main/java/de/iotoi/Lib.java)
-    package de.iotoi;
+    * What went wrong:
+    Could not determine the dependencies of task ':app:run'.
+    > Could not resolve all task dependencies for configuration ':app:runtimeClasspath'.
+    > Could not resolve project :lib.
+        Required by:
+            project :app
+        > No matching configuration of project :lib was found. The consumer was configured to find a runtime of a library compatible with Java 11, packaged as a jar, and its dependencies declared externally but:
+            - None of the consumable configurations have attributes.
 
-    public class Lib {
-        public String getGreeting() {
-            return "Hello world.";
-        }
-    }
+    * Try:
+    Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+    * Get more help at https://help.gradle.org
+
+    BUILD FAILED in 1s
 ```
 
-
-
-## Develop the subproject `app`
-
-### change the gradle build file `app/build.gradle`
-
 ```bash
-nano app/build.gradle
+# DO (change the gradle settings file 'settings.gradle')
+cp ./settings.gradle.v1 ./settings.gradle
+    # FILE (./settings.gradle.v1)
+    rootProject.name = '_gradle_java'
+    include ("app", "lib")
 
-    # FILE (app/build.gradle)
-    plugins {
-        id 'java'
-        id 'application'
-    }
-
-    startScripts {
-        applicationName = 'basic_115'
-        group = 'de.iotoi'
-        // version = '1.1.5'
-        sourceCompatibility = JavaVersion.VERSION_11
-    }
-
-    description = 'The main application for the project'
-
-    repositories {
-        jcenter()
-    }
-
-    dependencies {
-        implementation project(':lib')
-    }
-
-    application {
-        mainClass = "de.iotoi.App"
-    }
-
-    test {}
-```
-
-### change the Java file for subproject `app`
-
-```bash
-# DO (change the java file `app/src/main/java/de/iotoi/App.java`)
-nano app/src/main/java/de/iotoi/App.java
-
-    # FILE (app/src/main/java/de/iotoi/App.java)
-    package de.iotoi;
-
-    public class App {
-        public static void main(String[] args) {
-            System.out.println(new Lib().getGreeting());
-        }
+    for (project in rootProject.children) {
+        project.projectDir = file("codename/${project.name}")
     }
 ```
 
-### build the main Java application
-
 ```bash
-# DO (build subproject `app` and `lib`)
-./gradlew clean app:build
+# DO (run the application)
+./gradlew app:run
+    # Result
+    FAILURE: Build failed with an exception.
+
+    * What went wrong:
+    Task 'run' not found in project ':app'.
+
+    * Try:
+    Run gradlew tasks to get a list of available tasks. Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+    * Get more help at https://help.gradle.org
+
+    BUILD FAILED in 1s
 ```
 
-### run the java application for the subproject `app` 
-
 ```bash
+# DO (change the gradle settings file 'settings.gradle')
+cp ./settings.gradle.v2 ./settings.gradle
+    # FILE (./settings.gradle.v2)
+    rootProject.name = '_gradle_java'
+    include ("lib")
+
+    for (project in rootProject.children) {
+        project.projectDir = file("codename/${project.name}")
+    }
+
+    include ("app")
+
+# DO (run the application)
 ./gradlew -q app:run
-
-    # >> Result:
+    # Result
     Hello world.
+```
+
+### Tree for The Version 1.0
+
+```
+.
+├── app
+│  ├── build.gradle
+│  └── src
+│     ├── main
+│     └── test
+├── build.gradle
+├── codename
+│  └── lib
+│     ├── build.gradle
+│     └── src
+└── settings.gradle
+```
+
+
+
+## Multi-Project Version 2.0
+
+### Develop this Version 2.0
+```bash
+# DO (move the sub-project 'app' to the folder 'codename')
+mv ./app/ ./codename
+
+# DO (run the application)
+./gradlew -q app:run
+    # Result
+    FAILURE: Build failed with an exception.
+
+    * What went wrong:
+    Task 'run' not found in project ':app'.
+
+    * Try:
+    Run gradlew tasks to get a list of available tasks. Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+    * Get more help at https://help.gradle.org
+
+    BUILD FAILED in 1s    
+```
+
+```bash
+# DO (change the gradle settings file 'settings.gradle')
+cp ./settings.gradle.v3 ./settings.gradle
+    # FILE (./settings.gradle.v3)
+    rootProject.name = '_gradle_java'
+    include ("app", "lib")
+
+    for (project in rootProject.children) {
+        project.projectDir = file("codename/${project.name}")
+    }
+
+# DO (run the application)
+./gradlew -q app:run
+    # Result
+    Hello world.
+```
+
+### Tree for The Version 2.0
+
+```
+.
+├── build.gradle
+├── codename
+│  ├── app
+│  │  ├── build.gradle
+│  │  └── src
+│  └── lib
+│     ├── build.gradle
+│     └── src
+└── settings.gradle
+```
+
+## Multi-Project Version 2.1
+
+### Develop this Version 2.1
+```bash
+mv ./codename/app/build.gradle ./codename/app/app.gradle
+mv ./codename/lib/build.gradle ./codename/lib/lib.gradle
+mv ./build.gradle ./root.gradle
+
+# DO (change the gradle settings file 'settings.gradle')
+cp ./settings.gradle.v4 ./settings.gradle
+    # FILE (./settings.gradle.v4)
+    rootProject.name = '_gradle_java'
+    rootProject.buildFileName = "root.gradle"
+
+    include ("app", "lib")
+    for (project in rootProject.children) {
+        project.projectDir = file("codename/${project.name}")    
+        project.buildFileName = project.name + '.gradle'
+    }
+
+./gradlew -q app:run
+    # Result
+    Hello world.
+```
+
+### Tree for The Version 2.1
+
+```
+.
+├── codename
+│  ├── app
+│  │  ├── app.gradle
+│  │  └── src
+│  └── lib
+│     ├── lib.gradle
+│     └── src
+├── root.gradle
+└── settings.gradle
 ```
 
 
@@ -297,20 +426,20 @@ nano app/src/main/java/de/iotoi/App.java
 
 ```bash
 # Download
-git clone -b basic_115 https://github.com/cnruby/gradle_java.git basic_115
+git clone -b basic_123 https://github.com/cnruby/gradle_java.git basic_123
 ```
 
 ```bash
 # Usage for the project
-google-chrome https://github.com/cnruby/gradle_java/releases/tag/v0.115.1
+google-chrome https://github.com/cnruby/gradle_java/releases/tag/v0.123.1
 ```
 
 
 
-## Referenecs
-- https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/introduction-to-github-actions
-- https://medium.com/@shanemyrick/publishing-to-github-packages-with-gradle-and-github-actions-4ad842634c4e
-- https://www.flowsquad.io/blog/2020-05-29-devops-mit-github-teil-1-github-packages-mit-gradle/
-- https://docs.github.com/en/free-pro-team@latest/packages/guides/configuring-gradle-for-use-with-github-packages
-- https://docs.github.com/en/free-pro-team@latest/actions/guides/publishing-java-packages-with-gradle
+## References
+- https://docs.gradle.org/current/samples/sample_building_java_applications_multi_project.html
+- https://www.iditect.com/how-to/52532455.html
+- https://docs.gradle.org/current/userguide/intro_multi_project_builds.html
+- https://github.com/bndtools/bnd/issues/2984
+- 
    
