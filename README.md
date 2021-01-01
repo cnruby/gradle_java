@@ -9,7 +9,7 @@
 [![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_101.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_101)
 
 
-basic_101
+basic_101 Hello jabba!
 <h1>Lesson 101: Hello jabba!</h1>
 
 - install Java Version Manager tool `jabba` on Ubuntu 20.04
@@ -23,7 +23,7 @@ basic_101
 - [Keywords](#keywords)
 - [Step1:  Install jabba and JDK on Ubuntu 20.04](#step1--install-jabba-and-jdk-on-ubuntu-2004)
   - [map for install jabba and JDK](#map-for-install-jabba-and-jdk)
-  - [insatll jabba](#insatll-jabba)
+  - [install jabba](#install-jabba)
   - [install JDK on Ubuntu 20.04 with jabba](#install-jdk-on-ubuntu-2004-with-jabba)
   - [use Java 8 with jabba](#use-java-8-with-jabba)
   - [use Java 11 with jabba](#use-java-11-with-jabba)
@@ -53,7 +53,7 @@ basic_101
 
 ![101_hello_jabba-Step1-install-jabba](docs/images/101_hello_jabba-Step1-install-jabba.png)
 
-### insatll jabba
+### install jabba
 ```bash
 curl -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash && . ~/.jabba/jabba.sh
 ```
