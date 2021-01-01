@@ -51,12 +51,7 @@ Hello "gradle_java"!
 | 120 |  |  | [Hello Publishing Web App!](https://github.com/cnruby/gradle_java/tree/basic_120) |  |  |
 | 121 | [Hello Application Run!](https://github.com/cnruby/gradle_java/tree/basic_121) |  |  |  |  |
 | 122 |  |  | [Hello Web App Run!](https://github.com/cnruby/gradle_java/tree/basic_122) |  |  |
-| 123 |  |  |  |  |  |
-| 124 |  |  |  |  |  |
-| 125 |  |  |  |  |  |
-
-- Hello JUnit 5!
-- Hello Multi-Project!
+| 123 |  |  |  | [Hello Multi-Project!](https://github.com/cnruby/gradle_java/tree/basic_123) |  |
 
 
 
