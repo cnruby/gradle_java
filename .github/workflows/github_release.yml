@@ -49,7 +49,7 @@ jobs:
               # DO (run application for the subproject `app` for Ubuntu OS)
               ./app/build/install/app/bin/basic_115
 
-              # DO (run application for the subproject `app` for Winsows OS)
+              # DO (run application for the subproject `app` for Windows OS)
               ./app/build/install/app/bin/basic_115.bat
             ```
           draft: false
