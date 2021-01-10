@@ -27,7 +27,7 @@ Hello "gradle_java"!
 
 ## Learn Java with Gradle
 
-| Lesson |	Project App	|	Project Comman	|	Project Web App	| Multi-Project | Project Library |
+| Lesson |	Project App	|	Project Common	|	Project Web App	| Multi-Project | Project Library |
 |---------|-------------|-------------|-------------|-------------|-------------|
 | 101 | [Hello jabba!](https://github.com/cnruby/gradle_java/tree/basic_101) |  |  |  |  |
 | 102 |  | [Hello Gradle!](https://github.com/cnruby/gradle_java/tree/basic_102) |  |  |  |  |
