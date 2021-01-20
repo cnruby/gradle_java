@@ -14,7 +14,7 @@
 
 ---
 
-basic_113
+basic_113 Hello GitHub Actions CI!
 <h1>Lesson 113: Hello GitHub Actions CI!</h1>
 
 - Develop a Java application with Gradle and GitHub Actions CI

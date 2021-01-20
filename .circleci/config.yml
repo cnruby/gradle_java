@@ -22,7 +22,7 @@ jobs:
       JVM_OPTS: -Xmx3200m
       TERM: dumb
 
-    steps:      
+    steps:
       - checkout
 
       # Download and cache dependencies
