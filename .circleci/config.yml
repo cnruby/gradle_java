@@ -1,8 +1,4 @@
-# Java Gradle CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-java/ for more details
-#
-version: 2
+version: 2.1
 jobs:
   project_build:
     docker:
@@ -25,17 +21,6 @@ jobs:
     steps:      
       - checkout
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
-      # run Java Version
-      - run: java --version
-      - run: java -version
-
       - run: 
           name: install tools
           command: |
@@ -46,7 +31,7 @@ jobs:
             screen –version
 
       - run:
-          name: "Run The Web Application with Gradle"
+          name: "Run The Application with Gradle"
           command: |
               ./gradlew -q check
               screen -d -m -s "webapp_on_project" ./gradlew -q bootRun
@@ -68,8 +53,8 @@ jobs:
       - run:
           name: "start web server with web app"
           command: |
-              ./gradlew bootBuildImage --imageName=gradle_kotlin/basic_xxx
-              docker run -d --name=xxx_gradle_java_container -p 80:8080 gradle_kotlin/basic_xxx
+              ./gradlew bootBuildImage --imageName=gradle_java/basic_xxx
+              docker run -d --name=xxx_gradle_java_container -p 80:8080 gradle_java/basic_xxx
 
       - run:
           name: "browse the website"
@@ -80,7 +65,7 @@ jobs:
       - run:
           name: "stop web server on docker"
           command: |
-              docker stop xxx_gradle_kotlin_container
+              docker stop xxx_gradle_java_container
 
 workflows:
   build:
