@@ -1,10 +1,6 @@
-# Java Gradle CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-java/ for more details
-#
-version: 2
+version: 2.1
 jobs:
-  build:
+  project_build:
     docker:
       # specify the version you desire here
       #- image: circleci/openjdk:11-jdk
@@ -25,13 +21,62 @@ jobs:
     steps:      
       - checkout
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+      - run: 
+          name: install tools
+          command: |
+            whoami
+            cat /etc/*-release
+            apt update -y
+            apt install screen netcat -y
+            screen –version
 
-      # run Java Version
-      - run: java --version
-      - run: java -version
+      - run:
+          name: "Run The Application with Gradle"
+          command: |
+              ./gradlew -q check
+              screen -d -m -s "webapp_on_project" ./gradlew -q bootRun
+
+  docker_build:
+    machine: true
+      # image: ubuntu-2004:202010-01
+
+    steps:      
+      - checkout
+
+      - run:
+          name: Install OpenJDK 11
+          command: |
+            sudo apt-get update && sudo apt-get install openjdk-11-jdk
+            sudo update-alternatives --set java /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+            sudo update-alternatives --set javac /usr/lib/jvm/java-11-openjdk-amd64/bin/javac
+            java -version
+
+      - run: 
+          name: "install tools"
+          command: |
+            cat /etc/*-release
+            sudo apt update -y
+            sudo apt install curl wget netcat -y
+
+      - run:
+          name: "start web server with web app"
+          command: |
+              ./gradlew bootBuildImage --imageName=gradle_java/basic_xxx
+              docker run -d --name=xxx_gradle_java_container -p 80:8080 gradle_java/basic_xxx
+
+      - run:
+          name: "browse the website"
+          command: |
+              sleep 10 && nc -vz localhost 80
+              curl http://127.0.0.1:80/api
+
+      - run:
+          name: "stop web server on docker"
+          command: |
+              docker stop xxx_gradle_java_container
+
+workflows:
+  build:
+    jobs:
+      - project_build
+      - docker_build
