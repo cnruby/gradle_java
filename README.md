@@ -8,17 +8,17 @@
 [![Gradle-v6.7.1](https://img.shields.io/badge/Gradle-v6.7.1-black?style=flat&logo=gradle)](https://gradle.org/)
 [![Docker-(2019.03.13)](https://img.shields.io/badge/Docker-%2019.03.13-brightgreen)](https://www.docker.com/)
 [![IntelliJ IDEA Community Edition](https://img.shields.io/badge/IntelliJ%20IDEA%20Community%20Edition-blue?style=flat)](https://www.jetbrains.com/idea/download/#section=linux)
-[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_201.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_201)
+[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_202.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_202)
 
 
 
 ---
 
-Lesson 201: Hello @Bean!
-<h1>Lesson 201: Hello @Bean!</h1>
+Lesson 202: Hello @RestController!
+<h1>Lesson 202: Hello @RestController!</h1>
 
-- How to Create a Java Web App By Gradle Command Line
-- How to Understand An Annotation @Bean By A Simple Example
+- How to Create a Java Web App By existing GitHub's Project
+- How to Understand An Annotation @RestController By A Simple Example
 
 ---
 
@@ -29,20 +29,19 @@ Lesson 201: Hello @Bean!
 - [Prerequisites](#prerequisites)
 - [Create A New Java Web Application](#create-a-new-java-web-application)
 	- [DO (create a new project)](#do-create-a-new-project)
-	- [DO (edit the spring boot configuration file)](#do-edit-the-spring-boot-configuration-file)
 	- [DO (check the project)](#do-check-the-project)
 - [Develop The Project](#develop-the-project)
-	- [DO (edit the java file)](#do-edit-the-java-file)
+	- [DO (create and edit the java file)](#do-create-and-edit-the-java-file)
 	- [DO (check the project)](#do-check-the-project-1)
-- [Run The Application with Gradle](#run-the-application-with-gradle)
+- [Run The Application on Local](#run-the-application-on-local)
 	- [DO (start webserver with web application)](#do-start-webserver-with-web-application)
-	- [DO (browse the web application)](#do-browse-the-web-application)
-	- [DO (stop the web server)](#do-stop-the-web-server)
+	- [DO (browse the web application with url `/`)](#do-browse-the-web-application-with-url-)
+	- [DO (browse the web application with url `/api`)](#do-browse-the-web-application-with-url-api)
 - [Run The Application on Docker](#run-the-application-on-docker)
 	- [DO (build an OCI image of the application)](#do-build-an-oci-image-of-the-application)
-	- [DO (show all images)](#do-show-all-images)
 	- [DO (run the application on Docker)](#do-run-the-application-on-docker)
-	- [DO (browse the web application on Docker)](#do-browse-the-web-application-on-docker)
+	- [DO (browse the web application with url `/` on Docker)](#do-browse-the-web-application-with-url--on-docker)
+	- [DO (browse the web application with url `/api` on Docker)](#do-browse-the-web-application-with-url-api-on-docker)
 - [References](#references)
 - [References for tools](#references-for-tools)
 
@@ -50,7 +49,7 @@ Lesson 201: Hello @Bean!
 
 
 ## Keywords
-- `Java Web App` webapp web-app `Spring Boot` `Command Line`
+- `@RestController` `Java Web App` webapp web-app `Spring Boot` `Command Line`
 - `Java JDK` `IntelliJ CE` CircleCI CI
 - tutorial example Ubuntu Gradle jabba JDK Java JVM
 
@@ -71,25 +70,9 @@ Lesson 201: Hello @Bean!
 
 ### DO (create a new project)
 ```bash
-NEW_APP_ID=201 && \
-mkdir ${NEW_APP_ID}_gradle_java && cd ${NEW_APP_ID}_gradle_java && \
-curl https://start.spring.io/starter.zip -d language=java \
-	-d dependencies=web \
-	-d packageName=de.iotoi \
-	-d groupId=de.iotoi \
-	-d artifactId=_gradle_java \
-	-d name=java -d type=gradle-project -o basic_${NEW_APP_ID}.zip && \
-unzip basic_${NEW_APP_ID}.zip
-```
-
-### DO (edit the spring boot configuration file)
-```bash
-nano ./src/main/resources/application.properties
-```
-```bash
-# FILE (application.properties)
-spring.main.banner-mode=off
-spring.main.log-startup-info=off
+EXISTING_APP_ID=201 && NEW_APP_ID=202 \
+&& git clone -b basic_${EXISTING_APP_ID} https://github.com/cnruby/gradle_java.git ${NEW_APP_ID}_gradle_java \
+&& cd ${NEW_APP_ID}_gradle_java
 ```
 
 ### DO (check the project)
@@ -106,40 +89,27 @@ spring.main.log-startup-info=off
 
 ## Develop The Project
 
-### DO (edit the java file)
+### DO (create and edit the java file)
 ```bash
-nano ./src/main/java/de/iotoi/JavaApplication.kt
+touch ./src/main/java/de/iotoi/HelloRestController.java
+```
+```bash
+nano ./src/main/java/de/iotoi/HelloRestController.java
 ```
 
 ```bash
-# FILE (JavaApplication.kt)
-...
-import org.springframework.context.annotation.Bean
-import org.springframework.boot.CommandLineRunner
+# FILE (HelloRestController.java)
+package de.iotoi
 
-@SpringBootApplication
-public class JavaApplication {
-	public static void main(String[]args) {
-		SpringApplication.run(JavaApplication.class, args);
-	}
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController
 
-	@Bean
-	public CommandLineRunner init() {
-		return args -> {
-			System.out.println("Hello World!");
-		};
-	}
-
-	@Bean
-	public void hello() {
-		System.out.println("Hallo Welt!");
-	}
-
-	public CommandLineRunner niHao() {
-		return args -> {
-			System.out.println("世界，你好!");
-		};
-	}
+@RestController
+class HelloRestController {
+    @GetMapping("/api")
+    fun helloJava(): String {
+        return "Hello @RestController!"
+    }
 }
 ```
 
@@ -148,36 +118,35 @@ public class JavaApplication {
 ./gradlew -q check
 ```
 ```bash
-    # >> Result: nothing
+    # >> Result
+    2021-01-20 16:38:54.575  INFO 56159 --- [extShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
 ```
 
 
 
-
-## Run The Application with Gradle
+## Run The Application on Local
 
 ### DO (start webserver with web application)
 ```bash
 ./gradlew -q bootRun
 ```
 ```bash
+	# DO (Ctrl+C, if stop web server)
     # >> Result
-	2021-01-20 15:29:26.766  INFO 44006 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-	2021-01-20 15:29:26.783  INFO 44006 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-	2021-01-20 15:29:26.783  INFO 44006 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
-	2021-01-20 15:29:26.861  INFO 44006 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-	2021-01-20 15:29:26.862  INFO 44006 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1045 ms
+	2021-01-20 16:39:02.401  INFO 56303 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+	2021-01-20 16:39:02.420  INFO 56303 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+	2021-01-20 16:39:02.421  INFO 56303 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+	2021-01-20 16:39:02.547  INFO 56303 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+	2021-01-20 16:39:02.547  INFO 56303 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1275 ms
 	Hallo Welt!
-	2021-01-20 15:29:27.154  INFO 44006 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-	2021-01-20 15:29:27.347  INFO 44006 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+	2021-01-20 16:39:02.825  INFO 56303 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+	2021-01-20 16:39:03.058  INFO 56303 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
 	Hello World!
-	<==========---> 83% EXECUTING [20s]
+	<==========---> 80% EXECUTING [1m 35s]
 	> :bootRun
-
-# DO (Ctrl+C, if stop web server)
 ```
 
-### DO (browse the web application)
+### DO (browse the web application with url `/`)
 ```bash
 curl http://localhost:8080 | json_pp
 ```
@@ -185,19 +154,23 @@ curl http://localhost:8080 | json_pp
 	# >> Result
 	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
 									 Dload  Upload   Total   Spent    Left  Speed
-	100   102    0   102    0     0    239      0 --:--:-- --:--:-- --:--:--   239
+	100   102    0   102    0     0    207      0 --:--:-- --:--:-- --:--:--   207
 	{
-	   "error" : "Not Found",
-	   "message" : "",
-	   "path" : "/",
-	   "status" : 404,
-	   "timestamp" : "2021-01-20T14:31:40.684+00:00"
+		"error" : "Not Found",
+		"message" : "",
+		"path" : "/",
+		"status" : 404,
+		"timestamp" : "2021-01-20T15:40:56.630+00:00"
 	}
 ```
 
-### DO (stop the web server)
+### DO (browse the web application with url `/api`)
 ```bash
-# !!! Ctrl+C 
+curl http://localhost:8080/api
+```
+```bash
+	# >> Result
+	Hello @RestController!
 ```
 
 
@@ -207,72 +180,69 @@ curl http://localhost:8080 | json_pp
 
 ### DO (build an OCI image of the application)
 ```bash
-./gradlew bootBuildImage --imageName=gradle_java/basic_201
+./gradlew bootBuildImage --imageName=gradle_java/basic_202
 ```
 ```bash
 	# >> Result
 	> Task :bootBuildImage
-	Building image 'docker.io/gradle_java/basic_201:latest'
+	Building image 'docker.io/gradle_java/basic_202:latest'
 
 	 > Pulling builder image 'docker.io/paketobuildpacks/builder:base' ..................................................
 	 ...
 	 ...
-		[creator]           docker.io/gradle_java/basic_201:latest
+		[creator]           docker.io/gradle_java/basic_202:latest
 
-	Successfully built image 'docker.io/gradle_java/basic_201:latest'
+	Successfully built image 'docker.io/gradle_java/basic_202:latest'
 
 	BUILD SUCCESSFUL in 3m 3s
 	5 actionable tasks: 3 executed, 2 up-to-date	 
 ```
 
-### DO (show all images)
-```bash
-docker images
-```
-```bash
-    # >> Result
-    REPOSITORY                      TAG        IMAGE ID       CREATED        SIZE
-    paketobuildpacks/run            base-cnb   4347963b10a1   2 weeks ago    106MB
-    paketobuildpacks/builder        base       6f3af49aa748   41 years ago   565MB
-    gradle_java/basic_201           latest     3fdcce3843e3   41 years ago   281MB
-```
-
 ### DO (run the application on Docker)
 ```bash
-docker run -p 80:8080 gradle_java/basic_201
+docker run -p 80:8080 gradle_java/basic_202
 ```
 ```bash
 	# >> Result
 	Setting Active Processor Count to 4
-	Calculating JVM memory based on 2506712K available memory
-	Calculated JVM Memory Configuration: -XX:MaxDirectMemorySize=10M -Xmx1912578K -XX:MaxMetaspaceSize=82133K -XX:ReservedCodeCacheSize=240M -Xss1M (Total Memory: 2506712K, Thread Count: 250, Loaded Class Count: 12087, Headroom: 0%)
+	Calculating JVM memory based on 1114596K available memory
+	Calculated JVM Memory Configuration: -XX:MaxDirectMemorySize=10M -Xmx520462K -XX:MaxMetaspaceSize=82133K -XX:ReservedCodeCacheSize=240M -Xss1M (Total Memory: 1114596K, Thread Count: 250, Loaded Class Count: 12087, Headroom: 0%)
 	Adding 138 container CA certificates to JVM truststore
 	Spring Cloud Bindings Enabled
-	Picked up JAVA_TOOL_OPTIONS: -Djava.security.properties=/layers/paketo-buildpacks_bellsoft-liberica/java-security-properties/java-security.properties -agentpath:/layers/paketo-buildpacks_bellsoft-liberica/jvmkill/jvmkill-1.16.0-RELEASE.so=printHeapHistogram=1 -XX:ActiveProcessorCount=4 -XX:MaxDirectMemorySize=10M -Xmx1912578K -XX:MaxMetaspaceSize=82133K -XX:ReservedCodeCacheSize=240M -Xss1M -Dorg.springframework.cloud.bindings.boot.enable=true
-	2021-01-20 14:38:11.967  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-	2021-01-20 14:38:11.998  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-	2021-01-20 14:38:11.999  INFO 1 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
-	2021-01-20 14:38:12.087  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-	2021-01-20 14:38:12.087  INFO 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1936 ms
+	Picked up JAVA_TOOL_OPTIONS: -Djava.security.properties=/layers/paketo-buildpacks_bellsoft-liberica/java-security-properties/java-security.properties -agentpath:/layers/paketo-buildpacks_bellsoft-liberica/jvmkill/jvmkill-1.16.0-RELEASE.so=printHeapHistogram=1 -XX:ActiveProcessorCount=4 -XX:MaxDirectMemorySize=10M -Xmx520462K -XX:MaxMetaspaceSize=82133K -XX:ReservedCodeCacheSize=240M -Xss1M -Dorg.springframework.cloud.bindings.boot.enable=true
+	2021-01-20 15:54:07.713  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+	2021-01-20 15:54:07.760  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+	2021-01-20 15:54:07.761  INFO 1 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+	2021-01-20 15:54:07.997  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+	2021-01-20 15:54:07.998  INFO 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4410 ms
 	Hallo Welt!
-	2021-01-20 14:38:12.545  INFO 1 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-	2021-01-20 14:38:12.951  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-	Hello World!
 ```
 
-### DO (browse the web application on Docker)
+### DO (browse the web application with url `/` on Docker)
 ```bash
-curl http://localhost:80 | json_pp
+curl http://localhost:80/ | json_pp
 ```
 ```bash
     # >> Result
+	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+									 Dload  Upload   Total   Spent    Left  Speed
+	100   102    0   102    0     0  17000      0 --:--:-- --:--:-- --:--:-- 17000
 	{
 	   "error" : "Not Found",
 	   "message" : "",
 	   "path" : "/",
 	   "status" : 404,
-	   "timestamp" : "2021-01-20T14:38:47.595+00:00"
+	   "timestamp" : "2021-01-20T15:55:39.130+00:00"
 	}
+```
+
+### DO (browse the web application with url `/api` on Docker)
+```bash
+curl http://localhost:80/api
+```
+```bash
+	# >> Result
+	Hello @RestController!
 ```
 
 
@@ -287,7 +257,6 @@ curl http://localhost:80 | json_pp
 - https://github.com/francescopeloi/spring-boot-build-docker-image-demo
 - https://spring.io/blog/2020/01/27/creating-docker-images-with-spring-boot-2-3-0-m1
 - https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/htmlsingle/
-
 
 
 
