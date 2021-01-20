@@ -11,7 +11,7 @@
 ---
 
 
-basic_002
+basic_002 Hello Docker!
 <h1>Hello Docker!</h1>
 
 
@@ -28,6 +28,7 @@ basic_002
   - [Use random container name](#use-random-container-name)
   - [Use commands `docker run` and `docker stop`](#use-commands-docker-run-and-docker-stop)
 - [Remove local Image and local Container](#remove-local-image-and-local-container)
+- [Start and Stop Docker](#start-and-stop-docker)
 - [Download This complete Project](#download-this-complete-project)
 
 
@@ -228,6 +229,14 @@ docker container rm container_alpine bf7673b3cce6
 docker system prune
 ```
 
+
+## Start and Stop Docker 
+```bash
+sudo /etc/init.d/docker start
+sudo /etc/init.d/docker stop
+sudo /etc/init.d/docker restart
+sudo /etc/init.d/docker status
+```
 
 
 ## Download This complete Project
