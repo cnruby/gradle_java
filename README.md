@@ -8,8 +8,8 @@
 [![Gradle-v6.7.1](https://img.shields.io/badge/Gradle-v6.7.1-black?style=flat&logo=gradle)](https://gradle.org/)
 [![Docker-(2019.03.13)](https://img.shields.io/badge/Docker-%2019.03.13-brightgreen)](https://www.docker.com/)
 [![IntelliJ IDEA Community Edition](https://img.shields.io/badge/IntelliJ%20IDEA%20Community%20Edition-blue?style=flat)](https://www.jetbrains.com/idea/download/#section=linux)
-[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_123.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_123)
-[![Release--basic_123](https://github.com/cnruby/gradle_java/workflows/Release--basic_123/badge.svg?branch=basic_123)](https://github.com/cnruby/gradle_java/actions)
+[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_201.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_201)
+
 
 
 ---
