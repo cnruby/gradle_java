@@ -47,10 +47,13 @@ Lesson 201: Hello @Bean!
 - [References for tools](#references-for-tools)
 
 
+
+
 ## Keywords
 - `Java Web App` webapp web-app `Spring Boot` `Command Line`
 - `Java JDK` `IntelliJ CE` CircleCI CI
 - tutorial example Ubuntu Gradle jabba JDK Java JVM
+
 
 
 
@@ -60,6 +63,7 @@ Lesson 201: Hello @Bean!
 - [IntelliJ IDEA Community](https://www.jetbrains.com/de-de/idea/download/#section=linux)
 - [install Docker on Ubuntu](https://docs.docker.com/engine/install/ubuntu/) OR [Using Docker](https://github.com/cnruby/gradle_java/tree/basic_002)
 - [CircleCI Account](https://circleci.com/vcs-authorize/)
+
 
 
 
@@ -96,6 +100,7 @@ spring.main.log-startup-info=off
     # >> Result
 	2021-01-20 14:45:11.678  INFO 37828 --- [extShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
 ```
+
 
 
 
@@ -272,6 +277,7 @@ curl http://localhost:80 | json_pp
 
 
 
+
 ## References
 - http://zetcode.com/springboot/bean/#:~:text=Spring%20%40Bean%20annotation%20tells%20that,a%20bean%20within%20a%20BeanFactory%20.
 - https://spring.io/blog/2021/01/04/ymnnalft-easy-docker-image-creation-with-the-spring-boot-maven-plugin-and-buildpacks
@@ -281,6 +287,7 @@ curl http://localhost:80 | json_pp
 - https://github.com/francescopeloi/spring-boot-build-docker-image-demo
 - https://spring.io/blog/2020/01/27/creating-docker-images-with-spring-boot-2-3-0-m1
 - https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/htmlsingle/
+
 
 
 
