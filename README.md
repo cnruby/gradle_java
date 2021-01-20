@@ -14,8 +14,8 @@
 
 ---
 
-Unit 201: Hello @Bean!
-<h1>Unit 201: Hello @Bean!</h1>
+Lesson 201: Hello @Bean!
+<h1>Lesson 201: Hello @Bean!</h1>
 
 - How to Create a Java Web App By Gradle Command Line
 - How to Understand An Annotation @Bean By A Simple Example
