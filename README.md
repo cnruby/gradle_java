@@ -287,8 +287,8 @@ curl http://localhost:80 | json_pp
 - https://github.com/francescopeloi/spring-boot-build-docker-image-demo
 - https://spring.io/blog/2020/01/27/creating-docker-images-with-spring-boot-2-3-0-m1
 - https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/htmlsingle/
-
-
+- https://discuss.circleci.com/t/machine-executor-with-jdk-11/37457/2
+- https://spring.io/guides/gs/spring-boot/
 
 
 
