@@ -1,4 +1,4 @@
-name: Create--Release--basic_112--for--GitHub
+name: Release--basic_112--for--GitHub
 
 on: 
   push:
@@ -23,11 +23,15 @@ jobs:
           tag_name: basic__112__01
           release_name: Project--"basic_112"--for--The--Release
           body: |
-            PROJECT IN THIS RELEASE
+            ### PROJECT IN THIS RELEASE
             - develop simple web app with docker and tomcat
+            
+            ### USING THE PROJECT
 
             ```bash
-              # DO (download the file)
+              # DO (download the zip file)
+              wget https://github.com/cnruby/gradle_java/archive/basic__112__01.zip
+
               # DO (unzip the file)
               unzip gradle_java-basic__112__01.zip && cd gradle_java-basic__112__01
 
@@ -40,7 +44,7 @@ jobs:
               # DO (run a docker container with Java Web App)
               docker run -p 80:8080 112_gradle_java
 
-              # DO (use the application)
+              # DO (use the web application)
               google-chrome http://localhost:80/
                   # >> Result
                   Hello Tomcat!
