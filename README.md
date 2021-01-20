@@ -112,15 +112,15 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.beans.factory.annotation.Value;
 
-	@Bean
-	public CommandLineRunner init(
-      @Value("${web.app.name}") 
-      String appName
+    @Bean
+    public CommandLineRunner init(
+        @Value("${web.app.name}")
+        String appName
     ) {
-		return args -> {
-			System.out.println(appName + " from init()!");
-		};
-	}
+        return args -> {
+            System.out.println(appName + " from init()!");
+        };
+    }
 ...
 ```
 
@@ -161,19 +161,19 @@ nano ./src/main/java/de/iotoi/JavaApplication.java
 # FILE (JavaApplication.java)
 ...
 public class JavaApplication {
-	@Value("${web.app.name}")
-  String webAppName;
+    @Value("${web.app.name}")
+    String webAppName;
 
-	@Bean
-	public CommandLineRunner init(
-      @Value("${web.app.name}")
-      String appName
+    @Bean
+    public CommandLineRunner init(
+        @Value("${web.app.name}")
+        String appName
     ) {
-		return args -> {
-			System.out.println(appName + " from init()!");
-			System.out.println(webAppName + " from init()!!");
-		};
-	}
+        return args -> {
+            System.out.println(appName + " from init()!");
+            System.out.println(webAppName + " from init()!!");
+        };
+    }
 ...
 ```
 

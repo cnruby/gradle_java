@@ -8,18 +8,22 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class JavaApplication {
-	@Value("${web.app.name}") String webAppName;
+    @Value("${web.app.name}")
+    String webAppName;
 
-	@Bean
-	public CommandLineRunner init(@Value("${web.app.name}") String appName) {
-		return args -> {
-			System.out.println(appName + " from init()!");
-			System.out.println(webAppName + " from init()!!");
-		};
-	}
+    @Bean
+    public CommandLineRunner init(
+        @Value("${web.app.name}")
+        String appName
+    ) {
+        return args -> {
+            System.out.println(appName + " from init()!");
+            System.out.println(webAppName + " from init()!!");
+        };
+    }
 
-	public static void main(String[] args) {
-		SpringApplication.run(JavaApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(JavaApplication.class, args);
+    }
 
 }
