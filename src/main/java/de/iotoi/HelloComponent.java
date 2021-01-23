@@ -1,14 +1,14 @@
 package de.iotoi;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service()
-public class HelloService {
+@Component()
+public class HelloComponent {
     @Value("${web.app.name}")
     String webAppName;
 
     public String getHello() {
-        return webAppName + "!!\n";
+        return webAppName + " from class HelloComponent!\n";
     }
 }

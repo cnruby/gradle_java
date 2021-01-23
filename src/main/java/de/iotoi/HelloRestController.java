@@ -12,8 +12,10 @@ public class HelloRestController {
 
 //    @Autowired
     private HelloService helloService;
-    HelloRestController(HelloService helloService) {
+    private HelloComponent helloComponent;
+    HelloRestController(HelloService helloService, HelloComponent helloComponent) {
         this.helloService = helloService;
+        this.helloComponent = helloComponent;
     }
 
     @RequestMapping("/api/value")
@@ -24,5 +26,10 @@ public class HelloRestController {
     @RequestMapping("/api/service")
     public String helloJavaService() {
         return helloService.getHello();
+    }
+
+    @RequestMapping("/api/component")
+    public String helloJavaComponent() {
+        return helloComponent.getHello();
     }
 }

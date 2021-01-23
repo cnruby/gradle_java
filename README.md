@@ -8,17 +8,22 @@
 [![Java zulu-openjdk:11](https://img.shields.io/badge/Java-zulu%20openjdk:11-brightgreen?style=flat&logo=java)](https://www.azul.com/downloads/zulu-community/?package=jdk)
 [![IntelliJ IDEA Community Version](https://img.shields.io/badge/IntelliJ%20IEAD%20Community%20Version-blue?style=flat)](https://www.jetbrains.com/de-de/idea/download/#section=linux)
 [![Docker-(2019.03.13)](https://img.shields.io/badge/Docker-%2019.03.13-brightgreen)](https://www.docker.com/)
-[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_206.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_206)
+[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_207.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_207)
 
 
 
 ---
 
-Lesson 206: Hello @Controller!
-<h1>Lesson 206: Hello @Controller!</h1>
+Lesson 207: Hello @Component!
+<h1>Lesson 207: Hello @Component!</h1>
 
-- How to Understand the Annotation `@Controller`
-- How to Understand the Web Page Template `Thymeleaf`
+- How to Understand the Annotation @Component
+- How to Compare the Annotation @Component and @Service
+- @Component is a generic stereotype for any Spring-managed component
+- @Repository annotates classes at the persistence layer, which will act as a database repository
+- @Service annotates classes at the service layer
+- @Service and @Repository are special cases of @Component
+- @Repository, @Service, @Configuration and @Controller are all meta-annotations of @Component,
 
 
 ---
@@ -31,12 +36,14 @@ Lesson 206: Hello @Controller!
 - [Create A New Java Web App](#create-a-new-java-web-app)
   - [DO (create a new project)](#do-create-a-new-project)
   - [DO (edit the spring property file)](#do-edit-the-spring-property-file)
-  - [DO (edit the gradle build file)](#do-edit-the-gradle-build-file)
   - [DO (check the project)](#do-check-the-project)
 - [Develop the Project](#develop-the-project)
-  - [DO (create and edit the web page file)](#do-create-and-edit-the-web-page-file)
-  - [DO (create and edit a new spring controller file)](#do-create-and-edit-a-new-spring-controller-file)
+  - [DO (create and edit the spring file with annotation @Component)](#do-create-and-edit-the-spring-file-with-annotation-component)
   - [DO (check the project)](#do-check-the-project-1)
+  - [DO (edit the spring rest controller file)](#do-edit-the-spring-rest-controller-file)
+  - [DO (check the project)](#do-check-the-project-2)
+  - [DO (edit the spring application file)](#do-edit-the-spring-application-file)
+  - [DO (check the project)](#do-check-the-project-3)
 - [Start the Project](#start-the-project)
   - [DO (open a new terminal to start HotCode)](#do-open-a-new-terminal-to-start-hotcode)
   - [DO (open a new terminal to run the web application)](#do-open-a-new-terminal-to-run-the-web-application)
@@ -48,10 +55,10 @@ Lesson 206: Hello @Controller!
 
 
 ## Keywords
-- Annotation `@Controller` Java Web Application Thymeleaf Template Web Page
+- Annotation `@Component` Java Web Application 
 - `Java JDK` `IntelliJ CE` CircleCI CI
 - tutorial example Ubuntu Gradle jabba JDK Java JVM
-- `Spring Boot` `web app` web app `@Service`
+- `Spring Boot` `web app` web app `@Service` Thymeleaf Template Web Page
 
 
 
@@ -70,7 +77,7 @@ Lesson 206: Hello @Controller!
 
 ### DO (create a new project)
 ```bash
-EXISTING_APP_ID=205 && NEW_APP_ID=206 \
+EXISTING_APP_ID=206 && NEW_APP_ID=207 \
 && git clone -b basic_${EXISTING_APP_ID} https://github.com/cnruby/gradle_java.git ${NEW_APP_ID}_gradle_java \
 && cd ${NEW_APP_ID}_gradle_java
 ```
@@ -82,19 +89,7 @@ nano ./src/main/resources/application.properties
 ```bash
 # FILE (application.properties)
 ...
-web.app.name=Hello @Controller
-...
-```
-
-### DO (edit the gradle build file)
-```bash
-nano ./build.gradle
-```
-```bash
-# FILE (build.gradle)
-...
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+web.app.name=Hello @Component
 ...
 ```
 
@@ -110,57 +105,88 @@ dependencies {
 
 ## Develop the Project
 
-### DO (create and edit the web page file)
+### DO (create and edit the spring file with annotation @Component)
 ```bash
-mkdir ./src/main/resources/templates
+touch ./src/main/java/de/iotoi/HelloComponent.java
 ```
 ```bash
-touch ./src/main/resources/templates/home.html
-```
-```bash
-nano ./src/main/resources/templates/home.html
-```
-```html
-<!-- FILE (home.html) -->
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta charset="UTF-8">
-        <title>Home Page</title>
-    </head>
-    <body>
-        <h1><span th:text="${webAppName}">...</span></h1>
-    </body>
-</html>
-```
-
-### DO (create and edit a new spring controller file)
-```bash
-touch ./src/main/java/de/iotoi/HelloHtmlController.java
-```
-```bash
-nano ./src/main/java/de/iotoi/HelloHtmlController.java
+nano ./src/main/java/de/iotoi/HelloComponent.java
 ```
 ```java
-// FILE (HelloHtmlController.java)
+// FILE (HelloComponent.java)
 package de.iotoi;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Component;
 
-@Controller
-public class HelloHtmlController {
-  @Value("${web.app.name}")
-  String webAppName;
+@Component()
+public class HelloComponent {
+    @Value("${web.app.name}")
+    String webAppName;
 
-  @GetMapping("/")
-  public String homePage(Model model) {
-    model.addAttribute("webAppName", webAppName);
-    // !!! (go to home.html)
-    return "home";
-  }
+    public String getHello() {
+        return webAppName + " from class HelloComponent!\n";
+    }
+}
+```
+
+### DO (check the project)
+```bash
+./gradlew -q check
+```
+```bash
+    # >> Result: nothing
+```
+
+### DO (edit the spring rest controller file)
+```bash
+nano ./src/main/java/de/iotoi/HelloRestController.java
+```
+```java
+// FILE (HelloRestController.java)
+...
+    private HelloService helloService;
+    private HelloComponent helloComponent;
+    HelloRestController(HelloService helloService, HelloComponent helloComponent) {
+        this.helloService = helloService;
+        this.helloComponent = helloComponent;
+    }
+
+    @RequestMapping("/api/value")
+...
+    @RequestMapping("/api/component")
+    public String helloJavaComponent() {
+        return helloComponent.getHello();
+    }
+}
+```
+
+### DO (check the project)
+```bash
+./gradlew -q check
+```
+```bash
+    # >> Result: nothing
+```
+
+### DO (edit the spring application file)
+```bash
+nano ./src/main/java/de/iotoi/JavaApplication.java
+```
+```java
+// FILE (JavaApplication.java)
+//...
+import org.springframework.context.ConfigurableApplicationContext;
+//...
+    public static void main(String[] args) {
+        ConfigurableApplicationContext ctx = SpringApplication.run(JavaApplication.class, args);
+
+        HelloService helloService = (HelloService) ctx.getBean("helloService");
+        System.out.println(helloService.getHello());
+
+        HelloComponent helloComponent = (HelloComponent) ctx.getBean("helloComponent");
+        System.out.println(helloComponent.getHello());
+    }
 }
 ```
 
@@ -181,6 +207,12 @@ public class HelloHtmlController {
 ```bash
 ./gradlew -q bootJar --continuous
 ```
+```bash
+    # >> Result
+    Waiting for changes to input files of tasks... (ctrl-d to exit)
+    <=============> 100% EXECUTING [12s]
+    > IDLE
+```
 
 ### DO (open a new terminal to run the web application)
 ```bash
@@ -188,49 +220,32 @@ public class HelloHtmlController {
 ```
 ```bash
     # >> Result
-    Hello @Controller from init()!
-    Hello @Controller from init()!!
-    <==========---> 80% EXECUTING [49s]
-    > :bootRun
+    Hello @Component from init()!
+    Hello @Component from init()!!
+    Hello @Component!!
+    
+    Hello @Component from class HelloComponent!
 ```
 
 ### DO (open a new terminal to access the web application)
 ```bash
-curl --no-progress-meter http://localhost:8080/
+ curl --no-progress-meter http://localhost:8080/api/component
 ```
 ```bash
-    # >>> Result
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Home Page</title>
-    </head>
-    <body>
-        <h1><span>Hello @Controller</span></h1>
-    </body>
+    # >> Result
+    Hello @Component from class HelloComponent!
 ```
-
-```bash
-google-chrome http://localhost:8080/
-```
-```bash
-    # >>> Result
-```
-![hello-controller](doc/image/hello-controller.png)
 
 
 
 
 ## References
-- https://stackoverflow.com/questions/54937518/visual-studio-code-spring-boot-reload-static-content/55370810
-- https://mkyong.com/spring-boot/intellij-idea-spring-boot-template-reload-is-not-working/
-- https://gist.github.com/IMRFeng/eed589de6a6362ef23bc189fb135fdea
-- https://www.vojtechruzicka.com/spring-boot-devtools/
-- https://stackoverflow.com/questions/33349456/how-to-make-auto-reload-with-spring-boot-on-idea-intellij
-- https://stackoverflow.com/questions/54556072/hot-to-hotswap-code-in-intellij-in-a-spring-boot-project
-- https://www.nexsoftsys.com/articles/hot-swapping-in-spring-boot-applications.html
-- https://stackoverflow.com/questions/57408522/spring-boot-maven-not-printing-logs-on-console
+- https://javalang.org/docs/reference/interfaces.html
+- https://www.baeldung.com/java/java-interfaces
+- https://www.baeldung.com/spring-component-repository-service
+- https://www.javaguides.net/2018/11/spring-component-annotation-example.html
+- https://www.baeldung.com/spring-bean-annotations
+- https://www.baeldung.com/spring-application-context
 
 
 
