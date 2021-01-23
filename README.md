@@ -8,7 +8,7 @@
 [![Java zulu-openjdk:11](https://img.shields.io/badge/Java-zulu%20openjdk:11-brightgreen?style=flat&logo=java)](https://www.azul.com/downloads/zulu-community/?package=jdk)
 [![IntelliJ IDEA Community Version](https://img.shields.io/badge/IntelliJ%20IEAD%20Community%20Version-blue?style=flat)](https://www.jetbrains.com/de-de/idea/download/#section=linux)
 [![Docker-(2019.03.13)](https://img.shields.io/badge/Docker-%2019.03.13-brightgreen)](https://www.docker.com/)
-[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_204.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_204)
+[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_206.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_206)
 
 
 
