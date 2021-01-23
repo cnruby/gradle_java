@@ -14,12 +14,10 @@
 
 ---
 
-Lesson 204: Hello @Value!
-<h1>Lesson 204: Hello @Value!</h1>
+Lesson 205: Hello @Service!
+<h1>Lesson 205: Hello @Service!</h1>
 
-- How to Understand An Annotation @Value for function
-- How to Understand An Annotation @Value for class
-- How to Understand An Annotation @Value for project
+- How to Understand the Annotation @Service
 
 
 ---
@@ -33,19 +31,14 @@ Lesson 204: Hello @Value!
   - [DO (create a new project)](#do-create-a-new-project)
   - [DO (edit the spring property file)](#do-edit-the-spring-property-file)
   - [DO (check the project)](#do-check-the-project)
-- [`@Value` for function](#value-for-function)
-  - [DO (edit the java file)](#do-edit-the-java-file)
+- [Develop the Project](#develop-the-project)
+  - [DO (create and edit the spring service file)](#do-create-and-edit-the-spring-service-file)
+  - [DO (edit the java rest controller file)](#do-edit-the-java-rest-controller-file)
   - [DO (check the project)](#do-check-the-project-1)
-  - [DO (start HotCode to open a new terminal)](#do-start-hotcode-to-open-a-new-terminal)
-  - [DO (run the application with gradle)](#do-run-the-application-with-gradle)
-- [`@Value` for class](#value-for-class)
-  - [DO (edit the java file)](#do-edit-the-java-file-1)
-  - [DO (view the web server terminal)](#do-view-the-web-server-terminal)
-- [`@Value` for project](#value-for-project)
-  - [DO (create the spring property file)](#do-create-the-spring-property-file)
-  - [DO (edit the spring property file)](#do-edit-the-spring-property-file-1)
-  - [DO (edit the spring rest controller file)](#do-edit-the-spring-rest-controller-file)
-  - [DO (access the web app to open a new terminal)](#do-access-the-web-app-to-open-a-new-terminal)
+- [Start the Project](#start-the-project)
+  - [DO (open a new terminal to start HotCode)](#do-open-a-new-terminal-to-start-hotcode)
+  - [DO (open a new terminal to run the web application)](#do-open-a-new-terminal-to-run-the-web-application)
+  - [DO (open a new terminal to access the web application)](#do-open-a-new-terminal-to-access-the-web-application)
 - [References](#references)
 - [References for tools](#references-for-tools)
 
@@ -53,9 +46,10 @@ Lesson 204: Hello @Value!
 
 
 ## Keywords
-- Annotation `@Value` `Spring Boot` `web app` web app
+- `Spring Boot` Annotation `@Service`
 - `Java JDK` `IntelliJ CE` CircleCI CI
 - tutorial example Ubuntu Gradle jabba JDK Java JVM
+- `Spring Boot` `web app` web app
 
 
 
@@ -73,7 +67,7 @@ Lesson 204: Hello @Value!
 
 ### DO (create a new project)
 ```bash
-EXISTING_APP_ID=203 && NEW_APP_ID=204 \
+EXISTING_APP_ID=204 && NEW_APP_ID=205 \
 && git clone -b basic_${EXISTING_APP_ID} https://github.com/cnruby/gradle_java.git ${NEW_APP_ID}_gradle_java \
 && cd ${NEW_APP_ID}_gradle_java
 ```
@@ -85,7 +79,7 @@ nano ./src/main/resources/application.properties
 ```bash
 # FILE (application.properties)
 ...
-web.app.name=Hello @Value
+web.app.name=Hello @Service
 logging.level.root=WARN
 ```
 
@@ -99,29 +93,59 @@ logging.level.root=WARN
 
 
 
-## `@Value` for function
+## Develop the Project
 
-### DO (edit the java file)
+### DO (create and edit the spring service file)
+```bash
+touch ./src/main/java/de/iotoi/HelloService.java
+```
+```bash
+nano ./src/main/java/de/iotoi/HelloService.java
+```
+```bash
+# FILE (HelloService.java)
+package de.iotoi;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+@Service()
+public class HelloService {
+    @Value("${web.app.name}")
+    String webAppName;
+
+    public String getHello() {
+        System.out.println(webAppName);
+        return webAppName + "!!\n";
+    }
+}
+```
+
+### DO (edit the java rest controller file)
 ```bash
 nano ./src/main/java/de/iotoi/JavaApplication.java
 ```
 ```bash
 # FILE (JavaApplication.java)
 ...
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
-import org.springframework.beans.factory.annotation.Value;
+    @Value(PropertyValues.WEB_APP_NAME)
+    String webAppName;
 
-    @Bean
-    public CommandLineRunner init(
-        @Value("${web.app.name}")
-        String appName
-    ) {
-        return args -> {
-            System.out.println(appName + " from init()!");
-        };
+    private HelloService helloService;
+    HelloRestController(HelloService helloService) {
+        this.helloService = helloService;
     }
-...
+
+    @RequestMapping("/api/value")
+    public String helloJavaValue() {
+        return webAppName + "!\n";
+    }
+
+    @RequestMapping("/api/service")
+    public String helloJavaService() {
+        return helloService.getHello();
+    }
+}
 ```
 
 ### DO (check the project)
@@ -132,114 +156,43 @@ import org.springframework.beans.factory.annotation.Value;
     # >> Result: nothing
 ```
 
-### DO (start HotCode to open a new terminal)
+
+
+
+## Start the Project
+
+### DO (open a new terminal to start HotCode)
 ```bash
 ./gradlew -q bootJar --continuous
 ```
 
-### DO (run the application with gradle)
+### DO (open a new terminal to run the web application)
 ```bash
 ./gradlew -q bootRun
 ```
 ```bash
     # >> Result
-    Hello @Value from init()!
-    <==========---> 83% EXECUTING [13s]
+    Hello @Service from init()!
+    Hello @Service from init()!!
+    <==========---> 80% EXECUTING [49s]
     > :bootRun
 ```
 
-
-
-
-## `@Value` for class
-
-### DO (edit the java file)
+### DO (open a new terminal to access the web application)
 ```bash
-nano ./src/main/java/de/iotoi/JavaApplication.java
+curl --no-progress-meter http://localhost:8080/api/value
 ```
 ```bash
-# FILE (JavaApplication.java)
-...
-public class JavaApplication {
-    @Value("${web.app.name}")
-    String webAppName;
-
-    @Bean
-    public CommandLineRunner init(
-        @Value("${web.app.name}")
-        String appName
-    ) {
-        return args -> {
-            System.out.println(appName + " from init()!");
-            System.out.println(webAppName + " from init()!!");
-        };
-    }
-...
+    # >>> Result
+    Hello @Service!
 ```
 
-### DO (view the web server terminal)
 ```bash
-    # !!! terminal (./gradlew -q bootRun)
-    # >> Result
-    Hello @Value from init()!
-    Hello @Value from init()!!
-    <==========---> 83% EXECUTING [8s]
-    > :bootRun
-```
-
-
-
-
-## `@Value` for project
-
-### DO (create the spring property file)
-```bash
-touch ./src/main/java/de/iotoi/PropertyValues.java
-```
-
-### DO (edit the spring property file)
-```bash
-nano ./src/main/java/de/iotoi/PropertyValues.java
+curl --no-progress-meter http://localhost:8080/api/service
 ```
 ```bash
-# FILE (PropertyValues.java)
-package de.iotoi;
-
-import org.springframework.beans.factory.annotation.Value;
-
-public class PropertyValues {
-    public static final String WEB_APP_NAME = "${web.app.name}";
-}
-```
-
-### DO (edit the spring rest controller file)
-```bash
-nano ./src/main/java/de/iotoi/HelloRestController.java
-```
-```bash
-# FILE (HelloRestController.java)
-...
-import org.springframework.beans.factory.annotation.Value;
-
-@RestController
-public class HelloRestController {
-    @Value(PropertyValues.WEB_APP_NAME)
-    String webAppName;
-
-    @RequestMapping("/api")
-    public String helloJava() {
-        return webAppName + "!!!\n";
-    }
-}
-```
-
-### DO (access the web app to open a new terminal)
-```bash
-curl http://localhost:8080/api
-```
-```bash
-    # >> Result
-    Hello @Value!!!
+    # >>> Result
+    Hello @Service!!
 ```
 
 
