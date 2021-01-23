@@ -14,10 +14,11 @@
 
 ---
 
-Lesson 205: Hello @Service!
-<h1>Lesson 205: Hello @Service!</h1>
+Lesson 206: Hello @Controller!
+<h1>Lesson 206: Hello @Controller!</h1>
 
-- How to Understand the Annotation @Service
+- How to Understand the Annotation `@Controller`
+- How to Understand the Web Page Template `Thymeleaf`
 
 
 ---
@@ -30,10 +31,11 @@ Lesson 205: Hello @Service!
 - [Create A New Java Web App](#create-a-new-java-web-app)
   - [DO (create a new project)](#do-create-a-new-project)
   - [DO (edit the spring property file)](#do-edit-the-spring-property-file)
+  - [DO (edit the gradle build file)](#do-edit-the-gradle-build-file)
   - [DO (check the project)](#do-check-the-project)
 - [Develop the Project](#develop-the-project)
-  - [DO (create and edit the spring service file)](#do-create-and-edit-the-spring-service-file)
-  - [DO (edit the java rest controller file)](#do-edit-the-java-rest-controller-file)
+  - [DO (create and edit the web page file)](#do-create-and-edit-the-web-page-file)
+  - [DO (create and edit a new spring controller file)](#do-create-and-edit-a-new-spring-controller-file)
   - [DO (check the project)](#do-check-the-project-1)
 - [Start the Project](#start-the-project)
   - [DO (open a new terminal to start HotCode)](#do-open-a-new-terminal-to-start-hotcode)
@@ -46,10 +48,10 @@ Lesson 205: Hello @Service!
 
 
 ## Keywords
-- `Spring Boot` Annotation `@Service`
+- Annotation `@Controller` Java Web Application Thymeleaf Template Web Page
 - `Java JDK` `IntelliJ CE` CircleCI CI
 - tutorial example Ubuntu Gradle jabba JDK Java JVM
-- `Spring Boot` `web app` web app
+- `Spring Boot` `web app` web app `@Service`
 
 
 
@@ -63,11 +65,12 @@ Lesson 205: Hello @Service!
 
 
 
+
 ## Create A New Java Web App
 
 ### DO (create a new project)
 ```bash
-EXISTING_APP_ID=204 && NEW_APP_ID=205 \
+EXISTING_APP_ID=205 && NEW_APP_ID=206 \
 && git clone -b basic_${EXISTING_APP_ID} https://github.com/cnruby/gradle_java.git ${NEW_APP_ID}_gradle_java \
 && cd ${NEW_APP_ID}_gradle_java
 ```
@@ -79,8 +82,20 @@ nano ./src/main/resources/application.properties
 ```bash
 # FILE (application.properties)
 ...
-web.app.name=Hello @Service
-logging.level.root=WARN
+web.app.name=Hello @Controller
+...
+```
+
+### DO (edit the gradle build file)
+```bash
+nano ./build.gradle
+```
+```bash
+# FILE (build.gradle)
+...
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+...
 ```
 
 ### DO (check the project)
@@ -95,56 +110,57 @@ logging.level.root=WARN
 
 ## Develop the Project
 
-### DO (create and edit the spring service file)
+### DO (create and edit the web page file)
 ```bash
-touch ./src/main/java/de/iotoi/HelloService.java
+mkdir ./src/main/resources/templates
 ```
 ```bash
-nano ./src/main/java/de/iotoi/HelloService.java
+touch ./src/main/resources/templates/home.html
 ```
 ```bash
-# FILE (HelloService.java)
+nano ./src/main/resources/templates/home.html
+```
+```html
+<!-- FILE (home.html) -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Home Page</title>
+    </head>
+    <body>
+        <h1><span th:text="${webAppName}">...</span></h1>
+    </body>
+</html>
+```
+
+### DO (create and edit a new spring controller file)
+```bash
+touch ./src/main/java/de/iotoi/HelloHtmlController.java
+```
+```bash
+nano ./src/main/java/de/iotoi/HelloHtmlController.java
+```
+```java
+// FILE (HelloHtmlController.java)
 package de.iotoi;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
-@Service()
-public class HelloService {
-    @Value("${web.app.name}")
-    String webAppName;
+@Controller
+public class HelloHtmlController {
+  @Value("${web.app.name}")
+  String webAppName;
 
-    public String getHello() {
-        System.out.println(webAppName);
-        return webAppName + "!!\n";
-    }
-}
-```
-
-### DO (edit the java rest controller file)
-```bash
-nano ./src/main/java/de/iotoi/JavaApplication.java
-```
-```bash
-# FILE (JavaApplication.java)
-...
-    @Value(PropertyValues.WEB_APP_NAME)
-    String webAppName;
-
-    private HelloService helloService;
-    HelloRestController(HelloService helloService) {
-        this.helloService = helloService;
-    }
-
-    @RequestMapping("/api/value")
-    public String helloJavaValue() {
-        return webAppName + "!\n";
-    }
-
-    @RequestMapping("/api/service")
-    public String helloJavaService() {
-        return helloService.getHello();
-    }
+  @GetMapping("/")
+  public String homePage(Model model) {
+    model.addAttribute("webAppName", webAppName);
+    // !!! (go to home.html)
+    return "home";
+  }
 }
 ```
 
@@ -172,28 +188,36 @@ nano ./src/main/java/de/iotoi/JavaApplication.java
 ```
 ```bash
     # >> Result
-    Hello @Service from init()!
-    Hello @Service from init()!!
+    Hello @Controller from init()!
+    Hello @Controller from init()!!
     <==========---> 80% EXECUTING [49s]
     > :bootRun
 ```
 
 ### DO (open a new terminal to access the web application)
 ```bash
-curl --no-progress-meter http://localhost:8080/api/value
+curl --no-progress-meter http://localhost:8080/
 ```
 ```bash
     # >>> Result
-    Hello @Service!
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Home Page</title>
+    </head>
+    <body>
+        <h1><span>Hello @Controller</span></h1>
+    </body>
 ```
 
 ```bash
-curl --no-progress-meter http://localhost:8080/api/service
+google-chrome http://localhost:8080/
 ```
 ```bash
     # >>> Result
-    Hello @Service!!
 ```
+![hello-controller](doc/image/hello-controller.png)
 
 
 
