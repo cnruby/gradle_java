@@ -8,22 +8,17 @@
 [![Java zulu-openjdk:11](https://img.shields.io/badge/Java-zulu%20openjdk:11-brightgreen?style=flat&logo=java)](https://www.azul.com/downloads/zulu-community/?package=jdk)
 [![IntelliJ IDEA Community Version](https://img.shields.io/badge/IntelliJ%20IEAD%20Community%20Version-blue?style=flat)](https://www.jetbrains.com/de-de/idea/download/#section=linux)
 [![Docker-(2019.03.13)](https://img.shields.io/badge/Docker-%2019.03.13-brightgreen)](https://www.docker.com/)
-[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_207.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_207)
+[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_208.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_208)
 
 
 
 ---
 
-Lesson 207: Hello @Component!
-<h1>Lesson 207: Hello @Component!</h1>
+Lesson 208: Hello @Autowired!
+<h1>Lesson 208: Hello @Autowired!</h1>
 
-- How to Understand the Annotation @Component
-- How to Compare the Annotation @Component and @Service
-- @Component is a generic stereotype for any Spring-managed component
-- @Repository annotates classes at the persistence layer, which will act as a database repository
-- @Service annotates classes at the service layer
-- @Service and @Repository are special cases of @Component
-- @Repository, @Service, @Configuration and @Controller are all meta-annotations of @Component,
+- How to Understand the Annotation @Autowired
+- How to Understand the REST Controller with the Annotation @Autowired
 
 
 ---
@@ -38,12 +33,8 @@ Lesson 207: Hello @Component!
   - [DO (edit the spring property file)](#do-edit-the-spring-property-file)
   - [DO (check the project)](#do-check-the-project)
 - [Develop the Project](#develop-the-project)
-  - [DO (create and edit the spring file with annotation @Component)](#do-create-and-edit-the-spring-file-with-annotation-component)
-  - [DO (check the project)](#do-check-the-project-1)
   - [DO (edit the spring rest controller file)](#do-edit-the-spring-rest-controller-file)
-  - [DO (check the project)](#do-check-the-project-2)
-  - [DO (edit the spring application file)](#do-edit-the-spring-application-file)
-  - [DO (check the project)](#do-check-the-project-3)
+  - [DO (check the project)](#do-check-the-project-1)
 - [Start the Project](#start-the-project)
   - [DO (open a new terminal to start HotCode)](#do-open-a-new-terminal-to-start-hotcode)
   - [DO (open a new terminal to run the web application)](#do-open-a-new-terminal-to-run-the-web-application)
@@ -77,7 +68,7 @@ Lesson 207: Hello @Component!
 
 ### DO (create a new project)
 ```bash
-EXISTING_APP_ID=206 && NEW_APP_ID=207 \
+EXISTING_APP_ID=207 && NEW_APP_ID=208 \
 && git clone -b basic_${EXISTING_APP_ID} https://github.com/cnruby/gradle_java.git ${NEW_APP_ID}_gradle_java \
 && cd ${NEW_APP_ID}_gradle_java
 ```
@@ -89,7 +80,7 @@ nano ./src/main/resources/application.properties
 ```bash
 # FILE (application.properties)
 ...
-web.app.name=Hello @Component
+web.app.name=Hello @Autowired
 ...
 ```
 
@@ -103,40 +94,7 @@ web.app.name=Hello @Component
 
 
 
-## Develop the Project
-
-### DO (create and edit the spring file with annotation @Component)
-```bash
-touch ./src/main/java/de/iotoi/HelloComponent.java
-```
-```bash
-nano ./src/main/java/de/iotoi/HelloComponent.java
-```
-```java
-// FILE (HelloComponent.java)
-package de.iotoi;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
-@Component()
-public class HelloComponent {
-    @Value("${web.app.name}")
-    String webAppName;
-
-    public String getHello() {
-        return webAppName + " from class HelloComponent!\n";
-    }
-}
-```
-
-### DO (check the project)
-```bash
-./gradlew -q check
-```
-```bash
-    # >> Result: nothing
-```
+## Develop the Project 
 
 ### DO (edit the spring rest controller file)
 ```bash
@@ -145,49 +103,13 @@ nano ./src/main/java/de/iotoi/HelloRestController.java
 ```java
 // FILE (HelloRestController.java)
 ...
+    @Autowired
     private HelloService helloService;
+    @Autowired
     private HelloComponent helloComponent;
-    HelloRestController(HelloService helloService, HelloComponent helloComponent) {
-        this.helloService = helloService;
-        this.helloComponent = helloComponent;
-    }
 
     @RequestMapping("/api/value")
 ...
-    @RequestMapping("/api/component")
-    public String helloJavaComponent() {
-        return helloComponent.getHello();
-    }
-}
-```
-
-### DO (check the project)
-```bash
-./gradlew -q check
-```
-```bash
-    # >> Result: nothing
-```
-
-### DO (edit the spring application file)
-```bash
-nano ./src/main/java/de/iotoi/JavaApplication.java
-```
-```java
-// FILE (JavaApplication.java)
-//...
-import org.springframework.context.ConfigurableApplicationContext;
-//...
-    public static void main(String[] args) {
-        ConfigurableApplicationContext ctx = SpringApplication.run(JavaApplication.class, args);
-
-        HelloService helloService = (HelloService) ctx.getBean("helloService");
-        System.out.println(helloService.getHello());
-
-        HelloComponent helloComponent = (HelloComponent) ctx.getBean("helloComponent");
-        System.out.println(helloComponent.getHello());
-    }
-}
 ```
 
 ### DO (check the project)
@@ -220,11 +142,11 @@ import org.springframework.context.ConfigurableApplicationContext;
 ```
 ```bash
     # >> Result
-    Hello @Component from init()!
-    Hello @Component from init()!!
-    Hello @Component!!
+    Hello @Autowired from init()!
+    Hello @Autowired from init()!!
+    Hello @Autowired!!
     
-    Hello @Component from class HelloComponent!
+    Hello @Autowired from class HelloComponent!
 ```
 
 ### DO (open a new terminal to access the web application)
@@ -233,7 +155,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 ```
 ```bash
     # >> Result
-    Hello @Component from class HelloComponent!
+    Hello @Autowired from class HelloComponent!
 ```
 
 

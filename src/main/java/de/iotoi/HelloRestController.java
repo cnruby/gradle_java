@@ -10,13 +10,14 @@ public class HelloRestController {
     @Value(PropertyValues.WEB_APP_NAME)
     String webAppName;
 
-//    @Autowired
+    @Autowired
     private HelloService helloService;
+    @Autowired
     private HelloComponent helloComponent;
-    HelloRestController(HelloService helloService, HelloComponent helloComponent) {
-        this.helloService = helloService;
-        this.helloComponent = helloComponent;
-    }
+    // HelloRestController(HelloService helloService, HelloComponent helloComponent) {
+    //     this.helloService = helloService;
+    //     this.helloComponent = helloComponent;
+    // }
 
     @RequestMapping("/api/value")
     public String helloJavaValue() {
