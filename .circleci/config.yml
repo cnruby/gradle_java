@@ -74,17 +74,10 @@ jobs:
       - run:
           name: "insert/update/delete a record and browse the website"
           command: |
-              curl \
-                  -H "Content-Type: application/json" \
-                  -X POST -d '{"title":"Java","author":"Joe"}' \
-                  localhost:80/api/books
-              curl \
-                  -H "Content-Type: application/json" \
-                  -X PUT -d '{"title":"Rust","author":"Leo"}' \
-                  localhost:80/api/books/1
               curl localhost:80/api/books/1
-              curl localhost:80/api/books/title/Rust
-              curl -X DELETE localhost:80/api/books/1
+              curl localhost:80/api/books/4
+              curl localhost:80/api/books/title/Rust%20211A
+              curl -X DELETE localhost:80/api/books/2
               curl localhost:80/api/books
 
       - run:
