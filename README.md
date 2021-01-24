@@ -13,8 +13,8 @@
 
 ---
 
-Unit 209: Hello @Entity!
-<h1>Unit 209: Hello @Entity!</h1>
+Lesson 209: Hello @Entity!
+<h1>Lesson 209: Hello @Entity!</h1>
 
 - How to Understand the Annotation @Entity!
 
