@@ -13,8 +13,8 @@
 
 ---
 
-Unit 210: Hello H2 Console!
-<h1>Unit 210: Hello H2 Console!</h1>
+Lesson 210: Hello H2 Console!
+<h1>Lesson 210: Hello H2 Console!</h1>
 
 - How to Understand Database h2 Console
 - How to Understand JPA and Database h2
