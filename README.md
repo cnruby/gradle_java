@@ -47,9 +47,10 @@ Lesson 211: Hello Seed Data!
   - [DO (access the web application api)](#do-access-the-web-application-api-1)
   - [DO (stop the web server)](#do-stop-the-web-server-1)
   - [DO (delete h2 database)](#do-delete-h2-database-1)
-- [Use DataSource and Hibernate as Seed Data Import](#use-datasource-and-hibernate-as-seed-data-import)
+- [Configure DataSource and Hibernate as Seed Data Import](#configure-datasource-and-hibernate-as-seed-data-import)
   - [DO (edit the spring property file)](#do-edit-the-spring-property-file-2)
   - [DO (check the project)](#do-check-the-project-3)
+- [Use DataSource and Hibernate as Seed Data Import](#use-datasource-and-hibernate-as-seed-data-import)
   - [DO (run the web application with gradle)](#do-run-the-web-application-with-gradle-2)
   - [DO (access the web application api)](#do-access-the-web-application-api-2)
   - [DO (stop the web server)](#do-stop-the-web-server-2)
@@ -282,7 +283,7 @@ rm database/development.*
 
 
 
-## Use DataSource and Hibernate as Seed Data Import
+## Configure DataSource and Hibernate as Seed Data Import
 
 ### DO (edit the spring property file)
 ```bash
@@ -310,6 +311,11 @@ spring.jpa.properties.hibernate.hbm2ddl.import_files = ./seed/data_hibernate.sql
 ```bash
     # >> Result: nothing
 ```
+
+
+
+
+## Use DataSource and Hibernate as Seed Data Import
 
 ### DO (run the web application with gradle)
 - All records will be deleted after every spring boot start.
