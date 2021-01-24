@@ -70,6 +70,10 @@ jobs:
           command: |
               sleep 10 && nc -vz localhost 80
               curl localhost:80/api/books
+
+      - run:
+          name: "insert/update/delete a record and browse the website"
+          command: |
               curl \
                   -H "Content-Type: application/json" \
                   -X POST -d '{"title":"Java","author":"Joe"}' \

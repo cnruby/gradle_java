@@ -8,15 +8,17 @@
 [![Java zulu-openjdk:11](https://img.shields.io/badge/Java-zulu%20openjdk:11-brightgreen?style=flat&logo=java)](https://www.azul.com/downloads/zulu-community/?package=jdk)
 [![IntelliJ IDEA Community Version](https://img.shields.io/badge/IntelliJ%20IEAD%20Community%20Version-blue?style=flat)](https://www.jetbrains.com/de-de/idea/download/#section=linux)
 [![Docker-(2019.03.13)](https://img.shields.io/badge/Docker-%2019.03.13-brightgreen)](https://www.docker.com/)
-[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_209.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_209)
+[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_210.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_210)
 
 
 ---
 
-Unit 209: Hello @Entity!
-<h1>Unit 209: Hello @Entity!</h1>
+Unit 210: Hello H2 Console!
+<h1>Unit 210: Hello H2 Console!</h1>
 
-- How to Understand the Annotation @Entity!
+- How to Understand Database h2 Console
+- How to Understand JPA and Database h2
+
 
 ---
 
@@ -26,21 +28,25 @@ Unit 209: Hello @Entity!
 - [Prerequisites](#prerequisites)
 - [Create A New Java Web App](#create-a-new-java-web-app)
   - [DO (create a new project)](#do-create-a-new-project)
-  - [DO (edit the spring property file)](#do-edit-the-spring-property-file)
   - [DO (check the project)](#do-check-the-project)
-- [Develop the Java Project](#develop-the-java-project)
-  - [DO (create and edit the spring model file)](#do-create-and-edit-the-spring-model-file)
-  - [DO (create and edit the spring model repository file)](#do-create-and-edit-the-spring-model-repository-file)
-  - [DO (create and edit the spring model repository file)](#do-create-and-edit-the-spring-model-repository-file-1)
-- [Run The Web Application on the Project](#run-the-web-application-on-the-project)
-  - [DO (run The Web Application with Gradle)](#do-run-the-web-application-with-gradle)
-  - [DO (show all records)](#do-show-all-records)
-  - [DO (insert a new record)](#do-insert-a-new-record)
-  - [DO (update the record by id)](#do-update-the-record-by-id)
-  - [DO (show a record by id)](#do-show-a-record-by-id)
-  - [DO (show a record by title)](#do-show-a-record-by-title)
-  - [DO (delete a record by id)](#do-delete-a-record-by-id)
-  - [DO (show all records)](#do-show-all-records-1)
+- [Configure h2 file database and its console for spring boot](#configure-h2-file-database-and-its-console-for-spring-boot)
+  - [DO (edit the spring property file)](#do-edit-the-spring-property-file)
+  - [DO (check the project)](#do-check-the-project-1)
+- [View H2 Database by Browser](#view-h2-database-by-browser)
+  - [DO (open a new terminal to start hotcode)](#do-open-a-new-terminal-to-start-hotcode)
+  - [DO (open a new terminal to run the web application)](#do-open-a-new-terminal-to-run-the-web-application)
+  - [DO (open a new terminal to browse the h2 console)](#do-open-a-new-terminal-to-browse-the-h2-console)
+  - [DO (connect the h2 console)](#do-connect-the-h2-console)
+  - [DO (show the h2 database)](#do-show-the-h2-database)
+- [View Table `BOOK` on h2 file database](#view-table-book-on-h2-file-database)
+  - [DO (edit the spring property file)](#do-edit-the-spring-property-file-1)
+  - [DO (show the record with terminal)](#do-show-the-record-with-terminal)
+  - [DO (view the table `BOOK` on h2 console)](#do-view-the-table-book-on-h2-console)
+- [View Records on Table `BOOK`](#view-records-on-table-book)
+  - [DO (insert a record)](#do-insert-a-record)
+  - [DO (show the record with browser)](#do-show-the-record-with-browser)
+  - [DO (show the record with h2-console-browser)](#do-show-the-record-with-h2-console-browser)
+  - [DO (show the record with terminal)](#do-show-the-record-with-terminal-1)
 - [References](#references)
 - [References for tools](#references-for-tools)
 
@@ -48,7 +54,7 @@ Unit 209: Hello @Entity!
 
 
 ## Keywords
-- Annotation @Entity `Spring Boot` `Web Application` h2 REST API
+- `Spring Boot` `Web Application` database h2 Console REST API
 - `Java JDK` `IntelliJ CE` CircleCI CI
 - tutorial example Ubuntu Gradle jabba JDK Java JVM
 
@@ -69,16 +75,23 @@ Unit 209: Hello @Entity!
 
 ### DO (create a new project)
 ```bash
-NEW_APP_ID=209 && \
-mkdir ${NEW_APP_ID}_gradle_java && cd ${NEW_APP_ID}_gradle_java && \
-curl https://start.spring.io/starter.zip -d language=java \
-  -d dependencies=web,devtools,jpa,h2 \
-  -d packageName=de.iotoi \
-  -d groupId=de.iotoi \
-  -d artifactId=_gradle_java \
-  -d name=java -d type=gradle-project -o basic_${NEW_APP_ID}.zip && \
-unzip basic_${NEW_APP_ID}.zip
+EXISTING_APP_ID=209 && NEW_APP_ID=210 \
+&& git clone -b basic_${EXISTING_APP_ID} https://github.com/cnruby/gradle_java.git ${NEW_APP_ID}_gradle_java \
+&& cd ${NEW_APP_ID}_gradle_java
 ```
+
+### DO (check the project)
+```bash
+./gradlew -q check
+```
+```bash
+    # >> Result: nothing
+```
+
+
+
+
+## Configure h2 file database and its console for spring boot
 
 ### DO (edit the spring property file)
 ```bash
@@ -88,10 +101,23 @@ nano ./src/main/resources/application.properties
 # FILE (application.properties)
 spring.main.banner-mode=off
 spring.main.log-startup-info=off
-web.app.name=Hello @Entity
+web.app.name=Hello h2 console
 logging.level.root=WARN
 
+# H2 Web Console (H2ConsoleProperties)
+# Defualt Configuration
+# spring.h2.console.enabled=true
+# spring.h2.console.settings.web-allow-others=true
+# spring.h2.console.path=/h2-console
+
+# DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
+spring.datasource.driver-class-name=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.datasource.url = jdbc:h2:file:./database/development;AUTO_SERVER=TRUE
+
 # JPA (JpaBaseConfiguration)
+spring.jpa.database-platform = org.hibernate.dialect.H2Dialect
 spring.jpa.open-in-view = true
 ```
 
@@ -106,206 +132,20 @@ spring.jpa.open-in-view = true
 
 
 
-## Develop the Java Project
+## View H2 Database by Browser 
 
-### DO (create and edit the spring model file)
+### DO (open a new terminal to start hotcode)
 ```bash
-mkdir -p src/main/java/de/iotoi/model
+./gradlew -q bootJar --continuous
 ```
 ```bash
-touch ./src/main/java/de/iotoi/model/Book.java
-```
-```bash
-nano ./src/main/java/de/iotoi/model/Book.java
-```
-```bash
-# FILE (Book.java)
-package de.iotoi.model;
-
-import javax.persistence.*;
-
-@Entity
-public class Book {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-
-    @Column(nullable = false, unique = true)
-    private String title;
-
-    @Column(nullable = false)
-    private String author;
-
-    public Book() {
-        super();
-    }
-
-    public Book(String title, String author) {
-        super();
-        this.title = title;
-        this.author = author;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((author == null) ? 0 : author.hashCode());
-        result = prime * result + (int) (id ^ (id >>> 32));
-        result = prime * result + ((title == null) ? 0 : title.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Book other = (Book) obj;
-        if (author == null) {
-            if (other.author != null)
-                return false;
-        } else if (!author.equals(other.author))
-            return false;
-        if (id != other.id)
-            return false;
-        if (title == null) {
-            if (other.title != null)
-                return false;
-        } else if (!title.equals(other.title))
-            return false;
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Book [id=" + id + ", title=" + title + ", author=" + author + "]";
-    }
-}
+    # >> Result
+    Waiting for changes to input files of tasks... (ctrl-d to exit)
+    <-------------> 0% WAITING
+    > IDLE
 ```
 
-### DO (create and edit the spring model repository file)
-```bash
-touch ./src/main/java/de/iotoi/model/BookRepository.java
-```
-```bash
-nano ./src/main/java/de/iotoi/model/BookRepository.java
-```
-```bash
-# FILE (BookRepository.java)
-package de.iotoi.model;
-
-import org.springframework.data.repository.CrudRepository;
-
-import java.util.List;
-
-public interface BookRepository extends CrudRepository<Book, Long> {
-    List<Book> findByTitle(String title);
-}
-```
-
-### DO (create and edit the spring model repository file)
-```bash
-touch ./src/main/java/de/iotoi/BookRestController.java
-```
-```bash
-nano ./src/main/java/de/iotoi/BookRestController.java
-```
-```bash
-# FILE (BookRestController.java)
-package de.iotoi;
-
-import de.iotoi.model.Book;
-import de.iotoi.model.BookRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
-@RestController
-@RequestMapping("/api/books")
-public class BookRestController {
-
-    @Autowired
-    private BookRepository bookRepository;
-
-    @GetMapping
-    public Iterable findAll() {
-        return bookRepository.findAll();
-    }
-
-    @GetMapping("/title/{bookTitle}")
-    public List<Book> findByTitle(@PathVariable String bookTitle) {
-        return bookRepository.findByTitle(bookTitle);
-    }
-
-    @GetMapping("/{id}")
-    public Book findOne(@PathVariable Long id) {
-        return bookRepository.findById(id)
-                .orElseThrow(BookNotFoundException::new);
-    }
-
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Book create(@RequestBody Book book) {
-        return bookRepository.save(book);
-    }
-
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        bookRepository.findById(id)
-                .orElseThrow(BookNotFoundException::new);
-        bookRepository.deleteById(id);
-    }
-
-    @PutMapping("/{id}")
-    public Book updateBook(@RequestBody Book requestBook, @PathVariable Long id) {
-        Book book = bookRepository.findById(id)
-                .orElseThrow(BookNotFoundException::new);
-
-        book.setTitle(requestBook.getTitle());
-        book.setAuthor(requestBook.getAuthor());
-
-        return bookRepository.save(book);
-    }
-}
-```
-
-
-
-
-## Run The Web Application on the Project
-
-### DO (run The Web Application with Gradle)
+### DO (open a new terminal to run the web application)
 ```bash
 ./gradlew -q bootRun
 ```
@@ -315,95 +155,124 @@ public class BookRestController {
     > :bootRun   
 ```
 
-### DO (show all records)
+### DO (open a new terminal to browse the h2 console)
 ```bash
-curl --no-progress-meter localhost:8080/api/books | json_pp
+google-chrome http://localhost:8080/h2-console
+```
+![h2_console.png](doc/image/h2_console.png)
+
+### DO (connect the h2 console)
+```bash
+# DO (enter "jdbc:h2:file:./database/development;AUTO_SERVER=TRUE")
+# DO (click the button 'Test Connection')
+# DO (click the button 'Connect')
+```
+![h2_test_connect](doc/image/h2_test_connect.png)
+
+
+### DO (show the h2 database)
+- !!! NO Table `BOOK` exists.
+![view_h2_database](doc/image/view_h2_database.png)
+
+
+
+
+## View Table `BOOK` on h2 file database
+
+### DO (edit the spring property file)
+```bash
+nano ./src/main/resources/application.properties
+```
+```bash
+# FILE (application.properties)
+...
+# !!! (h2 file database and its tables and records exist still after Spring Boot restart)
+spring.jpa.open-in-view = true
+spring.jpa.generate-ddl = true
+```
+
+### DO (show the record with terminal)
+```bash
+curl --no-progress-meter http://localhost:8080/api/books | json_pp
 ```
 ```bash
     # Result
     []
 ```
 
-### DO (insert a new record)
+### DO (view the table `BOOK` on h2 console)
+- !!! NO Records exists on table `BOOK`
+```bash
+google-chrome http://localhost:8080/h2-console
+```
+
+```bash
+# DO (browse the h2 console)
+# DO (connect the h2 console)
+# DO (click 'BOOK')
+# DO (click 'Run')
+```
+
+![view_h2_table](doc/image/view_h2_table.png)
+
+
+
+
+## View Records on Table `BOOK`
+
+### DO (insert a record)
 ```bash
 curl --no-progress-meter \
     -H "Content-Type: application/json" \
     -X POST -d '{"title":"Java","author":"Joe"}' \
     localhost:8080/api/books | json_pp
 ```
+
+### DO (show the record with browser)
 ```bash
-    # Result
-    {
-        "author" : "Joe",
-        "id" : 1,
-        "title" : "Java"
-    }
+google-chrome http://localhost:8080/h2-console
 ```
 
-### DO (update the record by id)
+### DO (show the record with h2-console-browser)
 ```bash
-curl --no-progress-meter \
-    -H "Content-Type: application/json" \
-    -X PUT -d '{"title":"Rust","author":"Leo"}' \
-    localhost:8080/api/books/1 | json_pp
+# DO (click 'Run')
 ```
-```bash
-    # Result
-    {
-        "author" : "Leo",
-        "id" : 1,
-        "title" : "Rust"
-    }
-```
+![view_h2_record](doc/image/view_h2_record.png)
 
-### DO (show a record by id)
+
+### DO (show the record with terminal)
 ```bash
-curl --no-progress-meter localhost:8080/api/books/1 | json_pp
+curl --no-progress-meter http://localhost:8080/api/books | json_pp
 ```
 ```bash
     # Result
-    {
-        "author" : "Leo",
-        "id" : 1,
-        "title" : "Rust"
-    }
-```
-
-### DO (show a record by title)
-```bash
-curl --no-progress-meter localhost:8080/api/books/title/Rust | json_pp
-```
-```bash
-    # Result
-    {
-        "author" : "Leo",
-        "id" : 1,
-        "title" : "Rust"
-    }
-```
-
-### DO (delete a record by id)
-```bash
-curl --no-progress-meter -X DELETE localhost:8080/api/books/1
-```
-```bash
-    # Result: nothing
-```
-
-### DO (show all records)
-```bash
-curl --no-progress-meter localhost:8080/api/books | json_pp
-```
-```bash
-    # Result
-    []
+    [
+        {
+            "author" : "Joe",
+            "id" : 1,
+            "title" : "Java"
+        }
+    ]
 ```
 
 
 
 
 ## References
-- https://www.baeldung.com/kotlin/kotlin-jpa
+- https://gist.github.com/memory-lovers/4132241df38456642ad888634caee5c6
+- https://github.com/DeadLion/spring-boot-samples/blob/master/application.properties.md
+- https://dzone.com/articles/run-the-rest-version-of-spring-petclinic-with-angu
+- https://dimitr.im/loading-initial-data-with-spring
+- https://docs.spring.io/spring-boot/docs/1.2.0.M1/reference/html/howto-database-initialization.html
+- https://www.baeldung.com/spring-boot-data-sql-and-schema-sql
+- https://stackoverflow.com/questions/38040572/spring-boot-loading-initial-data
+- https://docs.microsoft.com/de-de/azure/developer/java/spring-framework/configure-spring-data-jpa-with-azure-mysql
+- https://www.xspdf.com/resolution/20463098.html
+- https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html
+- https://javabydeveloper.com/spring-boot-loading-initial-data/
+- https://stackoverflow.com/questions/53464632/application-properties-to-application-yml-spring-boot
+- https://github.com/cesarsicas/spring-blog
+- https://github.com/spring-projects/spring-boot/issues/20920
 
 
 
