@@ -8,4 +8,4 @@ CREATE TABLE book (
 );
 
 INSERT INTO book(title, author) VALUES
-  ('Ruby', 'Leo 214A');
+  ('Ruby', 'Leo 215A');
