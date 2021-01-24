@@ -1,10 +1,13 @@
-DROP TABLE IF EXISTS book;
+DROP TABLE IF EXISTS books;
 
-CREATE TABLE book (
-  id INT AUTO_INCREMENT  PRIMARY KEY,
+DROP SEQUENCE IF EXISTS native;
+CREATE SEQUENCE native START 5;
+
+CREATE TABLE books (
+  id serial PRIMARY KEY,
   title VARCHAR(250) NOT NULL,
-  author VARCHAR(250),
-  created TIMESTAMP(9) DEFAULT CURRENT_TIMESTAMP
+  author VARCHAR(250)
 );
 
-INSERT INTO book(title, author) VALUES ('Ruby', 'Leo 213B');
+INSERT INTO books(title, author) VALUES ('Ruby', 'Leo 214B');
+INSERT INTO books(title, author) VALUES ('HTML', 'Jeo 214B');

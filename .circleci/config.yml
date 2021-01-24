@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  project_build:
+  build:
     docker:
       # specify the version you desire here
       #- image: circleci/openjdk:11-jdk
@@ -28,64 +28,7 @@ jobs:
               apt-get install -y unzip zip curl screen
 
       - run:
-          name: "Run The Application with Gradle"
+          name: "Check Java Version"
           command: |
-              ./gradlew -q check
-              screen -d -m -s "webapp_on_project" ./gradlew -q bootRun
+              java -version
 
-  docker_build:
-    machine: true
-      # image: ubuntu-2004:202010-01
-
-    steps:      
-      - checkout
-
-      - run:
-          name: Install OpenJDK 11
-          command: |
-            sudo apt-get update && sudo apt-get install openjdk-11-jdk
-            sudo update-alternatives --set java /usr/lib/jvm/java-11-openjdk-amd64/bin/java
-            sudo update-alternatives --set javac /usr/lib/jvm/java-11-openjdk-amd64/bin/javac
-            java -version
-
-      - run: 
-          name: "install tools"
-          command: |
-            cat /etc/*-release
-            sudo apt update -y
-            sudo apt install curl wget netcat -y
-
-      - run:
-          name: "create a docker image"
-          command: |
-              ./gradlew -q bootBuildImage --imageName=gradle_java/basic_xxx
-
-      - run:
-          name: "start web server with web app"
-          command: |
-              docker run -d --name=xxx_gradle_java_container -p 80:8080 gradle_java/basic_xxx
-
-      - run:
-          name: "browse the website"
-          command: |
-              sleep 10 && nc -vz localhost 80
-              curl localhost:80/api/books
-
-      - run:
-          name: "insert/update/delete a record and browse the website"
-          command: |
-              curl localhost:80/api/books/1
-              curl localhost:80/api/books/title/Ruby
-              curl -X DELETE localhost:80/api/books/2
-              curl localhost:80/api/books
-
-      - run:
-          name: "stop web server on docker"
-          command: |
-              docker stop xxx_gradle_java_container
-
-workflows:
-  build:
-    jobs:
-      - project_build
-      - docker_build
