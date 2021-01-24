@@ -75,8 +75,7 @@ jobs:
           name: "insert/update/delete a record and browse the website"
           command: |
               curl localhost:80/api/books/1
-              curl localhost:80/api/books/4
-              curl localhost:80/api/books/title/Rust%20212A
+              curl localhost:80/api/books/title/Ruby
               curl -X DELETE localhost:80/api/books/2
               curl localhost:80/api/books
 
