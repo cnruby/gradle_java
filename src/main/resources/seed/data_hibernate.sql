@@ -1,2 +1,2 @@
-INSERT INTO book(id, title, author) VALUES (1, 'Kotlin 211A', 'Jeo');
-INSERT INTO book(id, title, author) VALUES (2, 'Rust 211A', 'Leo');
+INSERT INTO book(title, author) VALUES ('Kotlin 212A', 'Jeo');
+INSERT INTO book(title, author) VALUES ('Rust 212A', 'Leo');

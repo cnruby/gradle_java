@@ -1,12 +1,21 @@
 package de.iotoi.model;
 
 import javax.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    // @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(
+        strategy= GenerationType.AUTO,
+        generator="native"
+    )
+    @GenericGenerator(
+        name = "native",
+        strategy = "native"
+    )    
     private long id;
 
     @Column(nullable = false, unique = true)
