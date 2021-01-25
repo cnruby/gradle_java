@@ -8,16 +8,21 @@
 [![Java zulu-openjdk:11](https://img.shields.io/badge/Java-zulu%20openjdk:11-brightgreen?style=flat&logo=java)](https://www.azul.com/downloads/zulu-community/?package=jdk)
 [![IntelliJ IDEA Community Version](https://img.shields.io/badge/IntelliJ%20IEAD%20Community%20Version-blue?style=flat)](https://www.jetbrains.com/de-de/idea/download/#section=linux)
 [![Docker-(2019.03.13)](https://img.shields.io/badge/Docker-%2019.03.13-brightgreen)](https://www.docker.com/)
-[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_205.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_205)
+[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_217.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_217)
 
 
 
 ---
 
-Lesson 205: Hello @Service!
-<h1>Lesson 205: Hello @Service!</h1>
+Lesson 217: Hello JUnit 5!
+<h1>Lesson 217: Hello JUnit 5!</h1>
 
-- How to Understand the Annotation @Service
+- How to Understand the unit testing framework `JUnit` `JUnit 5`
+- JUnit is particularly suitable for automated unit tests of individual units (classes or methods)
+- Every test method must be annotated by the @Test annotation
+- Every test method has only two results: Either the test succeeds (then it is "green"(OK)) or it fails (then it is "red"(ERROR)).
+- JUnit is linked as a JAR at compile-time
+
 
 
 ---
@@ -31,14 +36,11 @@ Lesson 205: Hello @Service!
   - [DO (create a new project)](#do-create-a-new-project)
   - [DO (edit the spring property file)](#do-edit-the-spring-property-file)
   - [DO (check the project)](#do-check-the-project)
-- [Develop the Project](#develop-the-project)
-  - [DO (create and edit the spring service file)](#do-create-and-edit-the-spring-service-file)
-  - [DO (edit the java rest controller file)](#do-edit-the-java-rest-controller-file)
-  - [DO (check the project)](#do-check-the-project-1)
-- [Start the Project](#start-the-project)
-  - [DO (open a new terminal to start HotCode)](#do-open-a-new-terminal-to-start-hotcode)
-  - [DO (open a new terminal to run the web application)](#do-open-a-new-terminal-to-run-the-web-application)
-  - [DO (open a new terminal to access the web application)](#do-open-a-new-terminal-to-access-the-web-application)
+- [Develop the Project for JUnit 5](#develop-the-project-for-junit-5)
+  - [DO (create and edit the spring test file)](#do-create-and-edit-the-spring-test-file)
+- [Test The Web Application on the Project](#test-the-web-application-on-the-project)
+  - [DO (run the spring test command)](#do-run-the-spring-test-command)
+  - [DO (view the spring test result)](#do-view-the-spring-test-result)
 - [References](#references)
 - [References for tools](#references-for-tools)
 
@@ -46,10 +48,10 @@ Lesson 205: Hello @Service!
 
 
 ## Keywords
-- `Spring Boot` Annotation `@Service`
+- JUnit `Spring Boot` Annotation `@Test` Testing Test
 - `Java JDK` `IntelliJ CE` CircleCI CI
 - tutorial example Ubuntu Gradle jabba JDK Java JVM
-- `Spring Boot` `web app` web app
+- `Spring Boot` `web app` web app Annotation `@Service`
 
 
 
@@ -67,7 +69,7 @@ Lesson 205: Hello @Service!
 
 ### DO (create a new project)
 ```bash
-EXISTING_APP_ID=204 && NEW_APP_ID=205 \
+EXISTING_APP_ID=205 && NEW_APP_ID=217 \
 && git clone -b basic_${EXISTING_APP_ID} https://github.com/cnruby/gradle_java.git ${NEW_APP_ID}_gradle_java \
 && cd ${NEW_APP_ID}_gradle_java
 ```
@@ -79,7 +81,7 @@ nano ./src/main/resources/application.properties
 ```bash
 # FILE (application.properties)
 ...
-web.app.name=Hello @Service
+web.app.name=Hello JUnit 5
 logging.level.root=WARN
 ```
 
@@ -93,122 +95,78 @@ logging.level.root=WARN
 
 
 
-## Develop the Project
 
-### DO (create and edit the spring service file)
+## Develop the Project for JUnit 5
+
+### DO (create and edit the spring test file)
 ```bash
-touch ./src/main/java/de/iotoi/HelloService.java
+touch ./src/test/java/de/iotoi/HelloServiceTests.java
 ```
 ```bash
-nano ./src/main/java/de/iotoi/HelloService.java
+nano ./src/test/java/de/iotoi/HelloServiceTests.java
 ```
 ```bash
-# FILE (HelloService.java)
+# FILE (HelloServiceTests.java)
 package de.iotoi;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
+import org.junit.jupiter.api.*;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.boot.test.context.SpringBootTest;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Service()
-public class HelloService {
-    @Value("${web.app.name}")
-    String webAppName;
+@SpringBootTest
+public class HelloServiceTests {
+	@Autowired
+	HelloService helloService;
 
-    public String getHello() {
-        System.out.println(webAppName);
-        return webAppName + "!!\n";
-    }
+	@Value("${web.app.name}")
+	String webAppName;
+
+	@DisplayName("Test Spring @Autowired Integration")
+	@Test
+	public void testAnnotationGetHello() {
+		assertEquals(webAppName, "Hello JUnit 5");
+		assertEquals(webAppName + "!!\n", helloService.getHello());
+	}
 }
 ```
 
-### DO (edit the java rest controller file)
+
+
+
+## Test The Web Application on the Project
+
+### DO (run the spring test command)
 ```bash
-nano ./src/main/java/de/iotoi/JavaApplication.java
-```
-```bash
-# FILE (JavaApplication.java)
-...
-    @Value(PropertyValues.WEB_APP_NAME)
-    String webAppName;
-
-    private HelloService helloService;
-    HelloRestController(HelloService helloService) {
-        this.helloService = helloService;
-    }
-
-    @RequestMapping("/api/value")
-    public String helloJavaValue() {
-        return webAppName + "!\n";
-    }
-
-    @RequestMapping("/api/service")
-    public String helloJavaService() {
-        return helloService.getHello();
-    }
-}
-```
-
-### DO (check the project)
-```bash
-./gradlew -q check
+./gradlew -q test
 ```
 ```bash
     # >> Result: nothing
 ```
 
-
-
-
-## Start the Project
-
-### DO (open a new terminal to start HotCode)
+### DO (view the spring test result)
 ```bash
-./gradlew -q bootJar --continuous
-```
-
-### DO (open a new terminal to run the web application)
-```bash
-./gradlew -q bootRun
+google-chrome ./build/reports/tests/test/index.html
 ```
 ```bash
     # >> Result
-    Hello @Service from init()!
-    Hello @Service from init()!!
-    <==========---> 80% EXECUTING [49s]
-    > :bootRun
 ```
+![testing-result](doc/image/testing-result.png)
 
-### DO (open a new terminal to access the web application)
-```bash
-curl --no-progress-meter http://localhost:8080/api/value
-```
-```bash
-    # >>> Result
-    Hello @Service!
-```
-
-```bash
-curl --no-progress-meter http://localhost:8080/api/service
-```
-```bash
-    # >>> Result
-    Hello @Service!!
-```
 
 
 
 
 ## References
-- https://stackoverflow.com/questions/54937518/visual-studio-code-spring-boot-reload-static-content/55370810
-- https://mkyong.com/spring-boot/intellij-idea-spring-boot-template-reload-is-not-working/
-- https://gist.github.com/IMRFeng/eed589de6a6362ef23bc189fb135fdea
-- https://www.vojtechruzicka.com/spring-boot-devtools/
-- https://stackoverflow.com/questions/33349456/how-to-make-auto-reload-with-spring-boot-on-idea-intellij
-- https://stackoverflow.com/questions/54556072/hot-to-hotswap-code-in-intellij-in-a-spring-boot-project
-- https://www.nexsoftsys.com/articles/hot-swapping-in-spring-boot-applications.html
-- https://stackoverflow.com/questions/57408522/spring-boot-maven-not-printing-logs-on-console
-
-
+- https://junit.org/junit5/docs/current/user-guide/
+- https://www.baeldung.com/junit-5
+- https://www.innoq.com/de/articles/2019/12/junit5-spring-boot-tests/
+- https://developer.okta.com/blog/2019/03/28/test-java-spring-boot-junit5
+- https://medium.com/@thankgodukachukwu/unit-and-integrated-testing-spring-boot-and-junit-5-99b9745b782a
+- https://mkyong.com/spring-boot/spring-boot-junit-5-mockito/
+- https://www.trion.de/news/2020/05/26/testcontainers-junit5.html
+- https://en.wikipedia.org/wiki/JUnit
+- https://de.wikipedia.org/wiki/JUnit
 
 
 ## References for tools
