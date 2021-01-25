@@ -1,10 +1,10 @@
-DROP TABLE IF EXISTS book;
+DROP TABLE IF EXISTS books;
 
-CREATE TABLE book (
+CREATE TABLE books (
   id INT AUTO_INCREMENT  PRIMARY KEY,
   title VARCHAR(250) NOT NULL,
   author VARCHAR(250),
   created TIMESTAMP(9) DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO book(title, author) VALUES ('Ruby', 'Leo 213B');
+INSERT INTO books(title, author) VALUES ('Ruby', 'Leo');

@@ -1,1 +1,1 @@
-INSERT INTO book(title, author) VALUES ('Java', 'Thomas 213B');
+INSERT INTO books(title, author) VALUES ('Java', 'Thomas');

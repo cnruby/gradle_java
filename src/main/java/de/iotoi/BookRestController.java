@@ -5,8 +5,8 @@ import de.iotoi.model.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+import de.iotoi.exception.BookNotFoundException;
 
 @RestController
 @RequestMapping("/api/books")
@@ -28,7 +28,7 @@ public class BookRestController {
     @GetMapping("/{id}")
     public Book findOne(@PathVariable Long id) {
         return bookRepository.findById(id)
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(BookNotFoundException::new);
     }
 
     @PostMapping

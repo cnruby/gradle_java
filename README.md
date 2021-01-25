@@ -8,17 +8,18 @@
 [![Java zulu-openjdk:11](https://img.shields.io/badge/Java-zulu%20openjdk:11-brightgreen?style=flat&logo=java)](https://www.azul.com/downloads/zulu-community/?package=jdk)
 [![IntelliJ IDEA Community Version](https://img.shields.io/badge/IntelliJ%20IEAD%20Community%20Version-blue?style=flat)](https://www.jetbrains.com/de-de/idea/download/#section=linux)
 [![Docker-(2019.03.13)](https://img.shields.io/badge/Docker-%2019.03.13-brightgreen)](https://www.docker.com/)
-[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_213.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_213)
+[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_216.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_216)
 
 
 ---
 
-Lesson 213: Hello Spring DataSource!
-<h1>Lesson 213: Hello Spring DataSource!</h1>
+Lesson 216: Hello @ControllerAdvice!
+<h1>Lesson 216: Hello @ControllerAdvice!</h1>
 
-- How to Understand The Database h2 with Spring DataSource
-- Use Spring DataSource to Create Tables and Records
-- Table `BOOK` and all records will be deleted after every spring boot start 
+- How to Understand The Annotation @ControllerAdvice 
+- @ControllerAdvice allows handling exceptions across the whole application
+- @ControllerAdvice is a specialization of the @Component annotation
+- @ControllerAdvice is a global handling component @ExceptionHandler  
 
 
 
@@ -30,37 +31,25 @@ Lesson 213: Hello Spring DataSource!
 - [Prerequisites](#prerequisites)
 - [Create A New Java Web App](#create-a-new-java-web-app)
   - [DO (create a new project)](#do-create-a-new-project)
+  - [DO (edit a spring model file)](#do-edit-a-spring-model-file)
+  - [DO (edit a schema file for spring datasource)](#do-edit-a-schema-file-for-spring-datasource)
+  - [DO (edit a data file for spring datasource)](#do-edit-a-data-file-for-spring-datasource)
   - [DO (check the project)](#do-check-the-project)
-  - [DO (delete h2 database)](#do-delete-h2-database)
-- [Loads SQL Files From The Custom Classpath Locations](#loads-sql-files-from-the-custom-classpath-locations)
-  - [DO (edit the application properties file for spring)](#do-edit-the-application-properties-file-for-spring)
-  - [DO (edit a schema file for datasource)](#do-edit-a-schema-file-for-datasource)
-  - [DO (edit a data file for datasource)](#do-edit-a-data-file-for-datasource)
-  - [DO (check the project)](#do-check-the-project-1)
-  - [DO (delete h2 database)](#do-delete-h2-database-1)
-- [Use SQL Files From The Custom Classpath Locations](#use-sql-files-from-the-custom-classpath-locations)
+- [Check The Web App](#check-the-web-app)
   - [DO (run the web application with gradle)](#do-run-the-web-application-with-gradle)
-  - [DO (access the web application api)](#do-access-the-web-application-api)
-  - [DO (add a new record to the web application api)](#do-add-a-new-record-to-the-web-application-api)
-  - [DO (access the web application api again)](#do-access-the-web-application-api-again)
-  - [DO (stop the web server)](#do-stop-the-web-server)
-  - [DO (delete h2 database)](#do-delete-h2-database-2)
-  - [DO (run the web application with gradle)](#do-run-the-web-application-with-gradle-1)
-  - [DO (access the web application api)](#do-access-the-web-application-api-1)
-  - [DO (view the h2 Console)](#do-view-the-h2-console)
-  - [DO (stop the web server)](#do-stop-the-web-server-1)
-  - [DO (delete h2 database)](#do-delete-h2-database-3)
-- [Load The Standard SQL Files From The Standard Root Classpath Locations](#load-the-standard-sql-files-from-the-standard-root-classpath-locations)
-  - [DO (edit the application properties file for spring)](#do-edit-the-application-properties-file-for-spring-1)
-  - [DO (add a standard schema file for standard root classpath location)](#do-add-a-standard-schema-file-for-standard-root-classpath-location)
-  - [DO (add a standard data file for standard root classpath location)](#do-add-a-standard-data-file-for-standard-root-classpath-location)
-  - [DO (check the project)](#do-check-the-project-2)
-  - [DO (delete h2 database)](#do-delete-h2-database-4)
-- [Use The Standard SQL Files From The Standard Root Classpath Locations](#use-the-standard-sql-files-from-the-standard-root-classpath-locations)
-  - [DO (run the web application with gradle)](#do-run-the-web-application-with-gradle-2)
-  - [DO (access the web application api)](#do-access-the-web-application-api-2)
-  - [DO (stop the web server)](#do-stop-the-web-server-2)
-  - [DO (delete h2 database)](#do-delete-h2-database-5)
+  - [DO (access all book's records in the web application api)](#do-access-all-books-records-in-the-web-application-api)
+  - [DO (access the first book's record in the web application api)](#do-access-the-first-books-record-in-the-web-application-api)
+- [Our Problem](#our-problem)
+  - [DO (access the web app api if a record exists not)](#do-access-the-web-app-api-if-a-record-exists-not)
+  - [DO (open a new terminal to start HotCode)](#do-open-a-new-terminal-to-start-hotcode)
+- [Our Solution: The ExceptionHandler @ControllerAdvice annotation](#our-solution-the-exceptionhandler-controlleradvice-annotation)
+  - [DO (make a new folder for exception handler)](#do-make-a-new-folder-for-exception-handler)
+  - [DO (add a new book's exception file)](#do-add-a-new-books-exception-file)
+  - [DO (edit the rest controller file)](#do-edit-the-rest-controller-file)
+  - [DO (add a new rest's exception handler file with the annotation @ControllerAdvice)](#do-add-a-new-rests-exception-handler-file-with-the-annotation-controlleradvice)
+  - [DO (access in the web app api again if a record exists not)](#do-access-in-the-web-app-api-again-if-a-record-exists-not)
+  - [DO (edit the rest's exception handler file again)](#do-edit-the-rests-exception-handler-file-again)
+  - [DO (ccess in the web app api if a record exists not)](#do-ccess-in-the-web-app-api-if-a-record-exists-not)
 - [References](#references)
 - [References for tools](#references-for-tools)
 
@@ -68,7 +57,7 @@ Lesson 213: Hello Spring DataSource!
 
 
 ## Keywords
-- `Spring DataSource` `Web Application` REST API h2 JPA Hibernate Classpath
+- @ControllerAdvice `Web Application` REST API h2 Exception Handler
 - `Java JDK` `IntelliJ CE` CircleCI CI
 - tutorial example Ubuntu Gradle jabba JDK Java JVM
 - `Spring Boot` database Console DataSource
@@ -90,289 +79,49 @@ Lesson 213: Hello Spring DataSource!
 
 ### DO (create a new project)
 ```bash
-EXISTING_APP_ID=212 && NEW_APP_ID=213 \
+EXISTING_APP_ID=213 && NEW_APP_ID=216 \
 && git clone -b basic_${EXISTING_APP_ID} https://github.com/cnruby/gradle_java.git ${NEW_APP_ID}_gradle_java \
 && cd ${NEW_APP_ID}_gradle_java
 ```
 
-### DO (check the project)
+### DO (edit a spring model file)
 ```bash
-./gradlew -q check
+nano ./src/main/java/de/iotoi/model/Book.java
 ```
-```bash
-    # >> Result: nothing
-```
-
-### DO (delete h2 database)
-```bash
-rm database/development.*
-```
-
-
-
-
-## Loads SQL Files From The Custom Classpath Locations
-
-### DO (edit the application properties file for spring)
-```bash
-nano ./src/main/resources/application.properties
-```
-```bash
-# FILE (application.properties)
+```java
+// FILE (Book.java)
 ...
-spring.datasource.url = jdbc:h2:file:./database/development
-
-spring.datasource.initialization-mode=always
-spring.datasource.schema=classpath*:db/schema.sql
-spring.datasource.data=classpath*:db/data.sql
-
-# JPA (JpaBaseConfiguration)
-spring.jpa.database-platform = org.hibernate.dialect.H2Dialect
-spring.jpa.show-sql = true
-spring.jpa.open-in-view = true
-
-# Hibernate (HibernateJpaAutoConfiguration)
-spring.jpa.properties.hibernate.format_sql = true
-spring.jpa.hibernate.ddl-auto = none
-```
-
-### DO (edit a schema file for datasource)
-```bash
-mkdir ./src/main/resources/db
-```
-```bash
-touch ./src/main/resources/db/schema.sql
-```
-```bash
-nano ./src/main/resources/db/schema.sql
-```
-```sql
--- FILE (schema.sql)
-DROP TABLE IF EXISTS book;
-
-CREATE TABLE book (
-  id INT AUTO_INCREMENT  PRIMARY KEY,
-  title VARCHAR(250) NOT NULL,
-  author VARCHAR(250),
-  created TIMESTAMP(9) DEFAULT CURRENT_TIMESTAMP
-);
-
-INSERT INTO book(title, author) VALUES
-  ('Ruby', 'Leo 213A');
-```
-
-### DO (edit a data file for datasource)
-```bash
-touch ./src/main/resources/db/data.sql
-```
-```bash
-nano ./src/main/resources/db/data.sql
-```
-```sql
--- FILE (data.sql)
-INSERT INTO book(title, author) VALUES ('Java', 'Thomas 213A');
-```
-
-### DO (check the project)
-```bash
-./gradlew -q check
-```
-```bash
-    # >> Result: nothing
-```
-
-### DO (delete h2 database)
-```bash
-rm database/development.*
-```
-
-
-
-
-## Use SQL Files From The Custom Classpath Locations
-
-### DO (run the web application with gradle)
-
-```bash
-./gradlew -q bootRun
-```
-```bash
-    # >> Result
-    <==========---> 83% EXECUTING [35s]
-    > :bootRun   
-```
-
-### DO (access the web application api)
-```bash
-curl --no-progress-meter http://localhost:8080/api/books | json_pp
-```
-```bash
-    # >> Result
-    [
-        {
-            "author" : "Leo 213A",
-            "id" : 1,
-            "title" : "Ruby"
-        },
-        {
-            "author" : "Thomas 213A",
-            "id" : 2,
-            "title" : "Java"
-        }
-    ]
-```
-
-### DO (add a new record to the web application api)
-```bash
-curl --no-progress-meter \
-    -H "Content-Type: application/json" \
-    -X POST -d '{"title":"Rust","author":"Joe 213A"}' \
-    localhost:8080/api/books | json_pp
-```
-```bash
-    # >> Result
-    {
-        "author" : "Joe 213A",
-        "id" : 3,
-        "title" : "Rust"
-    }
-```
-
-### DO (access the web application api again)
-```bash
-curl --no-progress-meter http://localhost:8080/api/books | json_pp
-```
-```bash
-    # >> Result
-    [
-        {
-            "author" : "Leo 213A",
-            "id" : 1,
-            "title" : "Ruby"
-        },
-        {
-            "author" : "Thomas 213A",
-            "id" : 2,
-            "title" : "Java"
-        },
-        {
-            "author" : "Joe 213A",
-            "id" : 3,
-            "title" : "Rust"
-        }
-    ]
-```
-
-### DO (stop the web server)
-```bash
-# DO (Ctrl+C)
-```
-
-### DO (delete h2 database)
-```bash
-rm database/development.*
-```
-
-### DO (run the web application with gradle)
-
-```bash
-./gradlew -q bootRun
-```
-```bash
-    # >> Result
-    <==========---> 83% EXECUTING [35s]
-    > :bootRun   
-```
-
-### DO (access the web application api)
-```bash
-curl --no-progress-meter http://localhost:8080/api/books | json_pp
-```
-```bash
-    # >> Result
-    [
-        {
-            "author" : "Leo 213A",
-            "id" : 1,
-            "title" : "Ruby"
-        },
-        {
-            "author" : "Thomas 213A",
-            "id" : 2,
-            "title" : "Java"
-        }
-    ]
-```
-
-### DO (view the h2 Console)
-```bash
-google-chrome http://localhost:8080/h2-console/
-```
-![h2_console](doc/image/h2_console.png)
-
-
-### DO (stop the web server)
-```bash
-# DO (Ctrl+C)
-```
-
-### DO (delete h2 database)
-```bash
-rm database/development.*
-```
-
-
-
-
-## Load The Standard SQL Files From The Standard Root Classpath Locations
-- The Standard SQL Schema Files is `schema.sql`
-- - The Standard SQL Data Files is `data.sql`
-- The Standard Root Classpath Locations is `./src/main/resources` here
-
-### DO (edit the application properties file for spring)
-```bash
-nano ./src/main/resources/application.properties
-```
-```bash
-# FILE (application.properties)
-...
-spring.datasource.initialization-mode=always
-# spring.datasource.schema=classpath*:db/schema.sql
-# spring.datasource.data=classpath*:db/data.sql
+@Entity
+@Table(name="books")
+class Book {
 ...
 ```
 
-### DO (add a standard schema file for standard root classpath location)
-```bash
-touch ./src/main/resources/schema.sql
-```
+### DO (edit a schema file for spring datasource)
 ```bash
 nano ./src/main/resources/schema.sql
 ```
 ```sql
 -- FILE (schema.sql)
-DROP TABLE IF EXISTS book;
+DROP TABLE IF EXISTS books;
 
-CREATE TABLE book (
+CREATE TABLE books (
   id INT AUTO_INCREMENT  PRIMARY KEY,
   title VARCHAR(250) NOT NULL,
   author VARCHAR(250),
   created TIMESTAMP(9) DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO book(title, author) VALUES ('Ruby', 'Leo 213B');
+INSERT INTO books(title, author) VALUES ('Ruby', 'Leo');
 ```
 
-### DO (add a standard data file for standard root classpath location)
-```bash
-touch ./src/main/resources/data.sql
-```
+### DO (edit a data file for spring datasource)
 ```bash
 nano ./src/main/resources/data.sql
 ```
 ```sql
 -- FILE (data.sql)
-INSERT INTO book(title, author) VALUES ('Java', 'Thomas 213B');
+INSERT INTO books(title, author) VALUES ('Java', 'Thomas');
 ```
 
 ### DO (check the project)
@@ -383,15 +132,10 @@ INSERT INTO book(title, author) VALUES ('Java', 'Thomas 213B');
     # >> Result: nothing
 ```
 
-### DO (delete h2 database)
-```bash
-rm database/development.*
-```
 
 
 
-
-## Use The Standard SQL Files From The Standard Root Classpath Locations
+## Check The Web App
 
 ### DO (run the web application with gradle)
 
@@ -404,7 +148,7 @@ rm database/development.*
     > :bootRun   
 ```
 
-### DO (access the web application api)
+### DO (access all book's records in the web application api)
 ```bash
 curl --no-progress-meter http://localhost:8080/api/books | json_pp
 ```
@@ -412,47 +156,200 @@ curl --no-progress-meter http://localhost:8080/api/books | json_pp
     # >> Result
     [
         {
-            "author" : "Leo 213B",
+            "author" : "Leo",
             "id" : 1,
             "title" : "Ruby"
         },
         {
-            "author" : "Thomas 213B",
+            "author" : "Thomas",
             "id" : 2,
             "title" : "Java"
         }
     ]
 ```
 
-### DO (stop the web server)
+### DO (access the first book's record in the web application api)
 ```bash
-# DO (Ctrl+C)
+curl --no-progress-meter http://localhost:8080/api/books/1 | json_pp
+```
+```bash
+    # >> Result
+    {
+      "author" : "Leo",
+      "id" : 1,
+      "title" : "Ruby"
+    }
 ```
 
-### DO (delete h2 database)
+
+
+
+## Our Problem
+
+### DO (access the web app api if a record exists not)
 ```bash
-rm database/development.*
+curl --no-progress-meter http://localhost:8080/api/books/3 | json_pp
+```
+```bash
+    # >> Result
+    {
+        "error" : "Internal Server Error",
+        "message" : "No message available",
+        "path" : "/api/books/3",
+        "status" : 500,
+        "timestamp" : "2021-01-15T12:45:55.075+00:00",
+        "trace" : "java.lang.RuntimeException\n\tat de.iotoi.BookRestController$findOne$1.get(BookRestController.java:37)\n\tat
+        .......
+    }
+```
+
+### DO (open a new terminal to start HotCode)
+```bash
+./gradlew -q bootJar --continuous
+```
+```bash
+    # >>> Result
+    Waiting for changes to input files of tasks... (ctrl-d to exit)
+    <=============> 100% EXECUTING [35s]
+    > IDLE
+```
+
+
+
+
+## Our Solution: The ExceptionHandler @ControllerAdvice annotation
+
+### DO (make a new folder for exception handler)
+```bash
+mkdir ./src/main/java/de/iotoi/exception
+```
+
+### DO (add a new book's exception file)
+```bash
+touch ./src/main/java/de/iotoi/exception/BookNotFoundException.java
+```
+```bash
+nano ./src/main/java/de/iotoi/exception/BookNotFoundException.java
+```
+```java
+// FILE (BookNotFoundException.java)
+package de.iotoi.exception;
+
+public class BookNotFoundException extends RuntimeException {
+    public BookNotFoundException() {
+        super();
+    }
+}
+```
+
+### DO (edit the rest controller file)
+```bash
+nano ./src/main/java/de/iotoi/model/BookRestController.java
+```
+```bash
+# FILE (BookRestController.java)
+...java
+...
+import de.iotoi.exception.BookNotFoundException;
+...
+    @GetMapping("/{id}")
+    public Book findOne(@PathVariable Long id) {
+        return bookRepository.findById(id)
+                .orElseThrow(BookNotFoundException::new);
+    }
+...
+```
+
+### DO (add a new rest's exception handler file with the annotation @ControllerAdvice)
+```bash
+touch ./src/main/java/de/iotoi/exception/RestExceptionHandler.java
+```
+```bash
+nano ./src/main/java/de/iotoi/exception/RestExceptionHandler.java
+```
+```java
+// FILE (RestExceptionHandler.java)
+package de.iotoi.exception;
+
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+@ControllerAdvice
+public class RestExceptionHandler extends ResponseEntityExceptionHandler {
+
+    @ExceptionHandler({ BookNotFoundException.class })
+    protected ResponseEntity<Object> handleNotFound(
+            Exception ex, WebRequest request) {
+        return handleExceptionInternal(
+                ex,
+                "",
+                new HttpHeaders(),
+                HttpStatus.NOT_FOUND,
+                request
+        );
+    }
+}
+```
+
+### DO (access in the web app api again if a record exists not)
+```bash
+curl --no-progress-meter http://localhost:8080/api/books/3 | json_pp
+```
+```bash
+    # >>> Result
+    {
+        "error" : "Not Found",
+        "message" : "No message available",
+        "path" : "/api/books/3",
+        "status" : 404,
+        "timestamp" : "2021-01-25T08:56:28.384+00:00"
+    }
+```
+
+### DO (edit the rest's exception handler file again)
+```bash
+nano ./src/main/java/de/iotoi/exception/RestExceptionHandler.java
+```
+```java
+// FILE (RestExceptionHandler.java)
+...
+        return handleExceptionInternal(
+                ex,
+                "{\"status\": \"" + HttpStatus.NOT_FOUND + "\", \"message\": \"Book not found\", \"class\": \"" + RestExceptionHandler.class.getName() + "\"}",
+                new HttpHeaders(),
+...
+```
+
+### DO (ccess in the web app api if a record exists not)
+```bash
+curl --no-progress-meter http://localhost:8080/api/books/3 | json_pp
+```
+```bash
+    # >>> Result
+    {
+        "class" : "de.iotoi.exception.RestExceptionHandler",
+        "message" : "Book not found",
+        "status" : "404 NOT_FOUND"
+    }
 ```
 
 
 
 
 ## References
-- https://gist.github.com/memory-lovers/4132241df38456642ad888634caee5c6
-- https://github.com/DeadLion/spring-boot-samples/blob/master/application.properties.md
-- https://dzone.com/articles/run-the-rest-version-of-spring-petclinic-with-angu
-- https://dimitr.im/loading-initial-data-with-spring
-- https://docs.spring.io/spring-boot/docs/1.2.0.M1/reference/html/howto-database-initialization.html
-- https://www.baeldung.com/spring-boot-data-sql-and-schema-sql
-- https://stackoverflow.com/questions/38040572/spring-boot-loading-initial-data
-- https://docs.microsoft.com/de-de/azure/developer/java/spring-framework/configure-spring-data-jpa-with-azure-mysql
-- https://www.xspdf.com/resolution/20463098.html
-- https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html
-- https://javabydeveloper.com/spring-boot-loading-initial-data/
-- https://stackoverflow.com/questions/53464632/application-properties-to-application-yml-spring-boot
-- https://github.com/cesarsicas/spring-blog
-- https://github.com/spring-projects/spring-boot/issues/20920
-- https://stackoverflow.com/questions/53922279/what-are-the-possible-values-of-spring-datasource-initialization-mode
+- https://www.baeldung.com/spring-boot-start
+- https://www.sourcecodeexamples.net/2019/10/putmapping-spring-boot-example.html
+- https://www.concretepage.com/spring-boot/spring-boot-rest-example
+- https://www.baeldung.com/curl-rest
+- https://www.baeldung.com/rest-assured-tutorial
+- https://rest-assured.io/
+- https://www.baeldung.com/exception-handling-for-rest-with-spring
+- https://zetcode.com/springboot/controlleradvice/
 
 
 
