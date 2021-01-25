@@ -47,8 +47,6 @@ Lesson 216: Hello @ControllerAdvice!
   - [DO (add a new book's exception file)](#do-add-a-new-books-exception-file)
   - [DO (edit the rest controller file)](#do-edit-the-rest-controller-file)
   - [DO (add a new rest's exception handler file with the annotation @ControllerAdvice)](#do-add-a-new-rests-exception-handler-file-with-the-annotation-controlleradvice)
-  - [DO (access in the web app api again if a record exists not)](#do-access-in-the-web-app-api-again-if-a-record-exists-not)
-  - [DO (edit the rest's exception handler file again)](#do-edit-the-rests-exception-handler-file-again)
   - [DO (ccess in the web app api if a record exists not)](#do-ccess-in-the-web-app-api-if-a-record-exists-not)
 - [References](#references)
 - [References for tools](#references-for-tools)
@@ -287,42 +285,13 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
             Exception ex, WebRequest request) {
         return handleExceptionInternal(
                 ex,
-                "",
+               "{\"status\": \"" + HttpStatus.NOT_FOUND + "\", \"message\": \"Book not found\", \"class\": \"" + RestExceptionHandler.class.getName() + "\"}",
                 new HttpHeaders(),
                 HttpStatus.NOT_FOUND,
                 request
         );
     }
 }
-```
-
-### DO (access in the web app api again if a record exists not)
-```bash
-curl --no-progress-meter http://localhost:8080/api/books/3 | json_pp
-```
-```bash
-    # >>> Result
-    {
-        "error" : "Not Found",
-        "message" : "No message available",
-        "path" : "/api/books/3",
-        "status" : 404,
-        "timestamp" : "2021-01-25T08:56:28.384+00:00"
-    }
-```
-
-### DO (edit the rest's exception handler file again)
-```bash
-nano ./src/main/java/de/iotoi/exception/RestExceptionHandler.java
-```
-```java
-// FILE (RestExceptionHandler.java)
-...
-        return handleExceptionInternal(
-                ex,
-                "{\"status\": \"" + HttpStatus.NOT_FOUND + "\", \"message\": \"Book not found\", \"class\": \"" + RestExceptionHandler.class.getName() + "\"}",
-                new HttpHeaders(),
-...
 ```
 
 ### DO (ccess in the web app api if a record exists not)

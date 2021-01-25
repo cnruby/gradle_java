@@ -16,8 +16,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
             Exception ex, WebRequest request) {
         return handleExceptionInternal(
                 ex,
-                // "{\"status\": \"" + HttpStatus.NOT_FOUND + "\", \"message\": \"Book not found\", \"class\": \"" + RestExceptionHandler::class.java.name + "\"}",
-                ""
+                "{\"status\": \"" + HttpStatus.NOT_FOUND + "\", \"message\": \"Book not found\", \"class\": \"" + RestExceptionHandler.class.getName() + "\"}",
                 new HttpHeaders(),
                 HttpStatus.NOT_FOUND,
                 request
