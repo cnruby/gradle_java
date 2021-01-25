@@ -8,18 +8,17 @@
 [![Java zulu-openjdk:11](https://img.shields.io/badge/Java-zulu%20openjdk:11-brightgreen?style=flat&logo=java)](https://www.azul.com/downloads/zulu-community/?package=jdk)
 [![IntelliJ IDEA Community Version](https://img.shields.io/badge/IntelliJ%20IEAD%20Community%20Version-blue?style=flat)](https://www.jetbrains.com/de-de/idea/download/#section=linux)
 [![Docker-(2019.03.13)](https://img.shields.io/badge/Docker-%2019.03.13-brightgreen)](https://www.docker.com/)
-[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_216.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_216)
+[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_218.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_218)
 
 
 ---
 
-Lesson 216: Hello @ControllerAdvice!
-<h1>Lesson 216: Hello @ControllerAdvice!</h1>
+Lesson 218: Hello REST Assured!
+<h1>Lesson 218: Hello REST Assured!</h1>
 
-- How to Understand The Annotation @ControllerAdvice 
-- @ControllerAdvice allows handling exceptions across the whole application
-- @ControllerAdvice is a specialization of the @Component annotation
-- @ControllerAdvice is a global handling component @ExceptionHandler  
+- How to Understand The REST Assured 
+- REST Assured is a Java DSL
+- REST Assured simplify testing of REST based services built on top of HTTP Builder
 
 
 
@@ -31,25 +30,20 @@ Lesson 216: Hello @ControllerAdvice!
 - [Prerequisites](#prerequisites)
 - [Create A New Java Web App](#create-a-new-java-web-app)
   - [DO (create a new project)](#do-create-a-new-project)
-  - [DO (edit a spring model file)](#do-edit-a-spring-model-file)
-  - [DO (edit a schema file for spring datasource)](#do-edit-a-schema-file-for-spring-datasource)
-  - [DO (edit a data file for spring datasource)](#do-edit-a-data-file-for-spring-datasource)
   - [DO (check the project)](#do-check-the-project)
-- [Check The Web App](#check-the-web-app)
-  - [DO (run the web application with gradle)](#do-run-the-web-application-with-gradle)
-  - [DO (access all book's records in the web application api)](#do-access-all-books-records-in-the-web-application-api)
-  - [DO (access the first book's record in the web application api)](#do-access-the-first-books-record-in-the-web-application-api)
-- [Our Problem](#our-problem)
-  - [DO (access the web app api if a record exists not)](#do-access-the-web-app-api-if-a-record-exists-not)
-  - [DO (open a new terminal to start HotCode)](#do-open-a-new-terminal-to-start-hotcode)
-- [Our Solution: The ExceptionHandler @ControllerAdvice annotation](#our-solution-the-exceptionhandler-controlleradvice-annotation)
-  - [DO (make a new folder for exception handler)](#do-make-a-new-folder-for-exception-handler)
-  - [DO (add a new book's exception file)](#do-add-a-new-books-exception-file)
-  - [DO (edit the rest controller file)](#do-edit-the-rest-controller-file)
-  - [DO (add a new rest's exception handler file with the annotation @ControllerAdvice)](#do-add-a-new-rests-exception-handler-file-with-the-annotation-controlleradvice)
-  - [DO (access in the web app api again if a record exists not)](#do-access-in-the-web-app-api-again-if-a-record-exists-not)
-  - [DO (edit the rest's exception handler file again)](#do-edit-the-rests-exception-handler-file-again)
-  - [DO (ccess in the web app api if a record exists not)](#do-ccess-in-the-web-app-api-if-a-record-exists-not)
+- [Develop the gradle build file](#develop-the-gradle-build-file)
+  - [DO (add the package `rest-assured` to the gradle build file)](#do-add-the-package-rest-assured-to-the-gradle-build-file)
+  - [DO (check the project to get the error)](#do-check-the-project-to-get-the-error)
+  - [DO (edit a gradle build file for spring boot)](#do-edit-a-gradle-build-file-for-spring-boot)
+  - [DO (check the project again to get many warnings)](#do-check-the-project-again-to-get-many-warnings)
+  - [DO (edit a gradle build file for spring boot again)](#do-edit-a-gradle-build-file-for-spring-boot-again)
+  - [DO (check the project noch again)](#do-check-the-project-noch-again)
+- [DO (Upgrade the gradle version to 6.8, if need)](#do-upgrade-the-gradle-version-to-68-if-need)
+- [Develop REST Assured Testing for The Web App](#develop-rest-assured-testing-for-the-web-app)
+  - [DO (add a new book controller testing file)](#do-add-a-new-book-controller-testing-file)
+  - [DO (start the web app)](#do-start-the-web-app)
+  - [DO (run the testing in the project with gradle)](#do-run-the-testing-in-the-project-with-gradle)
+  - [DO (see the testing report)](#do-see-the-testing-report)
 - [References](#references)
 - [References for tools](#references-for-tools)
 
@@ -57,7 +51,7 @@ Lesson 216: Hello @ControllerAdvice!
 
 
 ## Keywords
-- @ControllerAdvice `Web Application` REST API h2 Exception Handler
+- `Rest Assured` `Web Application` REST API Testing
 - `Java JDK` `IntelliJ CE` CircleCI CI
 - tutorial example Ubuntu Gradle jabba JDK Java JVM
 - `Spring Boot` database Console DataSource
@@ -79,54 +73,94 @@ Lesson 216: Hello @ControllerAdvice!
 
 ### DO (create a new project)
 ```bash
-EXISTING_APP_ID=213 && NEW_APP_ID=216 \
+EXISTING_APP_ID=216 && NEW_APP_ID=218 \
 && git clone -b basic_${EXISTING_APP_ID} https://github.com/cnruby/gradle_java.git ${NEW_APP_ID}_gradle_java \
 && cd ${NEW_APP_ID}_gradle_java
 ```
 
-### DO (edit a spring model file)
-```bash
-nano ./src/main/java/de/iotoi/model/Book.java
-```
-```java
-// FILE (Book.java)
-...
-@Entity
-@Table(name="books")
-class Book {
-...
-```
-
-### DO (edit a schema file for spring datasource)
-```bash
-nano ./src/main/resources/schema.sql
-```
-```sql
--- FILE (schema.sql)
-DROP TABLE IF EXISTS books;
-
-CREATE TABLE books (
-  id INT AUTO_INCREMENT  PRIMARY KEY,
-  title VARCHAR(250) NOT NULL,
-  author VARCHAR(250),
-  created TIMESTAMP(9) DEFAULT CURRENT_TIMESTAMP
-);
-
-INSERT INTO books(title, author) VALUES ('Ruby', 'Leo');
-```
-
-### DO (edit a data file for spring datasource)
-```bash
-nano ./src/main/resources/data.sql
-```
-```sql
--- FILE (data.sql)
-INSERT INTO books(title, author) VALUES ('Java', 'Thomas');
-```
-
 ### DO (check the project)
 ```bash
+./gradlew -q clean check
+```
+```bash
+    # >> Result:nothing
+```
+
+
+
+
+## Develop the gradle build file
+
+### DO (add the package `rest-assured` to the gradle build file)
+```bash
+nano ./build.gradle
+```
+```sql
+-- FILE (build.gradle)
+...
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'io.rest-assured:rest-assured'
+}
+```
+
+### DO (check the project to get the error)
+```bash
+./gradlew -q clean check
+```
+```bash
+    # >> Result
+    Errors occurred while build effective model from /home/gudao/.gradle/caches/modules-2/files-2.1/com.sun.xml.bind/jaxb-osgi/2.2.10/c926a537af564ec047ec6308df1d0d2a03364a86/jaxb-osgi-2.2.10.pom:
+        'dependencyManagement.dependencies.dependency.systemPath' for com.sun:tools:jar must specify an absolute path but is ${tools.jar} in com.sun.xml.bind:jaxb-osgi:2.2.10
+    WARNING: An illegal reflective access operation has occurred
+    WARNING: Illegal reflective access by org.codehaus.groovy.reflection.CachedClass (file:/home/gudao/.gradle/caches/modules-2/files-2.1/org.codehaus.groovy/groovy/2.5.14/f0a005fb21e7bd9b7ebf04cd2ecda0fc8f3be59d/groovy-2.5.14.jar) to method java.lang.Object.finalize()
+    WARNING: Please consider reporting this to the maintainers of org.codehaus.groovy.reflection.CachedClass
+    WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+    WARNING: All illegal access operations will be denied in a future release
+```
+
+### DO (edit a gradle build file for spring boot)
+```bash
+nano ./build.gradle
+```
+```sql
+-- FILE (build.gradle)
+...
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation('io.rest-assured:rest-assured') {
+		exclude group: 'com.sun.xml.bind', module: 'jaxb-osgi'
+	}
+...
+```
+
+### DO (check the project again to get many warnings)
+
+```bash
 ./gradlew -q check
+```
+```bash
+    # >> Result
+    WARNING: An illegal reflective access operation has occurred
+    WARNING: Illegal reflective access by org.codehaus.groovy.reflection.CachedClass (file:/home/gudao/.gradle/caches/modules-2/files-2.1/org.codehaus.groovy/groovy/2.5.14/f0a005fb21e7bd9b7ebf04cd2ecda0fc8f3be59d/groovy-2.5.14.jar) to method java.lang.Object.finalize()
+    WARNING: Please consider reporting this to the maintainers of org.codehaus.groovy.reflection.CachedClass
+    WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+    WARNING: All illegal access operations will be denied in a future release
+```
+
+### DO (edit a gradle build file for spring boot again)
+```bash
+nano ./build.gradle
+```
+```sql
+-- FILE (build.gradle)
+...
+	useJUnitPlatform()
+	jvmArgs("--illegal-access=deny")
+...
+```
+
+### DO (check the project noch again)
+```bash
+./gradlew -q clean check
 ```
 ```bash
     # >> Result: nothing
@@ -135,221 +169,211 @@ INSERT INTO books(title, author) VALUES ('Java', 'Thomas');
 
 
 
-## Check The Web App
+## DO (Upgrade the gradle version to 6.8, if need)
+```bash
+./gradlew -q wrapper --gradle-version=6.8
+```
+```bash
+    # >> Result: nothing
+```
 
-### DO (run the web application with gradle)
 
+
+
+## Develop REST Assured Testing for The Web App
+
+### DO (add a new book controller testing file)
+```bash
+touch ./src/test/java/de/iotoi/RestAssuredBookControllerTests.java
+```
+```bash
+nano ./src/test/java/de/iotoi/RestAssuredBookControllerTests.java
+```
+```java
+// FILE (RestAssuredBookControllerTests.java)
+package de.iotoi;
+
+import de.iotoi.model.Book;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+
+import java.util.List;
+
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
+import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
+
+import static org.assertj.core.api.Assertions.*;
+
+
+public class RestAssuredBookControllerTests {
+    private static final String API_ROOT
+            = "http://localhost:8080/api/books";
+
+    private Book createRandomBook() {
+        Book book = new Book();
+        book.setTitle(randomAlphabetic(10));
+        book.setAuthor(randomAlphabetic(15));
+        return book;
+    }
+
+    private String createBookAsUri(Book book) {
+        Response response = RestAssured.given()
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .body(book)
+                .post(API_ROOT);
+        return API_ROOT + "/" + response.jsonPath().get("id");
+    }
+
+    /*******************************************
+     *
+     * test finding books using variant methods
+     *
+     *******************************************/
+     @Test
+    public void whenGetAllBooks_thenOK() {
+        Response response = RestAssured.get(API_ROOT);
+
+        assertThat(HttpStatus.OK.value()).isEqualTo(response.getStatusCode());
+    }
+
+    @Test
+    public void whenGetBooksByTitle_thenOK() {
+        Book book = createRandomBook();
+        createBookAsUri(book);
+        Response response = RestAssured.get(
+                API_ROOT + "/title/" + book.getTitle());
+
+        assertThat(HttpStatus.OK.value()).isEqualTo(response.getStatusCode());
+        assertThat(response.as(List.class)
+                .size() > 0).isTrue();
+    }
+
+    @Test
+    public void whenGetCreatedBookById_thenOK() {
+        Book book = createRandomBook();
+        String location = createBookAsUri(book);
+        Response response = RestAssured.get(location);
+
+        assertThat(HttpStatus.OK.value()).isEqualTo(response.getStatusCode());
+        assertThat(book.getTitle()).isEqualTo(response.jsonPath().get("title"));
+    }
+
+    @Test
+    public void whenGetNotExistBookById_thenNotFound() {
+        Response response = RestAssured.get(API_ROOT + "/" + randomNumeric(4));
+
+        assertThat(HttpStatus.NOT_FOUND.value()).isEqualTo(response.getStatusCode());
+    }
+
+    /*************************************
+     *
+     * test creating a new book
+     *
+    **************************************/
+    @Test
+    public void whenInvalidBookAuthor_thenError() {
+        Book book = createRandomBook();
+        book.setAuthor(null);
+        Response response = RestAssured.given()
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .body(book)
+                .post(API_ROOT);
+
+        assertThat(HttpStatus.INTERNAL_SERVER_ERROR.value()).isEqualTo(response.getStatusCode());
+    }
+
+    @Test
+    public void whenInvalidBookTitle_thenError() {
+        Book book = createRandomBook();
+        book.setTitle(null);
+        Response response = RestAssured.given()
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .body(book)
+                .post(API_ROOT);
+
+        assertThat(HttpStatus.INTERNAL_SERVER_ERROR.value()).isEqualTo(response.getStatusCode());
+    }
+
+
+    @Test
+    public void whenCreateNewBook_thenCreated() {
+        Book book = createRandomBook();
+        Response response = RestAssured.given()
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .body(book)
+                .post(API_ROOT);
+
+        assertThat(HttpStatus.CREATED.value()).isEqualTo(response.getStatusCode());
+    }
+
+    /*************************************
+     *
+     * test updating an existing book
+     *
+     *************************************/
+    @Test
+    public void whenUpdateCreatedBook_thenUpdated() {
+        Book book = createRandomBook();
+        String location = createBookAsUri(book);
+        book.setId(Long.parseLong(location.split("api/books/")[1]));
+        book.setAuthor("newAuthor");
+        Response response = RestAssured.given()
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .body(book)
+                .put(location);
+
+        assertThat(HttpStatus.OK.value()).isEqualTo(response.getStatusCode());
+
+        response = RestAssured.get(location);
+
+        assertThat(HttpStatus.OK.value()).isEqualTo(response.getStatusCode());
+        assertThat("newAuthor").isEqualTo(response.jsonPath().get("author"));
+    }
+}
+```
+
+### DO (start the web app)
 ```bash
 ./gradlew -q bootRun
 ```
 ```bash
     # >> Result
-    <==========---> 83% EXECUTING [35s]
-    > :bootRun   
+    <==========---> 83% EXECUTING [10s]
+    > :bootRun
 ```
 
-### DO (access all book's records in the web application api)
+### DO (run the testing in the project with gradle)
 ```bash
-curl --no-progress-meter http://localhost:8080/api/books | json_pp
-```
-```bash
-    # >> Result
-    [
-        {
-            "author" : "Leo",
-            "id" : 1,
-            "title" : "Ruby"
-        },
-        {
-            "author" : "Thomas",
-            "id" : 2,
-            "title" : "Java"
-        }
-    ]
-```
-
-### DO (access the first book's record in the web application api)
-```bash
-curl --no-progress-meter http://localhost:8080/api/books/1 | json_pp
+./gradlew -q clean test --tests de.iotoi.RestAssuredBookControllerTests
 ```
 ```bash
-    # >> Result
-    {
-      "author" : "Leo",
-      "id" : 1,
-      "title" : "Ruby"
-    }
+    # >> Result: nothing
 ```
 
-
-
-
-## Our Problem
-
-### DO (access the web app api if a record exists not)
+### DO (see the testing report)
 ```bash
-curl --no-progress-meter http://localhost:8080/api/books/3 | json_pp
+google-chrome ./build/reports/tests/test/index.html
 ```
-```bash
-    # >> Result
-    {
-        "error" : "Internal Server Error",
-        "message" : "No message available",
-        "path" : "/api/books/3",
-        "status" : 500,
-        "timestamp" : "2021-01-15T12:45:55.075+00:00",
-        "trace" : "java.lang.RuntimeException\n\tat de.iotoi.BookRestController$findOne$1.get(BookRestController.java:37)\n\tat
-        .......
-    }
-```
-
-### DO (open a new terminal to start HotCode)
-```bash
-./gradlew -q bootJar --continuous
-```
-```bash
-    # >>> Result
-    Waiting for changes to input files of tasks... (ctrl-d to exit)
-    <=============> 100% EXECUTING [35s]
-    > IDLE
-```
-
-
-
-
-## Our Solution: The ExceptionHandler @ControllerAdvice annotation
-
-### DO (make a new folder for exception handler)
-```bash
-mkdir ./src/main/java/de/iotoi/exception
-```
-
-### DO (add a new book's exception file)
-```bash
-touch ./src/main/java/de/iotoi/exception/BookNotFoundException.java
-```
-```bash
-nano ./src/main/java/de/iotoi/exception/BookNotFoundException.java
-```
-```java
-// FILE (BookNotFoundException.java)
-package de.iotoi.exception;
-
-public class BookNotFoundException extends RuntimeException {
-    public BookNotFoundException() {
-        super();
-    }
-}
-```
-
-### DO (edit the rest controller file)
-```bash
-nano ./src/main/java/de/iotoi/model/BookRestController.java
-```
-```bash
-# FILE (BookRestController.java)
-...java
-...
-import de.iotoi.exception.BookNotFoundException;
-...
-    @GetMapping("/{id}")
-    public Book findOne(@PathVariable Long id) {
-        return bookRepository.findById(id)
-                .orElseThrow(BookNotFoundException::new);
-    }
-...
-```
-
-### DO (add a new rest's exception handler file with the annotation @ControllerAdvice)
-```bash
-touch ./src/main/java/de/iotoi/exception/RestExceptionHandler.java
-```
-```bash
-nano ./src/main/java/de/iotoi/exception/RestExceptionHandler.java
-```
-```java
-// FILE (RestExceptionHandler.java)
-package de.iotoi.exception;
-
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
-@ControllerAdvice
-public class RestExceptionHandler extends ResponseEntityExceptionHandler {
-
-    @ExceptionHandler({ BookNotFoundException.class })
-    protected ResponseEntity<Object> handleNotFound(
-            Exception ex, WebRequest request) {
-        return handleExceptionInternal(
-                ex,
-                "",
-                new HttpHeaders(),
-                HttpStatus.NOT_FOUND,
-                request
-        );
-    }
-}
-```
-
-### DO (access in the web app api again if a record exists not)
-```bash
-curl --no-progress-meter http://localhost:8080/api/books/3 | json_pp
-```
-```bash
-    # >>> Result
-    {
-        "error" : "Not Found",
-        "message" : "No message available",
-        "path" : "/api/books/3",
-        "status" : 404,
-        "timestamp" : "2021-01-25T08:56:28.384+00:00"
-    }
-```
-
-### DO (edit the rest's exception handler file again)
-```bash
-nano ./src/main/java/de/iotoi/exception/RestExceptionHandler.java
-```
-```java
-// FILE (RestExceptionHandler.java)
-...
-        return handleExceptionInternal(
-                ex,
-                "{\"status\": \"" + HttpStatus.NOT_FOUND + "\", \"message\": \"Book not found\", \"class\": \"" + RestExceptionHandler.class.getName() + "\"}",
-                new HttpHeaders(),
-...
-```
-
-### DO (ccess in the web app api if a record exists not)
-```bash
-curl --no-progress-meter http://localhost:8080/api/books/3 | json_pp
-```
-```bash
-    # >>> Result
-    {
-        "class" : "de.iotoi.exception.RestExceptionHandler",
-        "message" : "Book not found",
-        "status" : "404 NOT_FOUND"
-    }
-```
+![result_testing](doc/image/testing-result.png)
 
 
 
 
 ## References
-- https://www.baeldung.com/spring-boot-start
-- https://www.sourcecodeexamples.net/2019/10/putmapping-spring-boot-example.html
-- https://www.concretepage.com/spring-boot/spring-boot-rest-example
-- https://www.baeldung.com/curl-rest
-- https://www.baeldung.com/rest-assured-tutorial
 - https://rest-assured.io/
-- https://www.baeldung.com/exception-handling-for-rest-with-spring
-- https://zetcode.com/springboot/controlleradvice/
+- https://github.com/rest-assured/rest-assured/wiki/GettingStarted
+- https://docs.gradle.org/current/userguide/building_java_projects.html
+- https://stackoverflow.com/questions/53790182/get-the-current-value-of-illegal-access-setting-in-java
+- https://www.gitmemory.com/issue/spring-projects/spring-boot/22303/656792408
+- https://backstage.forgerock.com/knowledge/kb/article/a15048811
+- https://github.com/gradle/gradle/releases
+- https://www.xspdf.com/resolution/58300460.html
+- https://www.xspdf.com/resolution/52404548.html
+- https://docs.microsoft.com/en-us/azure/developer/java/fundamentals/transition-from-java-8-to-java-11
+- https://tools.ietf.org/html/rfc7231#section-6.5.1
 
 
 
