@@ -9,7 +9,7 @@ public class HelloRestController {
     @Value(PropertyValues.WEB_APP_NAME)
     String webAppName;
 
-    @RequestMapping("/api")
+    @RequestMapping(HelloPropertyValues.HELLO_API)
     public String helloJava() {
         return webAppName + "!!!\n";
     }
