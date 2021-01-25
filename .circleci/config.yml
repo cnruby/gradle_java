@@ -30,7 +30,7 @@ jobs:
       - run:
           name: "Run The Application with Gradle"
           command: |
-              ./gradlew -q check
+              ./gradlew -q check -x test
               screen -d -m -s "webapp_on_project" ./gradlew -q bootRun
 
   docker_build:
