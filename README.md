@@ -8,18 +8,16 @@
 [![Java zulu-openjdk:11](https://img.shields.io/badge/Java-zulu%20openjdk:11-brightgreen?style=flat&logo=java)](https://www.azul.com/downloads/zulu-community/?package=jdk)
 [![IntelliJ IDEA Community Version](https://img.shields.io/badge/IntelliJ%20IEAD%20Community%20Version-blue?style=flat)](https://www.jetbrains.com/de-de/idea/download/#section=linux)
 [![Docker-(2019.03.13)](https://img.shields.io/badge/Docker-%2019.03.13-brightgreen)](https://www.docker.com/)
-[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_225.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_225)
+[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_226.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_226)
 
 
 
 ---
 
-Lesson 225: Hello @RequestMapping and @RequestParam!
-<h1>Lesson 225: Hello @RequestMapping and @RequestParam!</h1>
+Lesson 226: Hello OpenAPI!
+<h1>Lesson 226: Hello OpenAPI!</h1>
 
-- How to Understand the Annotation @RequestMapping and @RequestParam!
-- How to Download the Image File from Server to Local System
-
+- How to Understand the Java Document `OpenAPI`
 
 ---
 
@@ -35,6 +33,7 @@ Lesson 225: Hello @RequestMapping and @RequestParam!
 
 
 ## Keywords
+- OpenAPI Annotation `@Operation` `@Schema` Document API
 - Annotation `@RequestMapping` `@RequestParam` `Spring Boot` GET download file `Spring Boot`
 - Annotation `@PosMapping` `@RequestPart` `Spring Boot` POST upload file
 - `Java JDK` `IntelliJ CE` CircleCI CI
@@ -57,7 +56,7 @@ Lesson 225: Hello @RequestMapping and @RequestParam!
 
 ### DO (create a new project)
 ```bash
-EXISTING_APP_ID=224 && NEW_APP_ID=225 \
+EXISTING_APP_ID=225 && NEW_APP_ID=226 \
 && git clone -b basic_${EXISTING_APP_ID} https://github.com/cnruby/gradle_java.git ${NEW_APP_ID}_gradle_java \
 && cd ${NEW_APP_ID}_gradle_java
 ```
@@ -69,7 +68,7 @@ nano ./src/main/resources/application.properties
 ```bash
 # FILE (application.properties)
 ...
-web.app.name=Hello @RequestMapping and @RequestParam
+web.app.name=Hello OpenAPI
 ...
 ```
 
@@ -84,45 +83,61 @@ web.app.name=Hello @RequestMapping and @RequestParam
 
 
 
-## Develop the Project for checking url `/api/test_download`
+## Configure the Project for `OpenAPI`
 
-### DO (add a new download file for server folder)
+### DO (add the `OpenAPI` to gradle build file)
 ```bash
-mkdir ./server_download
+nano ./build.gradle
 ```
 ```bash
-wget https://github.com/cnruby/gradle_java/raw/basic_225/server_download/server_java.png -O ./server_download/server_java.png
+# FILE (build.gradle)
+...
+dependencies {
+  implementation 'org.springdoc:springdoc-openapi-ui:1.5.2'
+  implementation 'io.springfox:springfox-swagger2:3.0.0'
+  implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+...
 ```
 
-### DO (edit the spring rest controller file)
+### DO (add a new java class file for `OpenAPI`)
 ```bash
-nano ./src/main/java/de/iotoi/HelloRestController.java
+touch ./src/main/java/de/iotoi/OpenApiConfig.java
+```
+```bash
+nano ./src/main/java/de/iotoi/OpenApiConfig.java
 ```
 ```java
-// FILE (HelloRestController.java)
-...
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestMapping;
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-...
-    @RequestMapping(path = "/api/test_download", method = RequestMethod.GET)
-    public String testDownload(
-        @RequestParam("imageX")
-        String imageName
-    ) throws IOException {
-        String strPath = "./server_download" + File.separator.toString() + imageName;
-        File file = new File(strPath);
-        JSONObject jsonObj = new JSONObject();
-        jsonObj.put("path", strPath);
-        jsonObj.put("fileSize", file.length());
-        return jsonObj.toString();
-    }
-}
+// FILE (OpenApiConfig.java)
+package de.iotoi;
+
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Contact;
+import io.swagger.v3.oas.annotations.info.Info;
+
+
+@OpenAPIDefinition(
+  info = @Info(
+    title = "Java Spring Boot REST API",
+    version = "v1.0.0",
+    description = "This app provides REST APIs for get and post information",
+    contact = @Contact(name = "Gudao LUO", email = "gudao.luo@gmail.de", url = "http://iotoi.de")
+  )
+)
+public class OpenApiConfig {}
 ```
+
+### DO (check the project)
+```bash
+./gradlew -q check
+```
+```bash
+    # >> Result: nothing
+```
+
+
+
+
+## Use the `OpenAPI` for the Project
 
 ### DO (run the web application with gradle)
 ```bash
@@ -130,23 +145,22 @@ import java.nio.file.Paths;
 ```
 ```bash
     # Result
-    Hello @RequestMapping and @RequestParam from init()!
-    Hello @RequestMapping and @RequestParam from init()!!    
+    Hello OpenAPI from init()!
+    Hello OpenAPI from init()!!    
     <==========---> 83% EXECUTING [21s]
     > :bootRun
 ```
 
-### DO (access the web api with url `/api/test_download`)
+### DO (access the web openapi)
 ```bash
-curl --no-progress-meter http://localhost:8080/api/test_download?imageX=server_java.png | json_pp
+google-chrome http://localhost:8080/swagger-ui.html
 ```
-```json5
-    // >> Result
-    {
-      "fileSize" : 21493,
-      "path" : "./server_download/server_java.png"
-    }
-```
+
+### DO (view the result)
+![openapi_null](doc/image/openapi_null.png)
+
+### DO (view the video for url `/api/str`)
+![openapi_api_str](doc/video/openapi_api_str.gif)
 
 ### DO (stop the web application with gradle)
 ```bash
@@ -156,39 +170,24 @@ curl --no-progress-meter http://localhost:8080/api/test_download?imageX=server_j
 
 
 
-## Develop the Project for downloading url `/api/download`
+## Add the OpenAPI's Annotation @Operation for the Project
 
-### DO (edit the spring rest controller file)
+### DO (edit the java rest controller file)
 ```bash
 nano ./src/main/java/de/iotoi/HelloRestController.java
 ```
 ```java
 // FILE (HelloRestController.java)
 ...
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
+import io.swagger.v3.oas.annotations.Operation;
 ...
-    @RequestMapping(path = "/api/download", method = RequestMethod.GET)
-    public ResponseEntity<Resource> parseDownloadFile(
-        @RequestParam("imageX")
-        String imageName
-    ) throws IOException {        
-        File file = new File("./server_download" + File.separator.toString() + imageName );
-        HttpHeaders header = new HttpHeaders();
-        // header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=server_java.svg")
-        header.add("Cache-Control", "no-cache, no-store, must-revalidate");
-        header.add("Pragma", "no-cache");
-        header.add("Expires", "0");
-        Path path = Paths.get(file.getAbsolutePath());
-        ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
-        return ResponseEntity.ok()
-            .headers(header)
-            .contentLength(file.length())
-            .contentType(MediaType.parseMediaType("application/octet-stream"))
-            .body(resource);
-    }
-}
+    @Operation(summary = "Unit 224: Hello @PostMapping and @RequestPart!")
+    @PostMapping(
+        consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
+        produces = MediaType.APPLICATION_JSON_VALUE,
+        path = "/api/upload"
+    )
+...
 ```
 
 ### DO (run the web application with gradle)
@@ -197,30 +196,77 @@ import org.springframework.http.HttpHeaders;
 ```
 ```bash
     # Result
-    Hello @RequestMapping and @RequestParam from init()!
-    Hello @RequestMapping and @RequestParam from init()!!    
+    Hello OpenAPI from init()!
+    Hello OpenAPI from init()!!    
     <==========---> 83% EXECUTING [21s]
     > :bootRun
 ```
 
-### DO (access the web api with url `/api/download`)
+### DO (access the web openapi)
 ```bash
-curl http://localhost:8080/api/download?imageX=server_java.png --output local_java.png
-```bash
-    # >> Result
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                    Dload  Upload   Total   Spent    Left  Speed
-    100 21493  100 21493    0     0  97695      0 --:--:-- --:--:-- --:--:-- 97253    
+google-chrome http://localhost:8080/swagger-ui.html
 ```
 
-### DO (view the downloaded file)
+### DO (view the result for @Operation)
+![openapi_operation](doc/image/openapi_operation.png)
+
+### DO (view the video for url `/api/download`)
+![openapi_api_download](doc/video/openapi_api_download.gif)
+
+### DO (stop the web application with gradle)
 ```bash
-ls -al local_java.png
+# !!! Ctrl+C
+```
+
+
+
+
+## Add the OpenAPI's Annotation @Schema for the Project
+
+### DO (before add the annotation @Schema)
+![openapi_before_schema](doc/image/openapi_before_schema.png)
+
+### DO (edit the java rest controller file)
+```bash
+nano ./src/main/java/de/iotoi/HelloRestController.java
+```
+```java
+// FILE (HelloRestController.java)
+...
+import io.swagger.v3.oas.annotations.media.Schema;
+...
+    public String helloCommand(
+        @Schema(
+            example = "{\"cmd\":\"ls\"}",
+            format = "json",
+            description = "Get a information by the json format.",
+            required = true
+        )        
+        @RequestBody
+...
+```
+
+```bash
+./gradlew -q bootRun
 ```
 ```bash
-    # >> Result:
-    -rw-rw-r-- 1 gudao gudao 21493 Jan 20 04:48 local_java.png
+    # Result
+    Hello OpenAPI from init()!
+    Hello OpenAPI from init()!!    
+    <==========---> 83% EXECUTING [21s]
+    > :bootRun
 ```
+
+### DO (access the web openapi)
+```bash
+google-chrome http://localhost:8080/swagger-ui.html
+```
+
+### DO (after add the annotation @Schema)
+![openapi_after_schema](doc/image/openapi_after_schema.png)
+
+### DO (view the video for url `/api/cmd`)
+![openapi_api_cmd](doc/video/openapi_api_cmd.gif)
 
 ### DO (stop the web application with gradle)
 ```bash
@@ -231,12 +277,9 @@ ls -al local_java.png
 
 
 ## References
-- https://stackoverflow.com/questions/35680932/download-a-file-from-spring-boot-rest-service
-- https://www.baeldung.com/curl-rest
-- http://www.mastertheboss.com/jboss-frameworks/resteasy/using-rest-services-to-manage-download-and-upload-of-files
-- https://dzone.com/articles/java-springboot-rest-api-to-uploaddownload-file-on
-- https://www.callicoder.com/spring-boot-file-upload-download-rest-api-example/
-- 
+- https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api
+
+
 
 
 ## References for tools

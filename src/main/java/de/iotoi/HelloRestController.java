@@ -29,6 +29,10 @@ import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 
+import io.swagger.v3.oas.annotations.Operation;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @RestController
 public class HelloRestController {
     @Value(PropertyValues.WEB_APP_NAME)
@@ -40,27 +44,30 @@ public class HelloRestController {
         this.helloService = helloService;
     }
 
-    @RequestMapping("/api/value")
-    public String helloJavaValue() {
-        return webAppName + "!\n";
-    }
+    // @RequestMapping("/api/value")
+    // public String helloJavaValue() {
+    //     return webAppName + "!\n";
+    // }
 
-    @RequestMapping("/api/service")
-    public String helloJavaService() {
-        return helloService.getHello();
-    }
+    // @RequestMapping("/api/service")
+    // public String helloJavaService() {
+    //     return helloService.getHello();
+    // }
 
+    @Operation(summary = "Unit 222: Hello JSONObject for class `String`")
     @RequestMapping("/api/str")
     public String  helloString() {
         return helloService.getStringHello();
     }
 
+    @Operation(summary = "Unit 222: Hello JSONObject for class `ResponseEntity`")
     @RequestMapping(path="/api/resp", produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> helloResponseEntity() {
         JSONObject jsonResp  = helloService.getJSONObjectHello();
         return new ResponseEntity<String>(jsonResp.toString(), HttpStatus.OK);
     }    
 
+    @Operation(summary = "Unit 222: Hello JSONObject for class `Map`")
     @RequestMapping("/api/map")
     public ResponseEntity<String> helloMap() {
         JSONObject jsonMap = new JSONObject();
@@ -72,12 +79,19 @@ public class HelloRestController {
         return new ResponseEntity<String>(jsonMap.toString(), HttpStatus.OK);
     }
 
+    @Operation(summary = "Unit 223: Hello @PostMapping and @RequestBody!")
     @PostMapping(
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE,
         path = {"/api/cmd", "/"}
     )
     public String helloCommand(
+        @Schema(
+            example = "{\"cmd\":\"ls\"}",
+            format = "json",
+            description = "Get a information by the json format.",
+            required = true
+        )        
         @RequestBody
         String strJSON
     ) {
@@ -87,6 +101,7 @@ public class HelloRestController {
         return jsonObj.toString();
     }
 
+    @Operation(summary = "Unit 224: Hello @PostMapping and @RequestPart!")
     @PostMapping(
         consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE,
@@ -103,6 +118,7 @@ public class HelloRestController {
         return jsonObj.toString();
     }
 
+    @Operation(summary = "Unit 225: Hello @RequestMapping and @RequestParam for url `test_download`")
     @RequestMapping(path = "/api/test_download", method = RequestMethod.GET)
     public String testDownload(
         @RequestParam("imageX")
@@ -116,6 +132,7 @@ public class HelloRestController {
         return jsonObj.toString();
     }
 
+    @Operation(summary = "Unit 225: Hello @RequestMapping and @RequestParam for url `download`")
     @RequestMapping(path = "/api/download", method = RequestMethod.GET)
     public ResponseEntity<Resource> parseDownloadFile(
         @RequestParam("imageX")

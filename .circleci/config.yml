@@ -68,8 +68,6 @@ jobs:
           name: "browse the website"
           command: |
               sleep 10 && nc -vz localhost 80
-              curl http://127.0.0.1:80/api/value
-              curl http://127.0.0.1:80/api/service
               curl http://localhost:80/api/str
               curl http://localhost:80/api/resp
               curl http://localhost:80/api/map
