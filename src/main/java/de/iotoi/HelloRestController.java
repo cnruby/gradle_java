@@ -19,7 +19,7 @@ public class HelloRestController {
     }
 
     @RequestMapping("/")
-    public String helloServiceKotlin() {
+    public String helloServiceJava() {
         ApplicationContext context = new AnnotationConfigApplicationContext(HelloConfiguration.class);
         HelloService objHelloService = (HelloService) context.getBean(HelloServiceable.class);
 

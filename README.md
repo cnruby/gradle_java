@@ -213,7 +213,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 ...
     @RequestMapping("/")
-    public String helloServiceKotlin() {
+    public String helloServiceJava() {
         ApplicationContext context = new AnnotationConfigApplicationContext(HelloConfiguration.class);
         HelloService objHelloService = (HelloService) context.getBean(HelloServiceable.class);
 
