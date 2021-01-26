@@ -8,17 +8,17 @@
 [![Java zulu-openjdk:11](https://img.shields.io/badge/Java-zulu%20openjdk:11-brightgreen?style=flat&logo=java)](https://www.azul.com/downloads/zulu-community/?package=jdk)
 [![IntelliJ IDEA Community Version](https://img.shields.io/badge/IntelliJ%20IEAD%20Community%20Version-blue?style=flat)](https://www.jetbrains.com/de-de/idea/download/#section=linux)
 [![Docker-(2019.03.13)](https://img.shields.io/badge/Docker-%2019.03.13-brightgreen)](https://www.docker.com/)
-[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_224.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_224)
+[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_225.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_225)
 
 
 
 ---
 
-Lesson 224: Hello @PostMapping and @RequestPart!
-<h1>Lesson 224: Hello @PostMapping and @RequestPart!</h1>
+Lesson 225: Hello @RequestMapping and @RequestParam!
+<h1>Lesson 225: Hello @RequestMapping and @RequestParam!</h1>
 
-- How to Understand the Annotation @PostMapping and @RequestPart!
-- How to Upload the Text File from Local to Server
+- How to Understand the Annotation @RequestMapping and @RequestParam!
+- How to Download the Image File from Server to Local System
 
 
 ---
@@ -30,21 +30,12 @@ Lesson 224: Hello @PostMapping and @RequestPart!
 - [Prerequisites](#prerequisites)
 - [Create A New Java Web App](#create-a-new-java-web-app)
   - [DO (create a new project)](#do-create-a-new-project)
-  - [DO (edit the spring property file)](#do-edit-the-spring-property-file)
-  - [DO (check the project)](#do-check-the-project)
-- [Develop the Project](#develop-the-project)
-  - [DO (edit the spring rest controller file)](#do-edit-the-spring-rest-controller-file)
-  - [DO (add a new upload file)](#do-add-a-new-upload-file)
-  - [DO (run the web application with gradle)](#do-run-the-web-application-with-gradle)
-  - [DO (access the web api with url `/api/upload`)](#do-access-the-web-api-with-url-apiupload)
-  - [DO (stop the web application with gradle)](#do-stop-the-web-application-with-gradle)
-- [References](#references)
-- [References for tools](#references-for-tools)
 
 
 
 
 ## Keywords
+- Annotation `@RequestMapping` `@RequestParam` `Spring Boot` GET download file `Spring Boot`
 - Annotation `@PosMapping` `@RequestPart` `Spring Boot` POST upload file
 - `Java JDK` `IntelliJ CE` CircleCI CI
 - tutorial example Ubuntu Gradle jabba JDK Java JVM
@@ -66,7 +57,7 @@ Lesson 224: Hello @PostMapping and @RequestPart!
 
 ### DO (create a new project)
 ```bash
-EXISTING_APP_ID=223 && NEW_APP_ID=224 \
+EXISTING_APP_ID=224 && NEW_APP_ID=225 \
 && git clone -b basic_${EXISTING_APP_ID} https://github.com/cnruby/gradle_java.git ${NEW_APP_ID}_gradle_java \
 && cd ${NEW_APP_ID}_gradle_java
 ```
@@ -78,7 +69,7 @@ nano ./src/main/resources/application.properties
 ```bash
 # FILE (application.properties)
 ...
-web.app.name=Hello @PostMapping and @RequestPart
+web.app.name=Hello @RequestMapping and @RequestParam
 ...
 ```
 
@@ -93,51 +84,44 @@ web.app.name=Hello @PostMapping and @RequestPart
 
 
 
-## Develop the Project
+## Develop the Project for checking url `/api/test_download`
+
+### DO (add a new download file for server folder)
+```bash
+mkdir ./server_download
+```
+```bash
+wget https://github.com/cnruby/gradle_java/raw/basic_225/server_download/server_java.png -O ./server_download/server_java.png
+```
 
 ### DO (edit the spring rest controller file)
 ```bash
 nano ./src/main/java/de/iotoi/HelloRestController.java
 ```
-```bash
-# FILE (HelloRestController.java)
+```java
+// FILE (HelloRestController.java)
 ...
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.bind.annotation.RequestPart;
-import java.nio.charset.StandardCharsets;
-import java.io.IOException;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestMapping;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 ...
-    @PostMapping(
-        consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
-        produces = MediaType.APPLICATION_JSON_VALUE,
-        path = "/api/upload"
-    )
-    public String parseUploadFile(
-        @RequestPart(value = "uploadX", required = true)
-        MultipartFile multipartFile
+    @RequestMapping(path = "/api/test_download", method = RequestMethod.GET)
+    public String testDownload(
+        @RequestParam("imageX")
+        String imageName
     ) throws IOException {
+        String strPath = "./server_download" + File.separator.toString() + imageName;
+        File file = new File(strPath);
         JSONObject jsonObj = new JSONObject();
-        jsonObj.put("fileName", multipartFile.getOriginalFilename());
-        jsonObj.put("fileContent", new String(multipartFile.getBytes(), StandardCharsets.UTF_8));
-        jsonObj.put("fileSize", multipartFile.getSize());
+        jsonObj.put("path", strPath);
+        jsonObj.put("fileSize", file.length());
         return jsonObj.toString();
     }
 }
-```
-
-### DO (add a new upload file)
-```bash
-mkdir ./local_upload
-```
-```bash
-touch ./local_upload/hello.txt
-```
-```bash
-nano ./local_upload/hello.txt
-```
-```bash
-# FILE (hello.txt)
-Hello @PostMapping and @RequestPart!
 ```
 
 ### DO (run the web application with gradle)
@@ -146,23 +130,21 @@ Hello @PostMapping and @RequestPart!
 ```
 ```bash
     # Result
+    Hello @RequestMapping and @RequestParam from init()!
+    Hello @RequestMapping and @RequestParam from init()!!    
     <==========---> 83% EXECUTING [21s]
     > :bootRun
 ```
 
-### DO (access the web api with url `/api/upload`)
+### DO (access the web api with url `/api/test_download`)
 ```bash
-curl --no-progress-meter -H "Content-Type: multipart/form-data" -H "accept: application/json" \
-    -X POST \
-    -F "uploadX=@./local_upload/hello.txt;type=text/plain" \
-    http://localhost:8080/api/upload | json_pp
+curl --no-progress-meter http://localhost:8080/api/test_download?imageX=server_java.png | json_pp
 ```
 ```json5
     // >> Result
     {
-      "fileContent" : "Hello @PostMapping and @RequestPart!",
-      "fileName" : "hello.txt",
-      "fileSize" : "36"
+      "fileSize" : 21493,
+      "path" : "./server_download/server_java.png"
     }
 ```
 
@@ -174,11 +156,87 @@ curl --no-progress-meter -H "Content-Type: multipart/form-data" -H "accept: appl
 
 
 
-## References
-- https://www.codeflow.site/de/article/java-org-json
-- https://www.baeldung.com/java-org-json
-- https://mkyong.com/java/how-do-convert-byte-array-to-string-in-java/
+## Develop the Project for downloading url `/api/download`
 
+### DO (edit the spring rest controller file)
+```bash
+nano ./src/main/java/de/iotoi/HelloRestController.java
+```
+```java
+// FILE (HelloRestController.java)
+...
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+...
+    @RequestMapping(path = "/api/download", method = RequestMethod.GET)
+    public ResponseEntity<Resource> parseDownloadFile(
+        @RequestParam("imageX")
+        String imageName
+    ) throws IOException {        
+        File file = new File("./server_download" + File.separator.toString() + imageName );
+        HttpHeaders header = new HttpHeaders();
+        // header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=server_java.svg")
+        header.add("Cache-Control", "no-cache, no-store, must-revalidate");
+        header.add("Pragma", "no-cache");
+        header.add("Expires", "0");
+        Path path = Paths.get(file.getAbsolutePath());
+        ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
+        return ResponseEntity.ok()
+            .headers(header)
+            .contentLength(file.length())
+            .contentType(MediaType.parseMediaType("application/octet-stream"))
+            .body(resource);
+    }
+}
+```
+
+### DO (run the web application with gradle)
+```bash
+./gradlew -q bootRun
+```
+```bash
+    # Result
+    Hello @RequestMapping and @RequestParam from init()!
+    Hello @RequestMapping and @RequestParam from init()!!    
+    <==========---> 83% EXECUTING [21s]
+    > :bootRun
+```
+
+### DO (access the web api with url `/api/download`)
+```bash
+curl http://localhost:8080/api/download?imageX=server_java.png --output local_java.png
+```bash
+    # >> Result
+      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                    Dload  Upload   Total   Spent    Left  Speed
+    100 21493  100 21493    0     0  97695      0 --:--:-- --:--:-- --:--:-- 97253    
+```
+
+### DO (view the downloaded file)
+```bash
+ls -al local_java.png
+```
+```bash
+    # >> Result:
+    -rw-rw-r-- 1 gudao gudao 21493 Jan 20 04:48 local_java.png
+```
+
+### DO (stop the web application with gradle)
+```bash
+# !!! Ctrl+C
+```
+
+
+
+
+## References
+- https://stackoverflow.com/questions/35680932/download-a-file-from-spring-boot-rest-service
+- https://www.baeldung.com/curl-rest
+- http://www.mastertheboss.com/jboss-frameworks/resteasy/using-rest-services-to-manage-download-and-upload-of-files
+- https://dzone.com/articles/java-springboot-rest-api-to-uploaddownload-file-on
+- https://www.callicoder.com/spring-boot-file-upload-download-rest-api-example/
+- 
 
 
 ## References for tools

@@ -76,6 +76,9 @@ jobs:
               curl -H "Content-Type: application/json" -X POST -d '{"cmd":"ls"}' localhost:80/api/cmd
               curl -H "Content-Type: application/json" -X POST -d '{"cmd":"ls"}' localhost:80/
               curl -H "Content-Type: multipart/form-data" -H "accept: application/json" -X POST -F "uploadX=@./local_upload/hello.txt;type=text/plain" http://localhost:80/api/upload
+              curl http://localhost:80/api/test_download?imageX=server_java.png
+              curl http://localhost:80/api/download?imageX=server_java.png --output local_java.png
+              ls -al local_java.png
 
       - run:
           name: "stop web server on docker"

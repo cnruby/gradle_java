@@ -16,6 +16,19 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.RequestPart;
 import java.nio.charset.StandardCharsets;
 
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+
 @RestController
 public class HelloRestController {
     @Value(PropertyValues.WEB_APP_NAME)
@@ -88,5 +101,38 @@ public class HelloRestController {
         jsonObj.put("fileContent", new String(multipartFile.getBytes(), StandardCharsets.UTF_8));
         jsonObj.put("fileSize", multipartFile.getSize());
         return jsonObj.toString();
+    }
+
+    @RequestMapping(path = "/api/test_download", method = RequestMethod.GET)
+    public String testDownload(
+        @RequestParam("imageX")
+        String imageName
+    ) throws IOException {
+        String strPath = "./server_download" + File.separator.toString() + imageName;
+        File file = new File(strPath);
+        JSONObject jsonObj = new JSONObject();
+        jsonObj.put("path", strPath);
+        jsonObj.put("fileSize", file.length());
+        return jsonObj.toString();
+    }
+
+    @RequestMapping(path = "/api/download", method = RequestMethod.GET)
+    public ResponseEntity<Resource> parseDownloadFile(
+        @RequestParam("imageX")
+        String imageName
+    ) throws IOException {        
+        File file = new File("./server_download" + File.separator.toString() + imageName );
+        HttpHeaders header = new HttpHeaders();
+        // header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=server_java.svg")
+        header.add("Cache-Control", "no-cache, no-store, must-revalidate");
+        header.add("Pragma", "no-cache");
+        header.add("Expires", "0");
+        Path path = Paths.get(file.getAbsolutePath());
+        ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
+        return ResponseEntity.ok()
+            .headers(header)
+            .contentLength(file.length())
+            .contentType(MediaType.parseMediaType("application/octet-stream"))
+            .body(resource);
     }
 }
