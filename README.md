@@ -8,17 +8,17 @@
 [![Java zulu-openjdk:11](https://img.shields.io/badge/Java-zulu%20openjdk:11-brightgreen?style=flat&logo=java)](https://www.azul.com/downloads/zulu-community/?package=jdk)
 [![IntelliJ IDEA Community Version](https://img.shields.io/badge/IntelliJ%20IEAD%20Community%20Version-blue?style=flat)](https://www.jetbrains.com/de-de/idea/download/#section=linux)
 [![Docker-(2019.03.13)](https://img.shields.io/badge/Docker-%2019.03.13-brightgreen)](https://www.docker.com/)
-[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_220.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_220)
+[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_221.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_221)
 
 
 
 ---
 
-Lesson 220: Hello @Configuration and @PropertySource!
-<h1>Lesson 220: Hello @Configuration and @PropertySource!</h1>
+Lesson 221: Hello @Configuration and @Bean!
+<h1>Lesson 221: Hello @Configuration and @Bean!</h1>
 
-- How to Understand An Annotation @Configuration and @PropertySource
-- How to Add A New Custom Property File
+- How to Understand An Annotation @Configuration and @PropertySouBeanrce
+- How to Add A New Service
 
 
 ---
@@ -31,18 +31,21 @@ Lesson 220: Hello @Configuration and @PropertySource!
 - [Create A New Java Web App](#create-a-new-java-web-app)
   - [DO (create a new project)](#do-create-a-new-project)
   - [DO (edit the application property file)](#do-edit-the-application-property-file)
+  - [DO (edit the hello property file)](#do-edit-the-hello-property-file)
+  - [DO (edit the hello property class file)](#do-edit-the-hello-property-class-file)
   - [DO (check the project)](#do-check-the-project)
-- [Implement the Annotation `@Configuration` and `@PropertySource` in the Web App](#implement-the-annotation-configuration-and-propertysource-in-the-web-app)
-  - [DO (add a new property file)](#do-add-a-new-property-file)
-  - [DO (add a new java class property file)](#do-add-a-new-java-class-property-file)
+- [Implement the Annotation `@Configuration` and `@Bean` in the Web App](#implement-the-annotation-configuration-and-bean-in-the-web-app)
+  - [DO (add a new java interface file)](#do-add-a-new-java-interface-file)
+  - [DO (add a new java implementation file)](#do-add-a-new-java-implementation-file)
   - [DO (add a new java class configuration file)](#do-add-a-new-java-class-configuration-file)
   - [DO (check the project)](#do-check-the-project-1)
-- [Apply the Annotation `@Configuration` and `@PropertySource` in the Web App](#apply-the-annotation-configuration-and-propertysource-in-the-web-app)
-  - [DO (edit the java class controller file)](#do-edit-the-java-class-controller-file)
+- [Apply the Annotation `@Configuration` and `@Bean` in the Web App](#apply-the-annotation-configuration-and-bean-in-the-web-app)
+  - [DO (edit the java class rest controller file)](#do-edit-the-java-class-rest-controller-file)
   - [DO (check the project)](#do-check-the-project-2)
 - [View The Result for the web app](#view-the-result-for-the-web-app)
   - [DO (run The Application with Gradle)](#do-run-the-application-with-gradle)
-  - [DO (access the web rest api)](#do-access-the-web-rest-api)
+  - [DO (access the web rest api with url `/api`)](#do-access-the-web-rest-api-with-url-api)
+  - [DO (access the web rest api with url `/`)](#do-access-the-web-rest-api-with-url-)
 - [References](#references)
 - [References for tools](#references-for-tools)
 
@@ -50,7 +53,7 @@ Lesson 220: Hello @Configuration and @PropertySource!
 
 
 ## Keywords
-- Annotation `@Configuration` `@PropertySource` `Property File`
+- Annotation `@Configuration` `@Bean` `Spring Service`
 - Annotation `@Value` `Spring Boot` `web app` web app
 - `Java JDK` `IntelliJ CE` CircleCI CI
 - tutorial example Ubuntu Gradle jabba JDK Java JVM
@@ -71,7 +74,7 @@ Lesson 220: Hello @Configuration and @PropertySource!
 
 ### DO (create a new project)
 ```bash
-EXISTING_APP_ID=204 && NEW_APP_ID=220 \
+EXISTING_APP_ID=220 && NEW_APP_ID=221 \
 && git clone -b basic_${EXISTING_APP_ID} https://github.com/cnruby/gradle_java.git ${NEW_APP_ID}_gradle_java \
 && cd ${NEW_APP_ID}_gradle_java
 ```
@@ -83,70 +86,30 @@ nano ./src/main/resources/application.properties
 ```bash
 # FILE (hello.properties)
 ...
-web.app.name=Hello @Configuration and @PropertySource
+web.app.name=Hello @Configuration and @Bean in the file application.properties
 ...
 ```
 
-### DO (check the project)
-```bash
-./gradlew -q check
-```
-```bash
-    # >> Result: nothing
-```
-
-
-
-
-## Implement the Annotation `@Configuration` and `@PropertySource` in the Web App
-
-### DO (add a new property file)
-```bash
-touch ./src/main/resources/hello.properties
-```
+### DO (edit the hello property file)
 ```bash
 nano ./src/main/resources/hello.properties
 ```
 ```bash
 # FILE (hello.properties)
-hello.api = /api
+...
+web.app.name = Hello @Configuration and @Bean in the file hello.properties
+...
 ```
 
-### DO (add a new java class property file)
-```bash
-touch ./src/main/java/de/iotoi/HelloPropertyValues.java
-```
+### DO (edit the hello property class file)
 ```bash
 nano ./src/main/java/de/iotoi/HelloPropertyValues.java
 ```
-```java
-// FILE (HelloPropertyValues.java)
-package de.iotoi;
-
-public final class HelloPropertyValues {
-    public static final String HELLO_API = "${hello.api}";
+```bash
+# FILE (HelloPropertyValues.java)
+...
+    public static final String WEB_APP_NAME = "${web.app.name}";
 }
-```
-
-### DO (add a new java class configuration file)
-```bash
-touch ./src/main/java/de/iotoi/HelloConfiguration.java
-```
-```bash
-nano ./src/main/java/de/iotoi/HelloConfiguration.java
-```
-```java
-// FILE (HelloConfiguration.java)
-package de.iotoi;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-
-
-@Configuration
-@PropertySource("classpath:/hello.properties")
-public class HelloConfiguration {}
 ```
 
 ### DO (check the project)
@@ -160,18 +123,103 @@ public class HelloConfiguration {}
 
 
 
-## Apply the Annotation `@Configuration` and `@PropertySource` in the Web App
+## Implement the Annotation `@Configuration` and `@Bean` in the Web App
 
-### DO (edit the java class controller file)
+### DO (add a new java interface file)
+```bash
+mkdir -p ./src/main/java/de/iotoi/impl
+```
+```bash
+touch ./src/main/java/de/iotoi/impl/HelloServiceable.java
+```
+```bash
+nano ./src/main/java/de/iotoi/impl/HelloServiceable.java
+```
+```java
+# FILE (HelloServiceable.java)
+package de.iotoi.impl;
+
+public interface HelloServiceable {
+    public String getHello();
+}
+```
+
+### DO (add a new java implementation file)
+```bash
+touch ./src/main/java/de/iotoi/impl/HelloService.java
+```
+```bash
+nano ./src/main/java/de/iotoi/impl/HelloService.java
+```
+```java
+# FILE (HelloService.java)
+package de.iotoi.impl;
+
+import de.iotoi.HelloPropertyValues;
+import de.iotoi.PropertyValues;
+import org.springframework.beans.factory.annotation.Value;
+
+public class HelloService implements HelloServiceable {
+    @Value(HelloPropertyValues.WEB_APP_NAME)
+    private String webAppName;
+
+    @Override
+    public String getHello() {
+      return webAppName + "!\n";
+    }
+}
+```
+
+### DO (add a new java class configuration file)
+```bash
+nano ./src/main/java/de/iotoi/HelloConfiguration.java
+```
+```java
+// FILE (HelloConfiguration.java)
+...
+import de.iotoi.impl.HelloService;
+import org.springframework.context.annotation.Bean;
+...
+    @Bean()
+    public HelloService getHelloServiceObject() {
+        return new HelloService();
+    }
+}
+```
+
+### DO (check the project)
+```bash
+./gradlew -q check
+```
+```bash
+    # >> Result: nothing
+```
+
+
+
+
+## Apply the Annotation `@Configuration` and `@Bean` in the Web App
+
+### DO (edit the java class rest controller file)
 ```bash
 nano ./src/main/java/de/iotoi/HelloRestController.java
 ```
 ```java
 # FILE (HelloRestController.java)
 ...
-    @RequestMapping(HelloPropertyValues.HELLO_API)
-    public String helloJava() {
+import de.iotoi.impl.HelloServiceable;
+import de.iotoi.impl.HelloService;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 ...
+    @RequestMapping("/")
+    public String helloServiceKotlin() {
+        ApplicationContext context = new AnnotationConfigApplicationContext(HelloConfiguration.class);
+        HelloService objHelloService = (HelloService) context.getBean(HelloServiceable.class);
+
+        return objHelloService.getHello();
+    }
+}
 ```
 
 ### DO (check the project)
@@ -193,33 +241,38 @@ nano ./src/main/java/de/iotoi/HelloRestController.java
 ```
 ```bash
     # >> Result
-    Hello @Configuration and @PropertySource from init()!
-    Hello @Configuration and @PropertySource from init()!!
+    Hello @Configuration and @Bean in the file application.properties from init()!
+    Hello @Configuration and @Bean in the file application.properties from init()!!
     <==========---> 83% EXECUTING [13s]
     > :bootRun
 ```
 
-### DO (access the web rest api)
+### DO (access the web rest api with url `/api`)
 ```bash
 curl http://localhost:8080/api
 ```
 ```bash
     # >> Result
-    Hello @Configuration and @PropertySource!!!
+    Hello @Configuration and @Bean in the file application.properties!
+```
+
+### DO (access the web rest api with url `/`)
+```bash
+curl http://localhost:8080/
+```
+```bash
+    # >> Result
+    Hello @Configuration and @Bean in the file hello.properties!
 ```
 
 
 
 
 ## References
-- https://stackoverflow.com/questions/54937518/visual-studio-code-spring-boot-reload-static-content/55370810
-- https://mkyong.com/spring-boot/intellij-idea-spring-boot-template-reload-is-not-working/
-- https://gist.github.com/IMRFeng/eed589de6a6362ef23bc189fb135fdea
-- https://www.vojtechruzicka.com/spring-boot-devtools/
-- https://stackoverflow.com/questions/33349456/how-to-make-auto-reload-with-spring-boot-on-idea-intellij
-- https://stackoverflow.com/questions/54556072/hot-to-hotswap-code-in-intellij-in-a-spring-boot-project
-- https://www.nexsoftsys.com/articles/hot-swapping-in-spring-boot-applications.html
-- https://stackoverflow.com/questions/57408522/spring-boot-maven-not-printing-logs-on-console
+- https://zetcode.com/springboot/applicationcontext/
+- https://www.baeldung.com/spring-application-context
+- https://blog.frankel.ch/flavors-spring-application-context-configuration/
+- 
 
 
 
