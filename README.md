@@ -44,7 +44,7 @@ Lesson 223: Hello @PostMapping and @RequestBody!
 
 
 ## Keywords
-- - Annotation `@PosMapping` `@RequestBody` `Spring Boot` POST
+- Annotation `@PosMapping` `@RequestBody` `Spring Boot` POST
 - `Java JDK` `IntelliJ CE` CircleCI CI
 - tutorial example Ubuntu Gradle jabba JDK Java JVM
 - `Spring Boot` `web app` web app Annotation `@Service` Liberary JSONObject json
