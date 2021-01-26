@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import java.util.Map;
 import java.util.HashMap;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @RestController
 public class HelloRestController {
@@ -53,5 +55,20 @@ public class HelloRestController {
         });
 
         return new ResponseEntity<String>(jsonMap.toString(), HttpStatus.OK);
+    }
+
+    @PostMapping(
+        consumes = MediaType.APPLICATION_JSON_VALUE,
+        produces = MediaType.APPLICATION_JSON_VALUE,
+        path = {"/api/cmd", "/"}
+    )
+    public String helloCommand(
+        @RequestBody
+        String strJSON
+    ) {
+        JSONObject jsonObj = new JSONObject(strJSON);
+        String value = jsonObj.getString("cmd") + ": we have received this value";
+        jsonObj.put("cmd", value);
+        return jsonObj.toString();
     }
 }

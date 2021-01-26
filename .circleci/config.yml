@@ -73,6 +73,8 @@ jobs:
               curl http://localhost:80/api/str
               curl http://localhost:80/api/resp
               curl http://localhost:80/api/map
+              curl -H "Content-Type: application/json" -X POST -d '{"cmd":"ls"}' localhost:80/api/cmd
+              curl -H "Content-Type: application/json" -X POST -d '{"cmd":"ls"}' localhost:80/
 
       - run:
           name: "stop web server on docker"
