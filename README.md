@@ -8,16 +8,16 @@
 [![Java zulu-openjdk:11](https://img.shields.io/badge/Java-zulu%20openjdk:11-brightgreen?style=flat&logo=java)](https://www.azul.com/downloads/zulu-community/?package=jdk)
 [![IntelliJ IDEA Community Version](https://img.shields.io/badge/IntelliJ%20IEAD%20Community%20Version-blue?style=flat)](https://www.jetbrains.com/de-de/idea/download/#section=linux)
 [![Docker-(2019.03.13)](https://img.shields.io/badge/Docker-%2019.03.13-brightgreen)](https://www.docker.com/)
-[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_205.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_205)
+[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_222.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_222)
 
 
 
 ---
 
-Lesson 205: Hello @Service!
-<h1>Lesson 205: Hello @Service!</h1>
+Lesson 222: Hello JSONObject!
+<h1>Lesson 222: Hello JSONObject!</h1>
 
-- How to Understand the Annotation @Service
+- How to Understand the Library JSONObject
 
 
 ---
@@ -31,14 +31,27 @@ Lesson 205: Hello @Service!
   - [DO (create a new project)](#do-create-a-new-project)
   - [DO (edit the spring property file)](#do-edit-the-spring-property-file)
   - [DO (check the project)](#do-check-the-project)
-- [Develop the Project](#develop-the-project)
-  - [DO (create and edit the spring service file)](#do-create-and-edit-the-spring-service-file)
-  - [DO (edit the java rest controller file)](#do-edit-the-java-rest-controller-file)
+- [Add A Library JSONObject to the Project](#add-a-library-jsonobject-to-the-project)
+  - [DO (edit the gradle build file)](#do-edit-the-gradle-build-file)
   - [DO (check the project)](#do-check-the-project-1)
-- [Start the Project](#start-the-project)
-  - [DO (open a new terminal to start HotCode)](#do-open-a-new-terminal-to-start-hotcode)
-  - [DO (open a new terminal to run the web application)](#do-open-a-new-terminal-to-run-the-web-application)
-  - [DO (open a new terminal to access the web application)](#do-open-a-new-terminal-to-access-the-web-application)
+- [Develop the Project for class `String`](#develop-the-project-for-class-string)
+  - [DO (edit the spring service file)](#do-edit-the-spring-service-file)
+  - [DO (edit the spring rest controller file)](#do-edit-the-spring-rest-controller-file)
+  - [DO (run the web application with gradle)](#do-run-the-web-application-with-gradle)
+  - [DO (access the web api `/api/str`)](#do-access-the-web-api-apistr)
+  - [DO (stop the web application with gradle)](#do-stop-the-web-application-with-gradle)
+- [Develop the Project for class `ResponseEntity`](#develop-the-project-for-class-responseentity)
+  - [DO (edit the spring service file)](#do-edit-the-spring-service-file-1)
+  - [DO (edit the spring rest controller file)](#do-edit-the-spring-rest-controller-file-1)
+  - [DO (run the web application with gradle)](#do-run-the-web-application-with-gradle-1)
+  - [DO (access the web api `/api/resp`)](#do-access-the-web-api-apiresp)
+  - [DO (stop the web application with gradle)](#do-stop-the-web-application-with-gradle-1)
+- [Develop the Project for class `Map`](#develop-the-project-for-class-map)
+  - [DO (edit the spring service file)](#do-edit-the-spring-service-file-2)
+  - [DO (edit the spring rest controller file)](#do-edit-the-spring-rest-controller-file-2)
+  - [DO (run the web application with gradle)](#do-run-the-web-application-with-gradle-2)
+  - [DO (access the web api `/api/map`)](#do-access-the-web-api-apimap)
+  - [DO (stop the web application with gradle)](#do-stop-the-web-application-with-gradle-2)
 - [References](#references)
 - [References for tools](#references-for-tools)
 
@@ -46,10 +59,10 @@ Lesson 205: Hello @Service!
 
 
 ## Keywords
-- `Spring Boot` Annotation `@Service`
+- - Liberary JSONObject json
 - `Java JDK` `IntelliJ CE` CircleCI CI
 - tutorial example Ubuntu Gradle jabba JDK Java JVM
-- `Spring Boot` `web app` web app
+- `Spring Boot` `web app` web app Annotation `@Service`
 
 
 
@@ -67,7 +80,7 @@ Lesson 205: Hello @Service!
 
 ### DO (create a new project)
 ```bash
-EXISTING_APP_ID=204 && NEW_APP_ID=205 \
+EXISTING_APP_ID=205 && NEW_APP_ID=222 \
 && git clone -b basic_${EXISTING_APP_ID} https://github.com/cnruby/gradle_java.git ${NEW_APP_ID}_gradle_java \
 && cd ${NEW_APP_ID}_gradle_java
 ```
@@ -79,8 +92,8 @@ nano ./src/main/resources/application.properties
 ```bash
 # FILE (application.properties)
 ...
-web.app.name=Hello @Service
-logging.level.root=WARN
+web.app.name=Hello JSONObject
+...
 ```
 
 ### DO (check the project)
@@ -93,123 +106,240 @@ logging.level.root=WARN
 
 
 
-## Develop the Project
 
-### DO (create and edit the spring service file)
+## Add A Library JSONObject to the Project
+
+### DO (edit the gradle build file)
 ```bash
-touch ./src/main/java/de/iotoi/HelloService.java
+nano ./build.gradle
 ```
+```bash
+# FILE (build.gradle)
+dependencies {
+	implementation 'org.json:json:20201115'
+...
+```
+
+### DO (check the project)
+```bash
+./gradlew -q check
+```
+```bash
+    # >> Result: nothing
+```
+
+
+
+
+## Develop the Project for class `String`
+
+### DO (edit the spring service file)
 ```bash
 nano ./src/main/java/de/iotoi/HelloService.java
 ```
-```bash
-# FILE (HelloService.java)
-package de.iotoi;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
-@Service()
-public class HelloService {
-    @Value("${web.app.name}")
-    String webAppName;
-
-    public String getHello() {
-        System.out.println(webAppName);
-        return webAppName + "!!\n";
-    }
-}
-```
-
-### DO (edit the java rest controller file)
-```bash
-nano ./src/main/java/de/iotoi/JavaApplication.java
-```
-```bash
-# FILE (JavaApplication.java)
+```java
+// FILE (HelloService.java)
 ...
-    @Value(PropertyValues.WEB_APP_NAME)
-    String webAppName;
+import org.json.JSONObject;
+...
+    public String getStringHello() {
+        JSONObject jsonObj = new JSONObject();
+        jsonObj.put("String", webAppName);
+        return jsonObj.toString();
+    } 
+}
+```
 
-    private HelloService helloService;
-    HelloRestController(HelloService helloService) {
-        this.helloService = helloService;
-    }
-
-    @RequestMapping("/api/value")
-    public String helloJavaValue() {
-        return webAppName + "!\n";
-    }
-
-    @RequestMapping("/api/service")
-    public String helloJavaService() {
-        return helloService.getHello();
+### DO (edit the spring rest controller file)
+```bash
+nano ./src/main/java/de/iotoi/HelloRestController.java
+```
+```java
+// FILE (HelloRestController.java)
+...
+    @RequestMapping("/api/str")
+    public String  helloString() {
+        return helloService.getStringHello();
     }
 }
 ```
 
-### DO (check the project)
-```bash
-./gradlew -q check
-```
-```bash
-    # >> Result: nothing
-```
-
-
-
-
-## Start the Project
-
-### DO (open a new terminal to start HotCode)
-```bash
-./gradlew -q bootJar --continuous
-```
-
-### DO (open a new terminal to run the web application)
+### DO (run the web application with gradle)
 ```bash
 ./gradlew -q bootRun
 ```
 ```bash
-    # >> Result
-    Hello @Service from init()!
-    Hello @Service from init()!!
-    <==========---> 80% EXECUTING [49s]
+    # Result
+    Hello JSONObject from init()!
+    Hello JSONObject from init()!!    
+    <==========---> 83% EXECUTING [21s]
     > :bootRun
 ```
 
-### DO (open a new terminal to access the web application)
+### DO (access the web api `/api/str`)
 ```bash
-curl --no-progress-meter http://localhost:8080/api/value
+curl --no-progress-meter http://localhost:8080/api/str | json_pp
 ```
-```bash
-    # >>> Result
-    Hello @Service!
+```json5
+    # >> Result
+    {
+        "String" : "Hello JSONObject"
+    }
 ```
 
+### DO (stop the web application with gradle)
 ```bash
-curl --no-progress-meter http://localhost:8080/api/service
+# !!! Ctrl+C
+```
+
+
+
+
+## Develop the Project for class `ResponseEntity`
+
+### DO (edit the spring service file)
+```bash
+nano ./src/main/java/de/iotoi/HelloService.java
+```
+```java
+// FILE (HelloService.java)
+...
+    public JSONObject getJSONObjectHello()  {
+        JSONObject jsonEntity = new JSONObject();
+        jsonEntity.put("ResponseEntity", webAppName);
+        return jsonEntity;
+    }
+}
+```
+
+### DO (edit the spring rest controller file)
+```bash
+nano ./src/main/java/de/iotoi/HelloRestController.java
 ```
 ```bash
-    # >>> Result
-    Hello @Service!!
+# FILE (HelloRestController.java)
+...
+import org.json.JSONObject;
+import org.springframework.http.MediaType;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+...
+    @RequestMapping(path="/api/resp", produces=MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> helloResponseEntity() {
+        JSONObject jsonResp  = helloService.getJSONObjectHello();
+        return new ResponseEntity<String>(jsonResp.toString(), HttpStatus.OK);
+    }    
+}
+```
+
+### DO (run the web application with gradle)
+```bash
+./gradlew -q bootRun
+```
+```bash
+    # Result
+    <==========---> 83% EXECUTING [21s]
+    > :bootRun
+```
+
+### DO (access the web api `/api/resp`)
+```bash
+curl --no-progress-meter http://localhost:8080/api/resp | json_pp
+```
+```json5
+    # >> Result
+    {
+        "ResponseEntity" : "Hello JSONObject"
+    }
+```
+
+### DO (stop the web application with gradle)
+```bash
+# !!! Ctrl+C
+```
+
+
+
+
+## Develop the Project for class `Map`
+
+### DO (edit the spring service file)
+```bash
+nano ./src/main/java/de/iotoi/HelloService.java
+```
+```java
+// FILE (HelloService.java)
+...
+import java.util.Map;
+import java.util.HashMap;
+...
+    public Map<String, String> getMapHello() {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("Map", webAppName);
+        return map;
+    }
+}
+```
+
+### DO (edit the spring rest controller file)
+```bash
+nano ./src/main/java/de/iotoi/HelloRestController.java
+```
+```java
+# FILE (HelloRestController.java)
+...
+import java.util.Map;
+import java.util.HashMap;
+...
+    @RequestMapping("/api/map")
+    public ResponseEntity<String> helloMap() {
+        JSONObject jsonMap = new JSONObject();
+
+        Map<String, String> map = helloService.getMapHello();
+        map.entrySet().stream().forEach (
+            m -> { jsonMap.put( m.getKey(), m.getValue());
+        });
+
+        return new ResponseEntity<String>(jsonMap.toString(), HttpStatus.OK);
+    }
+}
+```
+
+### DO (run the web application with gradle)
+```bash
+./gradlew -q bootRun
+```
+```bash
+    # Result
+    <==========---> 83% EXECUTING [21s]
+    > :bootRun
+```
+
+### DO (access the web api `/api/map`)
+```bash
+curl --no-progress-meter http://localhost:8080/api/map | json_pp
+```
+```json5
+    # >> Result
+    {
+        "Map" : "Hello JSONObject"
+    }
+```
+
+### DO (stop the web application with gradle)
+```bash
+# !!! Ctrl+C
 ```
 
 
 
 
 ## References
-- https://stackoverflow.com/questions/54937518/visual-studio-code-spring-boot-reload-static-content/55370810
-- https://mkyong.com/spring-boot/intellij-idea-spring-boot-template-reload-is-not-working/
-- https://gist.github.com/IMRFeng/eed589de6a6362ef23bc189fb135fdea
-- https://www.vojtechruzicka.com/spring-boot-devtools/
-- https://stackoverflow.com/questions/33349456/how-to-make-auto-reload-with-spring-boot-on-idea-intellij
-- https://stackoverflow.com/questions/54556072/hot-to-hotswap-code-in-intellij-in-a-spring-boot-project
-- https://www.nexsoftsys.com/articles/hot-swapping-in-spring-boot-applications.html
-- https://stackoverflow.com/questions/57408522/spring-boot-maven-not-printing-logs-on-console
+- https://www.journaldev.com/21435/spring-service-annotation#spring-service-example
 
 
 
 
 ## References for tools
 - [Add a copy to clipboard button in a GitHub](https://github.com/zenorocha/codecopy#install)
+
