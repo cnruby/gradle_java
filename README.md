@@ -8,16 +8,17 @@
 [![Java zulu-openjdk:11](https://img.shields.io/badge/Java-zulu%20openjdk:11-brightgreen?style=flat&logo=java)](https://www.azul.com/downloads/zulu-community/?package=jdk)
 [![IntelliJ IDEA Community Version](https://img.shields.io/badge/IntelliJ%20IEAD%20Community%20Version-blue?style=flat)](https://www.jetbrains.com/de-de/idea/download/#section=linux)
 [![Docker-(2019.03.13)](https://img.shields.io/badge/Docker-%2019.03.13-brightgreen)](https://www.docker.com/)
-[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_223.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_223)
+[![CircleCI](https://circleci.com/gh/cnruby/gradle_java/tree/basic_224.svg?style=svg)](https://app.circleci.com/pipelines/github/cnruby/gradle_java?branch=basic_224)
 
 
 
 ---
 
-Lesson 223: Hello @PostMapping and @RequestBody!
-<h1>Lesson 223: Hello @PostMapping and @RequestBody!</h1>
+Lesson 224: Hello @PostMapping and @RequestPart!
+<h1>Lesson 224: Hello @PostMapping and @RequestPart!</h1>
 
-- How to Understand the Annotation @PostMapping and @RequestBody!
+- How to Understand the Annotation @PostMapping and @RequestPart!
+- How to Upload the Text File from Local to Server
 
 
 ---
@@ -33,9 +34,9 @@ Lesson 223: Hello @PostMapping and @RequestBody!
   - [DO (check the project)](#do-check-the-project)
 - [Develop the Project](#develop-the-project)
   - [DO (edit the spring rest controller file)](#do-edit-the-spring-rest-controller-file)
-  - [DO (check the project)](#do-check-the-project-1)
+  - [DO (add a new upload file)](#do-add-a-new-upload-file)
   - [DO (run the web application with gradle)](#do-run-the-web-application-with-gradle)
-  - [DO (access the web api with url `/api/str` or `/`)](#do-access-the-web-api-with-url-apistr-or-)
+  - [DO (access the web api with url `/api/upload`)](#do-access-the-web-api-with-url-apiupload)
   - [DO (stop the web application with gradle)](#do-stop-the-web-application-with-gradle)
 - [References](#references)
 - [References for tools](#references-for-tools)
@@ -44,7 +45,7 @@ Lesson 223: Hello @PostMapping and @RequestBody!
 
 
 ## Keywords
-- - Annotation `@PosMapping` `@RequestBody` `Spring Boot` POST
+- Annotation `@PosMapping` `@RequestPart` `Spring Boot` POST upload file
 - `Java JDK` `IntelliJ CE` CircleCI CI
 - tutorial example Ubuntu Gradle jabba JDK Java JVM
 - `Spring Boot` `web app` web app Annotation `@Service` Liberary JSONObject json
@@ -65,7 +66,7 @@ Lesson 223: Hello @PostMapping and @RequestBody!
 
 ### DO (create a new project)
 ```bash
-EXISTING_APP_ID=222 && NEW_APP_ID=223 \
+EXISTING_APP_ID=223 && NEW_APP_ID=224 \
 && git clone -b basic_${EXISTING_APP_ID} https://github.com/cnruby/gradle_java.git ${NEW_APP_ID}_gradle_java \
 && cd ${NEW_APP_ID}_gradle_java
 ```
@@ -77,7 +78,7 @@ nano ./src/main/resources/application.properties
 ```bash
 # FILE (application.properties)
 ...
-web.app.name=Hello @PostMapping and @RequestBody
+web.app.name=Hello @PostMapping and @RequestPart
 ...
 ```
 
@@ -101,32 +102,42 @@ nano ./src/main/java/de/iotoi/HelloRestController.java
 ```bash
 # FILE (HelloRestController.java)
 ...
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.RequestPart;
+import java.nio.charset.StandardCharsets;
+import java.io.IOException;
 ...
     @PostMapping(
-        consumes = MediaType.APPLICATION_JSON_VALUE,
+        consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE,
-        path = {"/api/cmd", "/"}
+        path = "/api/upload"
     )
-    public String helloCommand(
-        @RequestBody
-        String strJSON
-    ) {
-        JSONObject jsonObj = new JSONObject(strJSON);
-        String value = jsonObj.getString("cmd") + ": we have received this value";
-        jsonObj.put("cmd", value);
+    public String parseUploadFile(
+        @RequestPart(value = "uploadX", required = true)
+        MultipartFile multipartFile
+    ) throws IOException {
+        JSONObject jsonObj = new JSONObject();
+        jsonObj.put("fileName", multipartFile.getOriginalFilename());
+        jsonObj.put("fileContent", new String(multipartFile.getBytes(), StandardCharsets.UTF_8));
+        jsonObj.put("fileSize", multipartFile.getSize());
         return jsonObj.toString();
     }
 }
 ```
 
-### DO (check the project)
+### DO (add a new upload file)
 ```bash
-./gradlew -q check
+mkdir ./local_upload
 ```
 ```bash
-    # >> Result: nothing
+touch ./local_upload/hello.txt
+```
+```bash
+nano ./local_upload/hello.txt
+```
+```bash
+# FILE (hello.txt)
+Hello @PostMapping and @RequestPart!
 ```
 
 ### DO (run the web application with gradle)
@@ -139,18 +150,19 @@ import org.springframework.web.bind.annotation.PostMapping;
     > :bootRun
 ```
 
-### DO (access the web api with url `/api/str` or `/`)
+### DO (access the web api with url `/api/upload`)
 ```bash
-curl --no-progress-meter -H "Content-Type: application/json" -X POST -d '{"cmd":"ls"}' localhost:8080/api/cmd | json_pp
-```
-OR
-```bash
-curl --no-progress-meter -H "Content-Type: application/json" -X POST -d '{"cmd":"ls"}' localhost:8080/ | json_pp
+curl --no-progress-meter -H "Content-Type: multipart/form-data" -H "accept: application/json" \
+    -X POST \
+    -F "uploadX=@./local_upload/hello.txt;type=text/plain" \
+    http://localhost:8080/api/upload | json_pp
 ```
 ```json5
-    # >> Result
+    // >> Result
     {
-      "cmd" : "ls: we have received this value"
+      "fileContent" : "Hello @PostMapping and @RequestPart!",
+      "fileName" : "hello.txt",
+      "fileSize" : "36"
     }
 ```
 
@@ -165,7 +177,7 @@ curl --no-progress-meter -H "Content-Type: application/json" -X POST -d '{"cmd":
 ## References
 - https://www.codeflow.site/de/article/java-org-json
 - https://www.baeldung.com/java-org-json
-
+- https://mkyong.com/java/how-do-convert-byte-array-to-string-in-java/
 
 
 
