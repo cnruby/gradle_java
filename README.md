@@ -59,7 +59,7 @@ Lesson 222: Hello JSONObject!
 
 
 ## Keywords
-- - Liberary JSONObject json
+- Liberary JSONObject json
 - `Java JDK` `IntelliJ CE` CircleCI CI
 - tutorial example Ubuntu Gradle jabba JDK Java JVM
 - `Spring Boot` `web app` web app Annotation `@Service`
