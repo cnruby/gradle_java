@@ -19,6 +19,7 @@ Hello "gradle_java"!
 
 
 - [Learn Java with Gradle](#learn-java-with-gradle)
+- [Learn Spring Boot with Gradle](#learn-spring-boot-with-gradle)
 - [Learn Tools and Others](#learn-tools-and-others)
 - [References GitHub Actions](#references-github-actions)
 - [References Gradle](#references-gradle)
@@ -52,6 +53,38 @@ Hello "gradle_java"!
 | 121 | [Hello Application Run!](https://github.com/cnruby/gradle_java/tree/basic_121) |  |  |  |  |
 | 122 |  |  | [Hello Web App Run!](https://github.com/cnruby/gradle_java/tree/basic_122) |  |  |
 | 123 |  |  |  | [Hello Multi-Project!](https://github.com/cnruby/gradle_java/tree/basic_123) |  |
+
+## Learn Spring Boot with Gradle
+| Lesson |	Project App	| Project Common | Project Web App | Multi-Project |
+|---------|-------------|-------------|-------------|-------------|
+| 201 |  |  | [Hello @Bean!](https://github.com/cnruby/gradle_java/tree/basic_201) |  |
+| 202 |  |  | [Hello @RestController!](https://github.com/cnruby/gradle_java/tree/basic_202) |  |
+| 203 |  | [Hello devtools!](https://github.com/cnruby/gradle_java/tree/basic_203) | x |  |
+| 204 |  |  | [Hello @Value!](https://github.com/cnruby/gradle_java/tree/basic_204) |  |
+| 205 |  |  | [Hello @Service!](https://github.com/cnruby/gradle_java/tree/basic_205) |  |
+| 206 |  |  | [Hello @Controller!](https://github.com/cnruby/gradle_java/tree/basic_206) |  |
+| 207 |  |  | [Hello @Component!](https://github.com/cnruby/gradle_java/tree/basic_207) |  |
+| 208 |  |  | [Hello @Autowired!](https://github.com/cnruby/gradle_java/tree/basic_208) |  |
+| 209 |  |  | [Hello @Entity!](https://github.com/cnruby/gradle_java/tree/basic_209) |  |
+| 210 |  | [Hello h2 Console!](https://github.com/cnruby/gradle_java/tree/basic_210) | x |  |  
+| 211 |  |  | [Hello Seed Data!](https://github.com/cnruby/gradle_java/tree/basic_211) |  |
+| 212 |  |  | [Hello @GenericGenerator!](https://github.com/cnruby/gradle_java/tree/basic_212) |  |
+| 213 |  |  | [Hello Spring DataSource!](https://github.com/cnruby/gradle_java/tree/basic_213) |  |
+| 214 |  |  | [Hello PostgreSQL with DataSource!](https://github.com/cnruby/gradle_java/tree/basic_214) |  |
+| 215 |  | [Hello Database Platform!](https://github.com/cnruby/gradle_java/tree/basic_215) |  |  |
+| 216 |  |  | [Hello @ControllerAdvice!](https://github.com/cnruby/gradle_java/tree/basic_216) |  |
+| 217 |  | [Hello JUnit 5!](https://github.com/cnruby/gradle_java/tree/basic_217) |  |  |
+| 218 |  |  | [Hello REST Assured!](https://github.com/cnruby/gradle_java/tree/basic_218) |  |
+| 219 |  |  | [Hello @Order!](https://github.com/cnruby/gradle_java/tree/basic_219) |  |
+| 220 |  |  | [Hello @Configuration and @PropertySource!](https://github.com/cnruby/gradle_java/tree/basic_220) |  |
+| 221 |  |  | [Hello @Configuration and @Bean!](https://github.com/cnruby/gradle_java/tree/basic_221) |  |
+| 222 |  | [Hello JSONObject!](https://github.com/cnruby/gradle_java/tree/basic_222) |  |  |
+| 223 |  |  | [Hello @PostMapping and @RequestBody!](https://github.com/cnruby/gradle_java/tree/basic_223) |  |
+| 224 |  |  | [Hello @PostMapping and @RequestPart!](https://github.com/cnruby/gradle_java/tree/basic_224) |  |
+| 225 |  |  | [Hello @RequestMapping and @RequestParam!](https://github.com/cnruby/gradle_java/tree/basic_225) |  |
+| 226 |  | [Hello OpenAPI!](https://github.com/cnruby/gradle_java/tree/basic_226) |  |  |
+
+
 
 
 
